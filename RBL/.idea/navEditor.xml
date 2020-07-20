@@ -440,6 +440,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_expenseListFragment_to_createMultipleExpenseFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_move_to_createExpense">
                               <value>
                                 <LayoutPositions />

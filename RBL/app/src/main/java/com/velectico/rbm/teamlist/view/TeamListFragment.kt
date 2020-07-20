@@ -30,12 +30,15 @@ class TeamListFragment : BaseFragment()  {
     private lateinit var teamList : List<TeamListModel>
     private lateinit var adapter: TeamListAdapter
 
+    var getstring = ""
     override fun getLayout(): Int {
         return R.layout.fragment_team_list
     }
 
 
     override fun init(binding: ViewDataBinding) {
+        showToastMessage("" + arguments?.getString(  "name"))
+        getstring = arguments?.getString(  "name").toString()
         this.binding = binding as FragmentTeamListBinding
         teamList = TeamListModel().getDummyTeamList()
         setUpRecyclerView()
@@ -46,8 +49,22 @@ class TeamListFragment : BaseFragment()  {
         adapter = TeamListAdapter(object : TeamListAdapter.ITeamListActionCallBack{
             override fun moveToBeatDetails(position: Int, beatTaskId: String?,binding: RowTeamListBinding) {
                 //Log.e("test","onAddTask"+beatTaskId)
-                val navDirection =  TeamListFragmentDirections.actionTeamListFragmentToTeamPerformanceFragment()
-                Navigation.findNavController(binding.navigateToDetails).navigate(navDirection)
+                if (getstring == "Performance") {
+                    val navDirection =  TeamListFragmentDirections.actionTeamListFragmentToTeamPerformanceFragment()
+                    Navigation.findNavController(binding.navigateToDetails).navigate(navDirection)
+                }
+                else if (getstring == "BEATS") {
+                    val navDirection =  TeamListFragmentDirections.actionTeamListFragmentToDateWiseBeatListFragment()
+                    Navigation.findNavController(binding.navigateToDetails).navigate(navDirection)
+                }
+                else if (getstring == "Leave") {
+                    val navDirection =  TeamListFragmentDirections.actionTeamListFragmentToLeaveListFragment()
+                    Navigation.findNavController(binding.navigateToDetails).navigate(navDirection)
+                }
+                else {
+                    val navDirection =  TeamListFragmentDirections.actionTeamListFragmentToExpenseListFragment()
+                    Navigation.findNavController(binding.navigateToDetails).navigate(navDirection)
+                }
             }
         });
         binding.rvTeamList.adapter = adapter

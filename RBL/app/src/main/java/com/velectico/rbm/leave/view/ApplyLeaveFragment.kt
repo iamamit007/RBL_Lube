@@ -12,6 +12,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.velectico.rbm.R
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
+import com.velectico.rbm.databinding.DefaultFragmentBinding
 import com.velectico.rbm.databinding.FragmentApplyLeaveBinding
 import com.velectico.rbm.expense.views.CreateExpenseFragmentDirections
 import com.velectico.rbm.leave.model.ApplyLeaveRequest
@@ -22,8 +23,7 @@ import com.velectico.rbm.leave.viewmodel.LeaveViewModel
 import com.velectico.rbm.masterdata.model.MasterDataItem
 import com.velectico.rbm.masterdata.model.MasterDataResponse
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
-import com.velectico.rbm.utils.DateUtility
-import com.velectico.rbm.utils.SharedPreferenceUtils
+import com.velectico.rbm.utils.*
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import java.util.*
 import kotlin.collections.ArrayList
@@ -41,6 +41,7 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
     private var selectedLeaveReason : LeaveReason?=null
     private var flow : String?= null
     private var leaveID : String = ""
+    private lateinit var menuViewModel: MenuViewModel
 
     override fun getLayout(): Int {
         return R.layout.fragment_apply_leave
@@ -48,7 +49,9 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentApplyLeaveBinding
+        menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
         observeViewModelData()
+        getRoleWiseView(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString(),binding)
         setUp()
         getLeaveListFromServer()
     }
@@ -215,5 +218,29 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
             .show()
     }
 
+    private fun getRoleWiseView(uRole:String,binding: FragmentApplyLeaveBinding) {
 
+        when (uRole) {
+
+            SALES_LEAD_ROLE -> {
+                binding.approveBtn.visibility = View.GONE
+                binding.rejectBtn.visibility = View.GONE
+            }
+            SALES_PERSON_ROLE -> {
+                binding.approveBtn.visibility = View.GONE
+                binding.rejectBtn.visibility = View.GONE
+            }
+            DISTRIBUTER_ROLE -> {
+                binding.applyBtn.visibility = View.GONE
+                binding.approveBtn.visibility = View.VISIBLE
+                binding.rejectBtn.visibility = View.VISIBLE
+            }
+
+
+        }
+        binding.applyBtn.visibility = View.GONE
+        binding.approveBtn.visibility = View.VISIBLE
+        binding.rejectBtn.visibility = View.VISIBLE
+
+    }
 }

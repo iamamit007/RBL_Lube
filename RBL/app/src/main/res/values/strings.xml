@@ -97,7 +97,7 @@
     <!--Create Beat ends here-->
 
     <!--LEAVE LIST-->
-    <string name="lbl_leave_name">Leave Name</string>
+    <string name="lbl_leave_name">Leave Purpose</string>
     <string name="lbl_leave_from">Leave From</string>
     <string name="lbl_leave_to">Leave To</string>
     <string name="lbl_leave_no_of_days">No. of Leave days</string>
@@ -159,7 +159,7 @@
     <string name="prod_gst">GST</string>
     <string name="prod_place_order">Place Order</string>
     <string name="cancel_order">Cancel Order</string>
-    <string name="strikeThroughData"><strike>Rs 350</strike></string>
+    <string name="strikeThroughData">DLP : <strike>Rs 350</strike></string>
 
     <integer name="swing_anim_time">750</integer>
 

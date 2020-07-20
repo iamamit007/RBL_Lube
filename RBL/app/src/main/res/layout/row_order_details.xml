@@ -73,7 +73,7 @@
                             android:id="@+id/plist_price_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs. 200"
+                            android:text="Total Amt : ₹ 20000"
                             android:textColor="#1d1d1d"
                             android:textSize="12dip"
                             android:textStyle="bold" />
@@ -83,8 +83,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
-                            android:text="1.5 ltr"
+                            android:text="order Qty : 10pcs"
                             android:textColor="#343434"
+                            android:textSize="12dip" />
+                        <TextView
+                            android:id="@+id/plist_schme"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="20% off"
+                            android:textColor="#000000"
                             android:textSize="12dip" />
 
                     </LinearLayout>
@@ -93,30 +101,7 @@
 
 
                 </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/schemeDetails"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/prodSec"
-                    android:orientation="horizontal" >
-                    <!--Scheme Name-->
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/scheme_name"
-                        style="@style/login_reg_input_label"
-                        android:hint="Scheme Name"
-                        app:hintTextAppearance="@style/hintLabelColor">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_scheme_name"
-                            style="@style/login_reg_input_text"
-                            android:enabled="false"
-                            android:text="Buy 1 get 1 free scheme" />
-                    </com.google.android.material.textfield.TextInputLayout>
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"></View>
-
-                </LinearLayout>
             </RelativeLayout>
 
         </LinearLayout>

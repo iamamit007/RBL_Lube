@@ -270,6 +270,18 @@
         <action
             android:id="@+id/action_teamListFragment_to_teamPerformanceFragment"
             app:destination="@id/teamPerformanceFragment" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_teamListFragment_to_leaveListFragment"
+            app:destination="@id/leaveListFragment" />
+        <action
+            android:id="@+id/action_teamListFragment_to_expenseListFragment"
+            app:destination="@id/expenseListFragment" />
+        <action
+            android:id="@+id/action_teamListFragment_to_dateWiseBeatListFragment"
+            app:destination="@id/dateWiseBeatListFragment" />
     </fragment>
     <fragment
         android:id="@+id/createComplaints"

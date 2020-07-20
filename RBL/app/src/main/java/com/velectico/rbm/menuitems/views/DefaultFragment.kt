@@ -14,6 +14,7 @@ import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.R
 import com.velectico.rbm.databinding.DefaultFragmentBinding
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
+import com.velectico.rbm.teamlist.view.TeamDashboardDirections
 import com.velectico.rbm.utils.*
 
 /**
@@ -146,7 +147,7 @@ class DefaultFragment : BaseFragment(){
             Navigation.findNavController(binding.paymentDealerButton).navigate(navDirection)
         }
         binding.performanceButtonLong.setOnClickListener {
-            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToTeamListFragment()
+            val navDirection =  TeamDashboardDirections.actionTeamDashboardToTeamListFragment(binding.performanceButtonLong.text.toString())
             Navigation.findNavController(binding.performanceButtonLong).navigate(navDirection)
         }
     }

@@ -194,11 +194,24 @@
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/applyBtn"
-                            style="@style/styleAppCompactButton"
+                            style="@style/styleAppCompactButton22"
                             android:layout_marginTop="@dimen/dimen_30dp"
                             android:textColor="@color/white"
-                            android:backgroundTint="@color/black"
+                            android:backgroundTint="@color/mdtp_light_gray"
                             android:text="@string/apply" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/approveBtn"
+                            style="@style/styleAppCompactButton22"
+                            android:textColor="@color/white"
+                            android:backgroundTint="@color/colorGreen"
+                            android:text="Approve" />
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/rejectBtn"
+                            style="@style/styleAppCompactButton22"
+                            android:textColor="@color/white"
+                            android:backgroundTint="@color/colorRed"
+                            android:text="Reject" />
 
                     </LinearLayout>
 

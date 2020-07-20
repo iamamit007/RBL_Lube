@@ -22,10 +22,10 @@ class OrderHead {
             tempOrder.orderId= "ORD-123456"
             tempOrder.distId = "896589"
             tempOrder.dealerId = "12548"
-            tempOrder.distName = "Sam Dist"
+            tempOrder.distName = ""
             tempOrder.orderDate = "25 Jul 20"
             tempOrder.orderStatus = "In-Progress"
-            tempOrder.orderCreatedBy = "SP-002"
+            tempOrder.orderCreatedBy = "DealerName/SalespersonName"
             tempOrder.orderCreatedDate = "15/02/2020"
             tempOrder.totalAmt = "896.23"
             orderHeadList.add(tempOrder)
