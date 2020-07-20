@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/header"
+        tools:context=".payment.view.FragmentPaymentList">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/ptitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payments"
+                android:textColor="@color/black"
+                android:textSize="28dip"
+                android:typeface="sans"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="@dimen/dimen_20dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/paymenthistory1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_alignEnd="@id/dealerListspinner"
+                android:layout_marginLeft="100dp"
+                android:layout_toRightOf="@+id/ptitle"
+                android:backgroundTint="#659EC7"
+                android:text="Payment History" />
+            <Spinner
+                android:id="@+id/dealerListspinner"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:alpha="0.75"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:drawSelectorOnTop="true"
+                android:layout_below="@+id/ptitle"
+                android:background="@drawable/complaint_spinner"
+                android:entries="@array/dealer_List"
+                />
+
+
+
+
+
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card"
+                android:alpha="0.75"
+                android:layout_below="@+id/dealerListspinner"
+                style="@style/cv_style">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/invoiceAmtTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Invoice Amount : 1,00,000"
+                        android:layout_marginTop="@dimen/dimen_20dp"
+                        android:textColor="@color/colorGreen"
+                        android:textSize="24dip"
+                        android:typeface="sans"
+                        android:textStyle="bold"
+                        android:layout_centerHorizontal="true"
+                        />
+
+
+
+                    <TextView
+                        android:id="@+id/outstndTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/invoiceAmtTxt"
+                        android:text="Outstanding"
+                        android:layout_marginTop="@dimen/dimen_20dp"
+                        android:textColor="#9F000F"
+                        android:textSize="24dip"
+                        android:typeface="sans"
+                        android:textStyle="bold"
+                        android:layout_centerHorizontal="true"
+                        />
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_payment_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_20dp"
+                        android:layout_below="@+id/outstndTxt"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        />
+                    <TextView
+                        android:id="@+id/totalamt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_20dp"
+                        android:text=" Due amount   ₹ 60,000"
+                        android:textColor="#38ACEC"
+                        android:textSize="20dip"
+                        android:typeface="sans"
+                        android:textStyle="bold"
+                        android:layout_below="@+id/rv_payment_list"
+                        android:layout_centerHorizontal="true"
+                        />
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/paybtn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/totalamt"
+                        android:layout_centerHorizontal="true"
+                        android:backgroundTint="#4AA02C"
+                        android:layout_marginBottom="@dimen/dimen_20dp"
+                        android:text="Pay" />
+
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </RelativeLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

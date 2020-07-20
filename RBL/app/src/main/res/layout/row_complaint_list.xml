@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="complaintInfo"
+            type="com.velectico.rbm.complaint.model.ComplaintModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        style="@style/cv_style">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_complaintImageUrl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dimen_16dp"
+                android:contentDescription="@string/content_description_media"
+                app:srcCompat="@mipmap/ic_launcher" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_complaintImageUrl"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <!---Expense Id- -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:id="@+id/tv_prodId"
+                            style="@style/rv_caption"
+                            android:text="Dealer Name" />
+
+                    </LinearLayout>
+                    <!-- -Expense Type -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+
+                        <TextView
+                            android:id="@+id/tv_prodName"
+                            android:text="Storage Problem"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+                    <!-- Beat Id -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:id="@+id/tv_prodNetPrice"
+                            android:text="Product Name"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+
+
+
+                    <!-- -Product Unit -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:id="@+id/tv_unit"
+                            android:text="15-07-2020"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+
+                    <!-- Advance Expense Amount
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rv_caption"
+                            android:text="@string/adv_exp_amt" />
+
+                        <TextView
+                            android:id="@+id/tv_partNo"
+                            android:text="Advance Expense Amount"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+                     -->
+                    <!-- KM travalled
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rv_caption"
+                            android:text="@string/km_travelled" />
+
+                        <TextView
+                            android:id="@+id/tv_prodSchemeId"
+                            android:text="KM travllled"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+                    -->
+                    <!-- Applied on -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:id="@+id/tv_prodSchemeName"
+                            android:text="Seal Broken"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+
+                    <!-- Status -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:id="@+id/tv_Packaging"
+                            android:text="In-Progress"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/navigateToDetails"
+                android:layout_width="25dip"
+                android:layout_height="25dip"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/arrow" />
+        </RelativeLayout>
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

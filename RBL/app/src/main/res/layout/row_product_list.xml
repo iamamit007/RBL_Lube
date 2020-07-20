@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="productInfo"
+            type="com.velectico.rbm.products.models.ProductInfo" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        style="@style/cv_style">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_prodImageUrl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dimen_16dp"
+                android:contentDescription="@string/content_description_media"
+                app:srcCompat="@mipmap/ic_launcher" />
+
+
+            <LinearLayout
+                android:id="@+id/prod_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_prodImageUrl"
+                android:orientation="horizontal">
+
+
+
+                <TextView
+                    android:id="@+id/tv_prodName"
+                    style="@style/rv_caption"
+                    android:text="@{productInfo.prodName}" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/prod_typeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/prod_name"
+                android:layout_toRightOf="@+id/iv_prodImageUrl"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/tv_prodType"
+                    style="@style/rv_caption"
+                    android:text="@{productInfo.PM_Type}" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/prod_catLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/prod_typeLayout"
+                android:layout_toRightOf="@+id/iv_prodImageUrl"
+                android:orientation="horizontal">
+
+
+
+                <TextView
+                    android:id="@+id/tv_prodCategory"
+                    style="@style/rv_caption"
+                    android:text="@{productInfo.prodCategoty}" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/prod_uomLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/prod_catLayout"
+                android:layout_toRightOf="@+id/iv_prodImageUrl"
+                android:orientation="horizontal">
+
+
+
+                <TextView
+                    android:id="@+id/tv_prodUom"
+                    style="@style/rv_caption"
+                    android:text="@{productInfo.prodPackaging}" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/prod_pricelayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/prod_uomLayout"
+                android:layout_toRightOf="@+id/iv_prodImageUrl"
+                android:orientation="horizontal">
+
+
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    style="@style/rv_caption"
+                    android:text="@{productInfo.prodTotalPrice}" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/navigateToDetails"
+                android:layout_width="25dip"
+                android:layout_height="25dip"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_right_arrow" />
+
+            <CheckBox
+                android:id="@+id/cb_prod_sel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/navigateToDetails"
+                android:layout_alignParentRight="true"
+
+                 />
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

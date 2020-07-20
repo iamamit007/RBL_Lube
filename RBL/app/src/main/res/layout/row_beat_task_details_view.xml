@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="beats"
+            type="com.velectico.rbm.beats.model.Beats" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardDetailsForTask"
+        style="@style/cv_style">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <!---Expense Id- -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/beat_name"
+                            android:text="Raja Oil" />
+
+
+
+                    </LinearLayout>
+                    <!-- -Expense Type -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+
+                        <TextView
+                            android:id="@+id/tv_prodNetPrice"
+                            android:text="Dealer"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+
+                    <!-- -Product Total Price -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+
+                        <TextView
+                            android:id="@+id/tv_prodTotalPrice"
+                            android:text="W2Ar 11/8 Golf view road"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_task_lbl"
+                        android:text="Task"
+                        style="@style/text_header_small" />
+
+
+
+                </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+
+                        <TextView
+                            android:id="@+id/tv_task"
+                            android:text="Sample task details goes in here for the sales person"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/navigateToDealerDetails"
+                android:src="@drawable/ic_right_arrow"
+                android:layout_margin="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"></ImageView>
+
+            <ImageView
+                android:id="@+id/cutGrade"
+                android:src="@drawable/ic_grade_a"
+                android:layout_margin="10dp"
+                android:layout_toLeftOf="@+id/navigateToDealerDetails"
+                android:layout_width="35dp"
+                android:layout_height="35dp"></ImageView>
+
+        </RelativeLayout>
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

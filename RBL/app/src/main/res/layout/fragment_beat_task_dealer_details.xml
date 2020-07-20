@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/cardDetails">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_dealer_det"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:elevation="10dp"
+                app:cardBackgroundColor="#fcfcfc"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/viewOne">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+                            <!---Expense Id- -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/beat_name"
+                                    android:text="Raja Oil Ltd"
+                                   />
+
+
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+
+
+                                <TextView
+                                    style="@style/text_header_small"
+                                    android:layout_width="wrap_content"
+                                    android:text="Dealer"
+                                   />
+
+
+
+                            </LinearLayout>
+                            <!-- -Expense Type -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+
+
+                                <TextView
+                                    android:id="@+id/tv_prodNetPrice"
+                                    android:text="+919836256985"
+                                    style="@style/rv_caption" />
+                                <TextView
+                                    android:id="@+id/tv_km"
+                                    android:text="Kilometer - 235"
+                                    android:textAlignment="viewEnd"
+                                    style="@style/rv_caption" />
+
+                            </LinearLayout>
+
+                            <!-- -Product Total Price -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+
+
+                                <TextView
+                                    android:id="@+id/tv_prodTotalPrice"
+                                    android:text="Contact Person - Sumit Sen"
+                                    style="@style/rv_caption" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/white"
+                                android:padding="5dip">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal"
+                                    android:background="@drawable/border">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Tar Qty"
+                                        style="@style/rv_beat_details_lbl_blue"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/tv_visited"
+                                        android:text="70"
+                                        style="@style/rv_beat_details_val_blue"
+                                        />
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal"
+                                    android:background="@drawable/border">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Tar Amt"
+                                        style="@style/rv_beat_details_lbl_blue"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/tv_orders"
+                                        android:text="52600"
+                                        style="@style/rv_beat_details_val_blue"
+                                        />
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal"
+                                    android:background="@drawable/border">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Visits"
+                                        style="@style/rv_beat_details_lbl_blue"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/tv_growth"
+                                        android:text="7"
+                                        style="@style/rv_beat_details_val_blue"
+                                        />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+
+
+                        </LinearLayout>
+
+
+
+
+
+
+                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/navigateToTaskDetails"
+                        android:src="@drawable/ic_grade_a"
+                        android:layout_margin="10dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"></ImageView>
+
+
+                </RelativeLayout>
+
+
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/colorOrange"
+                android:id="@+id/sampleLine"
+                android:layout_below="@+id/card_dealer_det"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                ></View>
+
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_order_history"
+                    style="@style/styleAppBtn"
+                    android:layout_below="@+id/sampleLine"
+                    android:backgroundTint="@color/color_btn"
+                    android:text="Order History"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_new_order"
+                    style="@style/styleAppBtn"
+                    android:backgroundTint="@color/color_btn"
+                    android:text="New Order"
+                    android:textColor="@color/white"
+                    android:layout_below="@+id/sampleLine"
+                    android:layout_alignParentRight="true"
+                    android:textStyle="bold"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/colorOrange"
+                android:id="@+id/sampleLineThree"
+                android:layout_below="@+id/btn_new_order"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                ></View>
+
+
+
+
+            <TextView
+                android:id="@+id/link_beat_desc"
+                style="@style/styleTextViewLabelInfoLessBottom"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/lbl_beat_desc"
+                android:textColor="@color/black"
+                android:layout_below="@+id/sampleLineThree"/>
+
+            <TextView
+                android:id="@+id/this_month"
+                style="@style/styleTextViewLabelInfoLessBottom"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="This Month"
+                android:layout_below="@+id/link_beat_desc"
+                android:textColor="@color/black" />
+
+
+
+            <LinearLayout
+                android:id="@+id/beat_count_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/this_month"
+                android:background="@android:color/white"
+                android:padding="5dip"
+                >
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/border">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tar_qty"
+                        android:text="Tar Qty"
+                        style="@style/text_header_more_small"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_task_not_visited"
+                        android:text="12"
+                        android:layout_margin="10dp"
+                        style="@style/text_header_more_small"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/border">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/act_qty"
+                        android:text="Act Qty"
+                        style="@style/text_header_more_small"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/act_qty_val"
+                        android:text="9"
+                        android:layout_margin="10dp"
+                        style="@style/text_header_more_small"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/border">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tar_amt"
+                        android:text="Tar Amt"
+                        style="@style/text_header_more_small"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tar_amt_val"
+                        android:text="1000"
+                        android:layout_margin="10dp"
+                        style="@style/text_header_more_small"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/border">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/act_amt"
+                        android:text="Act Amt"
+                        style="@style/text_header_more_small"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/act_amt_val"
+                        android:text="2000"
+                        android:layout_margin="10dp"
+                        style="@style/text_header_more_small"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_performance_history"
+                style="@style/styleAppBtn"
+                android:layout_below="@+id/beat_count_summary"
+                android:backgroundTint="@color/color_btn"
+                android:text="Performance View"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/colorOrange"
+                android:id="@+id/sampleLineTwo"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/btn_performance_history"
+                ></View>
+
+            <TextView
+                android:id="@+id/paymentAndTransLbl"
+                style="@style/styleTextViewLabelInfoLessBottom"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Payment And Transaction"
+                android:textColor="@color/black"
+                android:layout_below="@+id/sampleLineTwo"/>
+            <LinearLayout
+                android:id="@+id/paymentAndTransaction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/paymentAndTransLbl"
+                android:background="@android:color/white"
+                android:padding="5dip"
+                >
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/border">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/osLbl"
+                        android:text="Outstanding"
+                        style="@style/text_header_more_small"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/osVal"
+                        android:text="120000"
+
+                        style="@style/text_header_more_small"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/border">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/receivedLbl"
+                        android:text="Received"
+                        style="@style/text_header_more_small"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/receivedVal"
+                        android:text="9000"
+                        style="@style/text_header_more_small"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:background="@color/smsp_transparent_color">
+
+                    <LinearLayout
+                        android:id="@+id/viewAllTransLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginRight="1dp"
+                        >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/viewAllTransLbl"
+                        android:layout_gravity="center_horizontal"
+                        android:text="+"
+                        style="@style/text_header_more_small"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/viewAllTransBtn"
+                        android:text="View All"
+                        style="@style/text_header_more_small"
+                        />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/colorOrange"
+                android:id="@+id/sampleLinefour"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/paymentAndTransaction"
+                ></View>
+
+
+
+            <TextView
+                android:id="@+id/complaintLbl"
+                style="@style/styleTextViewLabelInfoLessBottom"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Complaints"
+                android:textColor="@color/black"
+                android:layout_below="@+id/sampleLinefour"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_complaints"
+                style="@style/styleAppBtn"
+                android:layout_below="@+id/complaintLbl"
+                android:backgroundTint="@color/color_btn"
+                android:text="Add Complaints"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+            <LinearLayout
+                android:id="@+id/viewAllComplaintslayOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/complaintLbl"
+                android:layout_alignParentRight="true"
+                android:orientation="vertical"
+                android:layout_marginRight="1dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/viewAllComplaintsPlus"
+                    android:text="+"
+                    android:layout_gravity="center_horizontal"
+                    style="@style/text_header_more_small"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/viewAllComplaintslbl"
+                    android:text="View All"
+                    style="@style/text_header_more_small"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/colorOrange"
+                android:id="@+id/sampleLinefive"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/btn_complaints"
+                ></View>
+
+            <TextView
+                android:id="@+id/taskLbl"
+                style="@style/styleTextViewLabelInfoLessBottom"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Tasks Assigned"
+                android:textColor="@color/black"
+                android:layout_below="@+id/sampleLinefive"/>
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_task_assigned"
+                style="@style/long_input_text_box_small"
+                android:background="@drawable/complaint_spinner"
+                android:gravity="top|left"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:layout_below="@+id/taskLbl"
+                android:maxLines="3"
+                android:clickable="false"
+                android:focusable="false"
+                android:text="Task details goes in here"
+                android:scrollbars="vertical" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/taskLbl"
+                android:layout_alignParentRight="true"
+                android:orientation="vertical"
+                android:layout_marginRight="1dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/viewAllTaskDetailsPlus"
+                    android:text="+"
+                    android:layout_gravity="center_horizontal"
+                    style="@style/text_header_more_small"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/viewAllTaskDetailsLbl"
+                    android:text="View All"
+                    style="@style/text_header_more_small"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/colorOrange"
+                android:id="@+id/sampleLinesix"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/et_task_assigned"
+                ></View>
+
+
+            <TextView
+                android:id="@+id/beatReportLbl"
+                style="@style/styleTextViewLabelInfoLessBottom"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Beat Report"
+                android:textColor="@color/black"
+                android:layout_below="@+id/sampleLinesix"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_beatReport"
+                style="@style/styleAppBtn"
+                android:layout_below="@+id/beatReportLbl"
+                android:backgroundTint="@color/color_btn"
+                android:text="Beat Report"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/beatReportLbl"
+                android:layout_alignParentRight="true"
+                android:orientation="vertical"
+                android:layout_marginRight="1dp"
+                android:id="@+id/allBeatReport"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/viewBeatReportPlus"
+                    android:text="+"
+                    android:layout_gravity="center_horizontal"
+                    style="@style/text_header_more_small"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/viewBeatReportlbl"
+                    android:text="View All"
+                    style="@style/text_header_more_small"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/colorOrange"
+                android:id="@+id/sampleLineSeven"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/btn_beatReport"
+                ></View>
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
+</layout>

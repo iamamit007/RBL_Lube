@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="expenseInfo"
+            type="com.velectico.rbm.expense.model.Expense" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        style="@style/cv_style">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <!---Expense Id- -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rv_caption"
+                            android:text="@string/expense_id" />
+
+                        <TextView
+                            android:id="@+id/tv_prodId"
+                            style="@style/rv_caption"
+                            android:text="@{expenseInfo.expenseId}" />
+
+                    </LinearLayout>
+                    <!-- -Expense Type -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rv_caption"
+                            android:text="@string/expense_type" />
+
+                        <TextView
+                            android:id="@+id/tv_prodName"
+                            android:text="@{expenseInfo.expenseType}"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+                    <!-- Beat Id -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rv_caption"
+                            android:text="@string/lbl_beat_id" />
+
+                        <TextView
+                            android:id="@+id/tv_prodNetPrice"
+                            android:text="@{expenseInfo.beatId}"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+
+                    <!-- Beat Name -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rv_caption"
+                            android:text="@string/lbl_beat_name" />
+
+                        <TextView
+                            android:id="@+id/tv_prodTotalPrice"
+                            android:text="@{expenseInfo.beatName}"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+
+                    <!-- -Product Unit -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rv_caption"
+                            android:text="@string/min_exp_amt" />
+
+                        <TextView
+                            android:id="@+id/tv_unit"
+                            android:text="@{expenseInfo.misExpenseAmt}"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+
+                    <!-- Advance Expense Amount
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rv_caption"
+                            android:text="@string/adv_exp_amt" />
+
+                        <TextView
+                            android:id="@+id/tv_partNo"
+                            android:text="Advance Expense Amount"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+                     -->
+                    <!-- KM travalled
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rv_caption"
+                            android:text="@string/km_travelled" />
+
+                        <TextView
+                            android:id="@+id/tv_prodSchemeId"
+                            android:text="KM travllled"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+                    -->
+                    <!-- Applied on -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rv_caption"
+                            android:text="@string/applied_on" />
+
+                        <TextView
+                            android:id="@+id/tv_prodSchemeName"
+                            android:text="@{expenseInfo.appliedOnDate}"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+
+                    <!-- Status -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rv_caption"
+                            android:text="@string/status" />
+
+                        <TextView
+                            android:id="@+id/tv_Packaging"
+                            android:text="@{expenseInfo.status}"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+
+                    <!-- Approved by -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rv_caption"
+                            android:text="@string/approved_by" />
+
+                        <TextView
+                            android:id="@+id/tv_prodSegment"
+                            android:text="@{expenseInfo.approvedBy}"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_delete"
+                android:src="@drawable/ic_delete"
+                android:layout_margin="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"></ImageView>
+            <!--<ImageView
+                android:id="@+id/iv_edit"
+                android:src="@drawable/ic_edit"
+                android:layout_margin="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/iv_delete"
+                android:layout_width="25dp"
+                android:layout_height="25dp"></ImageView>-->
+
+        </RelativeLayout>
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

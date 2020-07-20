@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_dashboard">
+
+        <ImageView
+            android:id="@+id/iv_prodImageUrl"
+            android:layout_width="match_parent"
+            android:paddingTop="20dp"
+            android:layout_height="350dp"
+            android:contentDescription="@string/content_description_media"
+            app:srcCompat="@drawable/lubedemo" />
+
+
+
+
+        <!-- -Expense Type -->
+
+
+
+        <LinearLayout
+            android:id="@+id/tablay"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:layout_below="@+id/iv_prodImageUrl"
+            android:padding="5dip"
+            android:paddingTop="20dp"
+            android:layout_marginTop="20dp">
+            <LinearLayout
+                android:id="@+id/descLayout"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    style="@style/rv_beat_details_lbl_visited" />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/featureLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:background="@drawable/border">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Features"
+                    style="@style/rv_beat_details_lbl_visited"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/schemeLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:background="@drawable/border">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Schemes"
+                    style="@style/rv_beat_details_lbl_orders"/>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardDescription"
+            android:layout_below="@+id/tablay"
+            android:visibility="visible"
+            style="@style/cv_style">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/cv_style">
+
+                    <TextView
+                        android:id="@+id/descDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Description Details"
+                        android:textColor="#040404"
+                        android:textSize="18dip"
+                        android:typeface="sans"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="10dp"
+                        android:layout_centerHorizontal="true"
+                        />
+                    <TextView
+                        android:id="@+id/tv_prodName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Product Segment"
+                        android:layout_below="@+id/descDetail"
+                        style="@style/rv_caption" />
+                    <TextView
+                        android:id="@+id/tv_Types"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Product Types"
+                        android:layout_below="@+id/tv_prodName"
+                        style="@style/rv_caption" />
+                    <TextView
+                        android:id="@+id/tv_ProdCat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Product Category"
+                        android:layout_below="@+id/tv_Types"
+                        style="@style/rv_caption" />
+                    <TextView
+                        android:id="@+id/tv_UOM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Product UOM"
+                        android:layout_below="@+id/tv_ProdCat"
+                        style="@style/rv_caption" />
+                    <TextView
+                        android:id="@+id/tv_brand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Product Brand"
+                        android:layout_below="@+id/tv_UOM"
+                        style="@style/rv_caption" />
+
+                    <TextView
+                        android:id="@+id/tv_mrp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MRP"
+                        android:layout_below="@+id/tv_brand"
+                        style="@style/rv_caption" />
+
+                    <TextView
+                        android:id="@+id/tv_hsn_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HSN No"
+                        android:layout_below="@+id/tv_mrp"
+                        style="@style/rv_caption" />
+
+                    <TextView
+                        android:id="@+id/tv_gst_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GST No"
+                        android:layout_below="@+id/tv_hsn_no"
+                        style="@style/rv_caption" />
+
+                    <TextView
+                        android:id="@+id/tv_disc_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Discounted Price"
+                        android:layout_below="@+id/tv_gst_no"
+                        style="@style/rv_caption" />
+
+                    <TextView
+                        android:id="@+id/tv_spl_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Special Price"
+                        android:layout_below="@+id/tv_disc_price"
+                        style="@style/rv_caption" />
+
+                </RelativeLayout>
+            </ScrollView>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/featurecard"
+            android:layout_below="@+id/tablay"
+            style="@style/cv_style"
+            android:visibility="gone">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/cv_style">
+
+                    <TextView
+                        android:id="@+id/featureDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Feature Details"
+                        android:textColor="#040404"
+                        android:textSize="18dip"
+                        android:typeface="sans"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="10dp"
+                        android:layout_centerHorizontal="true"
+                        />
+
+                    <TextView
+                        android:id="@+id/gst"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GST (%)"
+                        android:layout_below="@+id/featureDetail"
+                        style="@style/rv_caption" />
+                    <TextView
+                        android:id="@+id/mrp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MRP"
+                        android:layout_below="@+id/gst"
+                        style="@style/rv_caption" />
+                    <TextView
+                        android:id="@+id/brand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Brand"
+                        android:layout_below="@+id/mrp"
+                        style="@style/rv_caption" />
+
+
+                </RelativeLayout>
+            </ScrollView>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/schemecard"
+            android:layout_below="@+id/tablay"
+            style="@style/cv_style"
+            android:visibility="gone">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+                    <ImageView
+                        android:id="@+id/iv_schemeImageUrl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dimen_16dp"
+                        android:contentDescription="@string/content_description_media"
+                        app:srcCompat="@mipmap/ic_launcher" />
+
+
+                    <LinearLayout
+                        android:id="@+id/scheme_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/iv_schemeImageUrl"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rv_caption"
+                            android:text="Scheme Name" />
+
+                        <TextView
+                            android:id="@+id/tv_schemeName"
+                            android:text="Buy 1 get 2 free"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/prod_typeLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/iv_schemeImageUrl"
+                        android:layout_below="@+id/scheme_name"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rv_caption"
+                            android:text="Product Type" />
+
+                        <TextView
+                            android:id="@+id/tv_prodType"
+                            android:text="xcxcx"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/prod_catLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/iv_schemeImageUrl"
+                        android:layout_below="@+id/prod_typeLayout"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rv_caption"
+                            android:text="Product Category" />
+
+                        <TextView
+                            android:id="@+id/tv_prodCategory"
+                            android:text="ssdsd"
+                            style="@style/rv_caption" />
+
+                    </LinearLayout>
+
+
+
+                </RelativeLayout>
+            </ScrollView>
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:card_view="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/cardDetails">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/ptitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Payment"
+                    android:textColor="@color/black"
+                    android:textSize="28dip"
+                    android:typeface="sans"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="@dimen/dimen_20dp"
+                    />
+                <Button
+                    android:id="@+id/paymenthistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/ptitle"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#00FF00"
+                    android:layout_alignEnd="@id/card_dealer_det"
+                    android:text="Payment History" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_dealer_det"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:elevation="10dp"
+                    app:cardBackgroundColor="#fcfcfc"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp"
+                    app:cardPreventCornerOverlap="false"
+                    android:layout_below="@+id/ptitle"
+                    app:cardUseCompatPadding="true">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:id="@+id/viewOne">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="16dp">
+                                <!---Expense Id- -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/beat_name"
+                                        android:text="Raja Oil Ltd"
+                                        />
+
+
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+
+
+                                    <TextView
+                                        style="@style/text_header_small"
+                                        android:layout_width="wrap_content"
+                                        android:text="Dealer"
+                                        />
+
+
+
+                                </LinearLayout>
+                                <!-- -Expense Type -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+
+
+                                    <TextView
+                                        android:id="@+id/tv_prodNetPrice"
+                                        android:text="+919836256985"
+                                        style="@style/rv_caption" />
+                                    <TextView
+                                        android:id="@+id/tv_km"
+                                        android:text="Kilometer - 235"
+                                        android:textAlignment="viewEnd"
+                                        style="@style/rv_caption" />
+
+                                </LinearLayout>
+
+                                <!-- -Product Total Price -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+
+
+                                    <TextView
+                                        android:id="@+id/tv_prodTotalPrice"
+                                        android:text="Contact Person - Sumit Sen"
+                                        style="@style/rv_caption" />
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
+                                    android:padding="5dip">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:background="@drawable/border">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Tar Qty"
+                                            style="@style/rv_beat_details_lbl_blue"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/tv_visited"
+                                            android:text="70"
+                                            style="@style/rv_beat_details_val_blue"
+                                            />
+
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:background="@drawable/border">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Tar Amt"
+                                            style="@style/rv_beat_details_lbl_blue"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/tv_orders"
+                                            android:text="52600"
+                                            style="@style/rv_beat_details_val_blue"
+                                            />
+
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:background="@drawable/border">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Visits"
+                                            style="@style/rv_beat_details_lbl_blue"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/tv_growth"
+                                            android:text="7"
+                                            style="@style/rv_beat_details_val_blue"
+                                            />
+
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/navigateToTaskDetails"
+                            android:src="@drawable/ic_grade_a"
+                            android:layout_margin="10dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"></ImageView>
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card"
+                android:layout_below="@+id/card_dealer_det"
+                style="@style/cv_style">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/outstndTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Outstanding"
+                    android:layout_marginTop="@dimen/dimen_20dp"
+                    android:textColor="@color/black"
+                    android:textSize="24dip"
+                    android:typeface="sans"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_payment_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/outstndTxt"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    />
+                <TextView
+                    android:id="@+id/totalamt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_20dp"
+                    android:text=" Total amount   ₹ 60,000"
+                    android:textColor="@color/black"
+                    android:textSize="20dip"
+                    android:typeface="sans"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/rv_payment_list"
+                    android:layout_centerHorizontal="true"
+                    />
+                <Button
+                    android:id="@+id/paybtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/totalamt"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/grey"
+                    android:layout_marginBottom="@dimen/dimen_20dp"
+                    android:text="Pay" />
+
+            </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    </ScrollView>
+</layout>

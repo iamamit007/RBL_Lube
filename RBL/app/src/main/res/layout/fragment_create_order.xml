@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_dashboard"
+        tools:context=".order.views.OrderListFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_email_reg_no"
+                style="@style/login_reg_input_label"
+                android:hint="@string/search_prod_for_order"
+                app:hintTextAppearance="@style/hintLabelColor">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_email"
+                    style="@style/login_reg_input_text"
+                    android:inputType="phone"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_cartList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimary"
+            android:gravity="bottom"
+            android:layout_gravity="bottom">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:id="@+id/expenseAmt"
+                >
+
+                <TextView
+                    style="@style/wrap_contet_data"
+                    android:text="@string/prod_order_tot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_prodId"
+                    style="@style/wrap_contet_data"
+                    android:text="Rs 5000"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentBottom="true"
+                >
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_check_out"
+                    style="@style/styleButtonWithNoBottom"
+                    android:backgroundTint="@color/black"
+                    android:text="@string/prod_check_out" />
+
+
+            </LinearLayout>
+        </RelativeLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            style="@style/add_to_cart"
+            app:backgroundTint="@color/primary"
+            app:fabSize="normal"
+            app:srcCompat="@drawable/ic_add_to_cart" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/colorPrimaryDark"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".ativity.DashboardScreenActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:background="@drawable/bg_dashboard">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:weightSum="100"
+                android:orientation="horizontal"
+                android:id="@+id/lay1">
+
+                <Button
+                    android:id="@+id/beatButton"
+                    android:layout_width="0dip"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="false"
+                    android:layout_weight="48"
+                    android:background="@drawable/db_one"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="BEATS" />
+
+                <View
+                    android:layout_width="0dip"
+                    android:layout_weight="4"
+                    android:layout_height="100dp"></View>
+
+
+
+                <Button
+                    android:id="@+id/leaveButton"
+                    android:layout_width="0dip"
+                    android:layout_height="100dp"
+                    android:layout_weight="48"
+                    android:background="@drawable/m0"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Leave"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lay1"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="20dp"
+                android:weightSum="100"
+                android:orientation="horizontal"
+                android:id="@+id/lay2">
+
+                <Button
+                    android:id="@+id/expenseButton"
+                    android:layout_width="0dip"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="false"
+                    android:layout_weight="48"
+                    android:background="@drawable/m0"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Expense" />
+
+                <View
+                    android:layout_width="0dip"
+                    android:layout_weight="4"
+                    android:layout_height="100dp"></View>
+
+                <Button
+                    android:id="@+id/performanceButton"
+                    android:layout_width="0dip"
+                    android:layout_height="100dp"
+                    android:layout_weight="48"
+                    android:background="@drawable/db_one"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Performance"
+                    />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/progressLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true" />
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

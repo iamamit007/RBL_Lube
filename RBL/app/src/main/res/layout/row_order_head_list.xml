@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="orderHeadInfo"
+            type="com.velectico.rbm.order.model.OrderHead" />
+    </data>
+
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        style="@style/cv_style">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dip"
+            android:id="@+id/beatDateRow"
+            android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+
+                <!-- -Order Dist Name Id -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rv_caption"
+                        android:text="@string/order_dist_name" />
+
+                    <TextView
+                        android:id="@+id/tv_prodCode"
+                        android:text="@{orderHeadInfo.distName}"
+                        style="@style/rv_caption" />
+
+                </LinearLayout>
+                <!-- Beat Id -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rv_caption"
+                        android:text="@string/order_date" />
+
+                    <TextView
+                        android:id="@+id/tv_prodNetPrice"
+                        android:text="@{orderHeadInfo.orderDate}"
+                        style="@style/rv_caption" />
+
+                </LinearLayout>
+
+                <!-- Beat Name -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rv_caption"
+                        android:text="@string/order_amount" />
+
+                    <TextView
+                        android:id="@+id/tv_prodTotalPrice"
+                        android:text="@{orderHeadInfo.totalAmt}"
+                        style="@style/rv_caption" />
+
+                </LinearLayout>
+
+                <!-- -Product Unit -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rv_caption"
+                        android:text="@string/order_created_by" />
+
+                    <TextView
+                        android:id="@+id/tv_unit"
+                        android:text="@{orderHeadInfo.orderCreatedBy}"
+                        style="@style/rv_caption" />
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+            <ImageView
+                android:id="@+id/navigateToDetails"
+                android:layout_width="25dip"
+                android:layout_height="25dip"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_right_arrow" />
+    </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="orderCartInfo"
+            type="com.velectico.rbm.order.model.OrderCart" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        style="@style/cv_style">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="2.5dp"
+            android:paddingBottom="2.5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:padding="10dp" >
+
+                <!-- ListRow Left sied Thumbnail image -->
+                <LinearLayout
+                    android:id="@+id/prodSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <LinearLayout
+                        android:id="@+id/thumbnail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginRight="7dip"
+                        android:padding="2dip" >
+
+                        <ImageView
+                            android:id="@+id/list_image"
+                            android:layout_width="60dip"
+                            android:layout_height="60dip"
+                            android:src="@drawable/lubedemo" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/prodInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="7dip"
+                        android:padding="2dip"
+                        android:layout_toRightOf="@+id/thumbnail"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/from_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_toRightOf="@+id/thumbnail"
+                            android:text="Lube Oil Plus"
+                            android:textColor="#040404"
+                            android:textSize="15dip"
+                            android:typeface="sans"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/plist_price_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rs. 200"
+                            android:textColor="#1d1d1d"
+                            android:textSize="12dip"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/plist_weight_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="1.5 ltr"
+                            android:textColor="#343434"
+                            android:textSize="12dip" />
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/schemeDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/prodSec"
+                    android:orientation="horizontal" >
+                    <!--Scheme Name-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/scheme_name"
+                        style="@style/login_reg_input_label"
+                        android:hint="Scheme Name"
+                        app:hintTextAppearance="@style/hintLabelColor">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_scheme_name"
+                            style="@style/login_reg_input_text"
+                            android:enabled="false"
+                            android:text="Buy 1 get 1 free scheme" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"></View>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

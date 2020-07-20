@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/cardDetails">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_dealer_det"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:elevation="10dp"
+                        app:cardBackgroundColor="#fcfcfc"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="20dp"
+                        app:cardPreventCornerOverlap="false"
+                        app:cardUseCompatPadding="true">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:id="@+id/viewOne">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="16dp">
+                                    <!---Expense Id- -->
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            style="@style/beat_name"
+                                            android:text="Raja Oil Ltd"
+                                            />
+
+
+
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+
+
+                                        <TextView
+                                            style="@style/text_header_small"
+                                            android:layout_width="wrap_content"
+                                            android:text="Dealer"
+                                            />
+
+
+
+                                    </LinearLayout>
+                                    <!-- -Expense Type -->
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+
+
+                                        <TextView
+                                            android:id="@+id/tv_prodNetPrice"
+                                            android:text="+919836256985"
+                                            style="@style/rv_caption" />
+                                        <TextView
+                                            android:id="@+id/tv_km"
+                                            android:text="Kilometer - 235"
+                                            android:textAlignment="viewEnd"
+                                            style="@style/rv_caption" />
+
+                                    </LinearLayout>
+
+                                    <!-- -Product Total Price -->
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+
+
+                                        <TextView
+                                            android:id="@+id/tv_prodTotalPrice"
+                                            android:text="Contact Person - Sumit Sen"
+                                            style="@style/rv_caption" />
+
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:orientation="horizontal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@android:color/white"
+                                        android:padding="5dip">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:layout_weight="1"
+                                            android:gravity="center_horizontal"
+                                            android:background="@drawable/border">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Tar Qty"
+                                                style="@style/rv_beat_details_lbl_blue"/>
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:id="@+id/tv_visited"
+                                                android:text="70"
+                                                style="@style/rv_beat_details_val_blue"
+                                                />
+
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:layout_weight="1"
+                                            android:gravity="center_horizontal"
+                                            android:background="@drawable/border">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Tar Amt"
+                                                style="@style/rv_beat_details_lbl_blue"/>
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:id="@+id/tv_orders"
+                                                android:text="52600"
+                                                style="@style/rv_beat_details_val_blue"
+                                                />
+
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:layout_weight="1"
+                                            android:gravity="center_horizontal"
+                                            android:background="@drawable/border">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Visits"
+                                                style="@style/rv_beat_details_lbl_blue"/>
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:id="@+id/tv_growth"
+                                                android:text="7"
+                                                style="@style/rv_beat_details_val_blue"
+                                                />
+
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+
+
+
+                                </LinearLayout>
+
+
+
+
+
+
+                            </LinearLayout>
+                            <ImageView
+                                android:id="@+id/navigateToTaskDetails"
+                                android:src="@drawable/ic_grade_a"
+                                android:layout_margin="10dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"></ImageView>
+
+
+                        </RelativeLayout>
+
+
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:background="@color/colorOrange"
+                        android:id="@+id/sampleLine"
+                        android:layout_below="@+id/card_dealer_det"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        ></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dimen_16dp"
+                        android:layout_below="@+id/card_dealer_det">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_20dp"
+                            android:text="Complain Details"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/accent"
+                            android:textSize="25sp"
+                            android:textStyle="bold">
+                        </TextView>
+
+                        <Spinner
+                            android:id="@+id/spinner"
+                            android:layout_marginTop="@dimen/dimen_20dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="50dp"
+                            android:drawSelectorOnTop="true"
+                            android:background="@drawable/complaint_spinner"
+                            android:entries="@array/array_name"
+                            />
+                        <Spinner
+                            android:id="@+id/spinner2"
+                            android:layout_marginTop="@dimen/dimen_20dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="50dp"
+                            android:drawSelectorOnTop="true"
+                            android:background="@drawable/complaint_spinner"
+                            android:entries="@array/array_name2"
+                            />
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/til_prodName"
+                            style="@style/login_reg_input_label"
+                            android:layout_marginTop="10dp"
+                            android:hint="Product Name">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/input_prodName"
+                            style="@style/login_reg_input_text"
+                            android:inputType="text"
+                            />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/til_quantity"
+                            style="@style/login_reg_input_label"
+                            android:layout_marginTop="10dp"
+                            android:hint="Quantity">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_quantity"
+                                style="@style/login_reg_input_text"
+                                android:inputType="text"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/til_batch"
+                            style="@style/login_reg_input_label"
+                            android:layout_marginTop="10dp"
+                            android:hint="Batch No.">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_batchno"
+                                style="@style/login_reg_input_text"
+                                android:inputType="text"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/til_remarks"
+                            style="@style/login_reg_input_label"
+                            android:layout_marginTop="10dp"
+                            android:hint="Remarks">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_remarks"
+                                style="@style/login_reg_input_text"
+                                android:inputType="text"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/iv_exp_bill"
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="150dp">
+                            </ImageView>
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:layout_width="0dp"
+                                android:layout_height="150dp">
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/btn_capture_img"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:drawableRight="@drawable/ic_photo_camera"
+                                    android:backgroundTint="@color/black"
+                                    android:text="@string/capture_img" />
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/btn_select_img"
+                                    android:drawableRight="@drawable/ic_gallery"
+                                    android:textColor="@color/white"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:backgroundTint="@color/black"
+                                    android:text="@string/select_img" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_login"
+                            style="@style/styleAppCompactButton"
+                            android:backgroundTint="@color/black"
+                            android:text="Submit"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+
+
+
+
+
+
+
+                </RelativeLayout>
+
+
+
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+</layout>

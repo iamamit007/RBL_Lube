@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="beatReportListInfo"
+            type="com.velectico.rbm.beats.model.BeatReport" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        style="@style/cv_style">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lay0"
+                android:padding="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:text="Report Date" />
+
+                <TextView
+                    android:id="@+id/tv_report_date"
+                    style="@style/rv_caption"
+                    android:text="22-June-2020" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lay1"
+                android:layout_below="@+id/lay0"
+                android:padding="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:text="Order Received" />
+
+                <TextView
+                    android:id="@+id/tv_ord_rec"
+                    style="@style/rv_caption"
+                    android:text="yes" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lay2"
+                android:padding="10dp"
+                android:layout_below="@+id/lay1"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:text="Payment Received" />
+
+                <TextView
+                    android:id="@+id/tv_pay_rec"
+                    style="@style/rv_caption"
+                    android:text="yes" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lay3"
+                android:padding="10dp"
+                android:layout_below="@+id/lay2"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:text="Complaint Received" />
+
+                <TextView
+                    android:id="@+id/tv_complaint_rec"
+                    style="@style/rv_caption"
+                    android:text="yes" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lay4"
+                android:padding="10dp"
+                android:layout_below="@+id/lay3"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:text="Complaint Reason" />
+
+                <TextView
+                    android:id="@+id/tv_complaint_reason"
+                    style="@style/rv_caption"
+                    android:text="reason A" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lay5"
+                android:padding="10dp"
+                android:layout_below="@+id/lay4"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:text="Price Problem" />
+
+                <TextView
+                    android:id="@+id/tv_price_prob"
+                    style="@style/rv_caption"
+                    android:text="yes" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lay6"
+                android:padding="10dp"
+                android:layout_below="@+id/lay5"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:text="Price Problem Reason" />
+
+                <TextView
+                    android:id="@+id/tv_price_prob_reason"
+                    style="@style/rv_caption"
+                    android:text="Reason B" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lay7"
+                android:padding="10dp"
+                android:layout_below="@+id/lay6"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:text="Packaging Problem" />
+
+                <TextView
+                    android:id="@+id/tv_packaging_prob"
+                    style="@style/rv_caption"
+                    android:text="yes" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lay8"
+                android:padding="10dp"
+                android:layout_below="@+id/lay7"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:text="Packaging Problem" />
+
+                <TextView
+                    android:id="@+id/tv_packaging_prob_reason"
+                    style="@style/rv_caption"
+                    android:text="Reason A" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lay9"
+                android:padding="10dp"
+                android:layout_below="@+id/lay8"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:text="Preference to other Company" />
+
+                <TextView
+                    android:id="@+id/tv_pref_to_other_cmpy"
+                    style="@style/rv_caption"
+                    android:text="Yes" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lay10"
+                android:padding="10dp"
+                android:layout_below="@+id/lay9"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:text="Other company Preference" />
+
+                <TextView
+                    android:id="@+id/tv_other_cmpy_reason"
+                    style="@style/rv_caption"
+                    android:text="Reason A" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lay11"
+                android:padding="10dp"
+                android:layout_below="@+id/lay10"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:text="Turnover Range" />
+
+                <TextView
+                    android:id="@+id/tv_turn_over_range"
+                    style="@style/rv_caption"
+                    android:text="1-2lakh" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lay12"
+                android:padding="10dp"
+                android:layout_below="@+id/lay11"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:text="Followup Reason" />
+
+                <TextView
+                    android:id="@+id/tv_followup_reason"
+                    style="@style/rv_caption"
+                    android:text="Reason A" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lay13"
+                android:padding="10dp"
+                android:layout_below="@+id/lay12"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:text="Followup Date" />
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    style="@style/rv_caption"
+                    android:text="20-06-2020" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
