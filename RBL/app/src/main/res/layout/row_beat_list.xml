@@ -5,7 +5,7 @@
     <data>
         <variable
             name="beats"
-            type="com.velectico.rbm.beats.model.Beats" />
+            type="com.velectico.rbm.beats.model.TaskDetails" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -31,8 +31,9 @@
                         android:orientation="horizontal">
 
                         <TextView
+
                             style="@style/beat_name"
-                            android:text="Temple Road Beat" />
+                            android:text="@{beats.BM_Beat_Name}" />
 
 
 
@@ -45,7 +46,7 @@
 
                         <TextView
                             style="@style/rv_caption"
-                            android:text="Sun, 15 Jan 20 - Wed, 20 Jan 20" />
+                            android:text="@{beats.endDate}" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -55,7 +56,7 @@
 
                         <TextView
                             style="@style/rv_caption"
-                            android:text="Zone 1" />
+                            android:text="@{beats.area}" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -65,7 +66,7 @@
 
                         <TextView
                         style="@style/rv_caption"
-                        android:text="Assignee - Arpan Dutta" />
+                        android:text="@{`Asignee `+ beats.assigneeName}" />
 
 
                     </LinearLayout>
@@ -97,7 +98,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/tv_total_schedule"
-                                android:text="700 Ltr"
+                                android:text="@{beats.BS_Target_Qty + `Ltr`}"
                                 style="@style/rv_beat_details_val_total"
                                 />
 
@@ -120,7 +121,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/tv_visited"
-                                android:text="12000"
+                                android:text="@{beats.BS_Target_Amt}"
                                 style="@style/rv_beat_details_val_visited"
                                 />
 
@@ -143,8 +144,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/tv_orders"
-                                android:text="7"
-                                style="@style/rv_beat_details_val_orders"
+                                android:text="@{beats.Visit}"                                style="@style/rv_beat_details_val_orders"
                                 />
 
                         </LinearLayout>

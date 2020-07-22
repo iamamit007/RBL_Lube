@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.velectico.rbm.R
 import com.velectico.rbm.beats.model.BeatAssignments
 import com.velectico.rbm.beats.model.Beats
+import com.velectico.rbm.beats.model.TaskDetails
 import com.velectico.rbm.beats.views.BeatListFragmentDirections
 import com.velectico.rbm.databinding.RowAssignmentListBinding
 import com.velectico.rbm.databinding.RowBeatListBinding
@@ -27,7 +28,7 @@ import java.util.*
 class BeatListAdapter(var setCallback: BeatListAdapter.IBeatListActionCallBack) : RecyclerView.Adapter<BeatListAdapter.ViewHolder>() {
 
     var callBack : BeatListAdapter.IBeatListActionCallBack?=null
-    var beatList = listOf<Beats>()
+    var beatList = listOf<TaskDetails>()
     set(value) {
         field = value
         notifyDataSetChanged()
@@ -43,7 +44,7 @@ class BeatListAdapter(var setCallback: BeatListAdapter.IBeatListActionCallBack) 
             }
       }
 
-       fun bind(beats: Beats?) {
+       fun bind(beats: TaskDetails?) {
             binding.beats = beats
             binding.executePendingBindings()
         }

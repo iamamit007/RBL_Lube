@@ -5,7 +5,7 @@
     <data>
         <variable
             name="beats"
-            type="com.velectico.rbm.beats.model.Beats" />
+            type="com.velectico.rbm.beats.model.BeatTaskDetails" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -32,7 +32,7 @@
 
                         <TextView
                             style="@style/beat_name"
-                            android:text="Raja Oil" />
+                            android:text="@{beats.dealerName}" />
 
 
 
@@ -47,7 +47,7 @@
 
                         <TextView
                             android:id="@+id/tv_prodNetPrice"
-                            android:text="Dealer"
+                            android:text="Dealer Address"
                             style="@style/rv_caption" />
 
                     </LinearLayout>
@@ -62,7 +62,7 @@
 
                         <TextView
                             android:id="@+id/tv_prodTotalPrice"
-                            android:text="W2Ar 11/8 Golf view road"
+                            android:text="@{beats.dealerAddress}"
                             style="@style/rv_caption" />
 
                     </LinearLayout>
@@ -88,7 +88,7 @@
 
                         <TextView
                             android:id="@+id/tv_task"
-                            android:text="Sample task details goes in here for the sales person"
+                            android:text="@{beats.BSD_Work_Assg_Comment}"
                             style="@style/rv_caption" />
 
                     </LinearLayout>

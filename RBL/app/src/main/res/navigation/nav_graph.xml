@@ -129,6 +129,9 @@
         <action
             android:id="@+id/action_beatListFragment_to_beatTaskDetailsViewFragment"
             app:destination="@id/beatTaskDetailsViewFragment" />
+        <argument
+            android:name="scheduleId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/createExpenseFragment"
@@ -225,6 +228,10 @@
         <action
             android:id="@+id/action_dateWiseBeatListFragment_to_beatTaskDetailsViewFragment"
             app:destination="@id/beatTaskDetailsViewFragment" />
+        <argument
+            android:name="scheduleId"
+            app:argType="string" />
+
     </fragment>
     <fragment
         android:id="@+id/beatTaskDetailsViewFragment"
@@ -233,6 +240,13 @@
         <action
             android:id="@+id/action_beatTaskDetailsViewFragment_to_beatTaskDealerDetailsFragment"
             app:destination="@id/beatTaskDealerDetailsFragment" />
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <argument
+            android:name="scheduleId"
+            app:argType="string"
+            />
     </fragment>
     <fragment
         android:id="@+id/beatTaskDealerDetailsFragment"

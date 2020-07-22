@@ -1,31 +1,23 @@
 package com.velectico.rbm.beats.views
 
-import android.os.Bundle
+import android.content.Context
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 
 import com.velectico.rbm.R
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.adapters.BeatDateListAdapter
-import com.velectico.rbm.beats.adapters.BeatListAdapter
 import com.velectico.rbm.beats.model.BeatDate
+import com.velectico.rbm.beats.model.ScheduleDates
 import com.velectico.rbm.databinding.FragmentDateWiseBeatListBinding
-import com.velectico.rbm.databinding.FragmentOrderListBinding
-import com.velectico.rbm.databinding.RowBeatListBinding
 import com.velectico.rbm.databinding.RowBeatListDatesBinding
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
-import com.velectico.rbm.order.adapters.OrderHeadListAdapter
-import com.velectico.rbm.order.model.OrderHead
-import com.velectico.rbm.order.views.OrderListFragmentDirections
 import com.velectico.rbm.utils.SALES_LEAD_ROLE
-import com.velectico.rbm.utils.SALES_PERSON_ROLE
-import com.velectico.rbm.utils.TEMP_CURRENT_LOGGED_IN
+import com.velectico.rbm.utils.SharedPreferenceUtils
 
 /**
  * A simple [Fragment] subclass.
@@ -46,7 +38,6 @@ class DateWiseBeatListFragment : BaseFragment()  {
         this.binding = binding as FragmentDateWiseBeatListBinding
         menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
         beatDateList = BeatDate().getDummyBeatDateList()
-        setUpRecyclerView()
         /*if(TEMP_CURRENT_LOGGED_IN == SALES_LEAD_ROLE){
             binding.fab.show()
             binding.fab.setOnClickListener {
@@ -61,21 +52,38 @@ class DateWiseBeatListFragment : BaseFragment()  {
             }
         }
 
+    }
 
-
+    override fun onResume() {
+        super.onResume()
+        getLeaveListFromServer()
+        menuViewModel.leaveListResponse.observe(viewLifecycleOwner, Observer { listResponse ->
+            listResponse?.let {
+               Log.d("sssss",""+listResponse.scheduleDates)
+                setUpRecyclerView(listResponse.scheduleDates)
+            }
+        })
 
     }
 
-    private fun setUpRecyclerView() {
+    private fun getLeaveListFromServer() {
+      //  binding?.progressLayout?.visibility = View.VISIBLE
+        menuViewModel.getBeatListAPICall(SharedPreferenceUtils.getLoggedInUserId(context as Context))
+    }
+
+    private fun setUpRecyclerView(data:List<ScheduleDates>) {
         adapter = BeatDateListAdapter(object : BeatDateListAdapter.IBeatDateListActionCallBack{
             override fun moveToBeatDetails(position: Int, beatTaskId: String?,binding: RowBeatListDatesBinding) {
                 Log.e("test","onAddTask"+beatTaskId)
-
                 if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == SALES_LEAD_ROLE){
-                    val navDirection =  DateWiseBeatListFragmentDirections.actionDateWiseBeatListFragmentToBeatListFragment()
+                    val navDirection =  DateWiseBeatListFragmentDirections.actionDateWiseBeatListFragmentToBeatListFragment("")
                     Navigation.findNavController(binding.navigateToDetails).navigate(navDirection)
+
+//                    val navDirection =  TeamDashboardDirections.actionTeamDashboardToTeamListFragment(binding.beatButton.text.toString())
+//                    Navigation.findNavController(binding.performanceButton).navigate(navDirection)
+
                 }else {
-                    val navDirection =  DateWiseBeatListFragmentDirections.actionDateWiseBeatListFragmentToBeatTaskDetailsViewFragment()
+                    val navDirection =  DateWiseBeatListFragmentDirections.actionDateWiseBeatListFragmentToBeatTaskDetailsViewFragment("","")
                     Navigation.findNavController(binding.navigateToDetails).navigate(navDirection)
                 }
 
@@ -88,7 +96,7 @@ class DateWiseBeatListFragment : BaseFragment()  {
                 }*/
 
             }
-        });
+        },data);
         binding.rvBeatListDateWise.adapter = adapter
                 adapter.beatList = beatDateList
     }

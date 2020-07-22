@@ -74,7 +74,7 @@ class DefaultFragment : BaseFragment(){
         })
 
         binding.beatButton.setOnClickListener {
-            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToDateWiseBeatListFragment()
+            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToDateWiseBeatListFragment("")
             Navigation.findNavController(binding.beatButton).navigate(navDirection)
         }
 

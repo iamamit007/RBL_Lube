@@ -15,10 +15,19 @@ import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.adapters.BeatListAdapter
 import com.velectico.rbm.beats.adapters.BeatTaskDetailsViewAdapter
+import com.velectico.rbm.beats.model.BeatTaskDetails
+import com.velectico.rbm.beats.model.BeatTaskDetailsListResponse
 import com.velectico.rbm.beats.model.Beats
+import com.velectico.rbm.beats.model.GetBeatDeatilsRequestParams
 import com.velectico.rbm.databinding.*
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
+import com.velectico.rbm.network.callbacks.NetworkCallBack
+import com.velectico.rbm.network.callbacks.NetworkError
+import com.velectico.rbm.network.manager.ApiClient
+import com.velectico.rbm.network.manager.ApiInterface
+import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.utils.SALES_LEAD_ROLE
+import retrofit2.Callback
 
 /**
  * A simple [Fragment] subclass.
@@ -26,27 +35,60 @@ import com.velectico.rbm.utils.SALES_LEAD_ROLE
 class BeatTaskDetailsViewFragment : BaseFragment() {
 
     private lateinit var binding: FragmentBeatTaskDetailsViewBinding;
-    private lateinit var beatList : List<Beats>
+    private  var beatList : List<BeatTaskDetails> = emptyList()
     private lateinit var menuViewModel: MenuViewModel
     private lateinit var adapter: BeatTaskDetailsViewAdapter
     override fun getLayout(): Int {
         return R.layout.fragment_beat_task_details_view
     }
 
+    var  scheduleId = ""
+    var  userId = ""
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentBeatTaskDetailsViewBinding
         menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
         if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() != SALES_LEAD_ROLE){
            binding.beatSummary.visibility = View.GONE
         }
-        beatList = Beats().getDummyBeatList()
+          scheduleId = arguments?.getString(  "scheduleId").toString()
+          userId = arguments?.getString(  "userId").toString()
+
 
         setUpRecyclerView()
+        callApi2()
         /*binding.fab.setOnClickListener {
             moveToCreateBeat()
         }*/
     }
 
+    fun callApi2(){
+        val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
+        val responseCall = apiInterface.getScheduleTaskDetailsByBeat(GetBeatDeatilsRequestParams("3255632980","75"))
+        responseCall.enqueue(beatTaskDetailsListResponse as Callback<BeatTaskDetailsListResponse>)
+    }
+
+
+    private val beatTaskDetailsListResponse = object : NetworkCallBack<BeatTaskDetailsListResponse>(){
+        override fun onSuccessNetwork(data: Any?, response: NetworkResponse<BeatTaskDetailsListResponse>) {
+            response.data?.status?.let { status ->
+                Log.e("test222","BeatTaskDetailsListResponse status="+response.data)
+                beatList.toMutableList().clear()
+                if (response.data.Task_Details!!.isEmpty()){
+                    showToastMessage("No data found")
+                }else{
+                    beatList = response.data.Task_Details!!.toMutableList()
+                    setUpRecyclerView()
+                }
+
+            }
+
+        }
+
+        override fun onFailureNetwork(data: Any?, error: NetworkError) {
+
+        }
+
+    }
 
 
 
