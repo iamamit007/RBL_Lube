@@ -108,6 +108,10 @@ class DefaultFragment : BaseFragment(){
             val navDirection =  DefaultFragmentDirections.actionHomeFragmentToExpenseListFragment()
             Navigation.findNavController(binding.expenseButton).navigate(navDirection)
         }
+        binding.paymentButton.setOnClickListener {
+            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToFragmentPaymentList()
+            Navigation.findNavController(binding.paymentButton).navigate(navDirection)
+        }
 
         binding.complainButton.setOnClickListener {
             val navDirection =  DefaultFragmentDirections.actionHomeFragmentToComplaintList()

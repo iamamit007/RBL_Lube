@@ -36,6 +36,12 @@ class CreateOrderFragment : BaseFragment() {
         binding.btnCheckOut.setOnClickListener {
             moveToOrderPreview()
         }
+
+        binding.fabFilter.setOnClickListener {
+            moveToProdFilter()
+        }
+
+
     }
 
     private fun setUpRecyclerView() {
@@ -61,6 +67,12 @@ class CreateOrderFragment : BaseFragment() {
     private fun moveToOrderPreview(){
         val navDirection =  CreateOrderFragmentDirections.actionCreateOrderFragmentToOrderPreviewFragment()
         Navigation.findNavController(binding.fab).navigate(navDirection)
+    }
+
+    private fun moveToProdFilter(){
+        val navDirection =  CreateOrderFragmentDirections.actionCreateOrderFragmentToProductFilterFragment()
+        Navigation.findNavController(binding.fabFilter).navigate(navDirection)
+
     }
 
 

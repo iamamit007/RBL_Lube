@@ -179,6 +179,9 @@
         <action
             android:id="@+id/action_createOrderFragment_to_orderPreviewFragment"
             app:destination="@id/orderPreviewFragment" />
+        <action
+            android:id="@+id/action_createOrderFragment_to_productFilterFragment"
+            app:destination="@id/productFilterFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderPreviewFragment"
@@ -237,7 +240,7 @@
     <fragment
         android:id="@+id/beatTaskDealerDetailsFragment"
         android:name="com.velectico.rbm.beats.views.BeatTaskDealerDetailsFragment"
-        android:label="Dealer Details" >
+        android:label="Dealer Task Worksheet" >
         <action
             android:id="@+id/action_beatTaskDealerDetailsFragment_to_beatPerformanceHistory"
             app:destination="@id/beatPerformanceHistory" />
@@ -302,7 +305,11 @@
     <fragment
         android:id="@+id/reminderListFragment"
         android:name="com.velectico.rbm.reminder.view.ReminderListFragment"
-        android:label="Reminder List" />
+        android:label="Reminder List" >
+        <action
+            android:id="@+id/action_reminderListFragment_to_createReminder"
+            app:destination="@id/createReminder" />
+    </fragment>
     <fragment
         android:id="@+id/complaintList"
         android:name="com.velectico.rbm.complaint.views.ComplaintList"
@@ -411,5 +418,9 @@
         android:id="@+id/createMultipleExpenseFragment"
         android:name="com.velectico.rbm.expense.views.CreateMultipleExpenseFragment"
         android:label="Create Expense" />
+    <fragment
+        android:id="@+id/createReminder"
+        android:name="com.velectico.rbm.reminder.view.CreateReminder"
+        android:label="Add Reminder" />
 
 </navigation>

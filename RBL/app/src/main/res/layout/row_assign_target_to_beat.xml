@@ -133,7 +133,41 @@
                         android:text="@{beatAssignments.assTask}"
                         android:scrollbars="vertical" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Target"
+                    android:textAlignment="center"
+                    android:textColor="@color/mdtp_white"
+                    android:background="@color/colorGreen"
+                    android:textSize="25sp"
+                    android:textStyle="bold">
+                </TextView>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_orderAmt"
+                    style="@style/login_reg_input_label"
+                    android:layout_marginTop="10dp"
+                    android:hint="Order Amount">
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_orderAmt"
+                        style="@style/login_reg_input_text"
+                        android:inputType="text"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_pmtClctd"
+                    style="@style/login_reg_input_label"
+                    android:layout_marginTop="10dp"
+                    android:hint="Payment Collected">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_pmtClctd"
+                        style="@style/login_reg_input_text"
+                        android:inputType="text"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

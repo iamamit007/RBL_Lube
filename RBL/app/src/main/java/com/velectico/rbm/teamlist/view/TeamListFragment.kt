@@ -37,7 +37,6 @@ class TeamListFragment : BaseFragment()  {
 
 
     override fun init(binding: ViewDataBinding) {
-        showToastMessage("" + arguments?.getString(  "name"))
         getstring = arguments?.getString(  "name").toString()
         this.binding = binding as FragmentTeamListBinding
         teamList = TeamListModel().getDummyTeamList()

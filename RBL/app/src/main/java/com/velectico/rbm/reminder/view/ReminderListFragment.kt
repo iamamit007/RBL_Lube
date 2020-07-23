@@ -34,9 +34,9 @@ class ReminderListFragment : BaseFragment() {
         this.binding = binding as FragmentReminderListBinding
         beatList = ReminderList().getDummyBeatList()
         setUpRecyclerView()
-        /*binding.fab.setOnClickListener {
-            moveToCreateBeat()
-        }*/
+        binding.fab.setOnClickListener {
+            moveToCreateReminder()
+        }
     }
 
 
@@ -53,10 +53,11 @@ class ReminderListFragment : BaseFragment() {
         adapter.beatList = beatList
     }
 
-    /* private fun moveToCreateBeat(){
-      val navDirection =  BeatListFragmentDirections.actionMoveToCreateBeat()
-         Navigation.findNavController(binding.fab).navigate(navDirection)
-     }*/
+    private fun moveToCreateReminder(){
+       val navDirection =  ReminderListFragmentDirections.actionReminderListFragmentToCreateReminder()
+        Navigation.findNavController(binding.fab).navigate(navDirection)
+
+    }
 
 
 }

@@ -240,14 +240,54 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/listTitle"
+                    android:layout_below="@+id/outstndTxt"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
+                    <TextView
+                        style="@style/rv_caption"
+                        android:id="@+id/tv_invoice"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:textColor="#307D7E"
+                        android:text="Invoice No" />
+
+                    <TextView
+                        android:id="@+id/tv_payment_date"
+                        android:text="Date"
+                        android:textStyle="bold"
+                        android:textColor="#307D7E"
+                        android:textAlignment="center"
+                        style="@style/rv_caption" />
+                    <TextView
+                        android:id="@+id/tv_payment_amount"
+                        android:text="Amount"
+                        android:textStyle="bold"
+                        android:textColor="#307D7E"
+                        android:textAlignment="center"
+                        style="@style/rv_caption" />
+                    <TextView
+                        android:id="@+id/tv_duet_amount"
+                        android:text="Due Amount"
+                        android:textStyle="bold"
+                        android:textColor="#307D7E"
+                        android:textAlignment="center"
+                        style="@style/rv_caption" />
+
+                </LinearLayout>
                 <TextView
                     android:id="@+id/outstndTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Outstanding"
+                    android:layout_below="@+id/invoiceAmtTxt"
+
                     android:layout_marginTop="@dimen/dimen_20dp"
-                    android:textColor="@color/black"
+                    android:textColor="#9F000F"
                     android:textSize="24dip"
                     android:typeface="sans"
                     android:textStyle="bold"
@@ -259,7 +299,7 @@
                     android:id="@+id/rv_payment_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/outstndTxt"
+                    android:layout_below="@+id/listTitle"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     />
                 <TextView
@@ -268,21 +308,22 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_20dp"
                     android:text=" Total amount   ₹ 60,000"
-                    android:textColor="@color/black"
+                    android:textColor="#38ACEC"
                     android:textSize="20dip"
                     android:typeface="sans"
                     android:textStyle="bold"
                     android:layout_below="@+id/rv_payment_list"
                     android:layout_centerHorizontal="true"
                     />
-                <Button
+
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/paybtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/totalamt"
                     android:layout_marginTop="10dp"
                     android:layout_centerHorizontal="true"
-                    android:background="@color/grey"
+                    android:backgroundTint="#4AA02C"
                     android:layout_marginBottom="@dimen/dimen_20dp"
                     android:text="Pay" />
 

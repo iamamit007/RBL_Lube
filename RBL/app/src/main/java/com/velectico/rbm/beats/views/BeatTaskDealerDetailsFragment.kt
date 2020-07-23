@@ -1,10 +1,16 @@
 package com.velectico.rbm.beats.views
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.Navigation
 
@@ -28,6 +34,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
 
 
     override fun init(binding: ViewDataBinding) {
+        checkPermission()
         this.binding = binding as FragmentBeatTaskDealerDetailsBinding
         binding.btnPerformanceHistory.setOnClickListener {
             moveToPerformanceHistory()
@@ -52,12 +59,15 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
             moveToViewAllComplaints()
         }
 
-        binding.viewAllTransLayout.setOnClickListener {
+        binding.viewAllTransBtn.setOnClickListener {
             moveToBeatPayAndTrans()
         }
 
         binding.allBeatReport.setOnClickListener {
             moveToAllBeatReport()
+        }
+        binding.tvDelearCallNo.setOnClickListener {
+            callUser()
         }
     }
 
@@ -92,11 +102,33 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
 
     private fun moveToBeatPayAndTrans(){
         val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToBeatPaymentListFragment()
-        Navigation.findNavController(binding.viewAllTransLayout).navigate(navDirection)
+        Navigation.findNavController(binding.viewAllTransBtn).navigate(navDirection)
     }
 
     private fun moveToAllBeatReport(){
         val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToBeatReportListFragment()
         Navigation.findNavController(binding.allBeatReport).navigate(navDirection)
+    }
+    private fun checkPermission(){
+        val checkSelfPermission = ContextCompat.checkSelfPermission(baseActivity, android.Manifest.permission.CALL_PHONE)
+        if (checkSelfPermission != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(baseActivity, arrayOf(android.Manifest.permission.CAMERA), 1)
+        }
+    }
+    private fun callUser(){
+        val u = Uri.parse("tel:" + "919836256985")
+
+        val i = Intent(Intent.ACTION_DIAL, u)
+
+        try {
+            // Launch the Phone app's dialer with a phone
+            // number to dial a call.
+            startActivity(i)
+        } catch (s: SecurityException) {
+            // show() method display the toast with
+            // exception message.
+            Log.e("Error::","error while opening call");
+        }
+
     }
 }

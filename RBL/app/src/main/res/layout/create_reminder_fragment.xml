@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/bg_dashboard_bkp"
+        android:padding="16dp"
+        tools:context=".beats.views.CreateBeatFragment">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_dealName"
+            style="@style/login_reg_input_label"
+            android:layout_marginTop="10dp"
+            android:hint="Dealer Name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_prodName"
+                style="@style/login_reg_input_text"
+                android:inputType="text"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <!--End Date-->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/login_reg_input_label"
+            android:hint="Followup Date"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/til_dealName"
+            android:id="@+id/til_endDt"
+            app:hintTextAppearance="@style/hintLabelColor">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_end_date"
+                style="@style/login_reg_input_text"
+                android:drawableRight="@drawable/ic_calender"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:inputType="date" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_desc"
+            style="@style/login_reg_input_label"
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            android:lines="6"
+            android:layout_below="@+id/til_endDt"
+            android:maxLines="6"
+            android:hint="Description"
+            app:hintTextAppearance="@style/hintLabelColor"
+            android:layout_marginTop="10dp"
+            android:scrollbars="vertical" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_assign_task"
+                style="@style/styleAppCompactButton"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/white"
+                android:layout_below="@+id/et_desc"
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="@color/colorGreen"
+                android:text="Add Reminder" />
+
+
+    </RelativeLayout>
+</layout>

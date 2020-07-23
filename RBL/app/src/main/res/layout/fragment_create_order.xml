@@ -14,25 +14,45 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_email_reg_no"
-                style="@style/login_reg_input_label"
-                android:hint="@string/search_prod_for_order"
-                app:hintTextAppearance="@style/hintLabelColor">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/input_email"
-                    style="@style/login_reg_input_text"
-                    android:inputType="phone"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_email_reg_no"
+                    style="@style/login_reg_input_label"
+                    android:hint="@string/search_prod_for_order"
+                    app:hintTextAppearance="@style/hintLabelColor">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_cartList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_email"
+                        style="@style/login_reg_input_text"
+                        android:inputType="phone"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_cartList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabFilter"
+                    style="@style/add_fab"
+                    android:layout_alignParentRight="true"
+                    app:backgroundTint="@color/primary"
+                    app:fabSize="normal"
+                    app:srcCompat="@drawable/ic_filter" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab"
+                    style="@style/add_fab"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    app:backgroundTint="@color/primary"
+                    app:fabSize="normal"
+                    app:srcCompat="@drawable/ic_add_to_cart" />
+            </RelativeLayout>
         </LinearLayout>
         <RelativeLayout
             android:id="@+id/footer"
@@ -80,13 +100,10 @@
 
 
             </LinearLayout>
+
         </RelativeLayout>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            style="@style/add_to_cart"
-            app:backgroundTint="@color/primary"
-            app:fabSize="normal"
-            app:srcCompat="@drawable/ic_add_to_cart" />
+
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

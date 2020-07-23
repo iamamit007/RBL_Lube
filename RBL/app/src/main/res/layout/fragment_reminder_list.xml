@@ -1,20 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_dashboard"
        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
+            <LinearLayout
+                android:id="@+id/layFilt"
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/dimen_20dp"
+                android:weightSum="10"
+                android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="0dip"
+                android:alpha=".75"
+                android:layout_weight="5"
+                android:background="@drawable/complaint_spinner"
+                android:layout_height="wrap_content"
+                android:text="Current" />
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="0dip"
+                android:layout_weight="5"
+                android:alpha=".75"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/button1"
+                android:background="@drawable/complaint_spinner"
+                android:text="PAst 7 days" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_reminderList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/layFilt"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                style="@style/add_fab"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                app:backgroundTint="@color/colorGreen"
+                app:fabSize="normal"
+                app:srcCompat="@drawable/ic_add_white" />
+
+
+        </RelativeLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

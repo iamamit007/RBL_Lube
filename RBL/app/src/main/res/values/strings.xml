@@ -159,7 +159,7 @@
     <string name="prod_gst">GST</string>
     <string name="prod_place_order">Place Order</string>
     <string name="cancel_order">Cancel Order</string>
-    <string name="strikeThroughData">DLP : <strike>Rs 350</strike></string>
+    <string name="strikeThroughData">DLP : <strike>₹ 350</strike></string>
 
     <integer name="swing_anim_time">750</integer>
 

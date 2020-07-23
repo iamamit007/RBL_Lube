@@ -21,7 +21,6 @@ class TeamListAdapter (var setCallback: TeamListAdapter.ITeamListActionCallBack)
             callBack = setCallback;
 
 
-
             binding.navigateToDetails.setOnClickListener {
                 callBack?.moveToBeatDetails(adapterPosition, "1",binding )
 
