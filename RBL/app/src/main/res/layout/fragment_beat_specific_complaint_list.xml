@@ -107,90 +107,82 @@
 
                                         <TextView
                                             android:id="@+id/tv_prodTotalPrice"
-                                            android:text="Contact Person - Sumit Sen"
+                                            android:text="Sumit Sen"
                                             style="@style/rv_caption" />
 
 
                                     </LinearLayout>
-
-                                    <LinearLayout
-                                        android:orientation="horizontal"
+                                    <RelativeLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:background="@android:color/white"
-                                        android:padding="5dip">
+                                        android:layout_marginTop="5dp"
+                                        android:paddingBottom="@dimen/dimen_20dp"
+                                        android:paddingTop="10dp"
+                                        android:background="@drawable/border">
 
-                                        <LinearLayout
-                                            android:layout_width="0dp"
+                                        <TextView
+                                            android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:orientation="vertical"
-                                            android:layout_weight="1"
-                                            android:gravity="center_horizontal"
-                                            android:background="@drawable/border">
+                                            android:layout_centerHorizontal="true"
+                                            android:textColor="@color/colorGreen"
+                                            android:textStyle="bold"
+                                            android:id="@+id/trgtTxt"
+                                            android:textSize="18dp"
+                                            android:text="Target" />
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/listTitle33"
+                                            android:layout_below="@+id/trgtTxt"
+                                            android:layout_marginTop="10dp"
+                                            android:orientation="horizontal">
 
                                             <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Tar Qty"
-                                                style="@style/rv_beat_details_lbl_blue"/>
+                                                style="@style/rv_caption"
+                                                android:id="@+id/tv_invoice"
+                                                android:textAlignment="center"
+                                                android:textStyle="bold"
+                                                android:textColor="#307D7E"
+                                                android:text="Order" />
 
                                             <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:id="@+id/tv_visited"
-                                                android:text="70"
-                                                style="@style/rv_beat_details_val_blue"
-                                                />
+                                                android:id="@+id/tv_payment_date33"
+                                                android:text="Collection"
+                                                android:textStyle="bold"
+                                                android:textColor="#307D7E"
+                                                android:textAlignment="center"
+                                                style="@style/rv_caption" />
+
+
 
                                         </LinearLayout>
                                         <LinearLayout
-                                            android:layout_width="0dp"
+                                            android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:orientation="vertical"
-                                            android:layout_weight="1"
-                                            android:gravity="center_horizontal"
-                                            android:background="@drawable/border">
+                                            android:layout_below="@+id/listTitle33"
+                                            android:layout_marginTop="5dp"
+                                            android:orientation="horizontal">
 
                                             <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Tar Amt"
-                                                style="@style/rv_beat_details_lbl_blue"/>
+                                                style="@style/rv_caption"
+                                                android:id="@+id/tv_ordrAmt"
+                                                android:textAlignment="center"
+                                                android:text="₹ 20,000" />
 
                                             <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:id="@+id/tv_orders"
-                                                android:text="52600"
-                                                style="@style/rv_beat_details_val_blue"
-                                                />
+                                                android:id="@+id/collectionAmt33"
+                                                android:text="₹ 10,000"
+                                                android:textAlignment="center"
+                                                style="@style/rv_caption" />
+
+
 
                                         </LinearLayout>
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="vertical"
-                                            android:layout_weight="1"
-                                            android:gravity="center_horizontal"
-                                            android:background="@drawable/border">
 
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Visits"
-                                                style="@style/rv_beat_details_lbl_blue"/>
+                                    </RelativeLayout>
 
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:id="@+id/tv_growth"
-                                                android:text="7"
-                                                style="@style/rv_beat_details_val_blue"
-                                                />
-
-                                        </LinearLayout>
-                                    </LinearLayout>
                                 </LinearLayout>
+
                             </LinearLayout>
                             <ImageView
                                 android:id="@+id/navigateToTaskDetails"

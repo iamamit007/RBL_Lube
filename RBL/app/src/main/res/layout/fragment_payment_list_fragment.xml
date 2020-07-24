@@ -136,7 +136,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dimen_20dp"
-                        android:text=" Total amount   ₹ 60,000"
+                        android:text=" Total due amount ₹ 15,000"
                         android:textColor="#38ACEC"
                         android:textSize="20dip"
                         android:typeface="sans"

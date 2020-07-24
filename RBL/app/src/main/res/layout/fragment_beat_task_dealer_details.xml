@@ -545,42 +545,6 @@
                 ></View>
 
 
-            <TextView
-                android:id="@+id/beatTargetLbl"
-                style="@style/styleTextViewLabelInfoLessBottom"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Target"
-                android:textColor="@color/black"
-                android:layout_below="@+id/sampleLinesix"/>
-            <TextView
-                android:id="@+id/beatTargetOrder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dimen_20dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Order Amount : 20,000"
-                android:textColor="@color/black"
-                android:layout_below="@+id/beatTargetLbl"/>
-            <TextView
-                android:id="@+id/beatTargetPmt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Sales Amount : 30,000"
-                android:padding="@dimen/dimen_20dp"
-                android:textColor="@color/black"
-                android:layout_toRightOf="@+id/beatTargetOrder"
-                android:layout_below="@+id/beatTargetLbl"/>
-
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:background="@color/colorOrange"
-                android:id="@+id/sampleLine7"
-                android:layout_marginTop="3dp"
-                android:layout_below="@+id/beatTargetPmt"
-                ></View>
 
 
 
@@ -590,7 +554,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Beat Report"
                 android:textColor="@color/black"
-                android:layout_below="@+id/sampleLine7"/>
+                android:layout_below="@+id/sampleLinesix"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_beatReport"

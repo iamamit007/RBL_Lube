@@ -170,7 +170,7 @@
         <item>mechanics</item>
     </string-array>
     <string-array name="array_name2">
-        <item>--Select Complaint type --</item>
+        <item>-- Complaint type --</item>
         <item>storage</item>
         <item>spillage</item>
         <item>breakage</item>

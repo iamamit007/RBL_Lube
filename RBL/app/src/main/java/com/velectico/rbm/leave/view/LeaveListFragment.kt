@@ -1,5 +1,6 @@
 package com.velectico.rbm.leave.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.R
+import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.databinding.FragmentLeaveListBinding
 import com.velectico.rbm.expense.model.Expense
 import com.velectico.rbm.expense.viewmodel.ExpenseViewModel
@@ -33,8 +35,12 @@ class LeaveListFragment : BaseFragment(){
 
     override fun getLayout(): Int = R.layout.fragment_leave_list
 
+    @SuppressLint("RestrictedApi")
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentLeaveListBinding
+        if (RBMLubricantsApplication.globalRole == "Team" ){
+            binding.applyLeavesFB.visibility = View.GONE
+        }
         binding.applyLeavesFB.setOnClickListener {
             activity?.let {
                 val navController = Navigation.findNavController(it, R.id.nav_host_fragment)
@@ -45,6 +51,7 @@ class LeaveListFragment : BaseFragment(){
         }
         observeViewModelData()
         getLeaveListFromServer()
+
     }
 
     private fun getLeaveListFromServer() {

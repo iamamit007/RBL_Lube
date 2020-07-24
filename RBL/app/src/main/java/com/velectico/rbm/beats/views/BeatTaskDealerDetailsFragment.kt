@@ -15,6 +15,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.navigation.Navigation
 
 import com.velectico.rbm.R
+import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.databinding.FragmentBeatTaskDealerDetailsBinding
 import com.velectico.rbm.databinding.FragmentOrderListBinding
@@ -36,6 +37,11 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     override fun init(binding: ViewDataBinding) {
         checkPermission()
         this.binding = binding as FragmentBeatTaskDealerDetailsBinding
+        if (RBMLubricantsApplication.globalRole == "Team" ){
+            binding.btnNewOrder.visibility = View.GONE
+            binding.btnComplaints.visibility = View.GONE
+            binding.btnBeatReport.visibility = View.GONE
+        }
         binding.btnPerformanceHistory.setOnClickListener {
             moveToPerformanceHistory()
         }

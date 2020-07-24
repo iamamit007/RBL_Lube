@@ -335,7 +335,11 @@
     <fragment
         android:id="@+id/beatSpecificComplaintList"
         android:name="com.velectico.rbm.complaint.views.BeatSpecificComplaintList"
-        android:label="Complaint Register" />
+        android:label="Complaint Register" >
+        <action
+            android:id="@+id/action_beatSpecificComplaintList_to_createComplaints"
+            app:destination="@id/createComplaints" />
+    </fragment>
     <fragment
         android:id="@+id/productDetailsListFragment"
         android:name="com.velectico.rbm.products.view.ProductDetailsListFragment"

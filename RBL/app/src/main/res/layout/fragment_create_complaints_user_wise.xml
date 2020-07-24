@@ -51,8 +51,17 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:drawableRight="@drawable/ic_expand"
                             android:entries="@array/array_name"
+                            />
+                        <Spinner
+                            android:id="@+id/dealerList"
+                            android:layout_marginTop="@dimen/dimen_20dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="50dp"
+                            android:drawSelectorOnTop="true"
+                            android:drawableRight="@drawable/ic_expand"
+                            android:entries="@array/dealer_List"
                             />
                         <Spinner
                             android:id="@+id/spinner33"
@@ -60,26 +69,18 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:drawableRight="@drawable/ic_expand"
                             android:entries="@array/array_name2"
                             />
 
-                        <Spinner
-                            android:id="@+id/dealerList"
-                            android:layout_marginTop="@dimen/dimen_20dp"
-                            android:layout_width="fill_parent"
-                            android:layout_height="50dp"
-                            android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
-                            android:entries="@array/dealer_List"
-                            />
+
                         <Spinner
                             android:id="@+id/spinner22"
                             android:layout_marginTop="@dimen/dimen_20dp"
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:drawableRight="@drawable/ic_expand"
                             android:entries="@array/array_name44"
                             />
                         <com.google.android.material.textfield.TextInputLayout

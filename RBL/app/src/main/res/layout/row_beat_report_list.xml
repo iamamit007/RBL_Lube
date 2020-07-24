@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/lay0"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/lay4"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:layout_below="@+id/lay0"
                 android:orientation="horizontal">
 
@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/lay6"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:layout_below="@+id/lay4"
                 android:orientation="horizontal">
 
@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/lay8"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:layout_below="@+id/lay6"
                 android:orientation="horizontal">
 
@@ -94,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/lay10"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:layout_below="@+id/lay8"
                 android:orientation="horizontal">
 
@@ -112,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/lay11"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:layout_below="@+id/lay10"
                 android:orientation="horizontal">
 
@@ -129,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/lay12"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:layout_below="@+id/lay11"
                 android:orientation="horizontal">
 
@@ -147,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/lay13"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:layout_below="@+id/lay12"
                 android:orientation="horizontal">
 
@@ -161,6 +161,76 @@
                     android:text="20-Jun-20" />
 
             </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/targtLay"
+                android:layout_below="@+id/lay13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:backgroundTint="@color/blue_company_name_text_color"
+                android:background="@drawable/complaint_spinner">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/colorGreen"
+                    android:textStyle="bold"
+                    android:id="@+id/trgtTxt"
+                    android:textSize="18dp"
+                    android:text="Target" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/listTitle"
+                    android:layout_below="@+id/trgtTxt"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rv_caption"
+                        android:id="@+id/tv_invoice"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:textColor="#307D7E"
+                        android:text="Order" />
+
+                    <TextView
+                        android:id="@+id/tv_payment_date"
+                        android:text="Collection"
+                        android:textStyle="bold"
+                        android:textColor="#307D7E"
+                        android:textAlignment="center"
+                        style="@style/rv_caption" />
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/listTitle"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rv_caption"
+                        android:id="@+id/tv_ordrAmt"
+                        android:textAlignment="center"
+                        android:text="₹ 20,000" />
+
+                    <TextView
+                        android:id="@+id/collectionAmt"
+                        android:text="₹ 10,000"
+                        android:textAlignment="center"
+                        style="@style/rv_caption" />
+
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
 
 
         </RelativeLayout>

@@ -3,15 +3,16 @@ package com.velectico.rbm.complaint.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.velectico.rbm.beats.adapters.BeatDateListAdapter
 import com.velectico.rbm.beats.adapters.BeatListAdapter
 import com.velectico.rbm.beats.model.Beats
 import com.velectico.rbm.complaint.model.ComplaintModel
 import com.velectico.rbm.databinding.RowBeatListBinding
 import com.velectico.rbm.databinding.RowComplaintListBinding
 
-class ComplaintListAdapter : RecyclerView.Adapter<ComplaintListAdapter.ViewHolder>() {
+class ComplaintListAdapter (var setCallback: ComplaintListAdapter.IComplaintListActionCallBack) : RecyclerView.Adapter<ComplaintListAdapter.ViewHolder>() {
 
-
+    var callBack : ComplaintListAdapter.IComplaintListActionCallBack?=null
 
     var complaintList = listOf<ComplaintModel>()
         set(value) {
@@ -22,7 +23,10 @@ class ComplaintListAdapter : RecyclerView.Adapter<ComplaintListAdapter.ViewHolde
         val binding = _binding
 
         init {
-
+            callBack = setCallback;
+            binding.navigateToDetails.setOnClickListener {
+                callBack?.moveToComplainDetails(adapterPosition, "1",binding )
+            }
 
         }
 

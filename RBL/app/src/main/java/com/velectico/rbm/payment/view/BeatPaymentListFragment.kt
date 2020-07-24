@@ -19,6 +19,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.navigation.Navigation
 
 import com.velectico.rbm.R
+import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.views.BeatListFragmentDirections
 import com.velectico.rbm.databinding.FragmentBeatPaymentListBinding
@@ -43,6 +44,9 @@ class BeatPaymentListFragment :  BaseFragment() {
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentBeatPaymentListBinding
+        if (RBMLubricantsApplication.globalRole == "Team" ){
+            binding.paybtn.visibility = View.GONE
+        }
         beatList = PaymentInfo().getDummyBeatList()
         setUpRecyclerView()
         /*binding.fab.setOnClickListener {

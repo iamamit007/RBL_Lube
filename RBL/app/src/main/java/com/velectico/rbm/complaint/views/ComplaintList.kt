@@ -20,6 +20,7 @@ import com.velectico.rbm.complaint.model.ComplaintModel
 import com.velectico.rbm.databinding.FragmentBeatListBinding
 import com.velectico.rbm.databinding.FragmentComplaintListBinding
 import com.velectico.rbm.databinding.RowBeatListBinding
+import com.velectico.rbm.databinding.RowComplaintListBinding
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 import com.velectico.rbm.utils.MECHANIC_ROLE
 import com.velectico.rbm.utils.SALES_LEAD_ROLE
@@ -63,14 +64,13 @@ class ComplaintList : BaseFragment() {
     private fun setUpRecyclerView() {
 
 
-//        adapter = ComplaintListAdapter(object : ComplaintListAdapter.IComplaintListActionCallBack{
-//            override fun moveToBeatTaskDetails(position: Int, beatTaskId: String?,binding: RowBeatListBinding) {
-//                Log.e("test","onAddTask"+beatTaskId)
-//                val navDirection =  BeatListFragmentDirections.actionBeatListFragmentToBeatTaskDetailsViewFragment()
-//                Navigation.findNavController(binding.navigateToTaskDetails).navigate(navDirection)
-//            }
-//        })
-        adapter = ComplaintListAdapter();
+        adapter = ComplaintListAdapter(object : ComplaintListAdapter.IComplaintListActionCallBack{
+            override fun moveToComplainDetails(position: Int, beatTaskId: String?,binding: RowComplaintListBinding) {
+                Log.e("test","onAddTask"+beatTaskId)
+                val navDirection =  ComplaintListDirections.actionComplaintListToCreateComplaintsUserWise()
+                Navigation.findNavController(binding.navigateToDetails).navigate(navDirection)
+            }
+        })
         binding.rvBeatList.adapter = adapter
         adapter.complaintList = complaintList;
     }

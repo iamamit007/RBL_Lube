@@ -147,6 +147,14 @@
                     android:visibility="gone"
                     android:layout_width="25dp"
                     android:layout_height="25dp"></ImageView>
+                <ImageView
+                    android:id="@+id/iv_next"
+                    android:src="@drawable/arrow"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"></ImageView>
             </RelativeLayout>
 
 
