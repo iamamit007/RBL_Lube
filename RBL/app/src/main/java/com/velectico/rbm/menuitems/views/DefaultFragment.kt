@@ -12,6 +12,7 @@ import com.google.android.material.navigation.NavigationView
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.R
+import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.databinding.DefaultFragmentBinding
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 import com.velectico.rbm.teamlist.view.TeamDashboardDirections
@@ -25,7 +26,6 @@ class DefaultFragment : BaseFragment(){
     private lateinit var binding:DefaultFragmentBinding
     private lateinit var menuViewModel: MenuViewModel
     private lateinit var navigationView: NavigationView
-
     override fun getLayout(): Int = R.layout.default_fragment
 
     override fun init(binding: ViewDataBinding) {
@@ -75,16 +75,20 @@ class DefaultFragment : BaseFragment(){
         })
 
         binding.beatButton.setOnClickListener {
+            RBMLubricantsApplication.globalRole = ""
+            RBMLubricantsApplication.fromBeat = "Beat"
             val navDirection =  DefaultFragmentDirections.actionHomeFragmentToDateWiseBeatListFragment()
             Navigation.findNavController(binding.beatButton).navigate(navDirection)
         }
 
         binding.orderButton.setOnClickListener {
+            RBMLubricantsApplication.fromBeat = ""
             val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment()
             Navigation.findNavController(binding.orderButton).navigate(navDirection)
         }
 
         binding.leaveButton.setOnClickListener {
+            RBMLubricantsApplication.globalRole = ""
             val navDirection =  DefaultFragmentDirections.actionHomeFragmentToLeaveListFragment()
             Navigation.findNavController(binding.leaveButton).navigate(navDirection)
         }
@@ -100,6 +104,7 @@ class DefaultFragment : BaseFragment(){
         }
 
         binding.teamButton.setOnClickListener {
+            RBMLubricantsApplication.globalRole = "Team"
             val navDirection =  DefaultFragmentDirections.actionHomeFragmentToTeamDashboard()
             Navigation.findNavController(binding.teamButton).navigate(navDirection)
         }
@@ -223,7 +228,7 @@ class DefaultFragment : BaseFragment(){
                 binding.beatButton.visibility = View.VISIBLE
                 binding.expenseButton.visibility = View.VISIBLE
                 binding.orderButton.visibility = View.VISIBLE
-                binding.leaveButton.visibility = View.VISIBLE
+                binding.leaveButton.visibility = View.GONE
                 binding.paymentButton.visibility = View.VISIBLE
                 binding.complainButton.visibility = View.VISIBLE
                 binding.dealerButton.visibility = View.VISIBLE

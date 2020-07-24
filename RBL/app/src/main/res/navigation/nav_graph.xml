@@ -171,6 +171,9 @@
         <action
             android:id="@+id/action_orderListFragment_to_orderFilter"
             app:destination="@id/orderFilter" />
+        <action
+            android:id="@+id/action_orderListFragment_to_productFilterFragment"
+            app:destination="@id/productFilterFragment" />
     </fragment>
     <fragment
         android:id="@+id/createOrderFragment"
@@ -289,7 +292,7 @@
     <fragment
         android:id="@+id/createComplaints"
         android:name="com.velectico.rbm.complaint.views.CreateComplaints"
-        android:label="Create Complaints" />
+        android:label="Complaint Entry" />
     <fragment
         android:id="@+id/beatPerformanceHistory"
         android:name="com.velectico.rbm.beats.views.BeatPerformanceHistory"
@@ -301,7 +304,7 @@
     <fragment
         android:id="@+id/createComplaintsUserWise"
         android:name="com.velectico.rbm.complaint.views.CreateComplaintsUserWise"
-        android:label="Create Complaints" />
+        android:label="Complaint Entry" />
     <fragment
         android:id="@+id/reminderListFragment"
         android:name="com.velectico.rbm.reminder.view.ReminderListFragment"
@@ -332,7 +335,7 @@
     <fragment
         android:id="@+id/beatSpecificComplaintList"
         android:name="com.velectico.rbm.complaint.views.BeatSpecificComplaintList"
-        android:label="Complaint List" />
+        android:label="Complaint Register" />
     <fragment
         android:id="@+id/productDetailsListFragment"
         android:name="com.velectico.rbm.products.view.ProductDetailsListFragment"
@@ -405,11 +408,18 @@
         <action
             android:id="@+id/action_productFilterFragment_to_productList"
             app:destination="@id/productList" />
+        <action
+            android:id="@+id/action_productFilterFragment_to_createOrderFragment"
+            app:destination="@id/createOrderFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderFilter"
         android:name="com.velectico.rbm.order.views.OrderFilter"
-        android:label="OrderFilter" />
+        android:label="OrderFilter" >
+        <action
+            android:id="@+id/action_orderFilter_to_createOrderFragment"
+            app:destination="@id/createOrderFragment" />
+    </fragment>
     <fragment
         android:id="@+id/complaintFilterFragment"
         android:name="com.velectico.rbm.complaint.views.ComplaintFilterFragment"

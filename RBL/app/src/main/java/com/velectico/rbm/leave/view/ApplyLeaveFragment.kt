@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.google.android.material.textfield.TextInputEditText
 import com.velectico.rbm.R
+import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.databinding.DefaultFragmentBinding
@@ -54,6 +55,13 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
         getRoleWiseView(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString(),binding)
         setUp()
         getLeaveListFromServer()
+        showToastMessage(RBMLubricantsApplication.globalRole)
+        if (RBMLubricantsApplication.globalRole == "Team" ){
+            binding.approveBtn.visibility = View.VISIBLE
+            binding.rejectBtn.visibility = View.VISIBLE
+            binding.applyBtn.visibility = View.GONE
+        }
+
     }
 
     private fun setUp() {
@@ -223,24 +231,18 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
         when (uRole) {
 
             SALES_LEAD_ROLE -> {
-                binding.approveBtn.visibility = View.GONE
-                binding.rejectBtn.visibility = View.GONE
+
+                binding.applyBtn.visibility = View.VISIBLE
             }
             SALES_PERSON_ROLE -> {
-                binding.approveBtn.visibility = View.GONE
-                binding.rejectBtn.visibility = View.GONE
+
+                binding.applyBtn.visibility = View.VISIBLE
             }
-            DISTRIBUTER_ROLE -> {
-                binding.applyBtn.visibility = View.GONE
-                binding.approveBtn.visibility = View.VISIBLE
-                binding.rejectBtn.visibility = View.VISIBLE
-            }
+
 
 
         }
-        binding.applyBtn.visibility = View.GONE
-        binding.approveBtn.visibility = View.VISIBLE
-        binding.rejectBtn.visibility = View.VISIBLE
+
 
     }
 }

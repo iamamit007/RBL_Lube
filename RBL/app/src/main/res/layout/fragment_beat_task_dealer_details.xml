@@ -295,7 +295,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tar_qty"
-                        android:text="Tar Qty"
+                        android:text="Target Order"
                         style="@style/text_header_more_small"
                         />
 
@@ -321,7 +321,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/act_qty"
-                        android:text="Act Qty"
+                        android:text="Actual Order"
                         style="@style/text_header_more_small"
                         />
 
@@ -347,7 +347,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tar_amt"
-                        android:text="Tar Amt"
+                        android:text="Target Collection"
                         style="@style/text_header_more_small"
                         />
 
@@ -373,7 +373,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/act_amt"
-                        android:text="Act Amt"
+                        android:text="Actual collection"
                         style="@style/text_header_more_small"
                         />
 

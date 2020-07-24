@@ -41,11 +41,12 @@
                             android:textAlignment="textStart"
                             android:textColor="@color/accent"
                             android:textSize="25sp"
+                            android:visibility="gone"
                             android:textStyle="bold">
                         </TextView>
 
                         <Spinner
-                            android:id="@+id/spinner"
+                            android:id="@+id/spinner11"
                             android:layout_marginTop="@dimen/dimen_20dp"
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
@@ -54,7 +55,7 @@
                             android:entries="@array/array_name"
                             />
                         <Spinner
-                            android:id="@+id/spinner2"
+                            android:id="@+id/spinner33"
                             android:layout_marginTop="@dimen/dimen_20dp"
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
@@ -72,19 +73,15 @@
                             android:background="@drawable/complaint_spinner"
                             android:entries="@array/dealer_List"
                             />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/til_prodName"
-                            style="@style/login_reg_input_label"
-                            android:layout_marginTop="10dp"
-                            android:hint="Product Name">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/input_prodName"
-                                style="@style/login_reg_input_text"
-                                android:inputType="text"
-                                />
-                        </com.google.android.material.textfield.TextInputLayout>
+                        <Spinner
+                            android:id="@+id/spinner22"
+                            android:layout_marginTop="@dimen/dimen_20dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="50dp"
+                            android:drawSelectorOnTop="true"
+                            android:background="@drawable/complaint_spinner"
+                            android:entries="@array/array_name44"
+                            />
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/til_quantity"
                             style="@style/login_reg_input_label"

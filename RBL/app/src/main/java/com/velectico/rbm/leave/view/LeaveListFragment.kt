@@ -25,6 +25,7 @@ import com.velectico.rbm.utils.SharedPreferenceUtils
  * TODO: Add a class header comment!
  */
 class LeaveListFragment : BaseFragment(){
+
     private lateinit var binding:FragmentLeaveListBinding
     private lateinit var leaveViewModel: LeaveViewModel
     private var leaveListArray:ArrayList<LeaveListModel> = ArrayList<LeaveListModel>()

@@ -164,7 +164,7 @@
     <integer name="swing_anim_time">750</integer>
 
     <string-array name="array_name">
-        <item>--Select Complainer type --</item>
+        <item>-- User --</item>
         <item>distributor</item>
         <item>dealer</item>
         <item>mechanics</item>
@@ -175,6 +175,14 @@
         <item>spillage</item>
         <item>breakage</item>
         <item>miscllanious</item>
+    </string-array>
+
+    <string-array name="array_name44">
+        <item>--Product Name --</item>
+        <item>Product 1</item>
+        <item>Product 2</item>
+        <item>Product 3</item>
+        <item>Product 4</item>
     </string-array>
 
     <string-array name="payment_not_received">
@@ -212,7 +220,7 @@
     </string-array>
 
     <string-array name="dealer_List">
-        <item>--Select Dealer / Distributer--</item>
+        <item>--User Name--</item>
         <item>ABC Oil</item>
         <item>Raja Oil</item>
         <item>Best Oil</item>

@@ -10,6 +10,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.navigation.Navigation
 
 import com.velectico.rbm.R
+import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.adapters.BeatDateListAdapter
@@ -59,6 +60,9 @@ class DateWiseBeatListFragment : BaseFragment()  {
             binding.fab.setOnClickListener {
                 moveToCreateBeat()
             }
+        }
+        if (RBMLubricantsApplication.globalRole == "Team" ){
+            binding.fab.hide()
         }
 
 

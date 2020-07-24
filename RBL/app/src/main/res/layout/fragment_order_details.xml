@@ -132,42 +132,6 @@
                             </LinearLayout>
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:padding="10dp"
-                            android:id="@+id/expenseAmt"
-                            >
-
-                            <TextView
-                                style="@style/wrap_contet_data"
-                                android:text="@string/prod_gst"
-
-                                />
-
-                            <TextView
-                                android:id="@+id/tv_prodId_gst"
-                                style="@style/wrap_contet_data"
-                                android:text="Rs 500"
-                                />
-
-
-                            <TextView
-                                style="@style/wrap_contet_data"
-                                android:text="@string/prod_order_tot"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                />
-
-                            <TextView
-                                android:id="@+id/tv_prodId_total"
-                                style="@style/wrap_contet_data"
-                                android:text="Rs 5500"
-                                />
-
-
-                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -187,7 +151,7 @@
         <RelativeLayout
             android:id="@+id/footer"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="100dp"
             android:layout_alignParentBottom="true"
             android:background="@color/colorPrimary"
             android:gravity="bottom"
@@ -199,6 +163,42 @@
                 android:orientation="vertical"
                 android:layout_alignParentBottom="true"
                 >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:id="@+id/expenseAmt"
+                    >
+
+                    <TextView
+                        style="@style/wrap_contet_data"
+                        android:text="@string/prod_gst"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_prodId_gst"
+                        style="@style/wrap_contet_data"
+                        android:text="Rs 500"
+                        />
+
+
+                    <TextView
+                        style="@style/wrap_contet_data"
+                        android:text="@string/prod_order_tot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_prodId_total"
+                        style="@style/wrap_contet_data"
+                        android:text="Rs 5500"
+                        />
+
+
+                </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_login"

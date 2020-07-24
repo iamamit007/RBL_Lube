@@ -12,6 +12,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_below="@+id/beat_schedule_name"
             android:background="@android:color/white"
             android:padding="5dip">

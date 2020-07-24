@@ -1,9 +1,11 @@
 package com.velectico.rbm.order.views
 
 import android.util.Log
+import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.Navigation
 import com.velectico.rbm.R
+import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.adapters.BeatDateListAdapter
 import com.velectico.rbm.beats.views.BeatListFragmentDirections
@@ -31,8 +33,12 @@ class OrderListFragment : BaseFragment()  {
         this.binding = binding as FragmentOrderListBinding
         orderHeadList = OrderHead().getDummyOrderList()
         setUpRecyclerView()
+        if (RBMLubricantsApplication.fromBeat == "Beat" ){
+            binding.tilDealer.visibility = View.GONE
+        }
         binding.fab.setOnClickListener {
             moveToCreateOrder()
+
         }
 
         binding.fabFilter.setOnClickListener {
@@ -69,7 +75,7 @@ class OrderListFragment : BaseFragment()  {
     }
 
     private fun moveToCreateOrder(){
-        val navDirection =  OrderListFragmentDirections.actionOrderListFragmentToCreateOrderFragment()
+        val navDirection =  OrderListFragmentDirections.actionOrderListFragmentToProductFilterFragment()
         Navigation.findNavController(binding.fab).navigate(navDirection)
     }
 

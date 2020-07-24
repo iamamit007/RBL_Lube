@@ -14,4 +14,5 @@ const val SALES_PERSON_ROLE = "P"
 const val DISTRIBUTER_ROLE = "D"
 const val DEALER_ROLE = "R"
 const val MECHANIC_ROLE = "M"
+const val TEAM_ROLE = "T"
 const val TEMP_CURRENT_LOGGED_IN = MECHANIC_ROLE

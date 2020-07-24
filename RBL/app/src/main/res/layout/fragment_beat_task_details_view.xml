@@ -81,7 +81,7 @@
 
                 <TextView
                     style="@style/rv_caption"
-                    android:text="Assignee - Arpan Dutta" />
+                    android:text="Arpan Dutta" />
 
 
             </LinearLayout>

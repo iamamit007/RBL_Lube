@@ -43,6 +43,7 @@
                     android:layout_alignParentRight="true"
                     app:backgroundTint="@color/primary"
                     app:fabSize="normal"
+                    android:visibility="gone"
                     app:srcCompat="@drawable/ic_filter" />
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fab"
@@ -66,6 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
+                android:layout_alignParentRight="true"
                 android:id="@+id/expenseAmt"
                 >
 

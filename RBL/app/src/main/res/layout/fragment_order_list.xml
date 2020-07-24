@@ -6,20 +6,20 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_dashboard"
+        android:background="@drawable/header"
         tools:context=".order.views.OrderListFragment">
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_email_reg_no"
+                android:id="@+id/til_dealer"
                 style="@style/login_reg_input_label"
                 android:hint="@string/order_dealer_name"
                 app:hintTextAppearance="@style/hintLabelColor">
@@ -30,6 +30,59 @@
                     android:inputType="text"
                     />
             </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:weightSum="150"
+                android:orientation="horizontal"
+                android:id="@+id/lay1">
+
+                <Button
+                    android:id="@+id/beatButton"
+                    android:layout_width="0dip"
+                    android:layout_height="50dp"
+                    android:layout_alignParentTop="false"
+                    android:layout_weight="48"
+                    android:background="@drawable/complaint_spinner"
+                    android:backgroundTint="@color/colorOrange"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Pending" />
+
+                <View
+                    android:layout_width="0dip"
+                    android:layout_weight="4"
+                    android:layout_height="50dp"></View>
+
+                <Button
+                    android:id="@+id/expenseButton"
+                    android:layout_width="0dip"
+                    android:layout_height="50dp"
+                    android:layout_weight="48"
+                    android:backgroundTint="@color/colorGreen"
+                    android:background="@drawable/complaint_spinner"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Completed"
+                    />
+                <View
+                    android:layout_width="0dip"
+                    android:layout_weight="4"
+                    android:layout_height="50dp"></View>
+
+                <Button
+                    android:id="@+id/allButton"
+                    android:layout_width="0dip"
+                    android:layout_height="50dp"
+                    android:layout_weight="46"
+                    android:backgroundTint="@color/cardview_dark_background"
+                    android:background="@drawable/complaint_spinner"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="All"
+                    />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_orderList"
@@ -40,6 +93,7 @@
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabFilter"
                 style="@style/add_fab"
+                android:visibility="gone"
                 android:layout_alignParentRight="true"
                 app:backgroundTint="@color/primary"
                 app:fabSize="normal"
@@ -47,7 +101,7 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             style="@style/add_fab"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:layout_alignParentRight="true"
             app:backgroundTint="@color/primary"
             app:fabSize="normal"

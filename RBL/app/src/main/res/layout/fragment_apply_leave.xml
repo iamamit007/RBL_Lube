@@ -197,6 +197,7 @@
                             style="@style/styleAppCompactButton22"
                             android:layout_marginTop="@dimen/dimen_30dp"
                             android:textColor="@color/white"
+                            android:visibility="gone"
                             android:backgroundTint="@color/mdtp_light_gray"
                             android:text="@string/apply" />
 
@@ -205,12 +206,14 @@
                             style="@style/styleAppCompactButton22"
                             android:textColor="@color/white"
                             android:backgroundTint="@color/colorGreen"
+                            android:visibility="gone"
                             android:text="Approve" />
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/rejectBtn"
                             style="@style/styleAppCompactButton22"
                             android:textColor="@color/white"
                             android:backgroundTint="@color/colorRed"
+                            android:visibility="gone"
                             android:text="Reject" />
 
                     </LinearLayout>
