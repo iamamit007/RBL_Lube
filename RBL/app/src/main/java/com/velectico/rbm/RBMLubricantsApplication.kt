@@ -14,7 +14,8 @@ class RBMLubricantsApplication : Application(){
     }
     companion object {
         var instance:RBMLubricantsApplication? = null
-
+        var globalRole = ""
+        var fromBeat = ""
         @JvmStatic
         fun getAppContext():Context?{
             return instance?.applicationContext

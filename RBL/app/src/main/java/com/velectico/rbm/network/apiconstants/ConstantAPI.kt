@@ -103,6 +103,8 @@ const val ENDPOINT_GET_TASK_DETAILS_LIST_BY_BEAT_ID = APP_API_NAME+"Get_Beat_Sch
 
 const val ENDPOINTBeat_Task_Details = APP_API_NAME+"Beat_Task_Details"
 
+const val Dealer_Distrib_Task_Worksheet = APP_API_NAME+"Dealer_Distrib_Task_Worksheet"
+
 
 
 

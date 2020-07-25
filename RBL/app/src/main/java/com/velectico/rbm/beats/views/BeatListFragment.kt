@@ -30,9 +30,12 @@ import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
+import com.velectico.rbm.utils.DateUtils
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
 import retrofit2.create
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Fragment to display Beat List
@@ -48,6 +51,7 @@ class BeatListFragment : BaseFragment() {
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentBeatListBinding
         val  getstring = arguments?.getString(  "scheduleId").toString()
+        binding.tvBeatScheduleName.text = getstring
         callApi(getstring)
         /*binding.fab.setOnClickListener {
             moveToCreateBeat()
@@ -70,8 +74,10 @@ class BeatListFragment : BaseFragment() {
 
     fun callApi(getstring:String){
         showHud()
+      val inpFormat =  SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+        val  outputformat =  SimpleDateFormat("yyyy-MM-dd", Locale.US);
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
-        val responseCall = apiInterface.getTaskDetailsByBeat(GetBeatDeatilsRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),"2020-07-25"))
+        val responseCall = apiInterface.getTaskDetailsByBeat(GetBeatDeatilsRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),DateUtils.parseDate(getstring,inpFormat,outputformat)))
         responseCall.enqueue(readLeaveListResponse as Callback<BeatWiseTakListResponse>)
     }
     private val readLeaveListResponse = object : NetworkCallBack<BeatWiseTakListResponse>(){

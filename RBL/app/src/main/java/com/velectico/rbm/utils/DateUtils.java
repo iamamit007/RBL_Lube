@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class DateUtils {
     public static ArrayList<ScheduleDates> getNextFifteenDays() throws ParseException {
@@ -107,4 +108,15 @@ public class DateUtils {
         }
     }
 
+    public static String parseDate(String inputDateString, SimpleDateFormat inputDateFormat, SimpleDateFormat outputDateFormat) {
+        Date date = null;
+        String outputDateString = null;
+        try {
+            date = inputDateFormat.parse(inputDateString);
+            outputDateString = outputDateFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return outputDateString;
+    }
 }

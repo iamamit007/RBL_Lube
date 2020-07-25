@@ -95,3 +95,38 @@ data class BeatTaskDetails(
     val dealerId: String? = null,
     val distribId: String? = null
 ):Serializable
+
+
+
+data class DealerDetailsResponse(
+    val count: Int,
+    @SerializedName("Details")
+    val scheduleDates: List<DealerDetails>,
+    @SerializedName("message")
+    val message: String? = null,
+    @SerializedName("status")
+    val status: Int? = null,
+    @SerializedName("actualOrderAmt")
+    val actualOrderAmt: String? = null,
+    @SerializedName("actualCollectionAmt")
+    val actualCollectionAmt: String? = null
+
+)
+
+data class DealerDetails(
+    val DM_Contact_Person: String?,
+    val DM_Address: String?,
+    val Grade: String?,
+    val orderAmt: String?,
+    val collectionAmt: String?,
+    val lati: String?,
+    val longi: String?
+):Serializable
+
+data class  DealerDetailsRequestParams(
+    @SerializedName("userId") var userId: String?,
+    @SerializedName("taskId") var taskId: String?,
+    @SerializedName("dealerId") var dealerId: String?,
+    @SerializedName("distribId") var distribId: String?
+): BaseModel()
+

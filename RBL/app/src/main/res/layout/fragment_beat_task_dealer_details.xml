@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="dealerDetails" type="com.velectico.rbm.beats.model.DealerDetails"/>
+    </data>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
@@ -56,7 +59,7 @@
 
                                 <TextView
                                     style="@style/beat_name"
-                                    android:text="Raja Oil Ltd"
+                                    android:text="@{dealerDetails.DM_Contact_Person}"
                                    />
 
 
@@ -89,12 +92,12 @@
 
 
                                 <TextView
-                                    android:id="@+id/tv_prodNetPrice"
-                                    android:text="+919836256985"
+                                    android:id="@+id/tvDelearCallNo"
+                                    android:text="-"
                                     style="@style/rv_caption" />
                                 <TextView
                                     android:id="@+id/tv_km"
-                                    android:text="Kilometer - 235"
+                                    android:text="0 km"
                                     android:textAlignment="viewEnd"
                                     style="@style/rv_caption" />
 
@@ -110,90 +113,81 @@
 
                                 <TextView
                                     android:id="@+id/tv_prodTotalPrice"
-                                    android:text="Contact Person - Sumit Sen"
+                                    android:text="-"
                                     style="@style/rv_caption" />
 
 
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:orientation="horizontal"
+
+                            <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="@android:color/white"
-                                android:padding="5dip">
+                                android:paddingBottom="@dimen/dimen_20dp"
+                                android:paddingTop="10dp"
+                                android:layout_marginTop="@dimen/dimen_16dp"
+                                android:background="@drawable/border">
 
-                                <LinearLayout
-                                    android:layout_width="0dp"
+                                <TextView
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:layout_weight="1"
-                                    android:gravity="center_horizontal"
-                                    android:background="@drawable/border">
+                                    android:layout_centerHorizontal="true"
+                                    android:textColor="@color/colorGreen"
+                                    android:textStyle="bold"
+                                    android:id="@+id/trgtTxt"
+                                    android:textSize="18dp"
+                                    android:text="Target" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/listTitle"
+                                    android:layout_below="@+id/trgtTxt"
+                                    android:layout_marginTop="10dp"
+                                    android:orientation="horizontal">
 
                                     <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Tar Qty"
-                                        style="@style/rv_beat_details_lbl_blue"/>
+                                        style="@style/rv_caption"
+                                        android:id="@+id/tv_invoice"
+                                        android:textAlignment="center"
+                                        android:textStyle="bold"
+                                        android:textColor="#307D7E"
+                                        android:text="Order" />
 
                                     <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:id="@+id/tv_visited"
-                                        android:text="70"
-                                        style="@style/rv_beat_details_val_blue"
-                                        />
+                                        android:id="@+id/tv_payment_date"
+                                        android:text="Collection"
+                                        android:textStyle="bold"
+                                        android:textColor="#307D7E"
+                                        android:textAlignment="center"
+                                        style="@style/rv_caption" />
+
+
 
                                 </LinearLayout>
                                 <LinearLayout
-                                    android:layout_width="0dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:layout_weight="1"
-                                    android:gravity="center_horizontal"
-                                    android:background="@drawable/border">
+                                    android:layout_below="@+id/listTitle"
+                                    android:layout_marginTop="5dp"
+                                    android:orientation="horizontal">
 
                                     <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Tar Amt"
-                                        style="@style/rv_beat_details_lbl_blue"/>
+                                        style="@style/rv_caption"
+                                        android:id="@+id/tv_ordrAmt"
+                                        android:textAlignment="center"
+                                        android:text="@{`₹`+dealerDetails.orderAmt}" />
 
                                     <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:id="@+id/tv_orders"
-                                        android:text="52600"
-                                        style="@style/rv_beat_details_val_blue"
-                                        />
+                                        android:id="@+id/collectionAmt"
+                                        android:text="@{`₹`+dealerDetails.collectionAmt}"
+                                        android:textAlignment="center"
+                                        style="@style/rv_caption" />
+
+
 
                                 </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:layout_weight="1"
-                                    android:gravity="center_horizontal"
-                                    android:background="@drawable/border">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Visits"
-                                        style="@style/rv_beat_details_lbl_blue"/>
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:id="@+id/tv_growth"
-                                        android:text="7"
-                                        style="@style/rv_beat_details_val_blue"
-                                        />
-
-                                </LinearLayout>
-                            </LinearLayout>
-
+                            </RelativeLayout>
 
 
 
@@ -304,7 +298,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tar_qty"
-                        android:text="Tar Qty"
+                        android:text="Target Order"
                         style="@style/text_header_more_small"
                         />
 
@@ -312,7 +306,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tv_task_not_visited"
-                        android:text="12"
+                        android:text="-"
                         android:layout_margin="10dp"
                         style="@style/text_header_more_small"
                         />
@@ -330,7 +324,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/act_qty"
-                        android:text="Act Qty"
+                        android:text="Actual Order"
                         style="@style/text_header_more_small"
                         />
 
@@ -338,7 +332,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/act_qty_val"
-                        android:text="9"
+                        android:text="-"
                         android:layout_margin="10dp"
                         style="@style/text_header_more_small"
                         />
@@ -356,7 +350,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tar_amt"
-                        android:text="Tar Amt"
+                        android:text="Target Collection"
                         style="@style/text_header_more_small"
                         />
 
@@ -364,7 +358,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tar_amt_val"
-                        android:text="1000"
+                        android:text=""
                         android:layout_margin="10dp"
                         style="@style/text_header_more_small"
                         />
@@ -382,7 +376,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/act_amt"
-                        android:text="Act Amt"
+                        android:text="Actual collection"
                         style="@style/text_header_more_small"
                         />
 
@@ -417,113 +411,13 @@
                 android:layout_below="@+id/btn_performance_history"
                 ></View>
 
-            <TextView
-                android:id="@+id/paymentAndTransLbl"
+            <Button
+                android:id="@+id/viewAllTransBtn"
                 style="@style/styleTextViewLabelInfoLessBottom"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Payment And Transaction"
                 android:textColor="@color/black"
                 android:layout_below="@+id/sampleLineTwo"/>
-            <LinearLayout
-                android:id="@+id/paymentAndTransaction"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/paymentAndTransLbl"
-                android:background="@android:color/white"
-                android:padding="5dip"
-                >
-
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:background="@drawable/border">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/osLbl"
-                        android:text="Outstanding"
-                        style="@style/text_header_more_small"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/osVal"
-                        android:text="120000"
-
-                        style="@style/text_header_more_small"
-                        />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:background="@drawable/border">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/receivedLbl"
-                        android:text="Received"
-                        style="@style/text_header_more_small"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/receivedVal"
-                        android:text="9000"
-                        style="@style/text_header_more_small"
-                        />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:background="@color/smsp_transparent_color">
-
-                    <LinearLayout
-                        android:id="@+id/viewAllTransLayout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginRight="1dp"
-                        >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/viewAllTransLbl"
-                        android:layout_gravity="center_horizontal"
-                        android:text="+"
-                        style="@style/text_header_more_small"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/viewAllTransBtn"
-                        android:text="View All"
-                        style="@style/text_header_more_small"
-                        />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
 
             <View
                 android:layout_width="wrap_content"
@@ -531,7 +425,7 @@
                 android:background="@color/colorOrange"
                 android:id="@+id/sampleLinefour"
                 android:layout_marginTop="3dp"
-                android:layout_below="@+id/paymentAndTransaction"
+                android:layout_below="@+id/viewAllTransBtn"
                 ></View>
 
 
@@ -641,6 +535,9 @@
 
             </LinearLayout>
 
+
+
+
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
@@ -649,6 +546,9 @@
                 android:layout_marginTop="3dp"
                 android:layout_below="@+id/et_task_assigned"
                 ></View>
+
+
+
 
 
             <TextView

@@ -52,6 +52,10 @@ class BeatTaskDetailsViewFragment : BaseFragment() {
         }
           scheduleId = arguments?.getString(  "scheduleId").toString()
           userId = arguments?.getString(  "userId").toString()
+        val y = arguments!!.get("taskDetails")
+        val x = y as TaskDetails
+        binding.task = x
+
 
 
         setUpRecyclerView()
@@ -117,7 +121,7 @@ class BeatTaskDetailsViewFragment : BaseFragment() {
        adapter = BeatTaskDetailsViewAdapter(object : BeatTaskDetailsViewAdapter.IBeatTaskDetailsViewActionCallBack{
             override fun moveToBeatTaskDetails(position: Int, beatTaskId: String?,binding: RowBeatTaskDetailsViewBinding) {
                 Log.e("test","onAddTask"+beatTaskId)
-                val navDirection =  BeatTaskDetailsViewFragmentDirections.actionBeatTaskDetailsViewFragmentToBeatTaskDealerDetailsFragment()
+                val navDirection =  BeatTaskDetailsViewFragmentDirections.actionBeatTaskDetailsViewFragmentToBeatTaskDealerDetailsFragment(beatList[position])
                 Navigation.findNavController(binding.navigateToDealerDetails).navigate(navDirection)
             }
         });

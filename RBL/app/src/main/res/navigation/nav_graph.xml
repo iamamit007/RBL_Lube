@@ -279,6 +279,9 @@
         <action
             android:id="@+id/action_beatTaskDealerDetailsFragment_to_beatReportListFragment"
             app:destination="@id/beatReportListFragment" />
+        <argument
+            android:name="beatTaskDetails"
+            app:argType="com.velectico.rbm.beats.model.BeatTaskDetails" />
     </fragment>
     <fragment
         android:id="@+id/teamListFragment"
