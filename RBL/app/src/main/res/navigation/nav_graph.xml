@@ -288,6 +288,9 @@
         <argument
             android:name="beatTaskDetails"
             app:argType="com.velectico.rbm.beats.model.BeatTaskDetails" />
+        <action
+            android:id="@+id/action_beatTaskDealerDetailsFragment_to_productFilterFragment"
+            app:destination="@id/productFilterFragment" />
     </fragment>
     <fragment
         android:id="@+id/teamListFragment"

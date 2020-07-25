@@ -63,6 +63,7 @@ class BeatListAdapter(var setCallback: BeatListAdapter.IBeatListActionCallBack,v
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         try {
             holder.bind(beatList[position])
+
         } catch (e: Exception) {
             e.printStackTrace()
         }

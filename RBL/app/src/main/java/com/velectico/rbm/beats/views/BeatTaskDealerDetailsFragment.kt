@@ -103,7 +103,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     }
 
     private fun moveToCreateOrder(){
-        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToCreateOrderFragment()
+        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToProductFilterFragment()
         Navigation.findNavController(binding.btnNewOrder).navigate(navDirection)
     }
 

@@ -12,6 +12,7 @@ import com.google.android.material.navigation.NavigationView
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.R
+import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.databinding.DefaultFragmentBinding
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 import com.velectico.rbm.utils.*
@@ -74,11 +75,14 @@ class DefaultFragment : BaseFragment(){
         })
 
         binding.beatButton.setOnClickListener {
+            RBMLubricantsApplication.fromBeat = "Beat"
+            RBMLubricantsApplication.globalRole = ""
             val navDirection =  DefaultFragmentDirections.actionHomeFragmentToDateWiseBeatListFragment("")
             Navigation.findNavController(binding.beatButton).navigate(navDirection)
         }
 
         binding.orderButton.setOnClickListener {
+            RBMLubricantsApplication.fromBeat = ""
             val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment()
             Navigation.findNavController(binding.orderButton).navigate(navDirection)
         }
@@ -99,6 +103,7 @@ class DefaultFragment : BaseFragment(){
         }
 
         binding.teamButton.setOnClickListener {
+            RBMLubricantsApplication.globalRole = "Team"
             val navDirection =  DefaultFragmentDirections.actionHomeFragmentToTeamDashboard()
             Navigation.findNavController(binding.teamButton).navigate(navDirection)
         }
@@ -146,8 +151,12 @@ class DefaultFragment : BaseFragment(){
             Navigation.findNavController(binding.paymentDealerButton).navigate(navDirection)
         }
         binding.performanceButtonLong.setOnClickListener {
-            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToTeamListFragment("")
+            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToTeamListFragment(binding.performanceButtonLong.text.toString())
             Navigation.findNavController(binding.performanceButtonLong).navigate(navDirection)
+        }
+        binding.orderButtonLong.setOnClickListener {
+            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment()
+            Navigation.findNavController(binding.orderButtonLong).navigate(navDirection)
         }
     }
 
@@ -215,17 +224,18 @@ class DefaultFragment : BaseFragment(){
                 binding.profileButtonLong.visibility = View.VISIBLE
             }
             DISTRIBUTER_ROLE->{
-                binding.beatButton.visibility = View.VISIBLE
-                binding.expenseButton.visibility = View.VISIBLE
-                binding.orderButton.visibility = View.VISIBLE
-                binding.leaveButton.visibility = View.VISIBLE
-                binding.paymentButton.visibility = View.VISIBLE
-                binding.complainButton.visibility = View.VISIBLE
-                binding.dealerButton.visibility = View.VISIBLE
-                binding.reminderButton.visibility = View.VISIBLE
-                binding.profileButton.visibility = View.VISIBLE
-                binding.teamButton.visibility = View.VISIBLE
-                binding.profileButtonLong.visibility = View.GONE
+                binding.lay1.visibility = View.GONE
+                binding.lay2.visibility = View.GONE
+                binding.lay3.visibility = View.VISIBLE
+                binding.lay4.visibility = View.VISIBLE
+                binding.lay5.visibility = View.VISIBLE
+                binding.lay6.visibility = View.GONE
+                binding.lay7.visibility = View.GONE
+                binding.lay8.visibility = View.GONE
+                binding.lay9.visibility = View.GONE
+                binding.lay10.visibility = View.GONE
+                binding.lay11.visibility = View.VISIBLE
+
             }
             DEALER_ROLE->{
                 binding.lay1.visibility = View.GONE
