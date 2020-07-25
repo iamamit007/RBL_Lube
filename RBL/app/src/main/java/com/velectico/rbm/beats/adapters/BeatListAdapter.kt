@@ -25,7 +25,7 @@ import com.velectico.rbm.expense.adapter.ExpenseListAdapter
 import com.velectico.rbm.utils.DateUtility
 import java.util.*
 
-class BeatListAdapter(var setCallback: BeatListAdapter.IBeatListActionCallBack) : RecyclerView.Adapter<BeatListAdapter.ViewHolder>() {
+class BeatListAdapter(var setCallback: BeatListAdapter.IBeatListActionCallBack,val visit:String) : RecyclerView.Adapter<BeatListAdapter.ViewHolder>() {
 
     var callBack : BeatListAdapter.IBeatListActionCallBack?=null
     var beatList = listOf<TaskDetails>()
@@ -61,7 +61,11 @@ class BeatListAdapter(var setCallback: BeatListAdapter.IBeatListActionCallBack) 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(beatList[position])
+        try {
+            holder.bind(beatList[position])
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
 

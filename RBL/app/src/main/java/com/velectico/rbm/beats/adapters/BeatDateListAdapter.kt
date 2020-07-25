@@ -14,7 +14,7 @@ import com.velectico.rbm.databinding.RowBeatListDatesBinding
 
 class BeatDateListAdapter(var setCallback: BeatDateListAdapter.IBeatDateListActionCallBack,var data:List<ScheduleDates>) : RecyclerView.Adapter<BeatDateListAdapter.ViewHolder>() {
     var callBack : BeatDateListAdapter.IBeatDateListActionCallBack?=null
-    var beatList = listOf<BeatDate>()
+    var beatList = listOf<ScheduleDates>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -63,7 +63,7 @@ class BeatDateListAdapter(var setCallback: BeatDateListAdapter.IBeatDateListActi
         holder.bind(data[position])
 
         holder.binding.navigateToDetails.setOnClickListener {
-            callBack?.moveToBeatDetails(position, data[position].schedule_id,holder.binding )
+            callBack?.moveToBeatDetails(position, data[position].schedule_startDate,holder.binding )
 
         }
     }

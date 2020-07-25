@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.Navigation
+import com.kaopiz.kprogresshud.KProgressHUD
 
 import com.velectico.rbm.R
 import com.velectico.rbm.RBMLubricantsApplication
@@ -46,57 +47,69 @@ class BeatListFragment : BaseFragment() {
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentBeatListBinding
-      val  getstring = arguments?.getString(  "scheduleId").toString()
-
-        callApi()
+        val  getstring = arguments?.getString(  "scheduleId").toString()
+        callApi(getstring)
         /*binding.fab.setOnClickListener {
             moveToCreateBeat()
         }*/
     }
 
 
-    private fun setUpRecyclerView() {
-
-
+    private fun setUpRecyclerView(data:String?) {
+        hide()
         adapter = BeatListAdapter(object : BeatListAdapter.IBeatListActionCallBack{
             override fun moveToBeatTaskDetails(position: Int, beatTaskId: String?,binding: RowBeatListBinding) {
                 Log.e("test","onAddTask"+beatTaskId)
-                val navDirection =  BeatListFragmentDirections.actionBeatListFragmentToBeatTaskDetailsViewFragment("3255632980","75")
+                val navDirection =  BeatListFragmentDirections.actionBeatListFragmentToBeatTaskDetailsViewFragment("3255632980","75",beatList[position] as com.velectico.rbm.beats.model.TaskDetails)
                 Navigation.findNavController(binding.navigateToTaskDetails).navigate(navDirection)
             }
-        });
+        },data.toString());
         binding.rvBeatList.adapter = adapter
         adapter.beatList = beatList
     }
 
-    fun callApi(){
+    fun callApi(getstring:String){
+        showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
-                val responseCall = apiInterface.getTaskDetailsByBeat(GetBeatDeatilsRequestParams("3255632980","75"))
+        val responseCall = apiInterface.getTaskDetailsByBeat(GetBeatDeatilsRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),"2020-07-25"))
         responseCall.enqueue(readLeaveListResponse as Callback<BeatWiseTakListResponse>)
     }
     private val readLeaveListResponse = object : NetworkCallBack<BeatWiseTakListResponse>(){
         override fun onSuccessNetwork(data: Any?, response: NetworkResponse<BeatWiseTakListResponse>) {
+            hide()
             response.data?.status?.let { status ->
                 Log.e("test","readLeaveListResponse status="+response.data)
+                hide()
                 beatList.toMutableList().clear()
                 if (response.data.details!!.isEmpty()){
                     showToastMessage("No data found")
                 }else{
                     beatList = response.data.details!!.toMutableList()
-                    setUpRecyclerView()
+                    setUpRecyclerView(response.data.visit)
                 }
-
-
             }
-
         }
 
         override fun onFailureNetwork(data: Any?, error: NetworkError) {
-
+            hide()
         }
 
     }
 
+     var hud:KProgressHUD? = null
+    fun  showHud(){
+        hud =  KProgressHUD.create(activity)
+            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+            .setLabel("Please wait")
+            .setCancellable(true)
+            .setAnimationSpeed(2)
+            .setDimAmount(0.5f)
+            .show();
+    }
+
+    fun hide(){
+        hud?.dismiss()
+    }
 
 
     /* private fun moveToCreateBeat(){

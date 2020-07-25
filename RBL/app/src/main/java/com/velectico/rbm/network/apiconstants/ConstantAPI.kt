@@ -99,7 +99,7 @@ const val ENDPOINT_BEAT_DATES= APP_API_NAME+"Get_Beat_Schedule_Dates_By_userId"
 
 const val GET_TASK_DETAILS_LIST_BY_BEAT_ID = "GET_TASK_DETAILS_LIST_BY_BEAT_ID"
 
-const val ENDPOINT_GET_TASK_DETAILS_LIST_BY_BEAT_ID = APP_API_NAME+"Get_Schedule_List_By_schedule_id"
+const val ENDPOINT_GET_TASK_DETAILS_LIST_BY_BEAT_ID = APP_API_NAME+"Get_Beat_Schedule_By_Date"
 
 const val ENDPOINTBeat_Task_Details = APP_API_NAME+"Beat_Task_Details"
 

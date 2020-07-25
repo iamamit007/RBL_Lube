@@ -81,90 +81,91 @@
 
                 <TextView
                     style="@style/rv_caption"
-                    android:text="Assignee - Arpan Dutta" />
+                    android:text="Arpan Dutta" />
 
 
             </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
+
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
+                android:paddingBottom="@dimen/dimen_20dp"
+                android:paddingTop="10dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:background="@drawable/border">
 
-                android:padding="5dip">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/border">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tar Qty"
-                        style="@style/rv_beat_details_lbl_total" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/tv_total_schedule"
-                        android:text="700 Ltr"
-                        style="@style/rv_beat_details_val_total"
-                        />
-
-                </LinearLayout>
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/colorGreen"
+                    android:textStyle="bold"
+                    android:id="@+id/trgtTxt"
+                    android:textSize="18dp"
+                    android:text="Target" />
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:background="@drawable/border">
+                    android:id="@+id/listTitle"
+                    android:layout_below="@+id/trgtTxt"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Target Amount"
-                        style="@style/rv_beat_details_lbl_visited"/>
+                        style="@style/rv_caption"
+                        android:id="@+id/tv_invoice"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:textColor="#307D7E"
+                        android:text="Order" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/tv_visited"
-                        android:text="12000"
-                        style="@style/rv_beat_details_val_visited"
-                        />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:background="@drawable/border">
-
+                        android:id="@+id/tv_payment_date"
+                        android:text="Collection"
+                        android:textStyle="bold"
+                        android:textColor="#307D7E"
+                        android:textAlignment="center"
+                        style="@style/rv_caption" />
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_duet_amount"
                         android:text="Visit"
-                        style="@style/rv_beat_details_lbl_orders"/>
+                        android:textStyle="bold"
+                        android:textColor="#307D7E"
+                        android:textAlignment="center"
+                        style="@style/rv_caption" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/tv_orders"
-                        android:text="7"
-                        style="@style/rv_beat_details_val_orders"
-                        />
 
                 </LinearLayout>
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/listTitle"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rv_caption"
+                        android:id="@+id/tv_ordrAmt"
+                        android:textAlignment="center"
+                        android:text="₹ 20,000" />
+
+                    <TextView
+                        android:id="@+id/collectionAmt"
+                        android:text="₹ 10,000"
+                        android:textAlignment="center"
+                        style="@style/rv_caption" />
+                    <TextView
+                        android:id="@+id/tv_payment_amount"
+                        android:text="10"
+                        android:textAlignment="center"
+                        style="@style/rv_caption" />
 
 
+                </LinearLayout>
+
+            </RelativeLayout>
 
 
         </LinearLayout>

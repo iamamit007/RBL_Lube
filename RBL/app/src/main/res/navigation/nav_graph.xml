@@ -247,6 +247,9 @@
             android:name="scheduleId"
             app:argType="string"
             />
+        <argument
+            android:name="taskDetails"
+            app:argType="com.velectico.rbm.beats.model.TaskDetails" />
     </fragment>
     <fragment
         android:id="@+id/beatTaskDealerDetailsFragment"

@@ -1,5 +1,6 @@
 package com.velectico.rbm.beats.views
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,16 +10,14 @@ import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.navigation.Navigation
+import com.kaopiz.kprogresshud.KProgressHUD
 
 import com.velectico.rbm.R
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.adapters.BeatListAdapter
 import com.velectico.rbm.beats.adapters.BeatTaskDetailsViewAdapter
-import com.velectico.rbm.beats.model.BeatTaskDetails
-import com.velectico.rbm.beats.model.BeatTaskDetailsListResponse
-import com.velectico.rbm.beats.model.Beats
-import com.velectico.rbm.beats.model.GetBeatDeatilsRequestParams
+import com.velectico.rbm.beats.model.*
 import com.velectico.rbm.databinding.*
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 import com.velectico.rbm.network.callbacks.NetworkCallBack
@@ -27,6 +26,7 @@ import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.utils.SALES_LEAD_ROLE
+import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
 
 /**
@@ -61,15 +61,32 @@ class BeatTaskDetailsViewFragment : BaseFragment() {
         }*/
     }
 
+    var hud: KProgressHUD? = null
+    fun  showHud(){
+        hud =  KProgressHUD.create(activity)
+            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+            .setLabel("Please wait")
+            .setCancellable(true)
+            .setAnimationSpeed(2)
+            .setDimAmount(0.5f)
+            .show();
+    }
+
+    fun hide(){
+        hud?.dismiss()
+    }
     fun callApi2(){
+        showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
-        val responseCall = apiInterface.getScheduleTaskDetailsByBeat(GetBeatDeatilsRequestParams("3255632980","75"))
+        val responseCall = apiInterface.getScheduleTaskDetailsByBeat(BeatTaskDetailsRequestParams(
+            SharedPreferenceUtils.getLoggedInUserId(context as Context),scheduleId))
         responseCall.enqueue(beatTaskDetailsListResponse as Callback<BeatTaskDetailsListResponse>)
     }
 
 
     private val beatTaskDetailsListResponse = object : NetworkCallBack<BeatTaskDetailsListResponse>(){
         override fun onSuccessNetwork(data: Any?, response: NetworkResponse<BeatTaskDetailsListResponse>) {
+            hide()
             response.data?.status?.let { status ->
                 Log.e("test222","BeatTaskDetailsListResponse status="+response.data)
                 beatList.toMutableList().clear()
@@ -85,7 +102,7 @@ class BeatTaskDetailsViewFragment : BaseFragment() {
         }
 
         override fun onFailureNetwork(data: Any?, error: NetworkError) {
-
+            hide()
         }
 
     }

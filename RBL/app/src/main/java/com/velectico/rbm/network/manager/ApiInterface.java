@@ -1,6 +1,7 @@
 package com.velectico.rbm.network.manager;
 
 import com.velectico.rbm.beats.model.BeatTaskDetailsListResponse;
+import com.velectico.rbm.beats.model.BeatTaskDetailsRequestParams;
 import com.velectico.rbm.beats.model.BeatWiseTakListResponse;
 import com.velectico.rbm.beats.model.GetBeatDeatilsRequestParams;
 
@@ -24,6 +25,6 @@ public interface ApiInterface {
     Call<BeatWiseTakListResponse> getTaskDetailsByBeat(@Body GetBeatDeatilsRequestParams model);
 
     @POST(ENDPOINTBeat_Task_Details)
-    Call<BeatTaskDetailsListResponse> getScheduleTaskDetailsByBeat(@Body GetBeatDeatilsRequestParams model);
+    Call<BeatTaskDetailsListResponse> getScheduleTaskDetailsByBeat(@Body BeatTaskDetailsRequestParams model);
 
 }
