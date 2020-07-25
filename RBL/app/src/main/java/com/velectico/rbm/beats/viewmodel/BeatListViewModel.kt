@@ -1,4 +1,4 @@
-package com.velectico.rbm.menuitems.viewmodel
+package com.velectico.rbm.beats.viewmodel
 
 import android.content.Context
 import android.util.Log
@@ -13,6 +13,7 @@ import com.velectico.rbm.base.viewmodel.BaseViewModel
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.model.UIError
 import com.velectico.rbm.beats.model.BeatDateListResponse
+import com.velectico.rbm.beats.model.GetBeatDeatilsRequestParams
 import com.velectico.rbm.beats.model.ScheduleDates
 import com.velectico.rbm.leave.model.LeaveListRequest
 import com.velectico.rbm.loginreg.model.LoginResponse
@@ -31,7 +32,7 @@ import com.velectico.rbm.utils.SharedPreferenceUtils
  * Created by mymacbookpro on 2020-05-01
  * TODO: Add a class header comment!
  */
-class MenuViewModel(private val networkManager: INetworkManager) : BaseViewModel(){
+class BeatListViewModel(private val networkManager: INetworkManager) : BaseViewModel(){
 
     val loading = MutableLiveData<Boolean>()
     val errorLiveData = MutableLiveData<UIError>()
@@ -98,12 +99,12 @@ class MenuViewModel(private val networkManager: INetworkManager) : BaseViewModel
     }
 
 
-    fun getBeatListAPICall(userId:String){
+    fun getBeatListAPICall(userId:String,scheduleId:String){
         loading.postValue(true)
-        val leaveListRequestObj = LeaveListRequest(userId)
+        val leaveListRequestObj = GetBeatDeatilsRequestParams(userId,scheduleId)
         val leaveListRequest = NetworkRequest(
-            apiName = GET_ALL_BEAT_DATES,
-            endPoint = ENDPOINT_BEAT_DATES,
+            apiName = GET_TASK_DETAILS_LIST_BY_BEAT_ID,
+            endPoint = ENDPOINT_GET_TASK_DETAILS_LIST_BY_BEAT_ID,
             request = leaveListRequestObj,
             fields = getLeaveListRequestFieldParams(userId),
             headers = getLoginRequestHeaderParams()
@@ -164,14 +165,14 @@ class MenuViewModel(private val networkManager: INetworkManager) : BaseViewModel
     companion object{
         private val factory = MenuViewModelFactory()
 
-        fun getInstance(activity: BaseActivity): MenuViewModel {
-            return ViewModelProviders.of(activity, factory)[MenuViewModel::class.java]
+        fun getInstance(activity: BaseActivity): BeatListViewModel {
+            return ViewModelProviders.of(activity, factory)[BeatListViewModel::class.java]
         }
     }
 }
 
 class MenuViewModelFactory : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MenuViewModel(getNetworkManager(ManagerFactory.DEV)) as T
+        return BeatListViewModel(getNetworkManager(ManagerFactory.DEV)) as T
     }
 }

@@ -8,12 +8,13 @@ import androidx.core.content.res.TypedArrayUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.velectico.rbm.R
 import com.velectico.rbm.beats.model.BeatDate
+import com.velectico.rbm.beats.model.ScheduleDates
 import com.velectico.rbm.databinding.FragmentDateWiseBeatListBinding
 import com.velectico.rbm.databinding.RowBeatListDatesBinding
 
-class BeatDateListAdapter(var setCallback: BeatDateListAdapter.IBeatDateListActionCallBack) : RecyclerView.Adapter<BeatDateListAdapter.ViewHolder>() {
+class BeatDateListAdapter(var setCallback: BeatDateListAdapter.IBeatDateListActionCallBack,var data:List<ScheduleDates>) : RecyclerView.Adapter<BeatDateListAdapter.ViewHolder>() {
     var callBack : BeatDateListAdapter.IBeatDateListActionCallBack?=null
-    var beatList = listOf<BeatDate>()
+    var beatList = listOf<ScheduleDates>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -27,13 +28,10 @@ class BeatDateListAdapter(var setCallback: BeatDateListAdapter.IBeatDateListActi
                 binding.beatDateRow.setBackgroundColor(Color.RED)
             }
 
-            binding.navigateToDetails.setOnClickListener {
-                callBack?.moveToBeatDetails(adapterPosition, "1",binding )
 
-            }
         }
 
-        fun bind(beatDate: BeatDate?) {
+        fun bind(beatDate: ScheduleDates?) {
             binding.beatListDateInfo = beatDate
             binding.executePendingBindings()
         }
@@ -46,7 +44,7 @@ class BeatDateListAdapter(var setCallback: BeatDateListAdapter.IBeatDateListActi
     }
 
     override fun getItemCount(): Int {
-        return beatList.size
+        return data.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -58,10 +56,16 @@ class BeatDateListAdapter(var setCallback: BeatDateListAdapter.IBeatDateListActi
             holder.binding.beatDateRow.setBackgroundColor(Color.parseColor("#ffffe6"))
         }else {
             holder.binding.beatDateRow.setBackgroundColor(Color.parseColor("#ccd9ff"))
+            holder.binding.navigateToDetails.tag = position
         }
 
 
-        holder.bind(beatList[position])
+        holder.bind(data[position])
+
+        holder.binding.navigateToDetails.setOnClickListener {
+            callBack?.moveToBeatDetails(position, data[position].schedule_startDate,holder.binding )
+
+        }
     }
 
     interface IBeatDateListActionCallBack{

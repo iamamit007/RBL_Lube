@@ -2,6 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="task" type="com.velectico.rbm.beats.model.TaskDetails"/>
+    </data>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -48,7 +51,7 @@
 
                 <TextView
                     style="@style/beat_name"
-                    android:text="Temple Road Beat" />
+                    android:text="@{task.BM_Beat_Name}" />
 
 
 
@@ -61,7 +64,7 @@
 
                 <TextView
                     style="@style/rv_caption"
-                    android:text="Sun, 15 Jan 20 - Wed, 20 Jan 20" />
+                    android:text="@{task.schedule_startDate + ` - `+task.schedule_endDate}" />
 
             </LinearLayout>
             <LinearLayout
@@ -71,7 +74,7 @@
 
                 <TextView
                     style="@style/rv_caption"
-                    android:text="Zone 1" />
+                    android:text="@{task.BM_Resp_Level}" />
 
             </LinearLayout>
             <LinearLayout
@@ -81,7 +84,7 @@
 
                 <TextView
                     style="@style/rv_caption"
-                    android:text="Arpan Dutta" />
+                    android:text="@{task.assigneeName}" />
 
 
             </LinearLayout>
@@ -149,16 +152,16 @@
                         style="@style/rv_caption"
                         android:id="@+id/tv_ordrAmt"
                         android:textAlignment="center"
-                        android:text="₹ 20,000" />
+                        android:text="@{`₹ `+task.orderAmt}" />
 
                     <TextView
                         android:id="@+id/collectionAmt"
-                        android:text="₹ 10,000"
+                        android:text="@{`₹ `+task.collectionAmt}"
                         android:textAlignment="center"
                         style="@style/rv_caption" />
                     <TextView
                         android:id="@+id/tv_payment_amount"
-                        android:text="10"
+                        android:text="@{`₹ `+task.visit}"
                         android:textAlignment="center"
                         style="@style/rv_caption" />
 

@@ -1,5 +1,8 @@
 package com.velectico.rbm.network
 
+import com.velectico.rbm.beats.model.BeatDateListResponse
+import com.velectico.rbm.beats.model.BeatWiseTakListResponse
+import com.velectico.rbm.beats.model.GetBeatDeatilsRequestParams
 import com.velectico.rbm.expense.model.ExpenseCreateResponse
 import com.velectico.rbm.expense.model.ExpenseDeleteRequest
 import com.velectico.rbm.expense.model.ExpenseDeleteResponse
@@ -111,6 +114,17 @@ interface WebService {
                     @HeaderMap header:Map<String, String>): Call<LeaveListResponse>
 
     //Leave related url ends here
+
+    //Beat Related urls here
+
+    @FormUrlEncoded
+    @POST(ENDPOINT_BEAT_DATES)
+    fun getDatesForBeat(@FieldMap fieldMap: Map<String, String>,
+                     @HeaderMap header:Map<String, String>): Call<BeatDateListResponse>
+
+    @POST(ENDPOINT_GET_TASK_DETAILS_LIST_BY_BEAT_ID)
+    fun getTaskDetailsByBeat(@Body model: GetBeatDeatilsRequestParams): Call<BeatWiseTakListResponse>
+    //Beat Related urls END here
 
     companion object{
         fun getService(): WebService {

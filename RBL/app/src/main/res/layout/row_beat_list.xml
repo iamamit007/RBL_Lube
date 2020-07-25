@@ -5,7 +5,7 @@
     <data>
         <variable
             name="beats"
-            type="com.velectico.rbm.beats.model.Beats" />
+            type="com.velectico.rbm.beats.model.TaskDetails" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -32,7 +32,7 @@
 
                         <TextView
                             style="@style/beat_name"
-                            android:text="Temple Road Beat" />
+                            android:text="@{beats.BM_Beat_Name}" />
 
 
 
@@ -45,7 +45,7 @@
 
                         <TextView
                             style="@style/rv_caption"
-                            android:text="Sun, 15 Jan 20 - Wed, 20 Jan 20" />
+                            android:text="@{beats.schedule_startDate + `-`+ beats.schedule_endDate}" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -55,7 +55,7 @@
 
                         <TextView
                             style="@style/rv_caption"
-                            android:text="Zone 1" />
+                            android:text="@{beats.BM_Resp_Level}" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -65,7 +65,7 @@
 
                         <TextView
                         style="@style/rv_caption"
-                        android:text="Arpan Dutta" />
+                        android:text="@{beats.assigneeName}" />
 
 
                     </LinearLayout>
@@ -134,16 +134,16 @@
                                 style="@style/rv_caption"
                                 android:id="@+id/tv_ordrAmt"
                                 android:textAlignment="center"
-                                android:text="₹ 20,000" />
+                                android:text="@{`₹`+beats.orderAmt}" />
 
                             <TextView
                                 android:id="@+id/collectionAmt"
-                                android:text="₹ 10,000"
+                                android:text="@{`₹`+beats.collectionAmt}"
                                 android:textAlignment="center"
                                 style="@style/rv_caption" />
                             <TextView
-                                android:id="@+id/tv_payment_amount"
-                                android:text="10"
+                                android:id="@+id/tv_visit"
+                                android:text="@{beats.visit}"
                                 android:textAlignment="center"
                                 style="@style/rv_caption" />
 

@@ -1,6 +1,9 @@
 package com.velectico.rbm.network
 
 import android.util.Log
+import com.velectico.rbm.base.model.BaseModel
+import com.velectico.rbm.beats.model.GetBeatDateRequestParams
+import com.velectico.rbm.beats.model.GetBeatDeatilsRequestParams
 import com.velectico.rbm.expense.model.ExpenseCreateRequest
 import com.velectico.rbm.expense.model.ExpenseDeleteRequest
 import com.velectico.rbm.expense.model.ExpenseListRequest
@@ -101,6 +104,30 @@ fun getCall(service: WebService, request: BaseRequest) : Any?{
             service.getLeaveList( request.fields ?: hashMapOf(),request.headers ?: hashMapOf())
         }
 
+        GET_ALL_BEAT_DATES->{
+            request as NetworkRequest<GetBeatDateRequestParams>
+            service.getDatesForBeat( request.fields ?: hashMapOf(),request.headers ?: hashMapOf())
+        }
+
+        GET_TASK_DETAILS_LIST_BY_BEAT_ID->{
+            request as NetworkRequest<GetBeatDateRequestParams>
+            service.getDatesForBeat( request.fields ?: hashMapOf(),request.headers ?: hashMapOf())
+        }
         else -> null
     }
+}
+
+fun getCall(service: WebService, request: BaseRequest,model: BaseModel) : Any?{
+
+    return when(request.apiName){
+
+        GET_TASK_DETAILS_LIST_BY_BEAT_ID->{
+            request as NetworkRequest<GetBeatDeatilsRequestParams>
+            service.getTaskDetailsByBeat( model as GetBeatDeatilsRequestParams )
+        }
+        else -> null
+    }
+
+
+
 }

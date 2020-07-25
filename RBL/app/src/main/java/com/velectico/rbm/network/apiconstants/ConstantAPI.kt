@@ -93,7 +93,17 @@ const val ENDPOINT_LEAVE_EDIT = APP_API_NAME+"Edit_Leave"
 const val ENDPOINT_LEAVE_DELETE = APP_API_NAME+"Delete_Leave"
 const val ENDPOINT_LEAVE_LIST = APP_API_NAME+"Leave_List"
 
+const val GET_ALL_BEAT_DATES = "GET_ALL_BEAT_DATES"
 
+const val ENDPOINT_BEAT_DATES= APP_API_NAME+"Get_Beat_Schedule_Dates_By_userId"
+
+const val GET_TASK_DETAILS_LIST_BY_BEAT_ID = "GET_TASK_DETAILS_LIST_BY_BEAT_ID"
+
+const val ENDPOINT_GET_TASK_DETAILS_LIST_BY_BEAT_ID = APP_API_NAME+"Get_Beat_Schedule_By_Date"
+
+const val ENDPOINTBeat_Task_Details = APP_API_NAME+"Beat_Task_Details"
+
+const val Dealer_Distrib_Task_Worksheet = APP_API_NAME+"Dealer_Distrib_Task_Worksheet"
 
 
 

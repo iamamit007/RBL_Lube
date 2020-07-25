@@ -46,7 +46,7 @@ class AssignTargetToBeat : BaseFragment() {
     }
 
     private fun moveToBeatList(){
-        val navDirection =  AssignTargetToBeatDirections.actionAssignTargetToBeatToDateWiseBeatListFragment()
+        val navDirection =  AssignTargetToBeatDirections.actionAssignTargetToBeatToDateWiseBeatListFragment("")
         Navigation.findNavController(binding.btnSaveTask).navigate(navDirection)
     }
 

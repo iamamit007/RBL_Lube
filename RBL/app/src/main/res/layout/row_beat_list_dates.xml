@@ -4,7 +4,7 @@
     <data>
         <variable
             name="beatListDateInfo"
-            type="com.velectico.rbm.beats.model.BeatDate" />
+            type="com.velectico.rbm.beats.model.ScheduleDates" />
     </data>
 <RelativeLayout
     android:layout_width="fill_parent"
@@ -19,7 +19,7 @@
         android:id="@+id/secondLine"
         android:layout_width="fill_parent"
         android:layout_height="26dip"
-        android:text="@{beatListDateInfo.beatDate}"
+        android:text="@{beatListDateInfo.schedule_startDate}"
         android:layout_centerVertical="true"
         android:textColor="@color/black"
         android:textSize="12sp"
