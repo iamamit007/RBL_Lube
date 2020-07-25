@@ -186,14 +186,14 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
             response.data?.status?.let { status ->
 
 
-                activity!!.runOnUiThread(java.lang.Runnable {
+               // activity!!.runOnUiThread(java.lang.Runnable {
                     showToastMessage("Data has been loaded successfully!!")
                     Log.e("test222","BeatTaskDetailsListResponse status="+response.data)
                     binding.dealerDetails = response.data.scheduleDates[0]
                     binding.actAmtVal.text = response.data.actualCollectionAmt
                     binding.tarAmtVal.text = response.data.actualOrderAmt
                     hide()
-                })
+                //})
 
 
             }

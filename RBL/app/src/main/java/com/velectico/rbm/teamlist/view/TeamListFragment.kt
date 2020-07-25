@@ -53,7 +53,7 @@ class TeamListFragment : BaseFragment()  {
                     Navigation.findNavController(binding.navigateToDetails).navigate(navDirection)
                 }
                 else if (getstring == "BEATS") {
-                    val navDirection =  TeamListFragmentDirections.actionTeamListFragmentToDateWiseBeatListFragment()
+                    val navDirection =  TeamListFragmentDirections.actionTeamListFragmentToDateWiseBeatListFragment("")
                     Navigation.findNavController(binding.navigateToDetails).navigate(navDirection)
                 }
                 else if (getstring == "Leave") {
