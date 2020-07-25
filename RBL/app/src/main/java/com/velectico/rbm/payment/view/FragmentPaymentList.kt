@@ -27,6 +27,7 @@ import com.velectico.rbm.payment.models.PaymentInfo
 import com.velectico.rbm.reminder.adapter.ReminderListAdapter
 import com.velectico.rbm.reminder.model.ReminderList
 import com.velectico.rbm.utils.DEALER_ROLE
+import com.velectico.rbm.utils.DISTRIBUTER_ROLE
 import com.velectico.rbm.utils.SALES_LEAD_ROLE
 import com.velectico.rbm.utils.TEMP_CURRENT_LOGGED_IN
 
@@ -44,7 +45,8 @@ class FragmentPaymentList :  BaseFragment()  {
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentPaymentListFragmentBinding
         menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
-      if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == DEALER_ROLE) {
+      if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == DEALER_ROLE ||
+          menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == DISTRIBUTER_ROLE) {
           binding.dealerListspinner.visibility = View.GONE
       }
         /*when (TEMP_CURRENT_LOGGED_IN) {

@@ -35,6 +35,11 @@ class OrderListFragment : BaseFragment()  {
         setUpRecyclerView()
         if (RBMLubricantsApplication.fromBeat == "Beat" ){
             binding.tilDealer.visibility = View.GONE
+
+        }
+        if (RBMLubricantsApplication.globalRole == "Team" ) {
+            binding.fab.visibility = View.GONE
+
         }
         binding.fab.setOnClickListener {
             moveToCreateOrder()

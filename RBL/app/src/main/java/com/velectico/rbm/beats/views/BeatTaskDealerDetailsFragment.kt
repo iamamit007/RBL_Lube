@@ -38,9 +38,9 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
         checkPermission()
         this.binding = binding as FragmentBeatTaskDealerDetailsBinding
         if (RBMLubricantsApplication.globalRole == "Team" ){
-            binding.btnNewOrder.visibility = View.GONE
-            binding.btnComplaints.visibility = View.GONE
-            binding.btnBeatReport.visibility = View.GONE
+            binding.btnNewOrder.visibility = View.INVISIBLE
+            binding.btnComplaints.visibility = View.INVISIBLE
+            binding.btnBeatReport.visibility = View.INVISIBLE
         }
         binding.btnPerformanceHistory.setOnClickListener {
             moveToPerformanceHistory()

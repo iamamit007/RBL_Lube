@@ -36,9 +36,9 @@ class BeatTaskDetailsViewFragment : BaseFragment() {
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentBeatTaskDetailsViewBinding
         menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
-        if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() != SALES_LEAD_ROLE){
-           binding.beatSummary.visibility = View.GONE
-        }
+//        if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() != SALES_LEAD_ROLE){
+//           binding.beatSummary.visibility = View.GONE
+//        }
         beatList = Beats().getDummyBeatList()
 
         setUpRecyclerView()
