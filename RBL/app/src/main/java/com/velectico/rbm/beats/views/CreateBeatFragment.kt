@@ -22,6 +22,7 @@ import com.velectico.rbm.beats.model.BeatAssignments
 import com.velectico.rbm.beats.model.Beats
 import com.velectico.rbm.beats.viewmodel.BeatSharedViewModel
 import com.velectico.rbm.databinding.FragmentCreateBeatBinding
+import com.velectico.rbm.expense.viewmodel.ExpenseViewModel
 import com.velectico.rbm.order.views.OrderListFragmentDirections
 import com.velectico.rbm.utils.DateUtility
 import java.util.*
@@ -45,7 +46,7 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBeatSharedViewModel = ViewModelProviders.of(requireActivity()).get(BeatSharedViewModel::class.java)
+        mBeatSharedViewModel = BeatSharedViewModel.getInstance(baseActivity)
         mBeatSharedViewModel.setBeat(Beats())
         mBeatSharedViewModel.beats.value?.beatAssignments = BeatAssignments().getBlankList()
     }
@@ -79,7 +80,7 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
             }
             else{
 
-               // val action : CreateBeatFragmentDirections.Action = CreateBeatFragmentDirections.actionCreateBeatFragmentToAssignBeatToLocation(mBeatSharedViewModel.beats.value as Beats)
+                // val action : CreateBeatFragmentDirections.Action = CreateBeatFragmentDirections.actionCreateBeatFragmentToAssignBeatToLocation(mBeatSharedViewModel.beats.value as Beats)
                 // Navigation.findNavController(binding.btnAssignTask).navigate(action);
 
                 val navDirection =  CreateBeatFragmentDirections.actionCreateBeatFragmentToAssignBeatToLocation()
@@ -138,7 +139,7 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
 
         binding.spBeatName.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
-               binding.etBeatName.setText( provinceList[position])
+                binding.etBeatName.setText( provinceList[position])
                 mBeatSharedViewModel.beats.value?.beatId = position.toString()
                 mBeatSharedViewModel.beats.value?.beatName =  provinceList[position]
             }

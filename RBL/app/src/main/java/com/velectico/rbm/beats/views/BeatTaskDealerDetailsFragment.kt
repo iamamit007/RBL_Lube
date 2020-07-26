@@ -48,9 +48,9 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
         checkPermission()
         this.binding = binding as FragmentBeatTaskDealerDetailsBinding
         if (RBMLubricantsApplication.globalRole == "Team" ){
-            binding.btnNewOrder.visibility = View.GONE
-            binding.btnComplaints.visibility = View.GONE
-            binding.btnBeatReport.visibility = View.GONE
+            binding.btnNewOrder.visibility = View.INVISIBLE
+            binding.btnComplaints.visibility = View.INVISIBLE
+            binding.btnBeatReport.visibility = View.INVISIBLE
         }
         binding.btnPerformanceHistory.setOnClickListener {
             moveToPerformanceHistory()
@@ -191,7 +191,9 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
                     Log.e("test222","BeatTaskDetailsListResponse status="+response.data)
                     binding.dealerDetails = response.data.scheduleDates[0]
                     binding.actAmtVal.text = response.data.actualCollectionAmt
-                    binding.tarAmtVal.text = response.data.actualOrderAmt
+                    binding.tarAmtVal.text = response.data.scheduleDates[0].collectionAmt
+                    binding.actQtyVal.text = response.data.actualOrderAmt
+                    binding.tarQtyVal.text = response.data.scheduleDates[0].orderAmt
                     hide()
                 //})
 

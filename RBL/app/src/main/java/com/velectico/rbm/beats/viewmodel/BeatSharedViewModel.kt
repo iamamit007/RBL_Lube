@@ -5,10 +5,13 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.velectico.rbm.R
 import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.model.UIError
 import com.velectico.rbm.base.viewmodel.BaseViewModel
+import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.beats.model.BeatAssignments
 import com.velectico.rbm.beats.model.BeatDateListResponse
 import com.velectico.rbm.beats.model.Beats
@@ -20,6 +23,8 @@ import com.velectico.rbm.network.apiconstants.*
 import com.velectico.rbm.network.callbacks.NetworkCallBack
 import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.INetworkManager
+import com.velectico.rbm.network.manager.ManagerFactory
+import com.velectico.rbm.network.manager.getNetworkManager
 import com.velectico.rbm.network.request.NetworkRequest
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.utils.SharedPreferenceUtils
@@ -75,7 +80,7 @@ class BeatSharedViewModel(private val networkManager: INetworkManager) : BaseVie
                 errorLiveData.postValue(
                     UIError(
                         ERROR_CODE_OTHER ,
-                    RBMLubricantsApplication.getAppContext()?.getString(R.string.generic_no_internet)?: "")
+                        RBMLubricantsApplication.getAppContext()?.getString(R.string.generic_no_internet)?: "")
                 )
             }
             loading.postValue(false)
@@ -103,5 +108,19 @@ class BeatSharedViewModel(private val networkManager: INetworkManager) : BaseVie
         )
     }
 
+    companion object{
+        private val factory = BeatSharedViewModelFactory()
 
+        fun getInstance(activity: BaseActivity): BeatSharedViewModel {
+            return ViewModelProviders.of(activity, factory)[BeatSharedViewModel::class.java]
+        }
+    }
+
+
+}
+
+class BeatSharedViewModelFactory : ViewModelProvider.Factory {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        return BeatSharedViewModel(getNetworkManager(ManagerFactory.DEV)) as T
+    }
 }

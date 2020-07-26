@@ -40,10 +40,10 @@ class LoginActivity : BaseActivity() {
 
 
         binding.btnLogin.setOnClickListener { doLogin() }
-        binding.linkForgotPwd.setOnClickListener {
-            val intent = Intent(this, DashboardActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.linkForgotPwd.setOnClickListener {
+//            val intent = Intent(this, DashboardActivity::class.java)
+//            startActivity(intent)
+//        }
         observeViewModelData()
     }
 

@@ -5,6 +5,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
@@ -274,7 +275,12 @@ class DefaultFragment : BaseFragment(){
     }
 
 
-
+//    override fun showToastMessage(message:String){
+//        if (context!=null){
+//            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+//        }
+//
+//    }
 
 
 

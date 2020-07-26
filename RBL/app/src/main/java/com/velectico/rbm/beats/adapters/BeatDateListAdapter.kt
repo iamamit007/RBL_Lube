@@ -11,6 +11,7 @@ import com.velectico.rbm.beats.model.BeatDate
 import com.velectico.rbm.beats.model.ScheduleDates
 import com.velectico.rbm.databinding.FragmentDateWiseBeatListBinding
 import com.velectico.rbm.databinding.RowBeatListDatesBinding
+import kotlinx.android.synthetic.main.row_beat_list_dates.view.*
 
 class BeatDateListAdapter(var setCallback: BeatDateListAdapter.IBeatDateListActionCallBack,var data:List<ScheduleDates>) : RecyclerView.Adapter<BeatDateListAdapter.ViewHolder>() {
     var callBack : BeatDateListAdapter.IBeatDateListActionCallBack?=null
@@ -25,7 +26,7 @@ class BeatDateListAdapter(var setCallback: BeatDateListAdapter.IBeatDateListActi
             callBack = setCallback;
 
             if(adapterPosition ==2){
-                binding.beatDateRow.setBackgroundColor(Color.RED)
+               // binding.beatDateRow.setBackgroundColor(Color.RED)
             }
 
 
@@ -50,9 +51,9 @@ class BeatDateListAdapter(var setCallback: BeatDateListAdapter.IBeatDateListActi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
 
-        if(position == 2 || position == 3 || position == 4 ){
+        if(position == 3 || position == 4 || position == 5 ){
             holder.binding.beatDateRow.setBackgroundColor(Color.parseColor("#ccffdd"))
-        }else if(position == 0 || position == 1){
+        }else if(position == 0 || position == 1 || position == 2){
             holder.binding.beatDateRow.setBackgroundColor(Color.parseColor("#ffffe6"))
         }else {
             holder.binding.beatDateRow.setBackgroundColor(Color.parseColor("#ccd9ff"))
@@ -61,6 +62,15 @@ class BeatDateListAdapter(var setCallback: BeatDateListAdapter.IBeatDateListActi
 
 
         holder.bind(data[position])
+        if(position == 3 ){
+            holder.binding.secondLine.text = data[3].schedule_startDate+",Yesterday"
+        }
+        if(position == 4 ){
+            holder.binding.secondLine.text = data[4].schedule_startDate+",Today"
+        }
+        if(position == 5 ){
+            holder.binding.secondLine.text = data[5].schedule_startDate+",Tomorrow"
+        }
 
         holder.binding.navigateToDetails.setOnClickListener {
             callBack?.moveToBeatDetails(position, data[position].schedule_startDate,holder.binding )

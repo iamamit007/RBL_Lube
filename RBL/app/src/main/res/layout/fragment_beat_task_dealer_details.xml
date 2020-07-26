@@ -305,7 +305,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tv_task_not_visited"
+                        android:id="@+id/tar_qty_val"
                         android:text="-"
                         android:layout_margin="10dp"
                         style="@style/text_header_more_small"
