@@ -59,7 +59,7 @@
 
                                 <TextView
                                     style="@style/beat_name"
-                                    android:text="@{dealerDetails.DM_Contact_Person}"
+                                    android:text=""
                                    />
 
 
@@ -112,8 +112,8 @@
 
 
                                 <TextView
-                                    android:id="@+id/tv_prodTotalPrice"
-                                    android:text="-"
+                                    android:id="@+id/tv_contactPerson"
+                                    android:text="@{dealerDetails.DM_Contact_Person}"
                                     style="@style/rv_caption" />
 
 

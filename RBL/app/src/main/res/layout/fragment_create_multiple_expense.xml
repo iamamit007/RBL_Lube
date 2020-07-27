@@ -8,7 +8,7 @@
 
         <Spinner
             android:id="@+id/spinnerBeatList"
-            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_margin="@dimen/dimen_20dp"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:drawSelectorOnTop="true"

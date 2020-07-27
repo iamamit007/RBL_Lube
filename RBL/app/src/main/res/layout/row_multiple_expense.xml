@@ -102,7 +102,20 @@
                     app:smsp_hint="Select Dealer"
                     style="@style/custom_spinner" />
 
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/login_reg_input_label"
+                    android:hint="Enter Distance in km"
+                    android:visibility="gone"
+                    app:hintTextAppearance="@style/hintLabelColor">
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_km"
+                        style="@style/login_reg_input_text"
+                        android:gravity="top|left"
+                        android:inputType="textMultiLine"
+                        android:text=""
+                        android:scrollbars="vertical" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/login_reg_input_label"

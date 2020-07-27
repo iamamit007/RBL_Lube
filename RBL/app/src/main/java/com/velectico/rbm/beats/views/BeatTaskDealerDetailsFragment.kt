@@ -46,6 +46,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
 
     override fun init(binding: ViewDataBinding) {
         checkPermission()
+        //showToastMessage(arguments.)
         this.binding = binding as FragmentBeatTaskDealerDetailsBinding
         if (RBMLubricantsApplication.globalRole == "Team" ){
             binding.btnNewOrder.visibility = View.INVISIBLE
