@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.velectico.rbm.beats.adapters.BeatDateListAdapter
+import com.velectico.rbm.beats.model.OrderListDetails
 import com.velectico.rbm.databinding.RowExpenseListBinding
 import com.velectico.rbm.databinding.RowOrderHeadListBinding
 import com.velectico.rbm.expense.adapter.ExpenseListAdapter
@@ -13,7 +14,7 @@ import com.velectico.rbm.order.model.OrderHead
 class OrderHeadListAdapter(var setCallback: OrderHeadListAdapter.IBeatDateListActionCallBack) : RecyclerView.Adapter<OrderHeadListAdapter.ViewHolder>() {
 
     var callBack : OrderHeadListAdapter.IBeatDateListActionCallBack?=null
-    var orderList =  listOf<OrderHead>()
+    var orderList =  listOf<OrderListDetails>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -32,7 +33,7 @@ class OrderHeadListAdapter(var setCallback: OrderHeadListAdapter.IBeatDateListAc
 
         }
 
-        fun bind(orderHead:  OrderHead?) {
+        fun bind(orderHead:  OrderListDetails?) {
             binding.orderHeadInfo = orderHead
             binding.executePendingBindings()
         }

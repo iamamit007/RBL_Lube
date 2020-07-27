@@ -130,3 +130,48 @@ data class  DealerDetailsRequestParams(
     @SerializedName("distribId") var distribId: String?
 ): BaseModel()
 
+data class  BeatAllOrderListRequestParams(
+    @SerializedName("userId") var userId: String,
+    @SerializedName("dealerId") var dealerId: String
+): BaseModel()
+
+data class OrderHistoryDetailsResponse(
+    val count: Int,
+    @SerializedName("Details")
+    val OrderList: List<OrderListDetails>,
+    @SerializedName("status")
+    val status: Int? = null
+
+)
+
+data class OrderListDetails(
+    val OD_ID: String? = null,
+    val OD_Order_No: String? = null,
+    val OD_OH_ID: String? = null,
+    val OD_Product_ID: String? = null,
+    val OD_GST_Perc: String? = null,
+    val OD_MRP: String? = null,
+    val OD_Net_Price: String? = null,
+    val OD_Total_Price: String? = null,
+    val OD_Disc_Price: String? = null,
+    val OD_Qty: String? = null,
+    val OD_Scheme: String? = null,
+    val Create_Date: String? = null,
+    val Created_By: String? = null,
+    val Modified_Date: String? = null,
+    val Modified_By: String? = null,
+    val OH_ID: String? = null,
+    val OH_Order_No: String? = null,
+    val OH_Sales_Rep_ID: String? = null,
+    val OH_Dealer_ID: String? = null,
+    val OH_Distrib_ID: String? = null,
+    val OH_BSD_ID: String? = null,
+    val OH_Ord_Date: String? = null,
+    val OH_Status: String? = null,
+    val OH_Payment_Mode: String? = null,
+    val OH_Ord_Close_Date: String? = null,
+    val OH_Ord_Cancel_Date: String? = null,
+    val OH_Payment_Date: String? = null,
+    val OH_Pay_Confirm_Status: String? = null
+
+):Serializable
