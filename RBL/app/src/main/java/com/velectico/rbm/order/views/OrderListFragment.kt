@@ -90,7 +90,7 @@ class OrderListFragment : BaseFragment()  {
         override fun onSuccessNetwork(data: Any?, response: NetworkResponse<OrderHistoryDetailsResponse>) {
             hide()
             response.data?.status?.let { status ->
-                Log.e("test222","OrderHistoryDetailsResponse status="+response.data)
+                //Log.e("test222","OrderHistoryDetailsResponse status="+response.data)
                 orderHeadList.toMutableList().clear()
                 if (response.data.OrderList!!.isEmpty()){
                     showToastMessage("No data found")
