@@ -145,7 +145,7 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
         }
 
         binding.spBeatName.setItem(provinceList)
-        //binding.spSalesperson.setItem(provinceList)
+        binding.spSalesperson.setItem(provinceList)
         //https://stackoverflow.com/questions/48343622/how-to-fix-parameter-specified-as-non-null-is-null-on-rotating-screen-in-a-fragm
         binding.spSalesperson.setSelection(2)
     }
