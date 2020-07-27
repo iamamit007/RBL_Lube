@@ -28,7 +28,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:visibility="gone"
                         android:orientation="vertical">
 
                         <View
@@ -230,15 +230,24 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:layout_alignParentBottom="true"
                 >
-
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_edit_order"
+                    style="@style/styleButtonWithNoBottom"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/mdtp_dark_gray"
+                    android:text="Edit" />
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_place_order"
+                    android:layout_weight="1"
                     style="@style/styleButtonWithNoBottom"
-                    android:backgroundTint="@color/black"
-                    android:text="@string/prod_place_order" />
+                    android:backgroundTint="@color/colorGreen"
+                    android:text="Confirm" />
 
 
             </LinearLayout>

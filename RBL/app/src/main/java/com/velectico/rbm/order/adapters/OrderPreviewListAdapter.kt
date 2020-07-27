@@ -23,7 +23,7 @@ class OrderPreviewListAdapter : RecyclerView.Adapter<OrderPreviewListAdapter.Vie
         }
 
         fun bind(orderCart:  OrderCart?) {
-            binding.orderCartInfo = orderCart
+            binding.orderPreviewInfo = orderCart
             binding.executePendingBindings()
         }
     }

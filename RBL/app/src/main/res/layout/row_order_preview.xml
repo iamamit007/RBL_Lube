@@ -4,10 +4,9 @@
 
     <data>
         <variable
-            name="orderCartInfo"
+            name="orderPreviewInfo"
             type="com.velectico.rbm.order.model.OrderCart" />
     </data>
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
         style="@style/cv_style">
@@ -68,15 +67,31 @@
                             android:typeface="sans"
                             android:textStyle="bold"
                             />
-
                         <TextView
                             android:id="@+id/plist_price_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs. 200"
+                            android:text="MRP : ₹ 2000"
                             android:textColor="#1d1d1d"
                             android:textSize="12dip"
                             android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/plist_price_text_strike"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/strikeThroughData"
+                            android:textColor="#1d1d1d"
+                            android:textSize="12dip"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/plist_special_price_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SP : ₹ 1650"
+                            android:textColor="#1d1d1d"
+                            android:textSize="12dip"
+                            android:textStyle="bold" />
+
 
                         <TextView
                             android:id="@+id/plist_weight_text"
@@ -90,7 +105,57 @@
                     </LinearLayout>
 
 
+                    <LinearLayout
+                        android:id="@+id/cart_plus_minus_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
 
+                        >
+
+                        <RelativeLayout
+                            android:id="@+id/relativeLayout1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <LinearLayout
+                                android:id="@+id/cart_quantity_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+
+
+                                >
+
+                                <ImageButton
+                                    android:id="@+id/cart_minus_img"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:src="@drawable/ic_plus"
+                                    android:visibility="invisible"
+                                    android:layout_gravity="center_vertical"/>
+
+                                <TextView
+                                    android:id="@+id/cart_product_quantity_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:paddingLeft="15dip"
+                                    android:paddingRight="15dip"
+                                    android:text="QTY : 10"
+                                    android:textSize="12dip"
+                                    android:textStyle="bold" />
+
+                                <ImageButton
+                                    android:id="@+id/cart_plus_img"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:visibility="invisible"
+                                    android:src="@drawable/ic_minus"
+                                    android:layout_gravity="center_vertical"
+                                    />
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
                 <LinearLayout
@@ -99,19 +164,20 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/prodSec"
                     android:orientation="horizontal" >
-                    <!--Scheme Name-->
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/scheme_name"
-                        style="@style/login_reg_input_label"
-                        android:hint="Scheme Name"
-                        app:hintTextAppearance="@style/hintLabelColor">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_beat_name"
+                        style="@style/login_reg_input_text"
+                        android:inputType="text"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:drawableRight="@drawable/ic_expand"
+                        android:text="Select Scheme" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_scheme_name"
-                            style="@style/login_reg_input_text"
-                            android:enabled="false"
-                            android:text="Buy 1 get 1 free scheme" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
+                        android:id="@+id/sp_beatName"
+                        android:spinnerMode="dialog"
+                        app:smsp_hint="Select Beat"
+                        style="@style/custom_spinner" />
                     <View
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"></View>
@@ -121,4 +187,5 @@
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+
 </layout>
