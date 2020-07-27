@@ -201,7 +201,7 @@
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_login"
+                    android:id="@+id/btn_cancel"
                     style="@style/styleButtonWithNoBottom"
                     android:backgroundTint="@color/black"
                     android:text="@string/cancel_order" />

@@ -19,6 +19,7 @@ import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 import com.google.android.material.navigation.NavigationView
 import com.velectico.rbm.R
+import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.databinding.ActivityDashboardBinding
 import com.velectico.rbm.loginreg.model.LoginResponse
 import com.velectico.rbm.utils.*
@@ -41,6 +42,8 @@ class DashboardActivity : BaseActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun init(savedInstanceState: Bundle?, binding: ViewDataBinding) {
         this.binding = binding as ActivityDashboardBinding
+        RBMLubricantsApplication.fromBeat = ""
+        RBMLubricantsApplication.globalRole = ""
         intent?.let {
             loginResponse = it.getParcelableExtra((EXTRA_LOGIN_RESPONSE))
             Log.e("test","loginResponse-->"+loginResponse)

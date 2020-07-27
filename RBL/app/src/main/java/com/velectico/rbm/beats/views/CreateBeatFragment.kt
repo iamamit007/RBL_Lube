@@ -120,12 +120,10 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
     private fun initSpinner() {
         //https://github.com/Chivorns/SmartMaterialSpinner
         var provinceList: MutableList<String> = ArrayList()
-        provinceList.add("Kampong Thom")
-        provinceList.add("Kampong Cham")
-        provinceList.add("Kampong Chhnang")
-        provinceList.add("Phnom Penh")
-        provinceList.add("Kandal")
-        provinceList.add("Kampot")
+        provinceList.add("Region")
+        provinceList.add("Zone")
+        provinceList.add("District")
+        provinceList.add("Area")
 
         binding.spSalesperson.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
@@ -147,7 +145,7 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
         }
 
         binding.spBeatName.setItem(provinceList)
-        binding.spSalesperson.setItem(provinceList)
+        //binding.spSalesperson.setItem(provinceList)
         //https://stackoverflow.com/questions/48343622/how-to-fix-parameter-specified-as-non-null-is-null-on-rotating-screen-in-a-fragm
         binding.spSalesperson.setSelection(2)
     }

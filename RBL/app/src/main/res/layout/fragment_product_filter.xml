@@ -30,131 +30,18 @@
     </LinearLayout>
         <!-- -Expense Type -->
 
+            <Spinner
+                android:id="@+id/spinnerCategory"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:drawSelectorOnTop="true"
+                android:drawableRight="@drawable/ic_expand"
+                android:entries="@array/filter_category"
+                />
 
 
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:id="@+id/filter_by_cat"
-            android:padding="5dip">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/border">
-
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/filter_two_wheeler"
-                    android:text="2 Wheeler"
-                    style="@style/rv_beat_details_val_total"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:background="@drawable/border">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/filter_three_wheeler"
-                    android:text="3 Wheeler"
-                    style="@style/rv_beat_details_val_total"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:background="@drawable/border">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/filter_four_wheeler"
-                    android:text="4 Wheeler"
-                    style="@style/rv_beat_details_val_total"
-                    />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:id="@+id/filter_row_two"
-
-            android:padding="5dip">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/border">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/filter_truck"
-                    android:text="Truck"
-                    style="@style/rv_beat_details_val_total"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:background="@drawable/border">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/filter_bus"
-                    android:text="Bus"
-                    style="@style/rv_beat_details_val_total"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:background="@drawable/border">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/filter_em"
-                    android:text="Vans"
-                    style="@style/rv_beat_details_val_total"
-                    />
-
-            </LinearLayout>
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/filter_by_price"
@@ -176,84 +63,35 @@
                     android:text="Filter By Segment" />
 
             </LinearLayout>
+            <Spinner
+                android:id="@+id/spinnerSegment"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:drawSelectorOnTop="true"
+                android:drawableRight="@drawable/ic_expand"
+                android:entries="@array/filter_segment"
+                />
         </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:id="@+id/filter_row_price"
-
-                android:padding="5dip">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/border">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/filter_wi_1000"
-                        android:text="Engine Oil"
-                        style="@style/rv_beat_details_val_total"
-                        />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:background="@drawable/border">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/filter_wi_1500"
-                        android:text="Mobil"
-                        style="@style/rv_beat_details_val_total"
-                        />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:background="@drawable/border">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/filter_wi_2000"
-                        android:text="Oil new"
-                        style="@style/rv_beat_details_val_total"
-                        />
-
-                </LinearLayout>
-            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_"
-            android:layout_height="wrap_content"
+                android:id="@+id/btn_"
+                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-            android:layout_below="@+id/sampleLine"
-            android:backgroundTint="@color/color_btn"
-            android:text="Clear All Filter"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
+                android:layout_below="@+id/sampleLine"
+                android:backgroundTint="@color/color_btn"
+                android:text="Clear All Filter"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:textStyle="bold"/>
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_order_history"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_below="@+id/sampleLine"
                 android:backgroundTint="@color/color_btn"
+                android:layout_marginTop="10dp"
                 android:text="Done"
                 android:textColor="@color/white"
                 android:textStyle="bold"/>

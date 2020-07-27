@@ -1,7 +1,9 @@
 package com.velectico.rbm.order.views
 
+import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.velectico.rbm.R
+import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.databinding.FragmentOrderDetailsBinding
 import com.velectico.rbm.databinding.FragmentOrderPreviewBinding
@@ -22,6 +24,10 @@ class OrderDetailsFragment : BaseFragment() {
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentOrderDetailsBinding
+        if (RBMLubricantsApplication.globalRole == "Team" ) {
+            binding.btnCancel.visibility = View.GONE
+
+        }
         orderCartList = OrderCart().getDummyOrderCart()
         setUpRecyclerView()
 
