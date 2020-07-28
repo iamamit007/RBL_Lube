@@ -111,6 +111,20 @@ const val Get_Product_List_By_Cat_Seg = APP_API_NAME+"Get_Product_List_By_Cat_Se
 
 const val Beat_Report_By_Date = APP_API_NAME+"Beat_Report_By_Date"
 
+const val Get_Dropdown_Details_byName = APP_API_NAME+"Get_Dropdown_Details_byName"
+
+const val Create_Beat_Report = APP_API_NAME+"Beat_Report"
+const val Get_Beat_By_Level = APP_API_NAME+"Get_Beat_By_Level"
+
+const val Get_Task_For = APP_API_NAME+"Get_Task_For"
+
+const val Get_Location_By_Level = APP_API_NAME+"Get_Location_By_Level"
+
+const val Get_AssignTo_By_TaskFor_And_Location = APP_API_NAME+"Get_AssignTo_By_TaskFor_And_Location"
+
+const val Get_Deal_Dist_Mech_List = APP_API_NAME+"Get_Deal_Dist_Mech_List"
+
+
 
 
 
