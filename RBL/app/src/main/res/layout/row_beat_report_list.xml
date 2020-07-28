@@ -5,7 +5,7 @@
     <data>
         <variable
             name="beatReportListInfo"
-            type="com.velectico.rbm.beats.model.BeatReport" />
+            type="com.velectico.rbm.beats.model.BeatReportListDetails" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -29,7 +29,7 @@
                 <TextView
                     android:id="@+id/tv_report_date"
                     style="@style/rv_caption"
-                    android:text="22-June-2020" />
+                    android:text="@{beatReportListInfo.reportDate}" />
 
             </LinearLayout>
 
@@ -48,7 +48,7 @@
                 <TextView
                     android:id="@+id/tv_complaint_reason"
                     style="@style/rv_caption"
-                    android:text="reason A" />
+                    android:text="@{beatReportListInfo.complainReason}" />
 
             </LinearLayout>
 
@@ -67,7 +67,7 @@
                 <TextView
                     android:id="@+id/tv_price_prob_reason"
                     style="@style/rv_caption"
-                    android:text="Reason B" />
+                    android:text="@{beatReportListInfo.priceProblem}" />
 
             </LinearLayout>
 
@@ -86,7 +86,7 @@
                 <TextView
                     android:id="@+id/tv_packaging_prob_reason"
                     style="@style/rv_caption"
-                    android:text="Reason A" />
+                    android:text="@{beatReportListInfo.packagingProblem}" />
 
             </LinearLayout>
 
@@ -105,7 +105,7 @@
                 <TextView
                     android:id="@+id/tv_other_cmpy_reason"
                     style="@style/rv_caption"
-                    android:text="Reason A" />
+                    android:text="@{beatReportListInfo.refOther}" />
 
             </LinearLayout>
             <LinearLayout
@@ -123,7 +123,7 @@
                 <TextView
                     android:id="@+id/tv_turn_over_range"
                     style="@style/rv_caption"
-                    android:text="1-2lakh" />
+                    android:text="@{beatReportListInfo.SR_Turnover_Range}" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -140,7 +140,7 @@
                 <TextView
                     android:id="@+id/tv_followup_reason"
                     style="@style/rv_caption"
-                    android:text="Reason A" />
+                    android:text="@{beatReportListInfo.SR_Follow_Up_Reason}" />
 
             </LinearLayout>
             <LinearLayout
@@ -158,7 +158,7 @@
                 <TextView
                     android:id="@+id/tv_type"
                     style="@style/rv_caption"
-                    android:text="20-Jun-20" />
+                    android:text="@{beatReportListInfo.SR_Follow_Up_Date}" />
 
             </LinearLayout>
             <RelativeLayout

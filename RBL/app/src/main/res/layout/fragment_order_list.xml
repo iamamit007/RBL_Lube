@@ -39,7 +39,7 @@
                 android:id="@+id/lay1">
 
                 <Button
-                    android:id="@+id/beatButton"
+                    android:id="@+id/pendingButton"
                     android:layout_width="0dip"
                     android:layout_height="50dp"
                     android:layout_alignParentTop="false"
@@ -56,7 +56,7 @@
                     android:layout_height="50dp"></View>
 
                 <Button
-                    android:id="@+id/expenseButton"
+                    android:id="@+id/completedButton"
                     android:layout_width="0dip"
                     android:layout_height="50dp"
                     android:layout_weight="48"

@@ -38,7 +38,7 @@ import retrofit2.Callback
 class BeatTaskDealerDetailsFragment : BaseFragment() {
 
     private lateinit var binding: FragmentBeatTaskDealerDetailsBinding
-
+    var taskDetails = BeatTaskDetails()
     override fun getLayout(): Int {
         return R.layout.fragment_beat_task_dealer_details
     }
@@ -46,6 +46,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
 
     override fun init(binding: ViewDataBinding) {
         checkPermission()
+        taskDetails = arguments!!.get("beatTaskDetails") as BeatTaskDetails
         //showToastMessage(arguments.)
         this.binding = binding as FragmentBeatTaskDealerDetailsBinding
         if (RBMLubricantsApplication.globalRole == "Team" ){
@@ -109,7 +110,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     }
 
     private fun moveToOrderHistory(){
-        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToOrderListFragment()
+        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToOrderListFragment(taskDetails.dealerId.toString())
         Navigation.findNavController(binding.btnOrderHistory).navigate(navDirection)
     }
     private fun moveToViewAllComplaints(){

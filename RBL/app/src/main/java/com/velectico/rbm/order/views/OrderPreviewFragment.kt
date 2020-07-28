@@ -46,7 +46,7 @@ class OrderPreviewFragment : BaseFragment() {
 
 
     private fun moveToOrderList(){
-        val navDirection =  OrderPreviewFragmentDirections.actionOrderPreviewFragmentToOrderListFragment()
+        val navDirection =  OrderPreviewFragmentDirections.actionOrderPreviewFragmentToOrderListFragment("")
         Navigation.findNavController(binding.btnPlaceOrder).navigate(navDirection)
     }
 

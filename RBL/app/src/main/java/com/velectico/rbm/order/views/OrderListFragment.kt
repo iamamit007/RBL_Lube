@@ -81,7 +81,8 @@ class OrderListFragment : BaseFragment()  {
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getBeatAllOrderHistory(
-            BeatAllOrderListRequestParams("7001507620","61")
+            //BeatAllOrderListRequestParams("7001507620","61")
+            BeatAllOrderListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),arguments?.getString(  "dealerId").toString())
         )
         responseCall.enqueue(OrderHistoryDetailsResponse as Callback<OrderHistoryDetailsResponse>)
     }
@@ -92,11 +93,15 @@ class OrderListFragment : BaseFragment()  {
             response.data?.status?.let { status ->
                 //Log.e("test222","OrderHistoryDetailsResponse status="+response.data)
                 orderHeadList.toMutableList().clear()
-                if (response.data.OrderList!!.isEmpty()){
-                    showToastMessage("No data found")
-                }else{
+                if (response.data.count > 0){
                     orderHeadList = response.data.OrderList!!.toMutableList()
                     setUpRecyclerView()
+                }
+                else{
+                    showToastMessage("No data found")
+                    binding.pendingButton.visibility = View.GONE
+                    binding.completedButton.visibility = View.GONE
+                    binding.allButton.visibility = View.GONE
                 }
 
             }

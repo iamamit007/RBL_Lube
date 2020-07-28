@@ -3,23 +3,34 @@ package com.velectico.rbm.order.views
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.LocationManager
+import android.util.Log
+import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.Navigation
+import com.kaopiz.kprogresshud.KProgressHUD
 import com.velectico.rbm.R
 import com.velectico.rbm.base.views.BaseFragment
+import com.velectico.rbm.beats.model.*
 import com.velectico.rbm.databinding.FragmentCreateOrderBinding
+import com.velectico.rbm.network.callbacks.NetworkCallBack
+import com.velectico.rbm.network.callbacks.NetworkError
+import com.velectico.rbm.network.manager.ApiClient
+import com.velectico.rbm.network.manager.ApiInterface
+import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.order.adapters.OrderCartListAdapter
 import com.velectico.rbm.order.adapters.OrderHeadListAdapter
 import com.velectico.rbm.order.model.OrderCart
 import com.velectico.rbm.order.model.OrderHead
 import com.velectico.rbm.utils.ImageUtils
+import com.velectico.rbm.utils.SharedPreferenceUtils
+import retrofit2.Callback
 
 
 class CreateOrderFragment : BaseFragment() {
     private lateinit var binding : FragmentCreateOrderBinding
-    private lateinit var orderCartList : List<OrderCart>
+    private var orderCartList : List<CreateOrderListDetails> = emptyList()
     private lateinit var adapter: OrderCartListAdapter
     private var locationManager : LocationManager? = null
 
@@ -31,8 +42,8 @@ class CreateOrderFragment : BaseFragment() {
     override fun init(binding: ViewDataBinding) {
 
         this.binding = binding as FragmentCreateOrderBinding
-        orderCartList = OrderCart().getDummyOrderCart()
-        setUpRecyclerView()
+        //orderCartList = OrderCart().getDummyOrderCart()
+
         binding.btnCheckOut.setOnClickListener {
             moveToOrderPreview()
         }
@@ -40,7 +51,8 @@ class CreateOrderFragment : BaseFragment() {
         binding.fabFilter.setOnClickListener {
             moveToProdFilter()
         }
-
+        callCreateOrderList()
+        setUpRecyclerView()
 
     }
 
@@ -75,6 +87,54 @@ class CreateOrderFragment : BaseFragment() {
 
     }
 
+    var hud: KProgressHUD? = null
+    fun  showHud(){
+        hud =  KProgressHUD.create(activity)
+            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+            .setLabel("Please wait")
+            .setCancellable(true)
+            .setAnimationSpeed(2)
+            .setDimAmount(0.5f)
+            .show();
+    }
+
+    fun hide(){
+        hud?.dismiss()
+    }
+    fun callCreateOrderList(){
+        showHud()
+        val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
+        val responseCall = apiInterface.getCreateOrderList(
+            CreateOrderListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),"92","34")
+        )
+        responseCall.enqueue(CreateOrderDetailsResponse as Callback<CreateOrderDetailsResponse>)
+    }
+
+    private val CreateOrderDetailsResponse = object : NetworkCallBack<CreateOrderDetailsResponse>() {
+        override fun onSuccessNetwork(
+            data: Any?,
+            response: NetworkResponse<CreateOrderDetailsResponse>
+        ) {
+            hide()
+            response.data?.status?.let { status ->
+                Log.e("test333","OrderHistoryDetailsResponse status="+response.data)
+                orderCartList.toMutableList().clear()
+                if (response.data.count > 0) {
+                    orderCartList = response.data.CreateOrderList!!.toMutableList()
+                    setUpRecyclerView()
+                } else {
+                    showToastMessage("No data found")
+
+                }
+
+            }
+
+        }
+
+        override fun onFailureNetwork(data: Any?, error: NetworkError) {
+            // hide()
+        }
 
 
+    }
 }

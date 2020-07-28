@@ -107,6 +107,11 @@ const val Dealer_Distrib_Task_Worksheet = APP_API_NAME+"Dealer_Distrib_Task_Work
 
 const val Get_Order_History = APP_API_NAME+"Get_Order_History"
 
+const val Get_Product_List_By_Cat_Seg = APP_API_NAME+"Get_Product_List_By_Cat_Seg"
+
+const val Beat_Report_By_Date = APP_API_NAME+"Beat_Report_By_Date"
+
+
 
 
 

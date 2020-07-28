@@ -175,3 +175,80 @@ data class OrderListDetails(
     val OH_Pay_Confirm_Status: String? = null
 
 ):Serializable
+
+data class  CreateOrderListRequestParams(
+    @SerializedName("userId") var userId: String,
+    @SerializedName("catId") var catId: String,
+    @SerializedName("segId") var segId: String
+): BaseModel()
+
+data class CreateOrderDetailsResponse(
+    val count: Int,
+    @SerializedName("Details")
+    val CreateOrderList: List<CreateOrderListDetails>,
+    @SerializedName("status")
+    val status: Int? = null
+
+)
+data class CreateOrderListDetails(
+    var PM_ID: String? = null,
+    var PM_Type: String? = null,
+    var PM_HSN: String? = null,
+    var PM_Cat: String? = null,
+    var PM_UOM: String? = null,
+    var PM_Seg: String? = null,
+    var PM_Brand: String? = null,
+    var PM_Scheme: String? = null,
+    var PM_GST_Perc: String? = null,
+    var PM_SGST_Per: String? = null,
+    var PM_CGST_Per: String? = null,
+    var PM_MRP: String? = null,
+    var PM_Net_Price: String? = null,
+    var PM_Disc_Price: String? = null,
+    var PM_Scheme_Photo: String? = null,
+    var PM_Image_Path: String? = null,
+    var PM_Feature: String? = null,
+    var Create_Date: String? = null,
+    var Created_By: String? = null,
+    var Modified_Date: String? = null,
+    var Modified_By: String? = null
+):Serializable
+
+data class  BeatReportListRequestParams(
+    @SerializedName("userId") var userId: String,
+    @SerializedName("taskId") var taskId: String,
+    @SerializedName("dealerId") var dealerId: String,
+    @SerializedName("distribId") var distribId: String,
+    @SerializedName("startDate") var startDate: String,
+    @SerializedName("endDate") var endDate: String
+): BaseModel()
+
+data class BeatReportListDetailsResponse(
+    val count: Int,
+    @SerializedName("Details")
+    val BeatReportList: List<BeatReportListDetails>,
+    @SerializedName("status")
+    val status: Int? = null
+
+)
+data class BeatReportListDetails(
+    var reportDate: String? = null,
+    var orderReasonId: String? = null,
+    var orderReason: String? = null,
+    var paymentReasonId: String? = null,
+    var paymentReason: String? = null,
+    var complainReasonId: String? = null,
+    var complainReason: String? = null,
+    var priceProblemId: String? = null,
+    var priceProblem: String? = null,
+    var packagingProblemId: String? = null,
+    var packagingProblem: String? = null,
+    var refOtherId: String? = null,
+    var refOther: String? = null,
+    var SR_Turnover_Range: String? = null,
+    var SR_Follow_Up_Date: String? = null,
+    var SR_Follow_Up_Reason: String? = null,
+    var Create_Date: String? = null,
+    var Created_By: String? = null
+
+):Serializable

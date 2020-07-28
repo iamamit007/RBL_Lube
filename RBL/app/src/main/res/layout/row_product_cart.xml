@@ -5,7 +5,7 @@
     <data>
         <variable
             name="orderCartInfo"
-            type="com.velectico.rbm.order.model.OrderCart" />
+            type="com.velectico.rbm.beats.model.CreateOrderListDetails" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -72,7 +72,7 @@
                 android:id="@+id/plist_price_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MRP : ₹ 2000"
+                android:text="@{orderCartInfo.PM_MRP}"
                 android:textColor="#1d1d1d"
                 android:textSize="12dip"
                 android:textStyle="bold" />

@@ -177,6 +177,9 @@
         <action
             android:id="@+id/action_orderListFragment_to_productFilterFragment"
             app:destination="@id/productFilterFragment" />
+        <argument
+            android:name="dealerId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/createOrderFragment"

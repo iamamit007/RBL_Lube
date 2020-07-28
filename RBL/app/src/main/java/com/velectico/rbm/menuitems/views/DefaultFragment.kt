@@ -84,7 +84,7 @@ class DefaultFragment : BaseFragment(){
 
         binding.orderButton.setOnClickListener {
             RBMLubricantsApplication.fromBeat = ""
-            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment()
+            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment("")
             Navigation.findNavController(binding.orderButton).navigate(navDirection)
         }
 
@@ -144,7 +144,7 @@ class DefaultFragment : BaseFragment(){
             Navigation.findNavController(binding.productButton).navigate(navDirection)
         }
         binding.orderDealerButton.setOnClickListener {
-            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment()
+            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment("")
             Navigation.findNavController(binding.orderDealerButton).navigate(navDirection)
         }
         binding.paymentDealerButton.setOnClickListener {
@@ -160,7 +160,7 @@ class DefaultFragment : BaseFragment(){
             Navigation.findNavController(binding.performanceButtonLong).navigate(navDirection)
         }
         binding.orderButtonLong.setOnClickListener {
-            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment()
+            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment("")
             Navigation.findNavController(binding.orderButtonLong).navigate(navDirection)
         }
     }

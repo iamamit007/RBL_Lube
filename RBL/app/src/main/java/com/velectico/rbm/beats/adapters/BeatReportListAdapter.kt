@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.velectico.rbm.beats.model.BeatReport
+import com.velectico.rbm.beats.model.BeatReportListDetails
 import com.velectico.rbm.databinding.RowBeatReportListBinding
 import com.velectico.rbm.databinding.RowTeamPerformanceListBinding
 import com.velectico.rbm.teamlist.adapter.TeamPerformanceDetailsAdapter
@@ -12,7 +13,7 @@ import com.velectico.rbm.teamlist.model.TeamPerformanceModel
 class BeatReportListAdapter : RecyclerView.Adapter<BeatReportListAdapter.ViewHolder>() {
 
 
-    var teamList = listOf<BeatReport>()
+    var teamList = listOf<BeatReportListDetails>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -23,7 +24,7 @@ class BeatReportListAdapter : RecyclerView.Adapter<BeatReportListAdapter.ViewHol
 
         }
 
-        fun bind(beatReport: BeatReport?) {
+        fun bind(beatReport: BeatReportListDetails?) {
             binding.beatReportListInfo = beatReport
             binding.executePendingBindings()
         }

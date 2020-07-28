@@ -3,6 +3,7 @@ package com.velectico.rbm.order.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.velectico.rbm.beats.model.CreateOrderListDetails
 import com.velectico.rbm.databinding.RowOrderHeadListBinding
 import com.velectico.rbm.databinding.RowProductCartBinding
 import com.velectico.rbm.order.model.OrderCart
@@ -10,7 +11,7 @@ import com.velectico.rbm.order.model.OrderHead
 
 class OrderCartListAdapter : RecyclerView.Adapter<OrderCartListAdapter.ViewHolder>() {
 
-    var orderCart =  listOf<OrderCart>()
+    var orderCart =  listOf<CreateOrderListDetails>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -22,7 +23,7 @@ class OrderCartListAdapter : RecyclerView.Adapter<OrderCartListAdapter.ViewHolde
         init {
         }
 
-        fun bind(orderCart:  OrderCart?) {
+        fun bind(orderCart:  CreateOrderListDetails?) {
             binding.orderCartInfo = orderCart
             binding.executePendingBindings()
         }
