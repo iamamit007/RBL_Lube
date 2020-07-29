@@ -33,7 +33,7 @@ class OrderListFragment : BaseFragment()  {
     private lateinit var binding: FragmentOrderListBinding
     private var orderHeadList : List<OrderListDetails> = emptyList()
     private lateinit var adapter: OrderHeadListAdapter
-
+    var orderStatus = ""
     override fun getLayout(): Int {
         return R.layout.fragment_order_list
     }
@@ -62,6 +62,22 @@ class OrderListFragment : BaseFragment()  {
         setUpRecyclerView()
         callApiOrderList()
 
+        binding.allButton.setOnClickListener{
+            orderStatus = ""
+            setUpRecyclerView()
+            callApiOrderList()
+        }
+        binding.pendingButton.setOnClickListener{
+            orderStatus = "O"
+            setUpRecyclerView()
+            callApiOrderList()
+        }
+        binding.completedButton.setOnClickListener{
+            orderStatus = "C"
+            setUpRecyclerView()
+            callApiOrderList()
+        }
+
     }
     var hud: KProgressHUD? = null
     fun  showHud(){
@@ -82,7 +98,7 @@ class OrderListFragment : BaseFragment()  {
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getBeatAllOrderHistory(
             //BeatAllOrderListRequestParams("7001507620","61")
-            BeatAllOrderListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),arguments?.getString(  "dealerId").toString())
+            BeatAllOrderListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),arguments?.getString(  "dealerId").toString(),orderStatus)
         )
         responseCall.enqueue(OrderHistoryDetailsResponse as Callback<OrderHistoryDetailsResponse>)
     }
@@ -99,9 +115,10 @@ class OrderListFragment : BaseFragment()  {
                 }
                 else{
                     showToastMessage("No data found")
-                    binding.pendingButton.visibility = View.GONE
-                    binding.completedButton.visibility = View.GONE
-                    binding.allButton.visibility = View.GONE
+                    //binding.pendingButton.visibility = View.GONE
+                    //binding.completedButton.visibility = View.GONE
+                    //binding.allButton.visibility = View.GONE
+                    binding.rvOrderList.visibility = View.GONE
                 }
 
             }

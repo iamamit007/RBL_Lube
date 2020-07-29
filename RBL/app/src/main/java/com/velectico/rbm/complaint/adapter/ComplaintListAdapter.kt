@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.velectico.rbm.beats.adapters.BeatDateListAdapter
 import com.velectico.rbm.beats.adapters.BeatListAdapter
 import com.velectico.rbm.beats.model.Beats
+import com.velectico.rbm.complaint.model.ComplainListDetails
 import com.velectico.rbm.complaint.model.ComplaintModel
 import com.velectico.rbm.databinding.RowBeatListBinding
 import com.velectico.rbm.databinding.RowComplaintListBinding
@@ -14,7 +15,7 @@ class ComplaintListAdapter (var setCallback: ComplaintListAdapter.IComplaintList
 
     var callBack : ComplaintListAdapter.IComplaintListActionCallBack?=null
 
-    var complaintList = listOf<ComplaintModel>()
+    var complaintList = listOf<ComplainListDetails>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -30,7 +31,7 @@ class ComplaintListAdapter (var setCallback: ComplaintListAdapter.IComplaintList
 
         }
 
-        fun bind(cm: ComplaintModel?) {
+        fun bind(cm: ComplainListDetails?) {
             binding.complaintInfo = cm
             binding.executePendingBindings()
         }

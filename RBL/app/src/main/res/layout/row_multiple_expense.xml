@@ -92,6 +92,7 @@
                         style="@style/login_reg_input_text"
                         android:drawableRight="@drawable/ic_expand"
                         android:focusable="false"
+                        android:text="Petrol"
                         android:focusableInTouchMode="false"
                         android:inputType="text" />
                     />
@@ -105,7 +106,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/login_reg_input_label"
                     android:hint="Enter Distance in km"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:hintTextAppearance="@style/hintLabelColor">
 
                     <com.google.android.material.textfield.TextInputEditText

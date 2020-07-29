@@ -5,7 +5,7 @@
     <data>
         <variable
             name="complaintInfo"
-            type="com.velectico.rbm.complaint.model.ComplaintModel" />
+            type="com.velectico.rbm.complaint.model.ComplainListDetails" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -57,7 +57,7 @@
 
                         <TextView
                             android:id="@+id/tv_prodName"
-                            android:text="Storage Problem"
+                            android:text="@{complaintInfo.complaintType}"
                             style="@style/rv_caption" />
 
                     </LinearLayout>
@@ -70,7 +70,7 @@
 
                         <TextView
                             android:id="@+id/tv_prodNetPrice"
-                            android:text="Product Name"
+                            android:text="@{complaintInfo.prodName}"
                             style="@style/rv_caption" />
 
                     </LinearLayout>
@@ -86,7 +86,7 @@
 
                         <TextView
                             android:id="@+id/tv_unit"
-                            android:text="15-07-2020"
+                            android:text="@{complaintInfo.CR_Date}"
                             style="@style/rv_caption" />
 
                     </LinearLayout>
@@ -134,7 +134,7 @@
 
                         <TextView
                             android:id="@+id/tv_prodSchemeName"
-                            android:text="Seal Broken"
+                            android:text="@{complaintInfo.CR_Remarks}"
                             style="@style/rv_caption" />
 
                     </LinearLayout>

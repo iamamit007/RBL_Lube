@@ -53,6 +53,7 @@
 
                                         <TextView
                                             style="@style/beat_name"
+                                            android:id="@+id/delrName"
                                             android:text="Raja Oil Ltd"
                                             />
 
@@ -87,11 +88,11 @@
 
                                         <TextView
                                             android:id="@+id/tv_prodNetPrice"
-                                            android:text="+919836256985"
+                                            android:text=""
                                             style="@style/rv_caption" />
                                         <TextView
                                             android:id="@+id/tv_km"
-                                            android:text="Kilometer - 235"
+                                            android:text="0 km"
                                             android:textAlignment="viewEnd"
                                             style="@style/rv_caption" />
 
@@ -107,7 +108,7 @@
 
                                         <TextView
                                             android:id="@+id/tv_prodTotalPrice"
-                                            android:text="Sumit Sen"
+                                            android:text="-"
                                             style="@style/rv_caption" />
 
 
@@ -193,11 +194,50 @@
                                 android:layout_height="35dp"></ImageView>
                         </RelativeLayout>
                     </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:weightSum="100"
+                        android:orientation="horizontal"
+                        android:layout_below="@+id/card_dealer_det"
+                        android:id="@+id/lay1">
+
+                        <Button
+                            android:id="@+id/pendButton"
+                            android:layout_width="0dip"
+                            android:layout_height="50dp"
+                            android:layout_alignParentTop="false"
+                            android:layout_weight="48"
+                            android:background="@drawable/complaint_spinner"
+                            android:backgroundTint="@color/colorOrange"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:text="Pending" />
+
+                        <View
+                            android:layout_width="0dip"
+                            android:layout_weight="4"
+                            android:layout_height="50dp"></View>
+
+                        <Button
+                            android:id="@+id/resolvButton"
+                            android:layout_width="0dip"
+                            android:layout_height="50dp"
+                            android:layout_weight="48"
+                            android:backgroundTint="@color/colorGreen"
+                            android:background="@drawable/complaint_spinner"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:text="Resolved"
+                            />
+                    </LinearLayout>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_complaint_list"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_below="@+id/card_dealer_det"
+                        android:layout_below="@+id/lay1"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         />
 

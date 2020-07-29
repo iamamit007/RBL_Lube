@@ -318,7 +318,17 @@
     <fragment
         android:id="@+id/createComplaints"
         android:name="com.velectico.rbm.complaint.views.CreateComplaints"
-        android:label="Complaint Entry" />
+        android:label="Complaint Entry" >
+        <argument
+            android:name="taskDetail"
+            app:argType="com.velectico.rbm.beats.model.BeatTaskDetails" />
+        <argument
+            android:name="dealerDetail"
+            app:argType="com.velectico.rbm.beats.model.DealerDetails" />
+        <argument
+            android:name="complainDetail"
+            app:argType="com.velectico.rbm.complaint.model.ComplainListDetails" />
+    </fragment>
     <fragment
         android:id="@+id/beatPerformanceHistory"
         android:name="com.velectico.rbm.beats.views.BeatPerformanceHistory"
@@ -365,6 +375,12 @@
         <action
             android:id="@+id/action_beatSpecificComplaintList_to_createComplaints"
             app:destination="@id/createComplaints" />
+        <argument
+            android:name="taskDetails"
+            app:argType="com.velectico.rbm.beats.model.BeatTaskDetails"/>
+        <argument
+            android:name="dealerDetails"
+            app:argType="com.velectico.rbm.beats.model.DealerDetails" />
     </fragment>
     <fragment
         android:id="@+id/productDetailsListFragment"

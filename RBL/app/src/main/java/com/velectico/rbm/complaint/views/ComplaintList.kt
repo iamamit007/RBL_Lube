@@ -16,6 +16,7 @@ import com.velectico.rbm.beats.adapters.BeatListAdapter
 import com.velectico.rbm.beats.model.Beats
 import com.velectico.rbm.beats.views.BeatListFragmentDirections
 import com.velectico.rbm.complaint.adapter.ComplaintListAdapter
+import com.velectico.rbm.complaint.model.ComplainListDetails
 import com.velectico.rbm.complaint.model.ComplaintModel
 import com.velectico.rbm.databinding.FragmentBeatListBinding
 import com.velectico.rbm.databinding.FragmentComplaintListBinding
@@ -33,7 +34,7 @@ class ComplaintList : BaseFragment() {
 
     private lateinit var menuViewModel: MenuViewModel
     private lateinit var binding: FragmentComplaintListBinding;
-    private lateinit var complaintList : List<ComplaintModel>
+    private var complaintList : List<ComplainListDetails> = emptyList()
     private lateinit var adapter: ComplaintListAdapter
     override fun getLayout(): Int {
         return R.layout.fragment_complaint_list
@@ -41,7 +42,7 @@ class ComplaintList : BaseFragment() {
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentComplaintListBinding
-        complaintList = ComplaintModel().getDummyComplaintList()
+        //complaintList = ComplaintModel().getDummyComplaintList()
         menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
         setUpRecyclerView()
 

@@ -56,6 +56,7 @@
 
                                         <TextView
                                             style="@style/beat_name"
+                                            android:id="@+id/dlrNm"
                                             android:text="Raja Oil Ltd"
                                             />
 
@@ -94,7 +95,7 @@
                                             style="@style/rv_caption" />
                                         <TextView
                                             android:id="@+id/tv_km"
-                                            android:text="Kilometer - 235"
+                                            android:text="0 km"
                                             android:textAlignment="viewEnd"
                                             style="@style/rv_caption" />
 

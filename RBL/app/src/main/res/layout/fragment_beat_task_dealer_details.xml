@@ -59,6 +59,7 @@
 
                                 <TextView
                                     style="@style/beat_name"
+                                    android:id="@+id/dealerName"
                                     android:text=""
                                    />
 
@@ -93,7 +94,7 @@
 
                                 <TextView
                                     android:id="@+id/tvDelearCallNo"
-                                    android:text="-"
+                                    android:text="@{dealerDetails.dealerPhone}"
                                     style="@style/rv_caption" />
                                 <TextView
                                     android:id="@+id/tv_km"

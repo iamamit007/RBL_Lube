@@ -20,6 +20,7 @@ import com.velectico.rbm.R
 import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.model.*
+import com.velectico.rbm.complaint.model.ComplainListDetails
 import com.velectico.rbm.databinding.FragmentBeatTaskDealerDetailsBinding
 import com.velectico.rbm.databinding.FragmentOrderListBinding
 import com.velectico.rbm.network.callbacks.NetworkCallBack
@@ -39,6 +40,8 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
 
     private lateinit var binding: FragmentBeatTaskDealerDetailsBinding
     var taskDetails = BeatTaskDetails()
+    var dealerDetails = DealerDetails()
+    var complaintList = ComplainListDetails()
     override fun getLayout(): Int {
         return R.layout.fragment_beat_task_dealer_details
     }
@@ -95,7 +98,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     }
 
     private fun moveToCreateComplaint(){
-        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToCreateComplaints()
+        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToCreateComplaints(taskDetails,dealerDetails,complaintList)
         Navigation.findNavController(binding.btnComplaints).navigate(navDirection)
     }
 
@@ -114,7 +117,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
         Navigation.findNavController(binding.btnOrderHistory).navigate(navDirection)
     }
     private fun moveToViewAllComplaints(){
-        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToBeatSpecificComplaintList()
+        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToBeatSpecificComplaintList(taskDetails,dealerDetails)
         Navigation.findNavController(binding.viewAllComplaintslayOut).navigate(navDirection)
     }
 
@@ -192,10 +195,12 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
                     showToastMessage("Data has been loaded successfully!!")
                     Log.e("test222","BeatTaskDetailsListResponse status="+response.data)
                     binding.dealerDetails = response.data.scheduleDates[0]
+                    dealerDetails = response.data.scheduleDates[0]
                     binding.actAmtVal.text = response.data.actualCollectionAmt
                     binding.tarAmtVal.text = response.data.scheduleDates[0].collectionAmt
                     binding.actQtyVal.text = response.data.actualOrderAmt
                     binding.tarQtyVal.text = response.data.scheduleDates[0].orderAmt
+                    binding.dealerName.text = taskDetails.dealerName.toString()
                     hide()
                 //})
 
