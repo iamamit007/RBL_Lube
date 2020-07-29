@@ -426,3 +426,12 @@ data class DealDistMechList(
 
 
 ):Serializable
+
+data class  CreateBeatScheduleRequestParams(
+    @SerializedName("userId") var userId: String,
+    @SerializedName("beatMasterId") var beatMasterId: String,
+    @SerializedName("startDate") var startDate: String,
+    @SerializedName("endDate") var endDate: String
+
+): BaseModel()
+

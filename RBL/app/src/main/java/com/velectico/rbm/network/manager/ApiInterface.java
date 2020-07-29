@@ -12,6 +12,7 @@ import com.velectico.rbm.beats.model.BeatTaskDetailsRequestParams;
 import com.velectico.rbm.beats.model.BeatWiseTakListResponse;
 import com.velectico.rbm.beats.model.CreateBeatReportRequestParams;
 import com.velectico.rbm.beats.model.CreateBeatReportResponse;
+import com.velectico.rbm.beats.model.CreateBeatScheduleRequestParams;
 import com.velectico.rbm.beats.model.CreateOrderDetailsResponse;
 import com.velectico.rbm.beats.model.CreateOrderListRequestParams;
 import com.velectico.rbm.beats.model.DealDistMechListRequestParams;
@@ -34,6 +35,7 @@ import retrofit2.http.POST;
 
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Beat_Report_By_Date;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Report;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Schedule;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Dealer_Distrib_Task_Worksheet;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.ENDPOINTBeat_Task_Details;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.ENDPOINT_GET_TASK_DETAILS_LIST_BY_BEAT_ID;
@@ -79,20 +81,28 @@ public interface ApiInterface {
     Call<CreateBeatReportResponse> createBeatReport(@Body CreateBeatReportRequestParams model);
 
 
+    //sec drop down beat create
     @POST(Get_Beat_By_Level)
     Call<BeatDetailListResponse> getBeatDetailList(@Body BeatDetailListRequestParams model);
-
+    //task for secon beat
     @POST(Get_Task_For)
     Call<TaskForListResponse> getTaskForList(@Body TaskForListRequestParams model);
 
+    //3rd drop down
     @POST(Get_Location_By_Level)
     Call<LocationByLevelListResponse> getLocationByLevelList(@Body LocationByLevelListRequestParams model);
 
+    //member list drop down
     @POST(Get_AssignTo_By_TaskFor_And_Location)
     Call<AssignToListResponse> getAssignToList(@Body AssignToListRequestParams model);
 
+    //task
     @POST(Get_Deal_Dist_Mech_List)
     Call<DealDistMechListResponse> getDealDistMechList(@Body DealDistMechListRequestParams model);
+
+    @POST(Create_Beat_Schedule)
+    Call<CreateBeatReportResponse> createBeatSchedule(@Body CreateBeatScheduleRequestParams model);
+
 
 
 }

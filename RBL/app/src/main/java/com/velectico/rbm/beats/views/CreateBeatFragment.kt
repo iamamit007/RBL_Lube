@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
@@ -16,15 +17,23 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.chivorn.smartmaterialspinner.SmartMaterialSpinner
+import com.google.gson.annotations.SerializedName
+import com.kaopiz.kprogresshud.KProgressHUD
 import com.velectico.rbm.R
 import com.velectico.rbm.base.views.BaseFragment
-import com.velectico.rbm.beats.model.BeatAssignments
-import com.velectico.rbm.beats.model.Beats
+import com.velectico.rbm.beats.model.*
 import com.velectico.rbm.beats.viewmodel.BeatSharedViewModel
 import com.velectico.rbm.databinding.FragmentCreateBeatBinding
 import com.velectico.rbm.expense.viewmodel.ExpenseViewModel
+import com.velectico.rbm.network.callbacks.NetworkCallBack
+import com.velectico.rbm.network.callbacks.NetworkError
+import com.velectico.rbm.network.manager.ApiClient
+import com.velectico.rbm.network.manager.ApiInterface
+import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.order.views.OrderListFragmentDirections
 import com.velectico.rbm.utils.DateUtility
+import kotlinx.android.synthetic.main.fragment_beat_report.view.*
+import retrofit2.Callback
 import java.util.*
 
 /**
@@ -35,6 +44,9 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
     private var cuurentDatePicketParentView : com.google.android.material.textfield.TextInputEditText? = null;
     private lateinit var mBeatSharedViewModel: BeatSharedViewModel
     private lateinit var mAssignments : MutableList<BeatAssignments>;
+    var beatLevel = ""
+    var masterId = ""
+
 
     override fun getLayout(): Int {
         return R.layout.fragment_create_beat
@@ -55,6 +67,7 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
         super.onViewCreated(view, savedInstanceState)
         addListeners();
         initSpinner();
+
     }
 
     fun addListeners(){
@@ -79,12 +92,11 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
                 showToastMessage(errMsg)
             }
             else{
-
+                callSubmit()
                 // val action : CreateBeatFragmentDirections.Action = CreateBeatFragmentDirections.actionCreateBeatFragmentToAssignBeatToLocation(mBeatSharedViewModel.beats.value as Beats)
                 // Navigation.findNavController(binding.btnAssignTask).navigate(action);
 
-                val navDirection =  CreateBeatFragmentDirections.actionCreateBeatFragmentToAssignBeatToLocation()
-                Navigation.findNavController(binding.btnAssignTask).navigate(navDirection)
+
 
 
 
@@ -92,6 +104,7 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
             }
 
         }
+
     }
 
     //callback function to set set once date is selected from datepicker
@@ -116,8 +129,25 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
         val dayOfMonth = calendar[Calendar.DAY_OF_MONTH]
         DatePickerDialog(requireActivity(), this, year, month, dayOfMonth).show()
     }
+    var hud: KProgressHUD? = null
+    fun  showHud(){
+        if (hud!=null){
 
+            hud!!.show()
+        }
+    }
+
+    fun hide(){
+        hud?.dismiss()
+
+    }
     private fun initSpinner() {
+        hud =  KProgressHUD.create(activity)
+            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+            .setLabel("Please wait")
+            .setCancellable(true)
+            .setAnimationSpeed(2)
+            .setDimAmount(0.5f)
         //https://github.com/Chivorns/SmartMaterialSpinner
         var provinceList: MutableList<String> = ArrayList()
         provinceList.add("Region")
@@ -127,9 +157,11 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
 
         binding.spSalesperson.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
-                binding.etAssignTo.setText( provinceList[position])
+                binding.etAssignTo.setText( dataList[position].BM_Beat_Name)
                 mBeatSharedViewModel.beats.value?.salesPersonId = position.toString()
-                mBeatSharedViewModel.beats.value?.salesPersonName = provinceList[position]
+                mBeatSharedViewModel.beats.value?.salesPersonName = dataList[position].BM_Beat_Name
+                masterId = dataList[position].BM_DM_ID!!
+
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>) {}
@@ -138,6 +170,8 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
         binding.spBeatName.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
                 binding.etBeatName.setText( provinceList[position])
+                beatLevel = provinceList[position].get(0).toString().toUpperCase()
+                callApi(type = beatLevel)
                 mBeatSharedViewModel.beats.value?.beatId = position.toString()
                 mBeatSharedViewModel.beats.value?.beatName =  provinceList[position]
             }
@@ -145,8 +179,78 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
         }
 
         binding.spBeatName.setItem(provinceList)
-        binding.spSalesperson.setItem(provinceList)
+
         //https://stackoverflow.com/questions/48343622/how-to-fix-parameter-specified-as-non-null-is-null-on-rotating-screen-in-a-fragm
-        binding.spSalesperson.setSelection(2)
+       // binding.spSalesperson.setSelection(2)
     }
-}
+
+
+    fun callApi(type:String){
+        showHud()
+        // DealerDetailsRequestParams(
+        //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
+        val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
+        val responseCall = apiInterface.getBeatDetailList(
+            BeatDetailListRequestParams("7001507620",type)
+        )
+        responseCall.enqueue(orderVSQualityResponseResponse as Callback<BeatDetailListResponse>)
+
+        }
+    private  var dataList : List<BeatListDetails> = emptyList<BeatListDetails>()
+    private val orderVSQualityResponseResponse = object : NetworkCallBack<BeatDetailListResponse>(){
+        override fun onSuccessNetwork(data: Any?, response: NetworkResponse<BeatDetailListResponse>) {
+            response.data?.status?.let { status ->
+
+                  hide()
+                dataList  = response.data.BeatList
+                var statList: MutableList<String> = ArrayList()
+                for (i in dataList){
+                    statList.add(i.BM_Beat_Name!!)
+                }
+
+                binding.spSalesperson.setItem(statList)
+                binding.spSalesperson.setSelection(0)
+
+            }
+
+        }
+
+        override fun onFailureNetwork(data: Any?, error: NetworkError) {
+            hide()
+        }
+
+    }
+
+
+    fun callSubmit(){
+        showHud()
+        // DealerDetailsRequestParams(
+        //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
+        val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
+        val responseCall = apiInterface.createBeatSchedule(
+            CreateBeatScheduleRequestParams("7001507620",masterId,"2020-07-22","2020-07-25")
+        )
+        responseCall.enqueue(createBeatScheduleResponseResponse as Callback<CreateBeatReportResponse>)
+
+    }
+    private val createBeatScheduleResponseResponse = object : NetworkCallBack<CreateBeatReportResponse>(){
+        override fun onSuccessNetwork(data: Any?, response: NetworkResponse<CreateBeatReportResponse>) {
+            response.data?.respMessage?.let { status ->
+
+                hide()
+                showToastMessage( response.data?.respMessage!!)
+                val navDirection =  CreateBeatFragmentDirections.actionCreateBeatFragmentToAssignBeatToLocation()
+                Navigation.findNavController(binding.btnAssignTask).navigate(navDirection)
+
+            }
+
+        }
+
+        override fun onFailureNetwork(data: Any?, error: NetworkError) {
+            hide()
+        }
+
+    }
+    }
+
+
