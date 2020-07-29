@@ -341,13 +341,13 @@ data class BeatListDetails(
 
 data class  TaskForListRequestParams(
     @SerializedName("userId") var userId: String,
-    @SerializedName("beatLevel") var beatLevel: String
+    @SerializedName("beatId") var beatLevel: String
 ): BaseModel()
 
 data class TaskForListResponse(
     val count: Int,
     @SerializedName("taskFor")
-    val TaskForList: List<TaskForList>,
+    val TaskForList: List<List<TaskForList>>,
     @SerializedName("status")
     val status: Int? = null,
     @SerializedName("source")

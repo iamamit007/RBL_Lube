@@ -6,9 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-
         android:background="@drawable/bg_dashboard"
-        tools:context=".beats.views.CreateBeatFragment">
+        tools:context=".beats.views.AssignBeatToLocation">
 
         <LinearLayout
             android:id="@+id/ll_bottom_view"
@@ -84,9 +83,15 @@
                         android:focusableInTouchMode="false"
                         android:drawableRight="@drawable/ic_expand"
                         android:text="Region" />
+                    <Spinner
+                        android:spinnerMode="dialog"
+                        android:id="@+id/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_40dp"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
                     android:id="@+id/sp_beatName"
+                    android:visibility="gone"
                     android:spinnerMode="dialog"
                     app:smsp_hint="Select Task For"
                     style="@style/custom_spinner" />
