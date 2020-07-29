@@ -42,7 +42,7 @@ class BeatTaskDetailsViewFragment : BaseFragment() {
         return R.layout.fragment_beat_task_details_view
     }
 
-    var  scheduleId = ""
+    var  scheduleId = TaskDetails()
     var  userId = ""
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentBeatTaskDetailsViewBinding
@@ -50,13 +50,13 @@ class BeatTaskDetailsViewFragment : BaseFragment() {
         if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() != SALES_LEAD_ROLE){
            binding.beatSummary.visibility = View.GONE
         }
-          scheduleId = arguments?.getString(  "scheduleId").toString()
+          scheduleId = arguments!!.get("taskDetails") as TaskDetails
           userId = arguments?.getString(  "userId").toString()
         val y = arguments!!.get("taskDetails")
         val x = y as TaskDetails
         binding.task = x
 
-
+showToastMessage(scheduleId.toString())
 
         setUpRecyclerView()
         callApi2()
@@ -83,7 +83,7 @@ class BeatTaskDetailsViewFragment : BaseFragment() {
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getScheduleTaskDetailsByBeat(BeatTaskDetailsRequestParams(
-            SharedPreferenceUtils.getLoggedInUserId(context as Context),scheduleId))
+            SharedPreferenceUtils.getLoggedInUserId(context as Context),scheduleId.scheduleId.toString()))
         responseCall.enqueue(beatTaskDetailsListResponse as Callback<BeatTaskDetailsListResponse>)
     }
 

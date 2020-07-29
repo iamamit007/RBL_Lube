@@ -127,6 +127,7 @@ class BeatSpecificComplaintList : BaseFragment() {
                 if (response.data.count > 0){
                     complaintList = response.data.ComplaintList!!.toMutableList()
                     setUpRecyclerView()
+                    binding.rvComplaintList.visibility = View.VISIBLE
                 }
                 else{
                     showToastMessage("No data found")

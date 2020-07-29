@@ -114,13 +114,14 @@ data class DealerDetailsResponse(
 )
 
 data class DealerDetails(
-    val DM_Contact_Person: String?,
-    val DM_Address: String?,
-    val Grade: String?,
-    val orderAmt: String?,
-    val collectionAmt: String?,
-    val lati: String?,
-    val longi: String?
+    val DM_Contact_Person: String? = null,
+    val DM_Address: String? = null,
+    val Grade: String?= null,
+    val orderAmt: String?= null,
+    val collectionAmt: String?= null,
+    val lati: String?= null,
+    val longi: String?= null,
+    val dealerPhone: String?= null
 ):Serializable
 
 data class  DealerDetailsRequestParams(
@@ -132,7 +133,8 @@ data class  DealerDetailsRequestParams(
 
 data class  BeatAllOrderListRequestParams(
     @SerializedName("userId") var userId: String,
-    @SerializedName("dealerId") var dealerId: String
+    @SerializedName("dealerId") var dealerId: String,
+    @SerializedName("status") var status: String
 ): BaseModel()
 
 data class OrderHistoryDetailsResponse(

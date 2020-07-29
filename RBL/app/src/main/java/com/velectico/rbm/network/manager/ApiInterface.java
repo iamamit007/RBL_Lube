@@ -27,6 +27,8 @@ import com.velectico.rbm.beats.model.OrderVSQualityRequestParams;
 import com.velectico.rbm.beats.model.OrderVSQualityResponse;
 import com.velectico.rbm.beats.model.TaskForListRequestParams;
 import com.velectico.rbm.beats.model.TaskForListResponse;
+import com.velectico.rbm.complaint.model.ComplaintListRequestParams;
+import com.velectico.rbm.complaint.model.ComplaintListResponse;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -34,6 +36,7 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Beat_Report_By_Date;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Complaint_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Report;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Schedule;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Dealer_Distrib_Task_Worksheet;
@@ -103,6 +106,7 @@ public interface ApiInterface {
     @POST(Create_Beat_Schedule)
     Call<CreateBeatReportResponse> createBeatSchedule(@Body CreateBeatScheduleRequestParams model);
 
-
+    @POST(Complaint_List)
+    Call<ComplaintListResponse> getComplaintList(@Body ComplaintListRequestParams model);
 
 }

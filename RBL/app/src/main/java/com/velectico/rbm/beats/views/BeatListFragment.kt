@@ -64,7 +64,7 @@ class BeatListFragment : BaseFragment() {
         adapter = BeatListAdapter(object : BeatListAdapter.IBeatListActionCallBack{
             override fun moveToBeatTaskDetails(position: Int, beatTaskId: String?,binding: RowBeatListBinding) {
                 Log.e("test","onAddTask"+beatTaskId)
-                val navDirection =  BeatListFragmentDirections.actionBeatListFragmentToBeatTaskDetailsViewFragment("3255632980","75",beatList[position] as com.velectico.rbm.beats.model.TaskDetails)
+                val navDirection =  BeatListFragmentDirections.actionBeatListFragmentToBeatTaskDetailsViewFragment(SharedPreferenceUtils.getLoggedInUserId(context as Context),"75",beatList[position])
                 Navigation.findNavController(binding.navigateToTaskDetails).navigate(navDirection)
             }
         },data.toString());
