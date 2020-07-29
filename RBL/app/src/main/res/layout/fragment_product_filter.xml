@@ -29,7 +29,6 @@
 
     </LinearLayout>
         <!-- -Expense Type -->
-
             <Spinner
                 android:id="@+id/spinnerCategory"
                 android:layout_marginTop="@dimen/dimen_20dp"

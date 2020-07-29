@@ -78,8 +78,8 @@ class ProductListAdapter(userRole:String,_activity: Activity, var setCallback: P
         holder.bind(data[position])
        // Log.e("test","image path---$position---->"+data[position].prodImageUrl)
         setImageUsingGlide(data[position].prodImageUrl!!, mActivity, holder.binding.ivProdImageUrl)
-    }
 
+    }
 
 
     private fun setImageUsingGlide(photoUrl: String, activity: Activity, imageView: ImageView) {

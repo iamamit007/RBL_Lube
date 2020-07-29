@@ -211,7 +211,20 @@ data class CreateOrderListDetails(
     var Create_Date: String? = null,
     var Created_By: String? = null,
     var Modified_Date: String? = null,
-    var Modified_By: String? = null
+    var Modified_By: String? = null,
+    var PM_Type_Name: String? = null,
+    var PM_Cat_Name: String? = null,
+    var PM_UOM_Detail: String? = null,
+    var PM_Seg_Name: String? = null,
+    var PM_Brand_name: String? = null,
+    var PM_Scheme_name: String? = null,
+    var PSM_Scheme_Details: List<PSM_Scheme_DetailsResponse>? = null
+):Serializable
+
+data class PSM_Scheme_DetailsResponse(
+    var schemeId: String? = null,
+    var schemeName: String? = null,
+    var imagePath: String? = null
 ):Serializable
 
 data class  BeatReportListRequestParams(
@@ -252,3 +265,173 @@ data class BeatReportListDetails(
     var Created_By: String? = null
 
 ):Serializable
+
+object
+
+
+data class  OrderVSQualityRequestParams(
+    @SerializedName("DM_Dropdown_Name") var userId: String?
+
+): BaseModel()
+
+data class OrderVSQualityResponse(
+    val count: Int,
+    @SerializedName("DropdownDetails")
+    val BeatReportList: List<DropdownDetails>,
+    @SerializedName("status")
+    val status: Int? = null
+
+)
+
+data class DropdownDetails(
+    val Exp_Head_Id: String?,
+    val Exp_Head_Name: String?
+
+):Serializable
+
+
+data class  CreateBeatReportRequestParams(
+    @SerializedName("userId") var userId: String?,
+    @SerializedName("taskId") var taskId: String?,
+    @SerializedName("dealerId") var dealerId: String?,
+    @SerializedName("distribId") var distribId: String?,
+    @SerializedName("orderStatus") var orderStatus: String?,
+    @SerializedName("paymentStatus") var paymentStatus: String?,
+    @SerializedName("complainStatus") var complainStatus: String?,
+    @SerializedName("priceProblem") var priceProblem: String?,
+    @SerializedName("packagProblem") var packagProblem: String?,
+    @SerializedName("otherPref") var otherPref: String?,
+    @SerializedName("turnoverRange") var turnoverRange: String?,
+    @SerializedName("followupDate") var followupDate: String?,
+    @SerializedName("followupReason") var followupReason: String?
+
+): BaseModel()
+data class CreateBeatReportResponse(
+    val count: Int,
+    val respMessage:String
+
+):Serializable
+
+
+data class  BeatDetailListRequestParams(
+    @SerializedName("userId") var userId: String,
+    @SerializedName("beatLevel") var beatLevel: String
+): BaseModel()
+
+data class BeatDetailListResponse(
+    val count: Int,
+    @SerializedName("BeatDetails")
+    val BeatList: List<BeatListDetails>,
+    @SerializedName("status")
+    val status: Int? = null
+
+)
+data class BeatListDetails(
+    var BM_ID: String? = null,
+    var BM_Beat_Name: String? = null,
+    var BM_DM_ID: String? = null,
+    var BM_Area_List: String? = null,
+    var BM_Resp_Level: String? = null,
+    var Create_Date: String? = null,
+    var Created_By: String? = null
+
+):Serializable
+
+data class  TaskForListRequestParams(
+    @SerializedName("userId") var userId: String,
+    @SerializedName("beatLevel") var beatLevel: String
+): BaseModel()
+
+data class TaskForListResponse(
+    val count: Int,
+    @SerializedName("taskFor")
+    val TaskForList: List<TaskForList>,
+    @SerializedName("status")
+    val status: Int? = null,
+    @SerializedName("source")
+    val source: String? = null,
+    @SerializedName("areaList")
+    val areaList: String? = null
+
+
+)
+data class TaskForList(
+    var taskLevel: String? = null,
+    var respValue: String? = null
+
+):Serializable
+
+data class  LocationByLevelListRequestParams(
+    @SerializedName("userId") var userId: String,
+    @SerializedName("source") var source: String,
+    @SerializedName("taskLevel") var taskLevel: String,
+    @SerializedName("areaList") var areaList: String
+): BaseModel()
+
+data class LocationByLevelListResponse(
+    val count: Int,
+    @SerializedName("location")
+    val LocationList: List<LocationList>,
+    @SerializedName("status")
+    val status: Int? = null
+
+)
+data class LocationList(
+    var locId: String? = null,
+    var locValue: String? = null
+
+):Serializable
+
+data class  AssignToListRequestParams(
+    @SerializedName("userId") var userId: String,
+    @SerializedName("source") var source: String,
+    @SerializedName("taskLevel") var taskLevel: String,
+    @SerializedName("locId") var locId: String
+): BaseModel()
+
+data class AssignToListResponse(
+    val count: Int,
+    @SerializedName("Details")
+    val AssignToList: List<AssigntoList>,
+    @SerializedName("status")
+    val status: Int? = null
+
+)
+data class AssigntoList(
+    var UM_ID: String? = null,
+    var UM_Name: String? = null
+
+):Serializable
+
+data class  DealDistMechListRequestParams(
+    @SerializedName("userId") var userId: String,
+    @SerializedName("source") var source: String,
+    @SerializedName("locId") var locId: String
+
+): BaseModel()
+
+data class DealDistMechListResponse(
+
+    @SerializedName("")
+    val DealDistMechList: List<DealDistMechList>
+
+
+)
+data class DealDistMechList(
+    var UM_ID: String? = null,
+    var UM_Name: String? = null,
+    var UM_Role: String? = null,
+    var DM_Area: String? = null,
+    var AM_Area_Name: String? = null
+
+
+):Serializable
+
+data class  CreateBeatScheduleRequestParams(
+    @SerializedName("userId") var userId: String,
+    @SerializedName("beatMasterId") var beatMasterId: String,
+    @SerializedName("startDate") var startDate: String,
+    @SerializedName("endDate") var endDate: String
+
+): BaseModel()
+

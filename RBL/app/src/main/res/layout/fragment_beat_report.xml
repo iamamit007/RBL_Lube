@@ -258,7 +258,7 @@
 
 
                         <Spinner
-                            android:id="@+id/spinner"
+                            android:id="@+id/paymentspinner"
                             android:layout_marginTop="@dimen/dimen_20dp"
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
@@ -403,7 +403,7 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btn_login"
+                            android:id="@+id/btn_submit"
                             style="@style/styleAppCompactButton"
                             android:backgroundTint="@color/black"
                             android:text="Submit Report"

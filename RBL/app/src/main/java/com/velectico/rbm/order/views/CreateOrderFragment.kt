@@ -57,7 +57,7 @@ class CreateOrderFragment : BaseFragment() {
     }
 
     private fun setUpRecyclerView() {
-        adapter = OrderCartListAdapter();
+        adapter = OrderCartListAdapter(context!!);
         binding.rvCartList.adapter = adapter
         adapter.orderCart = orderCartList
         setUp()
@@ -105,7 +105,7 @@ class CreateOrderFragment : BaseFragment() {
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getCreateOrderList(
-            CreateOrderListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),"92","34")
+            CreateOrderListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),"22","34")
         )
         responseCall.enqueue(CreateOrderDetailsResponse as Callback<CreateOrderDetailsResponse>)
     }

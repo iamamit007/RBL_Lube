@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/thumbnail"
-                android:text="Lube Oil Plus"
+                android:text="@{orderCartInfo.PM_Brand_name}"
                 android:textColor="#040404"
                 android:textSize="15dip"
                 android:typeface="sans"
@@ -163,19 +163,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/prodSec"
-            android:orientation="horizontal" >
-            <com.google.android.material.textfield.TextInputEditText
+            android:orientation="vertical" >
+            <TextView
                 android:id="@+id/et_beat_name"
-                style="@style/login_reg_input_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:inputType="text"
+                android:visibility="visible"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:drawableRight="@drawable/ic_expand"
                 android:text="Select Scheme" />
 
-        <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
+        <Spinner
+            android:visibility="visible"
             android:id="@+id/sp_beatName"
-            android:spinnerMode="dialog"
+            android:spinnerMode="dropdown"
             app:smsp_hint="Select Beat"
             style="@style/custom_spinner" />
         <View
