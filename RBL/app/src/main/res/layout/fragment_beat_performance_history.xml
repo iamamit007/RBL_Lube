@@ -9,636 +9,517 @@
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:background="@drawable/header"
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:id="@+id/cardDetails">
+
 
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <LinearLayout
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:id="@+id/titl"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@color/mdtp_dark_gray"
+                    android:text="Performance Scorecard-2020"
+                    style="@style/center_align_text2"
+
+                    />
+
+                <RelativeLayout
+                    android:id="@+id/nameLay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_margin="@dimen/dimen_16dp"
+                    android:layout_below="@+id/titl"
+                    android:background="@drawable/border_performance">
 
-                    >
 
                     <TextView
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:id="@+id/trgtTxt"
+                        android:textSize="15dp"
+                        android:text="Mr.Name" />
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:text="Raja Oil Ltd"
-                        style="@style/center_align_text"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/listTitle"
+                        android:layout_marginTop="5dp"
+                        android:layout_below="@+id/trgtTxt"
+                        android:orientation="horizontal">
 
-                        />
+                        <TextView
+                            style="@style/rv_caption"
+                            android:id="@+id/tv_invoice"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:text="Responsibility Level :" />
+
+                        <TextView
+                            android:id="@+id/tv_payment_date"
+                            android:text="Area"
+                            android:textColor="@color/black"
+                            style="@style/rv_caption" />
 
 
 
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/listTitle"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
 
-                </LinearLayout>
+                        <TextView
+                            style="@style/rv_caption"
+                            android:id="@+id/tv_ordrAmt"
+                            android:textStyle="bold"
+                            android:text="Coverage :" />
+
+                        <TextView
+                            android:id="@+id/collectionAmt"
+                            android:text="Area 1"
+                            style="@style/rv_caption" />
 
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/per_hist_monthly"
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/nameLay"
+                    android:paddingLeft="@dimen/dimen_20dp"
+                    android:paddingBottom="10dp"
+                    android:id="@+id/tgtTxt"
+                    android:textSize="18sp"
+                    android:text="Order Target" />
+
+        <RelativeLayout
+            android:id="@+id/orderLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/tgtTxt"
+            android:background="@drawable/border_performance">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/hdr"
+                android:padding="5dp"
+                android:background="@color/mdtp_dark_gray"
+                android:layout_below="@+id/outstndTxt"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:text="Monthly" />
+
+                <TextView
+                    android:text="Quarterly"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:textAlignment="center"
+                    style="@style/rv_caption" />
+                <TextView
+                    android:text="Half-Yearly"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:textAlignment="center"
+                    style="@style/rv_caption" />
+                <TextView
+                    android:text="Yearly"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:textAlignment="center"
+                    style="@style/rv_caption" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/hdr"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/rv_caption"
+                    android:textAlignment="center"
+                    android:text="₹ 100" />
+
+                <TextView
+                    android:text="₹ 200"
+                    android:textAlignment="center"
+                    style="@style/rv_caption" />
+                <TextView
+                    android:text="₹ 20,000"
+                    android:textAlignment="center"
+                    style="@style/rv_caption" />
+                <TextView
+                    android:text="₹ 5,000"
+                    android:textAlignment="center"
+                    style="@style/rv_caption" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_below="@+id/orderLay"
+                    android:paddingLeft="@dimen/dimen_20dp"
+                    android:id="@+id/colltrTxt"
+                    android:textSize="18sp"
+                    android:text="Collection Target" />
+
+                <RelativeLayout
+                    android:id="@+id/collecLay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp"
-                    android:elevation="10dp"
-                    app:cardBackgroundColor="#fcfcfc"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="20dp"
-                    app:cardPreventCornerOverlap="false"
-                    app:cardUseCompatPadding="true">
-                    <RelativeLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_below="@+id/colltrTxt"
+                    android:background="@drawable/border_performance">
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:id="@+id/viewOne">
+                        android:layout_height="wrap_content"
+                        android:id="@+id/hdr2"
+                        android:padding="5dp"
+                        android:background="@color/mdtp_dark_gray"
+                        android:layout_below="@+id/outstndTxt"
+                        android:orientation="horizontal">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="16dp">
-                                <!---Expense Id- -->
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                        <TextView
+                            style="@style/rv_caption"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:text="Monthly" />
 
-                                    <TextView
-                                        style="@style/beat_name"
-                                        android:text="Monthly"
-                                        />
-                                </LinearLayout>
+                        <TextView
+                            android:text="Quarterly"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
+                        <TextView
+                            android:text="Half-Yearly"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
+                        <TextView
+                            android:text="Yearly"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
 
-                                <LinearLayout
-                                    android:orientation="horizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@android:color/white"
-                                    android:padding="5dip">
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/hdr2"
+                        android:layout_marginTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:orientation="horizontal">
 
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:layout_weight="1"
-                                        android:gravity="center_horizontal"
-                                        android:background="@drawable/border">
+                        <TextView
+                            style="@style/rv_caption"
+                            android:textAlignment="center"
+                            android:text="₹ 100" />
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Tar Qty"
-                                            style="@style/rv_beat_details_lbl_blue"/>
+                        <TextView
+                            android:text="₹ 200"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
+                        <TextView
+                            android:text="₹ 20,000"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
+                        <TextView
+                            android:text="₹ 5,000"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:id="@+id/tv_visited"
-                                            android:text="70"
-                                            style="@style/rv_beat_details_val_blue"
-                                            />
-
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:layout_weight="1"
-                                        android:gravity="center_horizontal"
-                                        android:background="@drawable/border">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Act Qty"
-                                            style="@style/rv_beat_details_lbl_blue"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:id="@+id/tv_orders"
-                                            android:text="52600"
-                                            style="@style/rv_beat_details_val_blue"
-                                            />
-
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:layout_weight="1"
-                                        android:gravity="center_horizontal"
-                                        android:background="@drawable/border">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Tar Amt"
-                                            style="@style/rv_beat_details_lbl_blue"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:id="@+id/tv_tar_amt"
-                                            android:text="7"
-                                            style="@style/rv_beat_details_val_blue"
-                                            />
-
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:layout_weight="1"
-                                        android:gravity="center_horizontal"
-                                        android:background="@drawable/border">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Act Amt"
-                                            style="@style/rv_beat_details_lbl_blue"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:id="@+id/tv_growth"
-                                            android:text="7"
-                                            style="@style/rv_beat_details_val_blue"
-                                            />
-
-                                    </LinearLayout>
-                                </LinearLayout>
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                    </RelativeLayout>
+                    </LinearLayout>
 
 
+                </RelativeLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:paddingBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/collecLay"
+                    android:paddingLeft="@dimen/dimen_20dp"
+                    android:id="@+id/achvTxt"
+                    android:textSize="18sp"
+                    android:text="Achieved" />
 
-                </com.google.android.material.card.MaterialCardView>
-
-
-
-
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/per_hist_quatly"
+                <RelativeLayout
+                    android:id="@+id/achvLay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/per_hist_monthly"
-                    android:elevation="10dp"
-                    app:cardBackgroundColor="#fcfcfc"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="20dp"
-                    app:cardPreventCornerOverlap="false"
-                    app:cardUseCompatPadding="true">
-
-                    <RelativeLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_below="@+id/achvTxt"
+                    android:background="@drawable/border_performance">
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:id="@+id/hdr3"
+                        android:padding="5dp"
+                        android:background="@color/mdtp_dark_gray"
+                        android:layout_below="@+id/outstndTxt"
+                        android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:id="@+id/viewOneQuartly"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                        <TextView
+                            style="@style/rv_caption"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:text="Monthly" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="16dp">
-                                <!---Expense Id- -->
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                        <TextView
+                            android:text="Quarterly"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
+                        <TextView
+                            android:text="Half-Yearly"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
+                        <TextView
+                            android:text="Yearly"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
 
-                                    <TextView
-                                        style="@style/beat_name"
-                                        android:text="Quarterly" />
-                                </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/hdr3"
+                        android:layout_marginTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:orientation="horizontal">
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@android:color/white"
-                                    android:orientation="horizontal"
-                                    android:padding="5dip">
+                        <TextView
+                            style="@style/rv_caption"
+                            android:textAlignment="center"
+                            android:text="₹ 100" />
 
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:background="@drawable/border"
-                                        android:gravity="center_horizontal"
-                                        android:orientation="vertical">
+                        <TextView
+                            android:text="₹ 200"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
+                        <TextView
+                            android:text="₹ 20,000"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
+                        <TextView
+                            android:text="₹ 5,000"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
 
-                                        <TextView
-                                            style="@style/rv_beat_details_lbl_blue"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Tar Qty" />
-
-                                        <TextView
-                                            android:id="@+id/tv_visited_Quartly"
-                                            style="@style/rv_beat_details_val_blue"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="70" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:background="@drawable/border"
-                                        android:gravity="center_horizontal"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            style="@style/rv_beat_details_lbl_blue"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Act Qty" />
-
-                                        <TextView
-                                            android:id="@+id/tv_orders_Quartly"
-                                            style="@style/rv_beat_details_val_blue"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="52600" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:background="@drawable/border"
-                                        android:gravity="center_horizontal"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            style="@style/rv_beat_details_lbl_blue"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Tar Amt" />
-
-                                        <TextView
-                                            android:id="@+id/tv_tar_amt_Quartly"
-                                            style="@style/rv_beat_details_val_blue"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="7" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:background="@drawable/border"
-                                        android:gravity="center_horizontal"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            style="@style/rv_beat_details_lbl_blue"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Act Amt" />
-
-                                        <TextView
-                                            android:id="@+id/tv_growth_Quartly"
-                                            style="@style/rv_beat_details_val_blue"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="7" />
-
-                                    </LinearLayout>
-                                </LinearLayout>
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                    </RelativeLayout>
+                    </LinearLayout>
 
 
-                </com.google.android.material.card.MaterialCardView>
+                </RelativeLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/achvLay"
+                    android:paddingLeft="@dimen/dimen_20dp"
+                    android:id="@+id/lvAttTxt"
+                    android:textSize="18sp"
+                    android:paddingBottom="10dp"
+                    android:text="Yearly Leaves &amp; Attendance" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/per_hist_half_yearly"
+                <RelativeLayout
+                    android:id="@+id/lvAttLay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:elevation="10dp"
-                    app:cardBackgroundColor="#fcfcfc"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="20dp"
-                    android:layout_below="@+id/per_hist_quatly"
-                    app:cardPreventCornerOverlap="false"
-                    app:cardUseCompatPadding="true">
-                    <RelativeLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_below="@+id/lvAttTxt"
+                    android:background="@drawable/border_performance">
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:id="@+id/viewOnehalf_yearly">
+                        android:layout_height="wrap_content"
+                        android:id="@+id/hdr4"
+                        android:padding="5dp"
+                        android:background="@color/mdtp_dark_gray"
+                        android:orientation="horizontal">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="16dp">
-                                <!---Expense Id- -->
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                        <TextView
+                            style="@style/rv_caption"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:text="Leaves#" />
 
-                                    <TextView
-                                        style="@style/beat_name"
-                                        android:text="Half Yearly"
-                                        />
-                                </LinearLayout>
+                        <TextView
+                            android:text="Attendance%"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
+                        <TextView
+                            android:text="Unplanned Leaves"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
 
-                                <LinearLayout
-                                    android:orientation="horizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@android:color/white"
-                                    android:padding="5dip">
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/hdr4"
+                        android:layout_marginTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:orientation="horizontal">
 
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:layout_weight="1"
-                                        android:gravity="center_horizontal"
-                                        android:background="@drawable/border">
+                        <TextView
+                            style="@style/rv_caption"
+                            android:textAlignment="center"
+                            android:text="50" />
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Tar Qty"
-                                            style="@style/rv_beat_details_lbl_blue"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:id="@+id/tv_visited_half_yearly"
-                                            android:text="70"
-                                            style="@style/rv_beat_details_val_blue"
-                                            />
-
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:layout_weight="1"
-                                        android:gravity="center_horizontal"
-                                        android:background="@drawable/border">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Act Qty"
-                                            style="@style/rv_beat_details_lbl_blue"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:id="@+id/tv_orders_half_yearly"
-                                            android:text="52600"
-                                            style="@style/rv_beat_details_val_blue"
-                                            />
-
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:layout_weight="1"
-                                        android:gravity="center_horizontal"
-                                        android:background="@drawable/border">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Tar Amt"
-                                            style="@style/rv_beat_details_lbl_blue"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:id="@+id/tv_tar_amt_half_yearly"
-                                            android:text="7"
-                                            style="@style/rv_beat_details_val_blue"
-                                            />
-
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:layout_weight="1"
-                                        android:gravity="center_horizontal"
-                                        android:background="@drawable/border">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Act Amt"
-                                            style="@style/rv_beat_details_lbl_blue"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:id="@+id/tv_growth_half_yearly"
-                                            android:text="7"
-                                            style="@style/rv_beat_details_val_blue"
-                                            />
-
-                                    </LinearLayout>
-                                </LinearLayout>
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                    </RelativeLayout>
+                        <TextView
+                            android:text="50"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
+                        <TextView
+                            android:text="30"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
 
 
+                    </LinearLayout>
 
 
-                </com.google.android.material.card.MaterialCardView>
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/lvAttLay"
+                    android:paddingLeft="@dimen/dimen_20dp"
+                    android:id="@+id/expns"
+                    android:textSize="18sp"
+                    android:paddingBottom="10dp"
+                    android:text="Yearly Expenses" />
 
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/per_hist_yearly"
+                <RelativeLayout
+                    android:id="@+id/expnsLay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:elevation="10dp"
-                    app:cardBackgroundColor="#fcfcfc"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="20dp"
-                    android:layout_below="@+id/per_hist_half_yearly"
-                    app:cardPreventCornerOverlap="false"
-                    app:cardUseCompatPadding="true">
-                    <RelativeLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_below="@+id/expns"
+                    android:layout_marginBottom="@dimen/dimen_20dp"
+                    android:background="@drawable/border_performance">
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:id="@+id/viewOne_yearly">
+                        android:layout_height="wrap_content"
+                        android:id="@+id/hdr5"
+                        android:padding="5dp"
+                        android:background="@color/mdtp_dark_gray"
+                        android:orientation="horizontal">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="16dp">
-                                <!---Expense Id- -->
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                        <TextView
+                            style="@style/rv_caption"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:text="Total Expenses" />
 
-                                    <TextView
-                                        style="@style/beat_name"
-                                        android:text="Yearly"
-                                        />
-                                </LinearLayout>
+                        <TextView
+                            android:text="No. of Beat Tasks"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
+                        <TextView
+                            android:text="Expense/Beat Task"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
 
-                                <LinearLayout
-                                    android:orientation="horizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@android:color/white"
-                                    android:padding="5dip">
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/hdr5"
+                        android:layout_marginTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:orientation="horizontal">
 
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:layout_weight="1"
-                                        android:gravity="center_horizontal"
-                                        android:background="@drawable/border">
+                        <TextView
+                            style="@style/rv_caption"
+                            android:textAlignment="center"
+                            android:text="50" />
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Tar Qty"
-                                            style="@style/rv_beat_details_lbl_blue"/>
+                        <TextView
+                            android:text="50"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
+                        <TextView
+                            android:text="30"
+                            android:textAlignment="center"
+                            style="@style/rv_caption" />
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:id="@+id/tv_visited_yearly"
-                                            android:text="70"
-                                            style="@style/rv_beat_details_val_blue"
-                                            />
 
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:layout_weight="1"
-                                        android:gravity="center_horizontal"
-                                        android:background="@drawable/border">
+                    </LinearLayout>
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Act Qty"
-                                            style="@style/rv_beat_details_lbl_blue"/>
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:id="@+id/tv_orders_yearly"
-                                            android:text="52600"
-                                            style="@style/rv_beat_details_val_blue"
-                                            />
+                </RelativeLayout>
 
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:layout_weight="1"
-                                        android:gravity="center_horizontal"
-                                        android:background="@drawable/border">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Tar Amt"
-                                            style="@style/rv_beat_details_lbl_blue"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:id="@+id/tv_tar_amt_yearly"
-                                            android:text="7"
-                                            style="@style/rv_beat_details_val_blue"
-                                            />
-
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:layout_weight="1"
-                                        android:gravity="center_horizontal"
-                                        android:background="@drawable/border">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Act Amt"
-                                            style="@style/rv_beat_details_lbl_blue"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:id="@+id/tv_growth_yearly"
-                                            android:text="7"
-                                            style="@style/rv_beat_details_val_blue"
-                                            />
-                                    </LinearLayout>
-                                </LinearLayout>
-                            </LinearLayout>
-                        </LinearLayout>
-                    </RelativeLayout>
-                </com.google.android.material.card.MaterialCardView>
             </RelativeLayout>
 
 
 
-
-        </LinearLayout>
     </ScrollView>
 </RelativeLayout>
 </layout>

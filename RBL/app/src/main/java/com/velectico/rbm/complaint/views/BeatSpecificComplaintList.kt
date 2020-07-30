@@ -50,12 +50,20 @@ class BeatSpecificComplaintList : BaseFragment() {
         this.binding = binding as FragmentBeatSpecificComplaintListBinding
         taskDetails = arguments!!.get("taskDetails") as BeatTaskDetails
         dlrDtl = arguments!!.get("dealerDetails") as DealerDetails
-        //showToastMessage(arguments!!.get("dealerDetails").toString())
+        showToastMessage(taskDetails.toString())
         binding.delrName.text = taskDetails.dealerName.toString()
         binding.tvProdNetPrice.text = dlrDtl.dealerPhone.toString()
         binding.tvProdTotalPrice.text = dlrDtl.DM_Contact_Person.toString()
         binding.tvOrdrAmt.text = "₹" +dlrDtl.orderAmt.toString()
         binding.collectionAmt33.text = "₹" +dlrDtl.collectionAmt.toString()
+        if (taskDetails.distribName != null){
+            binding.gradeval.text = taskDetails.distribGrade
+            binding.type.text = "Distributor"
+        }
+        else{
+            binding.gradeval.text = taskDetails.dealerGrade
+            binding.type.text = "Dealer"
+        }
 
        // complaintList = ComplaintModel().getDummyComplaintList()
         binding.resolvButton.setOnClickListener{
@@ -111,9 +119,9 @@ class BeatSpecificComplaintList : BaseFragment() {
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getComplaintList(
             //BeatAllOrderListRequestParams("7001507620","61")
-            ComplaintListRequestParams("7001507620","109","61","0","",orderStatus)
+            //ComplaintListRequestParams("7001507620","109","61","0","",orderStatus)
 
-            //ComplaintListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),taskDetails.taskId.toString(),taskDetails.dealerId.toString(),taskDetails.distribId.toString(),"",orderStatus)
+            ComplaintListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),taskDetails.taskId.toString(),taskDetails.dealerId.toString(),taskDetails.distribId.toString(),"",orderStatus)
         )
         responseCall.enqueue(ComplaintListResponse as Callback<ComplaintListResponse>)
     }

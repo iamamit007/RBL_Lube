@@ -19,7 +19,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/login_reg_input_label"
-                android:id="@+id/paymenStartDate"
+                android:id="@+id/reportStartDate"
                 android:layout_below="@+id/targtLay"
                 android:layout_marginTop="@dimen/dimen_20dp"
                 android:hint="Start Date"
@@ -35,8 +35,8 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/login_reg_input_label"
-                android:id="@+id/paymenEndDate"
-                android:layout_below="@+id/paymenStartDate"
+                android:id="@+id/reportEndDate"
+                android:layout_below="@+id/reportStartDate"
                 android:layout_marginTop="@dimen/dimen_20dp"
                 android:hint="End Date"
                 app:hintTextAppearance="@style/hintLabelColor">
@@ -53,7 +53,7 @@
                 android:id="@+id/searchBtn"
                 style="@style/styleAppCompactButton"
                 android:layout_marginTop="@dimen/dimen_30dp"
-                android:layout_below="@+id/paymenEndDate"
+                android:layout_below="@+id/reportEndDate"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/black"
                 android:text="Search" />

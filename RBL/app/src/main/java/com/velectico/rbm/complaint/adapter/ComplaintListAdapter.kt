@@ -3,6 +3,7 @@ package com.velectico.rbm.complaint.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import com.velectico.rbm.beats.adapters.BeatDateListAdapter
 import com.velectico.rbm.beats.adapters.BeatListAdapter
 import com.velectico.rbm.beats.model.Beats
@@ -49,6 +50,7 @@ class ComplaintListAdapter (var setCallback: ComplaintListAdapter.IComplaintList
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(complaintList[position])
+        Picasso.get().load(complaintList[position].imagePath).fit().into(holder.binding.ivComplaintImageUrl)
     }
     interface IComplaintListActionCallBack{
         fun moveToComplainDetails(position:Int,beatTaskId:String?,binding: RowComplaintListBinding)

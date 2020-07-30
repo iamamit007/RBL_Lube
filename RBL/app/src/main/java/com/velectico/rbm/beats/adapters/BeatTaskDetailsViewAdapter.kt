@@ -16,6 +16,7 @@ class BeatTaskDetailsViewAdapter (var setCallback: BeatTaskDetailsViewAdapter.IB
         set(value) {
             field = value
             notifyDataSetChanged()
+
         }
     inner class ViewHolder(_binding: RowBeatTaskDetailsViewBinding) : RecyclerView.ViewHolder(_binding.root) {
         val binding = _binding
@@ -46,6 +47,14 @@ class BeatTaskDetailsViewAdapter (var setCallback: BeatTaskDetailsViewAdapter.IB
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(beatList[position])
+        if (beatList[position].distribName != null){
+            holder.binding.tvProdNetPrice.text = "Distributor"
+            holder.binding.cutGrade.text = beatList[position].distribGrade
+        }
+        else{
+            holder.binding.tvProdNetPrice.text = "Dealer"
+            holder.binding.cutGrade.text = beatList[position].dealerGrade
+        }
     }
 
 

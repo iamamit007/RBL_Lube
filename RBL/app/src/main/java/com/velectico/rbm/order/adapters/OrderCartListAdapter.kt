@@ -49,6 +49,7 @@ class OrderCartListAdapter(val context: Context) : RecyclerView.Adapter<OrderCar
         holder.bind(orderCart[position])
 
         var statList: MutableList<String> = ArrayList()
+        statList.add("Select scheme")
         for (i in orderCart[position].PSM_Scheme_Details!!){
             statList.add(i.schemeName!!)
         }
@@ -60,5 +61,21 @@ class OrderCartListAdapter(val context: Context) : RecyclerView.Adapter<OrderCar
         holder.binding.spBeatName.adapter = x
         x.notifyDataSetChanged()
 
+
+        var intger = 0
+        holder.binding.cartPlusImg.setOnClickListener{
+            intger += 1
+            holder.binding.cartProductQuantityTv.setText(intger.toString())
+        }
+        holder.binding.cartMinusImg.setOnClickListener{
+            if (intger == 0){
+                return@setOnClickListener
+            }
+            intger -= 1
+            holder.binding.cartProductQuantityTv.setText(intger.toString())
+        }
+
     }
+
+
 }

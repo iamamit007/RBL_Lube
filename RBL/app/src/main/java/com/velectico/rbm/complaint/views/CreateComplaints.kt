@@ -51,7 +51,14 @@ class CreateComplaints : BaseFragment() {
         binding.tvProdTotalPrice.text = dlrDtl.DM_Contact_Person.toString()
         binding.tvOrdrAmt.text = "₹" +dlrDtl.orderAmt.toString()
         binding.collectionAmt22.text = "₹" +dlrDtl.collectionAmt.toString()
-
+        if (taskDetail.distribName != null){
+            binding.gradeval.text = taskDetail.distribGrade
+            binding.type.text = "Distributor"
+        }
+        else{
+            binding.gradeval.text = taskDetail.dealerGrade
+            binding.type.text = "Dealer"
+        }
 
 
     }

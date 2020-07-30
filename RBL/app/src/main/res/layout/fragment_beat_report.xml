@@ -56,6 +56,7 @@
 
                                         <TextView
                                             style="@style/beat_name"
+                                            android:id="@+id/name"
                                             android:text="Raja Oil Ltd"
                                             />
                                     </LinearLayout>
@@ -68,6 +69,7 @@
                                         <TextView
                                             style="@style/text_header_small"
                                             android:layout_width="wrap_content"
+                                            android:id="@+id/type"
                                             android:text="Dealer"
                                             />
 
@@ -88,7 +90,7 @@
                                             style="@style/rv_caption" />
                                         <TextView
                                             android:id="@+id/tv_km"
-                                            android:text="Kilometer - 235"
+                                            android:text="0 km"
                                             android:textAlignment="viewEnd"
                                             style="@style/rv_caption" />
 
@@ -190,13 +192,17 @@
 
 
                             </LinearLayout>
-                            <ImageView
-                                android:id="@+id/navigateToTaskDetails"
-                                android:src="@drawable/ic_grade_a"
+                            <TextView
+                                android:id="@+id/gradeval"
+                                android:text="A"
+                                android:textSize="20dip"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorGreen"
+                                android:textAlignment="center"
                                 android:layout_margin="10dp"
                                 android:layout_alignParentRight="true"
                                 android:layout_width="35dp"
-                                android:layout_height="35dp"></ImageView>
+                                android:layout_height="35dp"></TextView>
 
 
                         </RelativeLayout>
@@ -240,7 +246,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:spinnerMode="dropdown"
                             android:entries="@array/order_not_received"
                             />
 
@@ -263,7 +269,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:spinnerMode="dropdown"
                             android:entries="@array/payment_not_received"
                             />
                         
@@ -289,7 +295,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:spinnerMode="dropdown"
                             android:entries="@array/complaint_on_prod_quality"
                             />
 
@@ -312,7 +318,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:spinnerMode="dropdown"
                             android:entries="@array/price_prob_reason"
                             />
 
@@ -336,7 +342,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:spinnerMode="dropdown"
                             android:entries="@array/price_prob_reason"
                             />
 
@@ -359,7 +365,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:spinnerMode="dropdown"
                             android:entries="@array/price_prob_reason"
                             />
 
@@ -371,7 +377,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:spinnerMode="dropdown"
                             android:entries="@array/turn_over_range"
                             />
 

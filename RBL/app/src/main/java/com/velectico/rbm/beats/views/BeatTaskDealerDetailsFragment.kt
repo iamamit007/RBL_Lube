@@ -31,6 +31,7 @@ import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.order.model.OrderHead
 import com.velectico.rbm.order.views.OrderListFragmentDirections
 import com.velectico.rbm.utils.SharedPreferenceUtils
+import kotlinx.android.synthetic.main.fragment_beat_report.view.*
 import retrofit2.Callback
 
 /**
@@ -103,7 +104,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     }
 
     private fun moveToBeatReport(){
-        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToBeatReportFragment()
+        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToBeatReportFragment(taskDetails,dealerDetails)
         Navigation.findNavController(binding.btnBeatReport).navigate(navDirection)
     }
 
@@ -127,7 +128,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     }
 
     private fun moveToAllBeatReport(){
-        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToBeatReportListFragment()
+        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToBeatReportListFragment(taskDetails,dealerDetails)
         Navigation.findNavController(binding.allBeatReport).navigate(navDirection)
     }
     private fun checkPermission(){
@@ -189,7 +190,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     private val beatTaskDetailsListResponse = object : NetworkCallBack<DealerDetailsResponse>(){
         override fun onSuccessNetwork(data: Any?, response: NetworkResponse<DealerDetailsResponse>) {
             response.data?.status?.let { status ->
-
+                if (response.data.count!! > 0){
 
                // activity!!.runOnUiThread(java.lang.Runnable {
                     showToastMessage("Data has been loaded successfully!!")
@@ -201,8 +202,19 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
                     binding.actQtyVal.text = response.data.actualOrderAmt
                     binding.tarQtyVal.text = response.data.scheduleDates[0].orderAmt
                     binding.dealerName.text = taskDetails.dealerName.toString()
+                    if (taskDetails.distribName != null){
+                        binding.gradeval.text = taskDetails.distribGrade
+                        binding.type.text = "Distributor"
+                    }
+                    else{
+                        binding.gradeval.text = taskDetails.dealerGrade
+                        binding.type.text = "Dealer"
+                    }
                     hide()
-                //})
+                }
+                else{
+                    showToastMessage("no data found!!")
+                }
 
 
             }

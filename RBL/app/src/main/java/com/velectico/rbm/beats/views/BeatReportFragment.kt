@@ -44,13 +44,31 @@ class BeatReportFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     var prod_pakaging= ""
     var prod_turn= ""
     var prod_pref= ""
+    var taskDetail = BeatTaskDetails()
+    var dlrDtl = DealerDetails()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         rootView =  inflater.inflate(R.layout.fragment_beat_report, container, false)
+        taskDetail = arguments!!.get("taskDetails") as BeatTaskDetails
+        dlrDtl = arguments!!.get("dealerDetails") as DealerDetails
 
+        rootView.name.text = taskDetail.dealerName.toString()
+        rootView.tv_prodNetPrice.text = dlrDtl.dealerPhone.toString()
+        rootView.tv_prodTotalPrice.text = dlrDtl.DM_Contact_Person.toString()
+        rootView.tv_ordrAmt.text = "₹" +dlrDtl.orderAmt.toString()
+        rootView.collectionAmt.text = "₹" +dlrDtl.collectionAmt.toString()
+        if (taskDetail.distribName != null){
+            rootView.gradeval.text = taskDetail.distribGrade
+            rootView.type.text = "Distributor"
+        }
+        else{
+            rootView.gradeval.text = taskDetail.dealerGrade
+            rootView.type.text = "Dealer"
+        }
         initSpinner()
         callApi("Complain vs Quality")
         callApi("Packaging")
@@ -422,12 +440,12 @@ class BeatReportFragment : Fragment(), DatePickerDialog.OnDateSetListener {
        val date =  DateUtils.parseDate(rootView.et_followupdate.text.toString(),inpFormat,outputformat)
       val param =  CreateBeatReportRequestParams(
           SharedPreferenceUtils.getLoggedInUserId(context as Context),
-          "123",
-          "66",
-          "0",
+          taskDetail.taskId,
+          taskDetail.dealerId,
+          taskDetail.distribId,
           orderstat,
           paymentStat,
-          complain,prod_price,prod_pakaging,prod_pref,prod_turn,date,""
+          complain,prod_price,prod_pakaging,prod_pref,prod_turn,date,rootView.til_follow_up_reason_txt.text.toString()
 
         )
         // DealerDetailsRequestParams(
