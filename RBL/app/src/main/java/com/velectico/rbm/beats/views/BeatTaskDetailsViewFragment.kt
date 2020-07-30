@@ -56,7 +56,7 @@ class BeatTaskDetailsViewFragment : BaseFragment() {
         val x = y as TaskDetails
         binding.task = x
 
-showToastMessage(scheduleId.toString())
+        //showToastMessage(scheduleId.toString())
 
         setUpRecyclerView()
         callApi2()
@@ -83,7 +83,7 @@ showToastMessage(scheduleId.toString())
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getScheduleTaskDetailsByBeat(BeatTaskDetailsRequestParams(
-            SharedPreferenceUtils.getLoggedInUserId(context as Context),scheduleId.scheduleId.toString()))
+            SharedPreferenceUtils.getLoggedInUserId(context as Context),scheduleId.schedule_id.toString()))
         responseCall.enqueue(beatTaskDetailsListResponse as Callback<BeatTaskDetailsListResponse>)
     }
 
@@ -94,11 +94,12 @@ showToastMessage(scheduleId.toString())
             response.data?.status?.let { status ->
                 Log.e("test222","BeatTaskDetailsListResponse status="+response.data)
                 beatList.toMutableList().clear()
-                if (response.data.Task_Details!!.isEmpty()){
-                    showToastMessage("No data found")
-                }else{
+                if (response.data.count!! > 0){
                     beatList = response.data.Task_Details!!.toMutableList()
                     setUpRecyclerView()
+
+                }else{
+                    showToastMessage("No data found")
                 }
 
             }

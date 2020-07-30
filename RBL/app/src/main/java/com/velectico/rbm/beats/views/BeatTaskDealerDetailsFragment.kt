@@ -103,7 +103,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     }
 
     private fun moveToBeatReport(){
-        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToBeatReportFragment()
+        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToBeatReportFragment(taskDetails,dealerDetails)
         Navigation.findNavController(binding.btnBeatReport).navigate(navDirection)
     }
 
@@ -127,7 +127,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     }
 
     private fun moveToAllBeatReport(){
-        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToBeatReportListFragment()
+        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToBeatReportListFragment(taskDetails,dealerDetails)
         Navigation.findNavController(binding.allBeatReport).navigate(navDirection)
     }
     private fun checkPermission(){
@@ -189,7 +189,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     private val beatTaskDetailsListResponse = object : NetworkCallBack<DealerDetailsResponse>(){
         override fun onSuccessNetwork(data: Any?, response: NetworkResponse<DealerDetailsResponse>) {
             response.data?.status?.let { status ->
-
+                if (response.data.count!! > 0){
 
                // activity!!.runOnUiThread(java.lang.Runnable {
                     showToastMessage("Data has been loaded successfully!!")
@@ -202,7 +202,10 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
                     binding.tarQtyVal.text = response.data.scheduleDates[0].orderAmt
                     binding.dealerName.text = taskDetails.dealerName.toString()
                     hide()
-                //})
+                }
+                else{
+                    showToastMessage("no data found!!")
+                }
 
 
             }

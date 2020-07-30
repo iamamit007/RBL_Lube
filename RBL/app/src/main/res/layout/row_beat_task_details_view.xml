@@ -47,7 +47,7 @@
 
                         <TextView
                             android:id="@+id/tv_prodNetPrice"
-                            android:text="Dealer Address"
+                            android:text="-"
                             style="@style/rv_caption" />
 
                     </LinearLayout>
@@ -101,19 +101,22 @@
 
             <ImageView
                 android:id="@+id/navigateToDealerDetails"
-                android:src="@drawable/ic_right_arrow"
+                android:src="@drawable/arrow"
                 android:layout_margin="10dp"
                 android:layout_alignParentRight="true"
                 android:layout_width="25dp"
                 android:layout_height="25dp"></ImageView>
 
-            <ImageView
+            <TextView
                 android:id="@+id/cutGrade"
-                android:src="@drawable/ic_grade_a"
                 android:layout_margin="10dp"
+                android:textSize="20dip"
+                android:textStyle="bold"
+                android:textColor="@color/colorGreen"
+                android:textAlignment="center"
                 android:layout_toLeftOf="@+id/navigateToDealerDetails"
                 android:layout_width="35dp"
-                android:layout_height="35dp"></ImageView>
+                android:layout_height="35dp"></TextView>
 
         </RelativeLayout>
 

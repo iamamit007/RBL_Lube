@@ -336,7 +336,14 @@
     <fragment
         android:id="@+id/beatReportFragment"
         android:name="com.velectico.rbm.beats.views.BeatReportFragment"
-        android:label="Beat Report" />
+        android:label="Beat Report" >
+        <argument
+            android:name="taskDetails"
+            app:argType="com.velectico.rbm.beats.model.BeatTaskDetails" />
+        <argument
+            android:name="dealerDetails"
+            app:argType="com.velectico.rbm.beats.model.DealerDetails" />
+    </fragment>
     <fragment
         android:id="@+id/createComplaintsUserWise"
         android:name="com.velectico.rbm.complaint.views.CreateComplaintsUserWise"
@@ -431,7 +438,14 @@
     <fragment
         android:id="@+id/beatReportListFragment"
         android:name="com.velectico.rbm.beats.views.BeatReportListFragment"
-        android:label="Report List" />
+        android:label="Report List" >
+        <argument
+            android:name="taskDetail"
+            app:argType="com.velectico.rbm.beats.model.BeatTaskDetails" />
+        <argument
+            android:name="dealerDetails"
+            app:argType="com.velectico.rbm.beats.model.DealerDetails" />
+    </fragment>
     <fragment
         android:id="@+id/qrcodeScanner"
         android:name="com.velectico.rbm.qrcodescan.view.QrcodeScanner"

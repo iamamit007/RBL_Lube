@@ -56,6 +56,7 @@
 
                                         <TextView
                                             style="@style/beat_name"
+                                            android:id="@+id/name"
                                             android:text="Raja Oil Ltd"
                                             />
                                     </LinearLayout>
@@ -68,6 +69,7 @@
                                         <TextView
                                             style="@style/text_header_small"
                                             android:layout_width="wrap_content"
+                                            android:id="@+id/type"
                                             android:text="Dealer"
                                             />
 
@@ -190,13 +192,17 @@
 
 
                             </LinearLayout>
-                            <ImageView
-                                android:id="@+id/navigateToTaskDetails"
-                                android:src="@drawable/ic_grade_a"
+                            <TextView
+                                android:id="@+id/gradeval"
+                                android:text="A"
+                                android:textSize="20dip"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorGreen"
+                                android:textAlignment="center"
                                 android:layout_margin="10dp"
                                 android:layout_alignParentRight="true"
                                 android:layout_width="35dp"
-                                android:layout_height="35dp"></ImageView>
+                                android:layout_height="35dp"></TextView>
 
 
                         </RelativeLayout>

@@ -111,9 +111,9 @@ class BeatSpecificComplaintList : BaseFragment() {
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getComplaintList(
             //BeatAllOrderListRequestParams("7001507620","61")
-            ComplaintListRequestParams("7001507620","109","61","0","",orderStatus)
+            //ComplaintListRequestParams("7001507620","109","61","0","",orderStatus)
 
-            //ComplaintListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),taskDetails.taskId.toString(),taskDetails.dealerId.toString(),taskDetails.distribId.toString(),"",orderStatus)
+            ComplaintListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),taskDetails.taskId.toString(),taskDetails.dealerId.toString(),taskDetails.distribId.toString(),"",orderStatus)
         )
         responseCall.enqueue(ComplaintListResponse as Callback<ComplaintListResponse>)
     }

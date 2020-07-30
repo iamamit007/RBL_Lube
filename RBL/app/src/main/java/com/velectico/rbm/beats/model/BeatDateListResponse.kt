@@ -53,7 +53,7 @@ data class BeatWiseTakListResponse(
 
 data class TaskDetails(
     val beatMaster_Id: String? = null,
-    val scheduleId: String? = null,
+    val schedule_id: String? = null,
     val BM_Beat_Name: String? = null,
     val BM_Resp_Level: String? = null,
     val schedule_startDate: String? = null,
@@ -62,7 +62,6 @@ data class TaskDetails(
     val orderAmt: String? = null,
     val collectionAmt: String? = null,
     val visit: String? = null
-
 ):Serializable
 
 
@@ -85,11 +84,11 @@ data class BeatTaskDetails(
     val taskId: String? = null,
     val dealerName: String? = null,
     val dealerAddress: String? = null,
-
+    val dealerGrade: String? = null,
     val distribName: String? = null,
     val distribAddress: String? = null,
     val BSD_Work_Assg_Comment: String? = null,
-
+    val distribGrade: String? = null,
     val BSD_Targer_Qty: String? = null,
     val BSD_Targer_Amt: String? = null,
     val dealerId: String? = null,

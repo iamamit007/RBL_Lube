@@ -14,6 +14,7 @@ import com.velectico.rbm.R
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.adapters.BeatReportListAdapter
 import com.velectico.rbm.beats.model.*
+import com.velectico.rbm.complaint.model.ComplaintListRequestParams
 import com.velectico.rbm.databinding.FragmentBeatReportListBinding
 import com.velectico.rbm.databinding.FragmentTeamPerformanceDetailsBinding
 import com.velectico.rbm.network.callbacks.NetworkCallBack
@@ -34,7 +35,8 @@ class BeatReportListFragment : BaseFragment()  {
     private lateinit var binding: FragmentBeatReportListBinding
     private var reportList : List<BeatReportListDetails> = emptyList()
     private lateinit var adapter: BeatReportListAdapter
-
+    var taskDetails = BeatTaskDetails()
+    var dlrDtl = DealerDetails()
     override fun getLayout(): Int {
         return R.layout.fragment_beat_report_list
     }
@@ -43,6 +45,8 @@ class BeatReportListFragment : BaseFragment()  {
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentBeatReportListBinding
         //reportList = BeatReport().getDummyBeatComList()
+        taskDetails = arguments!!.get("taskDetail") as BeatTaskDetails
+        dlrDtl = arguments!!.get("dealerDetails") as DealerDetails
         callApiBeatReportList()
         setUpRecyclerView()
 
@@ -74,8 +78,9 @@ class BeatReportListFragment : BaseFragment()  {
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getBeatReportList(
             //BeatAllOrderListRequestParams("7001507620","61")
+            BeatReportListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),taskDetails.taskId.toString(),taskDetails.dealerId.toString(),taskDetails.distribId.toString(),"2020-07-28","2020-07-31")
 
-            BeatReportListRequestParams("7001507620","109","61","0","2020-07-26","2020-07-26")
+            //BeatReportListRequestParams("7001507620","109","61","0","2020-07-26","2020-07-26")
         )
         responseCall.enqueue(BeatReportListDetailsResponse as Callback<BeatReportListDetailsResponse>)
     }
