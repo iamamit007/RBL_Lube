@@ -28,6 +28,7 @@ import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
+import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
 import java.util.ArrayList
@@ -88,7 +89,8 @@ class AssignTargetToBeat : BaseFragment() {
         }
         val responseCall = apiInterface.assignTask(
             //DealDistMechListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),AssignBeatToLocation.source,AssignBeatToLocation.areaList)
-            AssignTaskRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),"63",list)
+           AssignTaskRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),"63",list)
+          //  AssignTaskRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),GloblalDataRepository.getInstance().scheduleId,list)
         )
         responseCall.enqueue(assignTaskResponseResponse as Callback<CreateBeatReportResponse>)
     }
@@ -143,6 +145,7 @@ class AssignTargetToBeat : BaseFragment() {
                 setUpRecyclerView()
             }else{
                 Toast.makeText(activity!!,"No Data Found",Toast.LENGTH_SHORT).show()
+                moveToBeatList()
             }
 
 

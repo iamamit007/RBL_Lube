@@ -310,7 +310,9 @@ data class  CreateBeatReportRequestParams(
 ): BaseModel()
 data class CreateBeatReportResponse(
     val count: Int,
-    val respMessage:String
+    val respMessage:String,
+    val beatScheduleId:String
+
 
 ):Serializable
 

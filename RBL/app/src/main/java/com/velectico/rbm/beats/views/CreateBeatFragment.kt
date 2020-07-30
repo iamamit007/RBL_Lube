@@ -2,6 +2,7 @@ package com.velectico.rbm.beats.views
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -32,6 +33,8 @@ import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.order.views.OrderListFragmentDirections
 import com.velectico.rbm.utils.DateUtility
+import com.velectico.rbm.utils.GloblalDataRepository
+import com.velectico.rbm.utils.SharedPreferenceUtils
 import kotlinx.android.synthetic.main.fragment_beat_report.view.*
 import retrofit2.Callback
 import java.util.*
@@ -229,6 +232,7 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.createBeatSchedule(
             CreateBeatScheduleRequestParams("7001507620",masterId,"2020-07-22","2020-07-25")
+           // CreateBeatScheduleRequestParams((SharedPreferenceUtils.getLoggedInUserId(context as Context),masterId,"2020-07-22","2020-07-25")
         )
         responseCall.enqueue(createBeatScheduleResponseResponse as Callback<CreateBeatReportResponse>)
 
@@ -239,6 +243,7 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
 
                 hide()
                 showToastMessage( response.data?.respMessage!!)
+                GloblalDataRepository.getInstance().scheduleId =   response.data?.beatScheduleId
                 val navDirection =  CreateBeatFragmentDirections.actionCreateBeatFragmentToAssignBeatToLocation()
                 Navigation.findNavController(binding.btnAssignTask).navigate(navDirection)
 
