@@ -176,7 +176,6 @@
                     android:textAlignment="center"
                     style="@style/rv_caption" />
                 <TextView
-                    android:id="@+id/tv_due_amount"
                     android:text="₹ 5,000"
                     android:textAlignment="center"
                     style="@style/rv_caption" />
@@ -264,7 +263,6 @@
                             android:textAlignment="center"
                             style="@style/rv_caption" />
                         <TextView
-                            android:id="@+id/tv_due_amount"
                             android:text="₹ 5,000"
                             android:textAlignment="center"
                             style="@style/rv_caption" />

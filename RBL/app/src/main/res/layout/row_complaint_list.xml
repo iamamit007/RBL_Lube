@@ -16,9 +16,8 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/iv_complaintImageUrl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/dimen_16dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/content_description_media"
@@ -43,6 +42,7 @@
 
                         <TextView
                             android:id="@+id/tv_prodId"
+                            android:visibility="gone"
                             style="@style/rv_caption"
                             android:text="Dealer Name" />
 
@@ -148,6 +148,7 @@
 
                         <TextView
                             android:id="@+id/tv_Packaging"
+                            android:visibility="gone"
                             android:text="In-Progress"
                             style="@style/rv_caption" />
 
