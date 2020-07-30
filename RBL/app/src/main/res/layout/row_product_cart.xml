@@ -98,7 +98,7 @@
                 android:id="@+id/plist_weight_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:visibility="gone"
                 android:text="1.5 ltr"
                 android:textColor="#343434"
                 android:textSize="12dip" />
@@ -128,7 +128,7 @@
                         >
 
                 <ImageButton
-                    android:id="@+id/cart_minus_img"
+                    android:id="@+id/cart_plus_img"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@drawable/ic_plus"
@@ -141,12 +141,12 @@
                     android:layout_gravity="center_vertical"
                     android:paddingLeft="15dip"
                     android:paddingRight="15dip"
-                    android:text="10"
-                    android:textSize="12dip"
+                    android:text="0"
+                    android:textSize="18dip"
                     android:textStyle="bold" />
 
                 <ImageButton
-                    android:id="@+id/cart_plus_img"
+                    android:id="@+id/cart_minus_img"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
 
@@ -169,7 +169,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:drawableRight="@drawable/ic_expand"
@@ -178,6 +178,8 @@
         <Spinner
             android:visibility="visible"
             android:id="@+id/sp_beatName"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
             android:spinnerMode="dropdown"
             app:smsp_hint="Select Beat"
             style="@style/custom_spinner" />

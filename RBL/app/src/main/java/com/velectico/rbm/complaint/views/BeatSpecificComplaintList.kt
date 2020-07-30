@@ -56,6 +56,14 @@ class BeatSpecificComplaintList : BaseFragment() {
         binding.tvProdTotalPrice.text = dlrDtl.DM_Contact_Person.toString()
         binding.tvOrdrAmt.text = "₹" +dlrDtl.orderAmt.toString()
         binding.collectionAmt33.text = "₹" +dlrDtl.collectionAmt.toString()
+        if (taskDetails.distribName != null){
+            binding.gradeval.text = taskDetails.distribGrade
+            binding.type.text = "Distributor"
+        }
+        else{
+            binding.gradeval.text = taskDetails.dealerGrade
+            binding.type.text = "Dealer"
+        }
 
        // complaintList = ComplaintModel().getDummyComplaintList()
         binding.resolvButton.setOnClickListener{

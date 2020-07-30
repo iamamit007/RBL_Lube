@@ -97,7 +97,7 @@ class OrderListFragment : BaseFragment()  {
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getBeatAllOrderHistory(
-            //BeatAllOrderListRequestParams("7001507620","61")
+            //BeatAllOrderListRequestParams("7001507620","61",,orderStatus)
             BeatAllOrderListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),arguments?.getString(  "dealerId").toString(),orderStatus)
         )
         responseCall.enqueue(OrderHistoryDetailsResponse as Callback<OrderHistoryDetailsResponse>)

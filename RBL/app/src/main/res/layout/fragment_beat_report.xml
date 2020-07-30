@@ -90,7 +90,7 @@
                                             style="@style/rv_caption" />
                                         <TextView
                                             android:id="@+id/tv_km"
-                                            android:text="Kilometer - 235"
+                                            android:text="0 km"
                                             android:textAlignment="viewEnd"
                                             style="@style/rv_caption" />
 
@@ -246,7 +246,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:spinnerMode="dropdown"
                             android:entries="@array/order_not_received"
                             />
 
@@ -269,7 +269,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:spinnerMode="dropdown"
                             android:entries="@array/payment_not_received"
                             />
                         
@@ -295,7 +295,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:spinnerMode="dropdown"
                             android:entries="@array/complaint_on_prod_quality"
                             />
 
@@ -318,7 +318,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:spinnerMode="dropdown"
                             android:entries="@array/price_prob_reason"
                             />
 
@@ -342,7 +342,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:spinnerMode="dropdown"
                             android:entries="@array/price_prob_reason"
                             />
 
@@ -365,7 +365,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:spinnerMode="dropdown"
                             android:entries="@array/price_prob_reason"
                             />
 
@@ -377,7 +377,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
-                            android:background="@drawable/complaint_spinner"
+                            android:spinnerMode="dropdown"
                             android:entries="@array/turn_over_range"
                             />
 

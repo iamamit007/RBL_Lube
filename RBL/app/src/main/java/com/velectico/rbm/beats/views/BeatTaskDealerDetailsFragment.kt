@@ -31,6 +31,7 @@ import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.order.model.OrderHead
 import com.velectico.rbm.order.views.OrderListFragmentDirections
 import com.velectico.rbm.utils.SharedPreferenceUtils
+import kotlinx.android.synthetic.main.fragment_beat_report.view.*
 import retrofit2.Callback
 
 /**
@@ -201,6 +202,14 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
                     binding.actQtyVal.text = response.data.actualOrderAmt
                     binding.tarQtyVal.text = response.data.scheduleDates[0].orderAmt
                     binding.dealerName.text = taskDetails.dealerName.toString()
+                    if (taskDetails.distribName != null){
+                        binding.gradeval.text = taskDetails.distribGrade
+                        binding.type.text = "Distributor"
+                    }
+                    else{
+                        binding.gradeval.text = taskDetails.dealerGrade
+                        binding.type.text = "Dealer"
+                    }
                     hide()
                 }
                 else{
