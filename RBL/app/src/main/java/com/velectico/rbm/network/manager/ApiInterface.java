@@ -1,5 +1,6 @@
 package com.velectico.rbm.network.manager;
 
+import com.velectico.rbm.beats.model.AssignTaskRequestParams;
 import com.velectico.rbm.beats.model.AssignToListRequestParams;
 import com.velectico.rbm.beats.model.AssignToListResponse;
 import com.velectico.rbm.beats.model.BeatAllOrderListRequestParams;
@@ -50,6 +51,7 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Location_
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Order_History;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Product_List_By_Cat_Seg;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Task_For;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Save_AssignTask;
 
 public interface ApiInterface {
 
@@ -108,5 +110,8 @@ public interface ApiInterface {
 
     @POST(Complaint_List)
     Call<ComplaintListResponse> getComplaintList(@Body ComplaintListRequestParams model);
+
+    @POST(Save_AssignTask)
+    Call<CreateBeatReportResponse> assignTask(@Body AssignTaskRequestParams model);
 
 }

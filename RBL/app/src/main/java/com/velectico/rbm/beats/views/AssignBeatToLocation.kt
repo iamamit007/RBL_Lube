@@ -2,6 +2,7 @@ package com.velectico.rbm.beats.views
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -35,8 +36,14 @@ class AssignBeatToLocation : BaseFragment() {
 
     private lateinit var binding: FragmentAssignBeatToLocationBinding
     private lateinit var mBeatSharedViewModel: BeatSharedViewModel
+        companion object{
 
+        var source:String = ""
+        var areaList:String = ""
+        var taskLevel:String = ""
+        var personId:String = ""
 
+    }
     override fun getLayout(): Int {
         return R.layout.fragment_assign_beat_to_location
     }
@@ -65,35 +72,17 @@ class AssignBeatToLocation : BaseFragment() {
         provinceList.add("Zone")
         provinceList.add("District")
         provinceList.add("Area")
-        binding.spLocation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+
+
+
+
+        binding.spinner3.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
-                binding.etHigherLocation.setText( dataList[position].respValue)
+                binding.etLocation.setText( personList[position].UM_Name)
+                personId = personList[position].UM_ID!!
 
 
-            }
-
-            override fun onNothingSelected(adapterView: AdapterView<*>) {}
-        }
-        binding.spBeatName.setItem(provinceList)
-
-
-        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
-                binding.etHigherLocation.setText( dataList[position].respValue)
-                taskLevel = dataList[position].taskLevel!!
-                callApi2(dataList[position].taskLevel!!)
-            }
-            override fun onNothingSelected(adapterView: AdapterView<*>) {}
-        }
-
-        binding.spLocation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
-                binding.etLocation.setText( locationList[position].locValue)
-//                beatLevel = provinceList[position].get(0).toString().toUpperCase()
-//                callApi(type = beatLevel)
-//                mBeatSharedViewModel.beats.value?.beatId = position.toString()
-//                mBeatSharedViewModel.beats.value?.beatName =  provinceList[position]
-                callApi3(taskLevel,locationList[position].locValue!!)
             }
             override fun onNothingSelected(adapterView: AdapterView<*>) {}
         }}
@@ -105,9 +94,6 @@ class AssignBeatToLocation : BaseFragment() {
        // binding.spBeatName.setItem(provinceList)
     }
 
-    var source:String = ""
-    var areaList:String = ""
-    var taskLevel:String = ""
     fun callApi(){
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
@@ -125,9 +111,9 @@ class AssignBeatToLocation : BaseFragment() {
                 hide()
                 source = response.data.source!!
                 areaList = response.data.areaList!!
-                dataList  = response.data.TaskForList[0]
+                dataList  = response.data.TaskForList
                 var statList: MutableList<String> = ArrayList()
-                for (i in response.data.TaskForList[0]){
+                for (i in response.data.TaskForList){
                     statList.add(i.respValue!!)
                 }
 
@@ -139,8 +125,27 @@ class AssignBeatToLocation : BaseFragment() {
                         it,
                         android.R.layout.simple_spinner_item, statList)
                 }
+                binding.spinner.adapter = null
+
                 binding.spinner.adapter = adapter2
-              //  taskLevel = dataList[0].taskLevel!!
+                binding.spinner.setSelection(0,false)
+                binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
+                     //   if ( binding.spinner.tag == 0){
+                            binding.spinner.tag = 1
+                            binding.etHigherLocation.setText( dataList[position].respValue)
+                            taskLevel = dataList[position].taskLevel!!
+                            Handler().postDelayed({
+                                callApi2(dataList[position].taskLevel!!)
+                            }, 1000)
+                    //    }
+
+
+                    }
+                    override fun onNothingSelected(adapterView: AdapterView<*>) {}
+                }
+
+                //  taskLevel = dataList[0].taskLevel!!
                // callApi2(dataList[0].taskLevel!!)
 
             }
@@ -168,14 +173,32 @@ class AssignBeatToLocation : BaseFragment() {
             response.data?.status?.let { status ->
 
                 hide()
-                locationList  = response.data.LocationList
+                locationList.toMutableList().clear()
+                locationList  = response.data.LocationList[0]
                 var statList: MutableList<String> = ArrayList()
                 for (i in locationList){
                     statList.add(i.locValue!!)
                 }
 
-                binding.spLocation.setItem(statList)
-                binding.spLocation.setSelection(0)
+                val adapter2 = context?.let {
+                    ArrayAdapter(
+                        it,
+                        android.R.layout.simple_spinner_item, statList)
+                }
+                binding.spinner2.adapter = null
+                binding.spinner2.adapter = adapter2
+                binding.spinner2.setSelection(0,false)
+                binding.spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
+                        binding.etHigherLocation.setText( locationList[position].locValue)
+                        areaList = locationList[position].locId!!
+                        Handler().postDelayed({
+                            callApi3(taskLevel,locationList[position].locId!!)
+                        }, 1000)
+
+                    }
+                    override fun onNothingSelected(adapterView: AdapterView<*>) {}
+                }
               //  callApi3(locationList)
 
             }
@@ -193,7 +216,8 @@ class AssignBeatToLocation : BaseFragment() {
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getAssignToList(
-            AssignToListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),source,level,areaId)
+            //AssignToListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),source,level,areaId)
+            AssignToListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),"R","R","5")
         )
         responseCall.enqueue(getAssignToListResponse as Callback<AssignToListResponse>)
 
@@ -204,14 +228,26 @@ class AssignBeatToLocation : BaseFragment() {
             response.data?.status?.let { status ->
 
                 hide()
+                if (response.data.AssignToList != null){
                 personList  = response.data.AssignToList
                 var statList: MutableList<String> = ArrayList()
                 for (i in personList){
                     statList.add(i.UM_Name!!)
                 }
+                val adapter2 = context?.let {
+                    ArrayAdapter(
+                        it,
+                        android.R.layout.simple_spinner_item, statList)
+                }
+                binding.spinner3.adapter = null
+                binding.spinner3.adapter = adapter2
+                binding.spinner3.setSelection(0,false)}
+                else{
+                    showToastMessage("No Data found")
+                }
 
-                binding.spSalesperson.setItem(statList)
-                binding.spSalesperson.setSelection(0)
+
+
 
             }
 

@@ -347,7 +347,7 @@ data class  TaskForListRequestParams(
 data class TaskForListResponse(
     val count: Int,
     @SerializedName("taskFor")
-    val TaskForList: List<List<TaskForList>>,
+    val TaskForList:List<TaskForList>,
     @SerializedName("status")
     val status: Int? = null,
     @SerializedName("source")
@@ -373,7 +373,7 @@ data class  LocationByLevelListRequestParams(
 data class LocationByLevelListResponse(
     val count: Int,
     @SerializedName("location")
-    val LocationList: List<LocationList>,
+    val LocationList: List<List<LocationList>>,
     @SerializedName("status")
     val status: Int? = null
 
@@ -412,13 +412,15 @@ data class  DealDistMechListRequestParams(
 
 ): BaseModel()
 
+
 data class DealDistMechListResponse(
+    val count: Int,
+    @SerializedName("Details")
+    val DealDistMechList: List<DealDistMechList>,
+    @SerializedName("status")
+    val status: Int? = null
+):Serializable
 
-    @SerializedName("")
-    val DealDistMechList: List<DealDistMechList>
-
-
-)
 data class DealDistMechList(
     var UM_ID: String? = null,
     var UM_Name: String? = null,
@@ -434,6 +436,24 @@ data class  CreateBeatScheduleRequestParams(
     @SerializedName("beatMasterId") var beatMasterId: String,
     @SerializedName("startDate") var startDate: String,
     @SerializedName("endDate") var endDate: String
+
+): BaseModel()
+
+
+data class  AssignTaskRequestParams(
+    @SerializedName("userId") var userId: String,
+    @SerializedName("scheduleId") var scheduleId: String,
+    @SerializedName("AssignDetails") var endDate:List<AssignDetailsParams>
+
+): BaseModel()
+
+data class  AssignDetailsParams(
+    @SerializedName("dealerId") var dealerId: String,
+    @SerializedName("distribId") var distribId: String,
+    @SerializedName("mechId") var mechId: String,
+    @SerializedName("orderAmt") var orderAmt: String,
+    @SerializedName("collectionAmt") var collectionAmt: String,
+    @SerializedName("comment") var comment: String
 
 ): BaseModel()
 

@@ -14,16 +14,13 @@ data class  ComplaintListRequestParams(
     @SerializedName("CR_Res_Status") var CR_Res_Status: String
 ): BaseModel()
 
+
 data class ComplaintListResponse(
     val count: Int,
     @SerializedName("Details")
     val ComplaintList: List<ComplainListDetails>,
     @SerializedName("status")
     val status: Int? = null
-
-
-
-
 )
 data class ComplainListDetails(
     var CR_ID: String? = null,

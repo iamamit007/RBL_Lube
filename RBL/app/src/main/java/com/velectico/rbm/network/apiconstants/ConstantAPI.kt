@@ -127,6 +127,9 @@ const val Create_Beat_Schedule = APP_API_NAME+"Create_Beat_Schedule"
 
 const val Complaint_List = APP_API_NAME+"Complaint_List"
 
+const val Save_AssignTask = APP_API_NAME+"Save_AssignTask"
+
+
 
 
 
