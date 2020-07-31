@@ -51,6 +51,7 @@ class OrderHeadListAdapter(var setCallback: OrderHeadListAdapter.IBeatDateListAc
 
     override fun onBindViewHolder(holder: OrderHeadListAdapter.ViewHolder, position: Int) {
         holder.bind(orderList[position])
+       // holder.binding.tvUnit.text =
     }
 
     interface IBeatDateListActionCallBack{

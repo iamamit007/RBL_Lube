@@ -114,7 +114,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     }
 
     private fun moveToOrderHistory(){
-        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToOrderListFragment(taskDetails.dealerId.toString())
+        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToOrderListFragment(taskDetails)
         Navigation.findNavController(binding.btnOrderHistory).navigate(navDirection)
     }
     private fun moveToViewAllComplaints(){

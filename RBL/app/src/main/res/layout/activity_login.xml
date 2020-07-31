@@ -46,7 +46,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_email"
                         style="@style/login_reg_input_text"
-                        android:text="3255632980"
+                        android:text="7001507620"
                         android:inputType="phone"
                         />
                 </com.google.android.material.textfield.TextInputLayout>

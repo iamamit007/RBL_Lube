@@ -1,8 +1,6 @@
 package com.velectico.rbm.beats.viewmodel
 
-import android.content.Context
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -16,9 +14,7 @@ import com.velectico.rbm.beats.model.BeatAssignments
 import com.velectico.rbm.beats.model.BeatDateListResponse
 import com.velectico.rbm.beats.model.Beats
 import com.velectico.rbm.beats.model.ScheduleDates
-import com.velectico.rbm.leave.model.LeaveListModel
 import com.velectico.rbm.leave.model.LeaveListRequest
-import com.velectico.rbm.leave.model.LeaveListResponse
 import com.velectico.rbm.network.apiconstants.*
 import com.velectico.rbm.network.callbacks.NetworkCallBack
 import com.velectico.rbm.network.callbacks.NetworkError
@@ -27,7 +23,6 @@ import com.velectico.rbm.network.manager.ManagerFactory
 import com.velectico.rbm.network.manager.getNetworkManager
 import com.velectico.rbm.network.request.NetworkRequest
 import com.velectico.rbm.network.response.NetworkResponse
-import com.velectico.rbm.utils.SharedPreferenceUtils
 
 class BeatSharedViewModel(private val networkManager: INetworkManager) : BaseViewModel() {
     var assignmentList = MutableLiveData<MutableList<BeatAssignments>>()

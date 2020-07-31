@@ -34,6 +34,7 @@ class OrderListFragment : BaseFragment()  {
     private var orderHeadList : List<OrderListDetails> = emptyList()
     private lateinit var adapter: OrderHeadListAdapter
     var orderStatus = ""
+    var taskDetails = BeatTaskDetails()
     override fun getLayout(): Int {
         return R.layout.fragment_order_list
     }
@@ -42,8 +43,9 @@ class OrderListFragment : BaseFragment()  {
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentOrderListBinding
+        //showToastMessage(SharedPreferenceUtils.getLoggedInUserId(context as Context))
         //orderHeadList = OrderHead().getDummyOrderList()
-
+        taskDetails = arguments!!.get("taskDetails") as BeatTaskDetails
         if (RBMLubricantsApplication.fromBeat == "Beat" ){
             binding.tilDealer.visibility = View.GONE
 
@@ -98,8 +100,8 @@ class OrderListFragment : BaseFragment()  {
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getBeatAllOrderHistory(
-            //BeatAllOrderListRequestParams("7001507620","61",,orderStatus)
-            BeatAllOrderListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),arguments?.getString(  "dealerId").toString(),orderStatus)
+            BeatAllOrderListRequestParams("7001507620","61","0",orderStatus)
+            //BeatAllOrderListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),taskDetails.dealerId.toString(),taskDetails.distribId.toString(),orderStatus)
         )
         responseCall.enqueue(OrderHistoryDetailsResponse as Callback<OrderHistoryDetailsResponse>)
     }
@@ -141,7 +143,7 @@ private fun setUpRecyclerView() {
             override fun moveToOrderDetails(position: Int, beatTaskId: String?,binding: RowOrderHeadListBinding) {
                 Log.e("test","onAddTask"+beatTaskId)
 
-                val navDirection =  OrderListFragmentDirections.actionOrderListFragmentToOrderDetailsFragment2()
+                val navDirection =  OrderListFragmentDirections.actionOrderListFragmentToOrderDetailsFragment2(taskDetails,orderHeadList[position])
                 Navigation.findNavController(binding.navigateToDetails).navigate(navDirection)
 
 

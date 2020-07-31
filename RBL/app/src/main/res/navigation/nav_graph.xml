@@ -178,8 +178,8 @@
             android:id="@+id/action_orderListFragment_to_productFilterFragment"
             app:destination="@id/productFilterFragment" />
         <argument
-            android:name="dealerId"
-            app:argType="string" />
+            android:name="taskDetails"
+            app:argType="com.velectico.rbm.beats.model.BeatTaskDetails" />
     </fragment>
     <fragment
         android:id="@+id/createOrderFragment"
@@ -191,6 +191,12 @@
         <action
             android:id="@+id/action_createOrderFragment_to_productFilterFragment"
             app:destination="@id/productFilterFragment" />
+        <argument
+            android:name="catId"
+            app:argType="string" />
+        <argument
+            android:name="segId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/orderPreviewFragment"
@@ -203,7 +209,14 @@
     <fragment
         android:id="@+id/orderDetailsFragment2"
         android:name="com.velectico.rbm.order.views.OrderDetailsFragment"
-        android:label="Order Details" />
+        android:label="Order Details" >
+        <argument
+            android:name="taskDetail"
+            app:argType="com.velectico.rbm.beats.model.BeatTaskDetails" />
+        <argument
+            android:name="orderListDetail"
+            app:argType="com.velectico.rbm.beats.model.OrderListDetails" />
+    </fragment>
     <fragment
         android:id="@+id/assignBeatToLocation"
         android:name="com.velectico.rbm.beats.views.AssignBeatToLocation"
@@ -211,6 +224,12 @@
         <action
             android:id="@+id/action_assignBeatToLocation_to_assignTargetToBeat"
             app:destination="@id/assignTargetToBeat" />
+        <argument
+            android:name="startDate"
+            app:argType="string" />
+        <argument
+            android:name="endDate"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/assignTargetToBeat"

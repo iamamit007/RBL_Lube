@@ -222,7 +222,7 @@
                 <TextView
                     android:id="@+id/tv_prodId_total"
                     style="@style/wrap_contet_data"
-                    android:text="Rs 5500"
+                    android:text=""
                     />
 
 

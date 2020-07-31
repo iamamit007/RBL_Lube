@@ -31,7 +31,7 @@ class OrderFilter : BaseFragment()  {
 
         binding.btnOrderHistory.setOnClickListener {
 
-            val navDirection =  OrderFilterDirections.actionOrderFilterToCreateOrderFragment()
+            val navDirection =  OrderFilterDirections.actionOrderFilterToCreateOrderFragment("","")
             Navigation.findNavController(binding.btnOrderHistory).navigate(navDirection)
         }
 

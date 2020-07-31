@@ -14,6 +14,7 @@ import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.R
 import com.velectico.rbm.RBMLubricantsApplication
+import com.velectico.rbm.beats.model.BeatTaskDetails
 import com.velectico.rbm.databinding.DefaultFragmentBinding
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 import com.velectico.rbm.utils.*
@@ -26,7 +27,7 @@ class DefaultFragment : BaseFragment(){
     private lateinit var binding:DefaultFragmentBinding
     private lateinit var menuViewModel: MenuViewModel
     private lateinit var navigationView: NavigationView
-
+    var taskDetails = BeatTaskDetails()
     override fun getLayout(): Int = R.layout.default_fragment
 
     override fun init(binding: ViewDataBinding) {
@@ -84,7 +85,7 @@ class DefaultFragment : BaseFragment(){
 
         binding.orderButton.setOnClickListener {
             RBMLubricantsApplication.fromBeat = ""
-            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment("")
+            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment(taskDetails)
             Navigation.findNavController(binding.orderButton).navigate(navDirection)
         }
 
@@ -144,7 +145,7 @@ class DefaultFragment : BaseFragment(){
             Navigation.findNavController(binding.productButton).navigate(navDirection)
         }
         binding.orderDealerButton.setOnClickListener {
-            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment("")
+            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment(taskDetails)
             Navigation.findNavController(binding.orderDealerButton).navigate(navDirection)
         }
         binding.paymentDealerButton.setOnClickListener {
@@ -160,7 +161,7 @@ class DefaultFragment : BaseFragment(){
             Navigation.findNavController(binding.performanceButtonLong).navigate(navDirection)
         }
         binding.orderButtonLong.setOnClickListener {
-            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment("")
+            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment(taskDetails)
             Navigation.findNavController(binding.orderButtonLong).navigate(navDirection)
         }
     }

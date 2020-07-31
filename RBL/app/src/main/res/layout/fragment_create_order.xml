@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_dashboard"
@@ -20,6 +20,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_email_reg_no"
+                    android:visibility="gone"
                     style="@style/login_reg_input_label"
                     android:hint="@string/search_prod_for_order"
                     app:hintTextAppearance="@style/hintLabelColor">
@@ -45,11 +46,13 @@
                     app:fabSize="normal"
                     android:visibility="gone"
                     app:srcCompat="@drawable/ic_filter" />
+
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fab"
                     style="@style/add_fab"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:visibility="invisible"
                     app:backgroundTint="@color/primary"
                     app:fabSize="normal"
                     app:srcCompat="@drawable/ic_add_to_cart" />
@@ -82,7 +85,7 @@
                 <TextView
                     android:id="@+id/tv_prodId"
                     style="@style/wrap_contet_data"
-                    android:text="Rs 5000"
+                    android:text=""
                     />
 
             </LinearLayout>

@@ -75,7 +75,7 @@
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_"
+                android:id="@+id/btn_clr"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_below="@+id/sampleLine"

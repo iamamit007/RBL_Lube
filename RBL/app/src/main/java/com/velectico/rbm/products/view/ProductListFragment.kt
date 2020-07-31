@@ -133,7 +133,7 @@ class ProductListFragment : BaseFragment() {
     }
 
     private fun moveToOrder(){
-        val navDirection =  ProductListFragmentDirections.actionProductListToCreateOrderFragment()
+        val navDirection =  ProductListFragmentDirections.actionProductListToCreateOrderFragment("","")
         Navigation.findNavController(binding.fab).navigate(navDirection)
     }
 

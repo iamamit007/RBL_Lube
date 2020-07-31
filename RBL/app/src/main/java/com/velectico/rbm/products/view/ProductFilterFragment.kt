@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.Navigation
@@ -32,7 +33,8 @@ import java.util.ArrayList
  */
 class ProductFilterFragment : BaseFragment()  {
     private lateinit var binding: FragmentProductFilterBinding
-
+    var segId= ""
+    var catId= ""
     override fun getLayout(): Int {
         return R.layout.fragment_product_filter
     }
@@ -122,16 +124,42 @@ class ProductFilterFragment : BaseFragment()  {
     }
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentProductFilterBinding
+
         initHud()
         binding.btnOrderHistory.setOnClickListener {
 
-            val navDirection =  ProductFilterFragmentDirections.actionProductFilterFragmentToCreateOrderFragment()
+            val navDirection =  ProductFilterFragmentDirections.actionProductFilterFragmentToCreateOrderFragment(catId, segId)
             Navigation.findNavController(binding.btnOrderHistory).navigate(navDirection)
+        }
+        binding.btnClr.setOnClickListener {
+            callApi("Product Segment")
+            callApi("Product Category")
         }
          callApi("Product Segment")
          callApi("Product Category")
 
+        binding.spinnerCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
+                if (dataList.size > 0 ){
+                    val x = dataList[position]
+                    catId = x.Exp_Head_Id!!
 
+                }
+            }
+
+            override fun onNothingSelected(adapterView: AdapterView<*>) {}
+        }
+        binding.spinnerSegment.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
+                if (segdataList.size > 0 ){
+                    val x = segdataList[position]
+                    segId = x.Exp_Head_Id!!
+
+                }
+            }
+
+            override fun onNothingSelected(adapterView: AdapterView<*>) {}
+        }
     }
 
 

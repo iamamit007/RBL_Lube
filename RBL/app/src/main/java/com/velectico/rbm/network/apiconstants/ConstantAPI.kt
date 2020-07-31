@@ -1,5 +1,7 @@
 package com.velectico.rbm.network.apiconstants
 
+import java.io.File
+
 /**
  * Created by mymacbookpro on 2020-04-30
  * TODO: Add a class header comment!
@@ -52,6 +54,7 @@ const val USER_LOGIN_PASSWORD = "userPassword"
 
 const val USER_ID = "userId"
 const val USER_ROLE = "userRole"
+const val USER_NAME = "userName"
 const val DROP_DOWN_NAME = "DM_Dropdown_Name"
 //create expense params
 const val BEAT_TASK_ID = "beatTaskId"
@@ -61,6 +64,20 @@ const val APPLIED_ON_DATE = "appliedOnDate"
 const val APPLIED_BY_USER_ID = "applieedByUserId"
 const val FILE_TO_UPLOAD = "recPhoto"
 const val EXPENSE_ID = "expenseId"
+
+//create complaint params
+
+const val COMPLAINT_TYPE = "complaintype"
+const val DISTID = "CR_Distrib_ID"
+const val DEALERID = "CR_Dealer_ID"
+const val MECHANICID ="CR_Mechanic_ID"
+const val QTY = "CR_Qty"
+const val BATCHNO = "CR_Batch_no"
+const val REMARKS = "CR_Remarks"
+const val PHOTO = "recPhoto"
+const val TASKID = "taskId"
+const val PRODNAME = "prodName"
+
 //Leave params
 const val LEAVE_ID = "leaveId"
 const val LEAVE_FROM = "leaveFromDate"

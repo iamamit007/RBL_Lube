@@ -60,7 +60,7 @@
 
                     <TextView
                         android:id="@+id/tv_prodNetPrice"
-                        android:text="@{orderHeadInfo.create_Date}"
+                        android:text="@{orderHeadInfo.orderDate}"
                         style="@style/rv_caption" />
 
                 </LinearLayout>
@@ -77,7 +77,7 @@
 
                     <TextView
                         android:id="@+id/tv_prodTotalPrice"
-                        android:text="@{orderHeadInfo.OD_Total_Price}"
+                        android:text="@{'₹' +orderHeadInfo.totalPrice}"
                         style="@style/rv_caption" />
 
                 </LinearLayout>
@@ -94,7 +94,7 @@
 
                     <TextView
                         android:id="@+id/tv_unit"
-                        android:text="@{orderHeadInfo.created_By}"
+                        android:text="Ajay"
                         style="@style/rv_caption" />
 
                 </LinearLayout>

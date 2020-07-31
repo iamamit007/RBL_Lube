@@ -1,8 +1,6 @@
 package com.velectico.rbm.menuitems.viewmodel
 
-import android.content.Context
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -25,7 +23,6 @@ import com.velectico.rbm.network.manager.ManagerFactory
 import com.velectico.rbm.network.manager.getNetworkManager
 import com.velectico.rbm.network.request.NetworkRequest
 import com.velectico.rbm.network.response.NetworkResponse
-import com.velectico.rbm.utils.SharedPreferenceUtils
 
 /**
  * Created by mymacbookpro on 2020-05-01

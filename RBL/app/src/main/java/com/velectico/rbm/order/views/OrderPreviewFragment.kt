@@ -32,7 +32,7 @@ class OrderPreviewFragment : BaseFragment() {
     private lateinit var binding: FragmentOrderPreviewBinding
     private lateinit var orderCartList : List<OrderCart>
     private lateinit var adapter: OrderPreviewListAdapter
-
+    var taskDetails = BeatTaskDetails()
     override fun getLayout(): Int {
         return R.layout.fragment_order_preview
     }
@@ -66,7 +66,7 @@ class OrderPreviewFragment : BaseFragment() {
 
 
     private fun moveToOrderList(){
-        val navDirection =  OrderPreviewFragmentDirections.actionOrderPreviewFragmentToOrderListFragment("")
+        val navDirection =  OrderPreviewFragmentDirections.actionOrderPreviewFragmentToOrderListFragment(taskDetails)
         Navigation.findNavController(binding.btnPlaceOrder).navigate(navDirection)
     }
     var hud: KProgressHUD? = null
@@ -83,12 +83,14 @@ class OrderPreviewFragment : BaseFragment() {
     fun hide(){
         hud?.dismiss()
     }
+    var grossAmt = 0.0
     fun callCreateOrderList(){
 
         showHud()
         var list = mutableListOf<OrderDetailsParams>()
         for (i in seletedItems ){
             val total  = (i.PM_Disc_Price!!.toDouble())*(orderItems[i.PM_ID!!]!!.toDouble())
+            grossAmt += total
             list.add(OrderDetailsParams(i.PM_ID!!,"1",orderItems[i.PM_ID!!]!!,i.PM_MRP!!,i.PM_Disc_Price!!,i.PM_Net_Price!!,i.PM_GST_Perc!!,total.toString()))
 
         }
@@ -98,7 +100,9 @@ class OrderPreviewFragment : BaseFragment() {
             model
         )
         responseCall.enqueue(CreateOrderDetailsResponse as Callback<CreateOrderResponse>)
+        binding.tvProdIdTotal.text = "₹ "+grossAmt
     }
+
 
     private val CreateOrderDetailsResponse = object : NetworkCallBack<CreateOrderResponse>() {
         override fun onSuccessNetwork(

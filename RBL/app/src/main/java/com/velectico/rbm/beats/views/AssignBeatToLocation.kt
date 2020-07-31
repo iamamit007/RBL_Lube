@@ -36,6 +36,8 @@ class AssignBeatToLocation : BaseFragment() {
 
     private lateinit var binding: FragmentAssignBeatToLocationBinding
     private lateinit var mBeatSharedViewModel: BeatSharedViewModel
+    var startDate = ""
+    var endDate = ""
         companion object{
 
         var source:String = ""
@@ -51,10 +53,12 @@ class AssignBeatToLocation : BaseFragment() {
     override fun init(binding: ViewDataBinding) {
 
         this.binding = binding as FragmentAssignBeatToLocationBinding
+        startDate = arguments?.getString(  "startDate").toString()
+        endDate = arguments?.getString(  "endDate").toString()
         binding.btnAssignTaskToLocation.setOnClickListener {
             moveToBeatTarget()
         }
-
+        binding.tvBeatScheduleName.text = "Add Beat Task (" +startDate +" to " + endDate +")"
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

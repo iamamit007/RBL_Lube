@@ -33,7 +33,8 @@ class CreateOrderFragment : BaseFragment() {
     private var orderCartList : List<CreateOrderListDetails> = emptyList()
     private lateinit var adapter: OrderCartListAdapter
     private var locationManager : LocationManager? = null
-
+    var segId= ""
+    var catId= ""
     override fun getLayout(): Int {
         return R.layout.fragment_create_order
     }
@@ -49,7 +50,9 @@ class CreateOrderFragment : BaseFragment() {
 
         this.binding = binding as FragmentCreateOrderBinding
         //orderCartList = OrderCart().getDummyOrderCart()
-
+        catId = arguments?.getString(  "catId").toString()
+        segId = arguments?.getString(  "segId").toString()
+        showToastMessage(catId)
         binding.btnCheckOut.setOnClickListener {
             moveToOrderPreview()
         }
@@ -111,7 +114,7 @@ class CreateOrderFragment : BaseFragment() {
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getCreateOrderList(
-            CreateOrderListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),"22","34")
+            CreateOrderListRequestParams("3255632980","22","34")
         )
         responseCall.enqueue(CreateOrderDetailsResponse as Callback<CreateOrderDetailsResponse>)
     }

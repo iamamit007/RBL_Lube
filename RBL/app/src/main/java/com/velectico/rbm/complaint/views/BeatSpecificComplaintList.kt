@@ -50,7 +50,7 @@ class BeatSpecificComplaintList : BaseFragment() {
         this.binding = binding as FragmentBeatSpecificComplaintListBinding
         taskDetails = arguments!!.get("taskDetails") as BeatTaskDetails
         dlrDtl = arguments!!.get("dealerDetails") as DealerDetails
-        showToastMessage(taskDetails.toString())
+        //showToastMessage(taskDetails.toString())
         binding.delrName.text = taskDetails.dealerName.toString()
         binding.tvProdNetPrice.text = dlrDtl.dealerPhone.toString()
         binding.tvProdTotalPrice.text = dlrDtl.DM_Contact_Person.toString()

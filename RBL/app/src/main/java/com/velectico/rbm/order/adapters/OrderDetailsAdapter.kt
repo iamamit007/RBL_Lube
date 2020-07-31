@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.velectico.rbm.beats.adapters.BeatDateListAdapter
+import com.velectico.rbm.beats.model.OrderProductListDetails
 import com.velectico.rbm.databinding.RowBeatListDatesBinding
 import com.velectico.rbm.databinding.RowOrderDetailsBinding
 import com.velectico.rbm.databinding.RowOrderHeadListBinding
@@ -12,7 +13,7 @@ import com.velectico.rbm.order.model.OrderCart
 class OrderDetailsAdapter : RecyclerView.Adapter<OrderDetailsAdapter.ViewHolder>() {
 
 
-    var orderCart =  listOf<OrderCart>()
+    var orderCart =  listOf<OrderProductListDetails>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -26,7 +27,7 @@ class OrderDetailsAdapter : RecyclerView.Adapter<OrderDetailsAdapter.ViewHolder>
 
         }
 
-        fun bind(orderCart:  OrderCart?) {
+        fun bind(orderCart:  OrderProductListDetails?) {
             binding.orderCartInfo = orderCart
             binding.executePendingBindings()
         }

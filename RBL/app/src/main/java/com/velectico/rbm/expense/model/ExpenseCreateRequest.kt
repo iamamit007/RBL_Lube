@@ -13,3 +13,17 @@ data class ExpenseCreateRequest(
     val applieedByUserId : String?,
     val recPhoto : File?
 ): BaseModel()
+
+data class ComplaintCreateRequest(
+    val userId: String?,
+    val complaintype: String?,
+    val CR_Distrib_ID: String?,
+    val CR_Dealer_ID: String?,
+    val CR_Mechanic_ID: String?,
+    val CR_Qty : String?,
+    val CR_Batch_no : String?,
+    val CR_Remarks : String?,
+    val recPhoto : File?,
+    val taskId : String?,
+    val prodName : String?
+): BaseModel()

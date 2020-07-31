@@ -9,3 +9,9 @@ data class ExpenseCreateResponse(
     val respMessage: String,
     val status: Int
 )
+
+data class ComplaintCreateResponse(
+    val complainId: Int,
+    val respMessage: String,
+    val status: Int
+)

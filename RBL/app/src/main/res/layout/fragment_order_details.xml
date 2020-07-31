@@ -50,6 +50,7 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:visibility="gone"
                                     android:orientation="horizontal">
 
                                     <TextView
@@ -83,6 +84,7 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:visibility="gone"
                                     android:orientation="horizontal">
 
                                     <TextView
@@ -90,7 +92,7 @@
                                         android:text="@string/address" />
 
                                     <TextView
-                                        android:id="@+id/tv_beatd"
+                                        android:id="@+id/tv_addressTxt"
                                         style="@style/small_font_txt"
                                         android:text="2/3A , Asansole , West bengal" />
 
@@ -106,7 +108,7 @@
                                         android:text="@string/order_date" />
 
                                     <TextView
-                                        android:id="@+id/tv_beatName"
+                                        android:id="@+id/tv_orddate"
                                         android:text="12/06/2020"
                                         style="@style/small_font_txt" />
 
@@ -116,6 +118,7 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:visibility="visible"
                                     android:orientation="horizontal">
 
                                     <TextView
@@ -124,7 +127,7 @@
 
                                     <TextView
                                         android:id="@+id/tv_prodCode"
-                                        android:text="Not Placed"
+                                        android:text="Pending"
                                         style="@style/small_font_txt" />
 
                                 </LinearLayout>
@@ -178,7 +181,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/tv_prodId_gst"
+                        android:id="@+id/tv_prod_gst"
                         style="@style/wrap_contet_data"
                         android:text="Rs 500"
                         />
@@ -192,7 +195,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/tv_prodId_total"
+                        android:id="@+id/tv_prodprice_total"
                         style="@style/wrap_contet_data"
                         android:text="Rs 5500"
                         />

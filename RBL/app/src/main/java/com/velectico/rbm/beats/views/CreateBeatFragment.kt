@@ -244,7 +244,7 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
                 hide()
                 showToastMessage( response.data?.respMessage!!)
                 GloblalDataRepository.getInstance().scheduleId =   response.data?.beatScheduleId
-                val navDirection =  CreateBeatFragmentDirections.actionCreateBeatFragmentToAssignBeatToLocation()
+                val navDirection =  CreateBeatFragmentDirections.actionCreateBeatFragmentToAssignBeatToLocation(binding.etStartDate.text.toString(),binding.etEndDate.text.toString())
                 Navigation.findNavController(binding.btnAssignTask).navigate(navDirection)
 
             }

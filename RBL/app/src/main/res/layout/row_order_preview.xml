@@ -111,7 +111,7 @@
                             android:id="@+id/plist_weight_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:visibility="gone"
+                            android:visibility="visible"
                             android:text="1.5 ltr"
                             android:textColor="#343434"
                             android:textSize="12dip" />
