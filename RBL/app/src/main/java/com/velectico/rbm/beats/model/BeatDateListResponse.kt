@@ -473,6 +473,7 @@ data class  CreateOrderPRParams(
 data class  OrderDetailsParams(
     @SerializedName("prodId") var prodId: String,
     @SerializedName("prodSchemeId") var prodSchemeId: String,
+    @SerializedName("prodQuantity") var prodQuantity: String,
     @SerializedName("prodMRP") var prodMRP: String,
     @SerializedName("discountPrice") var discountPrice: String,
     @SerializedName("netPricing") var netPricing: String,

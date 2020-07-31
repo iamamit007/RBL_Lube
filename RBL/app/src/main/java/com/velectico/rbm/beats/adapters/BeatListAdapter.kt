@@ -23,6 +23,7 @@ import com.velectico.rbm.databinding.RowBeatListBinding
 import com.velectico.rbm.databinding.RowBeatListDatesBinding
 import com.velectico.rbm.expense.adapter.ExpenseListAdapter
 import com.velectico.rbm.utils.DateUtility
+import com.velectico.rbm.utils.GloblalDataRepository
 import java.util.*
 
 class BeatListAdapter(var setCallback: BeatListAdapter.IBeatListActionCallBack,val visit:String) : RecyclerView.Adapter<BeatListAdapter.ViewHolder>() {
@@ -39,9 +40,7 @@ class BeatListAdapter(var setCallback: BeatListAdapter.IBeatListActionCallBack,v
         init {
 
             callBack = setCallback;
-            binding.navigateToTaskDetails.setOnClickListener {
-                callBack?.moveToBeatTaskDetails(adapterPosition, "1",binding )
-            }
+
       }
 
        fun bind(beats: TaskDetails?) {
@@ -63,6 +62,10 @@ class BeatListAdapter(var setCallback: BeatListAdapter.IBeatListActionCallBack,v
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         try {
             holder.bind(beatList[position])
+           holder.binding.navigateToTaskDetails.setOnClickListener {
+                GloblalDataRepository.getInstance().scheduleId = beatList[position].schedule_id
+                callBack?.moveToBeatTaskDetails(position, "1",holder.binding )
+            }
 
         } catch (e: Exception) {
             e.printStackTrace()

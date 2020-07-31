@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.velectico.rbm.beats.model.BeatTaskDetails
 import com.velectico.rbm.beats.model.Beats
 import com.velectico.rbm.databinding.RowBeatTaskDetailsViewBinding
-
+import com.velectico.rbm.utils.GloblalDataRepository
 
 
 class BeatTaskDetailsViewAdapter (var setCallback: BeatTaskDetailsViewAdapter.IBeatTaskDetailsViewActionCallBack) : RecyclerView.Adapter<BeatTaskDetailsViewAdapter.ViewHolder>() {
@@ -24,9 +24,7 @@ class BeatTaskDetailsViewAdapter (var setCallback: BeatTaskDetailsViewAdapter.IB
         init {
 
             callBack = setCallback;
-            binding.navigateToDealerDetails.setOnClickListener {
-                callBack?.moveToBeatTaskDetails(adapterPosition, "1",binding )
-            }
+
         }
 
         fun bind(beats: BeatTaskDetails?) {
@@ -47,6 +45,12 @@ class BeatTaskDetailsViewAdapter (var setCallback: BeatTaskDetailsViewAdapter.IB
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(beatList[position])
+        GloblalDataRepository.getInstance().taskId = beatList[position].taskId
+        GloblalDataRepository.getInstance().delalerId = beatList[position].dealerId
+        GloblalDataRepository.getInstance().distribId = beatList[position].distribId
+        holder.binding.navigateToDealerDetails.setOnClickListener {
+            callBack?.moveToBeatTaskDetails(position, "1",holder.binding )
+        }
         if (beatList[position].distribName != null){
             holder.binding.tvProdNetPrice.text = "Distributor"
             holder.binding.cutGrade.text = beatList[position].distribGrade

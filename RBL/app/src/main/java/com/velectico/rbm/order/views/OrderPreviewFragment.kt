@@ -22,6 +22,7 @@ import com.velectico.rbm.order.adapters.OrderPreviewListAdapter
 import com.velectico.rbm.order.model.OrderCart
 import com.velectico.rbm.order.views.CreateOrderFragment.Companion.orderItems
 import com.velectico.rbm.order.views.CreateOrderFragment.Companion.seletedItems
+import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
 
@@ -39,7 +40,7 @@ class OrderPreviewFragment : BaseFragment() {
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentOrderPreviewBinding
         binding.btnPlaceOrder.setOnClickListener {
-          //  moveToOrderList()
+          //
             callCreateOrderList()
         }
         setUpRecyclerView()
@@ -83,30 +84,31 @@ class OrderPreviewFragment : BaseFragment() {
         hud?.dismiss()
     }
     fun callCreateOrderList(){
+
         showHud()
         var list = mutableListOf<OrderDetailsParams>()
         for (i in seletedItems ){
             val total  = (i.PM_Disc_Price!!.toDouble())*(orderItems[i.PM_ID!!]!!.toDouble())
-            list.add(OrderDetailsParams(i.PM_ID!!,"1",orderItems[i.PM_ID!!]!!,i.PM_MRP!!,i.PM_Disc_Price!!,i.PM_Net_Price!!,total.toString()))
+            list.add(OrderDetailsParams(i.PM_ID!!,"1",orderItems[i.PM_ID!!]!!,i.PM_MRP!!,i.PM_Disc_Price!!,i.PM_Net_Price!!,i.PM_GST_Perc!!,total.toString()))
 
         }
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
-        val  model  = CreateOrderPRParams (SharedPreferenceUtils.getLoggedInUserId(context as Context),"108","61","0","2020-07-31","cash",list.toList()!!)
+        val  model  = CreateOrderPRParams (SharedPreferenceUtils.getLoggedInUserId(context as Context),GloblalDataRepository.getInstance().scheduleId,GloblalDataRepository.getInstance().taskId,GloblalDataRepository.getInstance().delalerId,"2020-07-31","cash",list.toList()!!)
         val responseCall = apiInterface.createOrder(
             model
         )
         responseCall.enqueue(CreateOrderDetailsResponse as Callback<CreateOrderResponse>)
     }
 
-    private val CreateOrderDetailsResponse = object : NetworkCallBack<CreateOrderDetailsResponse>() {
+    private val CreateOrderDetailsResponse = object : NetworkCallBack<CreateOrderResponse>() {
         override fun onSuccessNetwork(
             data: Any?,
-            response: NetworkResponse<CreateOrderDetailsResponse>
+            response: NetworkResponse<CreateOrderResponse>
         ) {
             hide()
             response.data?.status?.let { status ->
                 Log.e("test333","OrderHistoryDetailsResponse status="+response.data)
-
+                moveToOrderList()
 
             }
 
