@@ -3,14 +3,16 @@ package com.velectico.rbm.order.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
+import com.velectico.rbm.beats.model.CreateOrderListDetails
 import com.velectico.rbm.databinding.RowOrderPreviewBinding
 import com.velectico.rbm.databinding.RowProductCartBinding
 import com.velectico.rbm.order.model.OrderCart
 
-class OrderPreviewListAdapter : RecyclerView.Adapter<OrderPreviewListAdapter.ViewHolder>() {
+class OrderPreviewListAdapter(var orderItemsSelected:HashMap<String,String>) : RecyclerView.Adapter<OrderPreviewListAdapter.ViewHolder>() {
 
 
-    var orderCart =  listOf<OrderCart>()
+    var orderCart =  listOf<CreateOrderListDetails>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -22,7 +24,7 @@ class OrderPreviewListAdapter : RecyclerView.Adapter<OrderPreviewListAdapter.Vie
         init {
         }
 
-        fun bind(orderCart:  OrderCart?) {
+        fun bind(orderCart:  CreateOrderListDetails?) {
             binding.orderPreviewInfo = orderCart
             binding.executePendingBindings()
         }
@@ -40,6 +42,17 @@ class OrderPreviewListAdapter : RecyclerView.Adapter<OrderPreviewListAdapter.Vie
 
     override fun onBindViewHolder(holder: OrderPreviewListAdapter.ViewHolder, position: Int) {
         holder.bind(orderCart[position])
+        try {
+            holder.binding.qty.setText("QTY : ${orderItemsSelected[orderCart[position].PM_ID]}")
+            val x = orderItemsSelected[orderCart[position].PM_ID]!!.toDouble()
+            val y = orderCart[position].PM_Disc_Price!!.toDouble()
+            holder.binding.cartProductQuantityTv.setText("₹ ${x*y}")
+            Picasso.get().load(orderCart[position].PM_Image_Path).fit().into(holder.binding.listImage)
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
     }
 
 

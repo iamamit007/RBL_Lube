@@ -7,11 +7,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import com.velectico.rbm.beats.model.CreateOrderListDetails
 import com.velectico.rbm.databinding.RowOrderHeadListBinding
 import com.velectico.rbm.databinding.RowProductCartBinding
 import com.velectico.rbm.order.model.OrderCart
 import com.velectico.rbm.order.model.OrderHead
+import com.velectico.rbm.order.views.CreateOrderFragment.Companion.orderItems
+import com.velectico.rbm.order.views.CreateOrderFragment.Companion.seletedItems
 import timber.log.Timber
 import java.util.ArrayList
 
@@ -55,7 +58,6 @@ class OrderCartListAdapter(val context: Context) : RecyclerView.Adapter<OrderCar
         }
 
 
-        Log.d("bal",statList.size.toString())
         var x  = ArrayAdapter<String>(context, R.layout.simple_spinner_item, statList);
 
         holder.binding.spBeatName.adapter = x
@@ -66,14 +68,21 @@ class OrderCartListAdapter(val context: Context) : RecyclerView.Adapter<OrderCar
         holder.binding.cartPlusImg.setOnClickListener{
             intger += 1
             holder.binding.cartProductQuantityTv.setText(intger.toString())
+            orderItems[orderCart[position].PM_ID!!] = holder.binding.cartProductQuantityTv.text.toString()
+            seletedItems.add(orderCart[position])
         }
         holder.binding.cartMinusImg.setOnClickListener{
             if (intger == 0){
+                seletedItems.remove(orderCart[position])
+                orderItems.remove(orderCart[position].PM_ID!!)
                 return@setOnClickListener
             }
             intger -= 1
             holder.binding.cartProductQuantityTv.setText(intger.toString())
+            seletedItems.add(orderCart[position])
+            orderItems[orderCart[position].PM_ID!!] = holder.binding.cartProductQuantityTv.text.toString()
         }
+        Picasso.get().load(orderCart[position].PM_Image_Path).fit().into(holder.binding.listImage)
 
     }
 

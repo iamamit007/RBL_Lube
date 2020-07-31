@@ -37,6 +37,12 @@ class CreateOrderFragment : BaseFragment() {
     override fun getLayout(): Int {
         return R.layout.fragment_create_order
     }
+    companion object{
+        var orderItems:HashMap<String,String> = HashMap()
+        var seletedItems = HashSet<CreateOrderListDetails>()
+
+
+    }
 
 
     override fun init(binding: ViewDataBinding) {

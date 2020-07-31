@@ -16,6 +16,8 @@ import com.velectico.rbm.beats.model.CreateBeatReportResponse;
 import com.velectico.rbm.beats.model.CreateBeatScheduleRequestParams;
 import com.velectico.rbm.beats.model.CreateOrderDetailsResponse;
 import com.velectico.rbm.beats.model.CreateOrderListRequestParams;
+import com.velectico.rbm.beats.model.CreateOrderPRParams;
+import com.velectico.rbm.beats.model.CreateOrderResponse;
 import com.velectico.rbm.beats.model.DealDistMechListRequestParams;
 import com.velectico.rbm.beats.model.DealDistMechListResponse;
 import com.velectico.rbm.beats.model.DealerDetailsRequestParams;
@@ -23,6 +25,7 @@ import com.velectico.rbm.beats.model.DealerDetailsResponse;
 import com.velectico.rbm.beats.model.GetBeatDeatilsRequestParams;
 import com.velectico.rbm.beats.model.LocationByLevelListRequestParams;
 import com.velectico.rbm.beats.model.LocationByLevelListResponse;
+import com.velectico.rbm.beats.model.OrderDetailsParams;
 import com.velectico.rbm.beats.model.OrderHistoryDetailsResponse;
 import com.velectico.rbm.beats.model.OrderVSQualityRequestParams;
 import com.velectico.rbm.beats.model.OrderVSQualityResponse;
@@ -40,6 +43,7 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Beat_Report_B
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Complaint_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Report;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Schedule;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Order;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Dealer_Distrib_Task_Worksheet;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.ENDPOINTBeat_Task_Details;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.ENDPOINT_GET_TASK_DETAILS_LIST_BY_BEAT_ID;
@@ -113,5 +117,9 @@ public interface ApiInterface {
 
     @POST(Save_AssignTask)
     Call<CreateBeatReportResponse> assignTask(@Body AssignTaskRequestParams model);
+
+    @POST(Create_Order)
+    Call<CreateOrderResponse> createOrder(@Body CreateOrderPRParams model);
+
 
 }

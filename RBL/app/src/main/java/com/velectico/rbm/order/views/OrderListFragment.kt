@@ -38,9 +38,6 @@ class OrderListFragment : BaseFragment()  {
         return R.layout.fragment_order_list
     }
 
-    companion object{
-        var orderItems:HashMap<String,String> = HashMap()
-    }
 
 
     override fun init(binding: ViewDataBinding) {

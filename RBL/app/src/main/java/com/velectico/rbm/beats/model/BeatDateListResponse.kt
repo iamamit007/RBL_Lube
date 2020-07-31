@@ -458,3 +458,31 @@ data class  AssignDetailsParams(
 
 ): BaseModel()
 
+
+data class  CreateOrderPRParams(
+    @SerializedName("userId") var userId: String,
+    @SerializedName("taskId") var taskId: String,
+    @SerializedName("distribId") var distribId: String,
+    @SerializedName("delalerId") var delalerId: String,
+    @SerializedName("creationDate") var creationDate: String,
+    @SerializedName("paymentMode") var paymentMode: String,
+    @SerializedName("orderDetails") var orderDetailsParams: List<OrderDetailsParams>?
+
+): BaseModel()
+
+data class  OrderDetailsParams(
+    @SerializedName("prodId") var prodId: String,
+    @SerializedName("prodSchemeId") var prodSchemeId: String,
+    @SerializedName("prodMRP") var prodMRP: String,
+    @SerializedName("discountPrice") var discountPrice: String,
+    @SerializedName("netPricing") var netPricing: String,
+    @SerializedName("prodGst") var prodGst: String,
+    @SerializedName("totalPrice") var totalPrice: String
+    ): BaseModel()
+data class CreateOrderResponse(
+    val count: Int,
+    @SerializedName("status")
+    val status: String?,
+    @SerializedName("respMessage")
+    val respMessage: String? = null
+):Serializable
