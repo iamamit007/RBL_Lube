@@ -70,7 +70,7 @@ class CreateComplaints : BaseFragment() {
         imageUtils = ImageUtils(context as Context,baseActivity,this)
         menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
         complainDetail = arguments!!.get("complainDetail")  as ComplainListDetails
-        showToastMessage(complainDetail.toString())
+        //showToastMessage(complainDetail.toString())
         if (complainDetail.CR_ID != null){
 
             binding.inputBatchno.setText(complainDetail.CR_Batch_no.toString())

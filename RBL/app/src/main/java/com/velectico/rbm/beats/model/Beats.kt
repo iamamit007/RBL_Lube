@@ -31,7 +31,7 @@ class Beats : Parcelable {
 
 //    @RequiresApi(Build.VERSION_CODES.O)
 //    @SuppressLint("NewApi")
-    //var current = Date()
+    var current = Date()
 
 
     public fun getStartDateStr() : String{
@@ -74,8 +74,9 @@ class Beats : Parcelable {
     fun isValidaData(): String? {
        // val inpFormat =  SimpleDateFormat(DateUtility.dd_MM_yy, Locale.US);
         //val formatted = DateUtils.str()
-
-
+        var cal : Calendar = Calendar.getInstance();
+        val curD = cal.timeInMillis
+        println("77777777=======   $startDate,${cal.timeInMillis}")
 
         var errMsg : String? = null;
         if(startDate==null || endDate==null){
@@ -86,8 +87,8 @@ class Beats : Parcelable {
                 errMsg = "Start date cannot be greater than end date";
             }
         }
-//        if(startDate!=null && current!=null){
-//            if(startDate!! < current){
+//        if(startDate!=null ){
+//            if(startDate!! > curD!!){
 //                errMsg = "Start date cannot be less than currentDate";
 //            }
 //        }
