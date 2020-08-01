@@ -27,6 +27,7 @@ import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
+import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
 import java.util.ArrayList
@@ -102,7 +103,8 @@ class AssignBeatToLocation : BaseFragment() {
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getTaskForList(
-            TaskForListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),"38")
+            TaskForListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),
+                GloblalDataRepository.getInstance().scheduleId)
         )
         responseCall.enqueue(orderVSQualityResponseResponse as Callback<TaskForListResponse>)
 
@@ -113,45 +115,57 @@ class AssignBeatToLocation : BaseFragment() {
             response.data?.status?.let { status ->
 
                 hide()
-                source = response.data.source!!
-                areaList = response.data.areaList!!
-                dataList  = response.data.TaskForList
-                var statList: MutableList<String> = ArrayList()
-                for (i in response.data.TaskForList){
-                    statList.add(i.respValue!!)
-                }
+                if ((response.data.count) > 0){
+                    source = response.data.source!!
+                    areaList = response.data.areaList!!
+                    dataList = response.data.TaskForList
+                    var statList: MutableList<String> = ArrayList()
+                    for (i in response.data.TaskForList) {
+                        statList.add(i.respValue!!)
+                    }
 
-               // binding.spBeatName.setItem(statList)
+                    // binding.spBeatName.setItem(statList)
                     //binding.spBeatName.setSelection(0)
 
-                val adapter2 = context?.let {
-                    ArrayAdapter(
-                        it,
-                        android.R.layout.simple_spinner_item, statList)
-                }
-                binding.spinner.adapter = null
-
-                binding.spinner.adapter = adapter2
-                binding.spinner.setSelection(0,false)
-                binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
-                     //   if ( binding.spinner.tag == 0){
-                            binding.spinner.tag = 1
-                            binding.etHigherLocation.setText( dataList[position].respValue)
-                            taskLevel = dataList[position].taskLevel!!
-                            Handler().postDelayed({
-                                callApi2(dataList[position].taskLevel!!)
-                            }, 1000)
-                    //    }
-
-
+                    val adapter2 = context?.let {
+                        ArrayAdapter(
+                            it,
+                            android.R.layout.simple_spinner_item, statList
+                        )
                     }
-                    override fun onNothingSelected(adapterView: AdapterView<*>) {}
+                    binding.spinner.adapter = null
+
+                    binding.spinner.adapter = adapter2
+                    binding.spinner.setSelection(0, false)
+                    binding.spinner.onItemSelectedListener =
+                        object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(
+                                adapterView: AdapterView<*>,
+                                view: View?,
+                                position: Int,
+                                id: Long
+                            ) {
+                                //   if ( binding.spinner.tag == 0){
+                                binding.spinner.tag = 1
+                                binding.etHigherLocation.setText(dataList[position].respValue)
+                                taskLevel = dataList[position].taskLevel!!
+                                Handler().postDelayed({
+                                    callApi2(dataList[position].taskLevel!!)
+                                }, 1000)
+                                //    }
+
+
+                            }
+
+                            override fun onNothingSelected(adapterView: AdapterView<*>) {}
+                        }
+
+                    //  taskLevel = dataList[0].taskLevel!!
+                    // callApi2(dataList[0].taskLevel!!)
                 }
-
-                //  taskLevel = dataList[0].taskLevel!!
-               // callApi2(dataList[0].taskLevel!!)
-
+                else{
+                showToastMessage("No data found")
+            }
             }
 
         }
@@ -220,8 +234,8 @@ class AssignBeatToLocation : BaseFragment() {
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getAssignToList(
-            //AssignToListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),source,level,areaId)
-            AssignToListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),"R","R","5")
+            AssignToListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),source,level,areaId)
+            //AssignToListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),"R","R","5")
         )
         responseCall.enqueue(getAssignToListResponse as Callback<AssignToListResponse>)
 

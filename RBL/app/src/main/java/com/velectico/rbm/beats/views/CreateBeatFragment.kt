@@ -33,10 +33,12 @@ import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.order.views.OrderListFragmentDirections
 import com.velectico.rbm.utils.DateUtility
+import com.velectico.rbm.utils.DateUtils
 import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import kotlinx.android.synthetic.main.fragment_beat_report.view.*
 import retrofit2.Callback
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -227,11 +229,16 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
 
     fun callSubmit(){
         showHud()
+        val inpFormat =  SimpleDateFormat(DateUtility.dd_MM_yy, Locale.US);
+        val  outputformat =  SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        val stdate =  DateUtils.parseDate(binding.etStartDate.text.toString(),inpFormat,outputformat)
+        val endate =  DateUtils.parseDate(binding.etEndDate.text.toString(),inpFormat,outputformat)
+        showToastMessage(stdate)
         // DealerDetailsRequestParams(
         //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.createBeatSchedule(
-            CreateBeatScheduleRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),masterId,"2020-07-22","2020-07-25")
+            CreateBeatScheduleRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),masterId,stdate,endate)
            // CreateBeatScheduleRequestParams((SharedPreferenceUtils.getLoggedInUserId(context as Context),masterId,"2020-07-22","2020-07-25")
         )
         responseCall.enqueue(createBeatScheduleResponseResponse as Callback<CreateBeatReportResponse>)

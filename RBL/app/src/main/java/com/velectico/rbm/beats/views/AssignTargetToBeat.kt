@@ -89,7 +89,7 @@ class AssignTargetToBeat : BaseFragment() {
         }
         val responseCall = apiInterface.assignTask(
             //DealDistMechListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),AssignBeatToLocation.source,AssignBeatToLocation.areaList)
-           AssignTaskRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),"63",list)
+           AssignTaskRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),GloblalDataRepository.getInstance().scheduleId,list)
           //  AssignTaskRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),GloblalDataRepository.getInstance().scheduleId,list)
         )
         responseCall.enqueue(assignTaskResponseResponse as Callback<CreateBeatReportResponse>)
@@ -129,8 +129,8 @@ class AssignTargetToBeat : BaseFragment() {
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
 
         val responseCall = apiInterface.getDealDistMechList(
-            //DealDistMechListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),AssignBeatToLocation.source,AssignBeatToLocation.areaList)
-            DealDistMechListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),"R","5")
+            DealDistMechListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),AssignBeatToLocation.source,AssignBeatToLocation.areaList)
+            //DealDistMechListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),"R","5")
         )
         responseCall.enqueue(orderVSQualityResponseResponse as Callback<DealDistMechListResponse>)
 

@@ -68,6 +68,7 @@ class Beats : Parcelable {
                 errMsg = "Start date cannot be greater then end date";
             }
         }
+
         return errMsg;
     }
 }
