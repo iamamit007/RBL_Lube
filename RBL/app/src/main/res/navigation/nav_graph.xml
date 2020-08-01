@@ -238,6 +238,12 @@
         <action
             android:id="@+id/action_assignTargetToBeat_to_dateWiseBeatListFragment"
             app:destination="@id/dateWiseBeatListFragment" />
+        <argument
+            android:name="startDate"
+            app:argType="string" />
+        <argument
+            android:name="endDate"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/viewAssignedBeatScheduleTask"

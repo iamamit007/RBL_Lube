@@ -41,6 +41,8 @@ class AssignTargetToBeat : BaseFragment() {
     private lateinit var binding: FragmentAssignTargetToBeatBinding;
     private lateinit var beatList : List<DealDistMechList>
     private lateinit var adapter: BeatTargetAssignmentAdapter
+    var startDate = ""
+    var endDate = ""
     override fun getLayout(): Int {
         return R.layout.fragment_assign_target_to_beat
     }
@@ -54,6 +56,9 @@ class AssignTargetToBeat : BaseFragment() {
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentAssignTargetToBeatBinding
+        startDate = arguments?.getString(  "startDate").toString()
+        endDate = arguments?.getString(  "endDate").toString()
+        binding.tvBeatScheduleName.text = "Date (" +startDate +" to " + endDate +")"
         hud =  KProgressHUD.create(activity)
             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
             .setLabel("Please wait")
@@ -61,7 +66,8 @@ class AssignTargetToBeat : BaseFragment() {
             .setAnimationSpeed(2)
             .setDimAmount(0.5f)
         binding.btnSaveTask.setOnClickListener {
-           moveToBeatList()
+
+
             saveTaskToBEat()
 
 
@@ -76,13 +82,14 @@ class AssignTargetToBeat : BaseFragment() {
 
         for ((i,j) in seletedItems.withIndex()){
             if (j.UM_Role == "R"){
-                val x = AssignDetailsParams(j.UM_ID!!,"0","0",orderDetailsBeatTaskList[i].orderAmount!!,orderDetailsBeatTaskList[i].paymentAmount!!,"")
+                val x = AssignDetailsParams(j.UM_ID!!,"0","0",orderDetailsBeatTaskList[i].orderAmount!!,orderDetailsBeatTaskList[i].paymentAmount!!,
+                    orderDetailsBeatTaskList[i].comments!!)
                 list.add(x)
             }else if (j.UM_Role == "D") {
-                val x = AssignDetailsParams("0",j.UM_ID!!,"0",orderDetailsBeatTaskList[i].orderAmount!!,orderDetailsBeatTaskList[i].paymentAmount!!,"")
+                val x = AssignDetailsParams("0",j.UM_ID!!,"0",orderDetailsBeatTaskList[i].orderAmount!!,orderDetailsBeatTaskList[i].paymentAmount!!,orderDetailsBeatTaskList[i].comments!!)
                 list.add(x)
             }else if (j.UM_Role == "M"){
-                val x = AssignDetailsParams("0","0",j.UM_ID!!,orderDetailsBeatTaskList[i].orderAmount!!,orderDetailsBeatTaskList[i].paymentAmount!!,"")
+                val x = AssignDetailsParams("0","0",j.UM_ID!!,orderDetailsBeatTaskList[i].orderAmount!!,orderDetailsBeatTaskList[i].paymentAmount!!,orderDetailsBeatTaskList[i].comments!!)
                 list.add(x)
             }
 
@@ -93,6 +100,7 @@ class AssignTargetToBeat : BaseFragment() {
           //  AssignTaskRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),GloblalDataRepository.getInstance().scheduleId,list)
         )
         responseCall.enqueue(assignTaskResponseResponse as Callback<CreateBeatReportResponse>)
+        moveToBeatList()
     }
 
 
