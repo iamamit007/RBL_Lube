@@ -161,7 +161,7 @@
                         style="@style/rv_caption" />
                     <TextView
                         android:id="@+id/tv_payment_amount"
-                        android:text="@{`₹ `+task.visit}"
+                        android:text="@{task.visit}"
                         android:textAlignment="center"
                         style="@style/rv_caption" />
 

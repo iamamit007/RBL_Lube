@@ -94,8 +94,9 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     }
 
     private fun moveToPerformanceHistory(){
-        val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToBeatPerformanceHistory()
-        Navigation.findNavController(binding.btnPerformanceHistory).navigate(navDirection)
+        showToastMessage("Coming Soon")
+        //val navDirection =  BeatTaskDealerDetailsFragmentDirections.actionBeatTaskDealerDetailsFragmentToBeatPerformanceHistory()
+        //Navigation.findNavController(binding.btnPerformanceHistory).navigate(navDirection)
     }
 
     private fun moveToCreateComplaint(){
@@ -145,7 +146,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     }
 
     private fun callUser(){
-        val u = Uri.parse("tel:" + "919836256985")
+        val u = Uri.parse("tel:" + binding.tvDelearCallNo.text.toString())
 
         val i = Intent(Intent.ACTION_DIAL, u)
 

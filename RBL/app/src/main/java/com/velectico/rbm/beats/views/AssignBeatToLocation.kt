@@ -103,8 +103,7 @@ class AssignBeatToLocation : BaseFragment() {
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getTaskForList(
-            TaskForListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context),
-                GloblalDataRepository.getInstance().scheduleId)
+            TaskForListRequestParams( SharedPreferenceUtils.getLoggedInUserId(context as Context), GloblalDataRepository.getInstance().scheduleId)
         )
         responseCall.enqueue(orderVSQualityResponseResponse as Callback<TaskForListResponse>)
 

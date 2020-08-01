@@ -304,7 +304,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tar_qty"
-                        android:text="Target Order"
+                        android:text="Target \nOrder"
                         style="@style/text_header_more_small"
                         />
 
@@ -330,7 +330,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/act_qty"
-                        android:text="Actual Order"
+                        android:text="Actual \nOrder"
                         style="@style/text_header_more_small"
                         />
 
@@ -356,7 +356,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tar_amt"
-                        android:text="Target Collection"
+                        android:text="Target \nCollection"
                         style="@style/text_header_more_small"
                         />
 
@@ -382,7 +382,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/act_amt"
-                        android:text="Actual collection"
+                        android:text="Actual \ncollection"
                         style="@style/text_header_more_small"
                         />
 
