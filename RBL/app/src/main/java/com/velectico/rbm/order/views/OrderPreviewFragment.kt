@@ -57,6 +57,7 @@ class OrderPreviewFragment : BaseFragment() {
        }
         adapter.orderCart = CreateOrderFragment.seletedItems.toList()
         adapter.notifyDataSetChanged()
+        caculateGross()
     }
 
 
@@ -84,6 +85,18 @@ class OrderPreviewFragment : BaseFragment() {
         hud?.dismiss()
     }
     var grossAmt = 0.0
+    var grossGST = 0.0
+    fun caculateGross(){
+        for (i in seletedItems ){
+            val total  = (i.PM_Disc_Price!!.toDouble())*(orderItems[i.PM_ID!!]!!.toDouble())
+            val totalGST  = (i.PM_GST_Perc!!.toDouble())*(orderItems[i.PM_ID!!]!!.toDouble())
+            grossAmt += total
+            grossGST += totalGST
+
+        }
+        binding.tvProdIdTotal.setText("$grossAmt")
+        binding.tvProdIdGst.setText("$grossGST")
+    }
     fun callCreateOrderList(){
 
         showHud()
