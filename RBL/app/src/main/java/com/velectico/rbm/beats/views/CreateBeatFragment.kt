@@ -233,7 +233,7 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
         val  outputformat =  SimpleDateFormat("yyyy-MM-dd", Locale.US);
         val stdate =  DateUtils.parseDate(binding.etStartDate.text.toString(),inpFormat,outputformat)
         val endate =  DateUtils.parseDate(binding.etEndDate.text.toString(),inpFormat,outputformat)
-        showToastMessage(stdate)
+        //showToastMessage(stdate)
         // DealerDetailsRequestParams(
         //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)

@@ -46,10 +46,19 @@ class BeatTargetAssignmentAdapter(val beatList : List<DealDistMechList> ) : Recy
 
     override fun onBindViewHolder(holder: BeatTargetAssignmentAdapter.ViewHolder, position: Int) {
         holder.bind(beatList[position])
+        if (beatList[position].UM_Role == "R"){
+           holder.binding.tvType.text = "Dealer"
+        }
+        else if (beatList[position].UM_Role == "D"){
+            holder.binding.tvType.text = "Distributor"
+        }
+        else if (beatList[position].UM_Role == "M"){
+            holder.binding.tvType.text = "Mechanic"
+        }
         holder.binding.checkBox2.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked){
                 seletedItems.add(beatList[position])
-                orderDetailsBeatTaskList.add(orderDetailsBeatTask(holder.binding.inputOrderAmt.text.toString(),holder.binding.inputPmtClctd.text.toString()))
+                orderDetailsBeatTaskList.add(orderDetailsBeatTask(holder.binding.inputOrderAmt.text.toString(),holder.binding.inputPmtClctd.text.toString(),holder.binding.etTask.text.toString()))
 
             }else{
                 try {
@@ -71,6 +80,6 @@ class BeatTargetAssignmentAdapter(val beatList : List<DealDistMechList> ) : Recy
 }
 
 data class orderDetailsBeatTask (
-    val orderAmount:String?,val paymentAmount:String?
+    val orderAmount:String?,val paymentAmount:String?,val comments:String?
 
 )

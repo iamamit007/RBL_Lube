@@ -279,7 +279,7 @@ class AssignBeatToLocation : BaseFragment() {
 
     private fun moveToBeatTarget(){
 
-        val navDirection =  AssignBeatToLocationDirections.actionAssignBeatToLocationToAssignTargetToBeat()
+        val navDirection =  AssignBeatToLocationDirections.actionAssignBeatToLocationToAssignTargetToBeat(startDate,endDate)
         Navigation.findNavController(binding.btnAssignTaskToLocation).navigate(navDirection)
     }
 
