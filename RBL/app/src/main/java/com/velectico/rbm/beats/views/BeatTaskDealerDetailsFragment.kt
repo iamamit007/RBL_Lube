@@ -42,7 +42,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     private lateinit var binding: FragmentBeatTaskDealerDetailsBinding
     var taskDetails = BeatTaskDetails()
     var dealerDetails = DealerDetails()
-    var complaintList = ComplainListDetails()
+    private var complaintList = ComplainListDetails()
     override fun getLayout(): Int {
         return R.layout.fragment_beat_task_dealer_details
     }

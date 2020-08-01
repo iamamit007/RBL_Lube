@@ -70,7 +70,8 @@ class CreateComplaints : BaseFragment() {
         imageUtils = ImageUtils(context as Context,baseActivity,this)
         menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
         complainDetail = arguments!!.get("complainDetail")  as ComplainListDetails
-        if (complainDetail != null){
+        showToastMessage(complainDetail.toString())
+        if (complainDetail.CR_ID != null){
 
             binding.inputBatchno.setText(complainDetail.CR_Batch_no.toString())
             binding.inputQuantity.setText(complainDetail.CR_Qty.toString())
@@ -80,11 +81,11 @@ class CreateComplaints : BaseFragment() {
             binding.btnSelectImg.visibility= View.GONE
             Picasso.get().load(complainDetail.imagePath).fit().into(binding.ivExpBill)
         }
-        else {
-            binding.inputBatchno.setText("")
-            binding.inputQuantity.setText("")
-            binding.inputRemarks.setText("")
-        }
+//        else {
+//            binding.inputBatchno.setText("")
+//            binding.inputQuantity.setText("")
+//            binding.inputRemarks.setText("")
+//        }
         taskDetail = arguments!!.get("taskDetail") as BeatTaskDetails
         dlrDtl = arguments!!.get("dealerDetail") as DealerDetails
 

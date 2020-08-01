@@ -92,7 +92,7 @@
                         style="@style/login_reg_input_text"
                         android:drawableRight="@drawable/ic_expand"
                         android:focusable="false"
-                        android:text="Petrol"
+                        android:text=""
                         android:focusableInTouchMode="false"
                         android:inputType="text" />
                     />
@@ -112,6 +112,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_km"
                         style="@style/login_reg_input_text"
+                        android:visibility="gone"
                         android:gravity="top|left"
                         android:inputType="textMultiLine"
                         android:text=""

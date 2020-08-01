@@ -1,10 +1,18 @@
 package com.velectico.rbm.beats.model
 
+import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Parcelable
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.velectico.rbm.utils.DateUtility
+import com.velectico.rbm.utils.DateUtils
 import java.util.*
 import kotlinx.android.parcel.Parcelize
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 @Parcelize
 class Beats : Parcelable {
     var beatId : String? = null
@@ -21,7 +29,11 @@ class Beats : Parcelable {
     var salesPersonId : String? = null
     var beatAssignments : List<BeatAssignments>? =null;
 
-    
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    @SuppressLint("NewApi")
+    //var current = Date()
+
+
     public fun getStartDateStr() : String{
         return DateUtility.getStringDateFromTimestamp(startDate!!, DateUtility.dd_MM_yy)
     }
@@ -58,17 +70,29 @@ class Beats : Parcelable {
         return beatList;
     }
 
+
     fun isValidaData(): String? {
+       // val inpFormat =  SimpleDateFormat(DateUtility.dd_MM_yy, Locale.US);
+        //val formatted = DateUtils.str()
+
+
+
         var errMsg : String? = null;
         if(startDate==null || endDate==null){
             errMsg = "Please provide start date and endDate";
         }
         if(startDate!=null && endDate!=null){
             if(startDate!! > endDate!!){
-                errMsg = "Start date cannot be greater then end date";
+                errMsg = "Start date cannot be greater than end date";
             }
         }
+//        if(startDate!=null && current!=null){
+//            if(startDate!! < current){
+//                errMsg = "Start date cannot be less than currentDate";
+//            }
+//        }
 
         return errMsg;
     }
 }
+
