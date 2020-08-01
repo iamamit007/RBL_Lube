@@ -18,11 +18,12 @@ import com.velectico.rbm.order.model.OrderHead
 import com.velectico.rbm.order.views.CreateOrderFragment.Companion.orderItems
 import com.velectico.rbm.order.views.CreateOrderFragment.Companion.schemeItems
 import com.velectico.rbm.order.views.CreateOrderFragment.Companion.seletedItems
+import com.velectico.rbm.utils.productItemClickListener
 import kotlinx.android.synthetic.main.fragment_beat_report.view.*
 import timber.log.Timber
 import java.util.ArrayList
 
-class OrderCartListAdapter(val context: Context) : RecyclerView.Adapter<OrderCartListAdapter.ViewHolder>() {
+class OrderCartListAdapter(val context: Context,var listener: productItemClickListener) : RecyclerView.Adapter<OrderCartListAdapter.ViewHolder>() {
 
     var orderCart =  listOf<CreateOrderListDetails>()
         set(value) {
@@ -72,6 +73,7 @@ class OrderCartListAdapter(val context: Context) : RecyclerView.Adapter<OrderCar
             intger += 1
             holder.binding.cartProductQuantityTv.setText(intger.toString())
             orderItems[orderCart[position].PM_ID!!] = holder.binding.cartProductQuantityTv.text.toString()
+            listener.onItemClick()
             seletedItems.add(orderCart[position])
         }
         holder.binding.cartMinusImg.setOnClickListener{
@@ -81,6 +83,8 @@ class OrderCartListAdapter(val context: Context) : RecyclerView.Adapter<OrderCar
                 return@setOnClickListener
             }
             intger -= 1
+            listener.onItemClick()
+
             holder.binding.cartProductQuantityTv.setText(intger.toString())
             seletedItems.add(orderCart[position])
             orderItems[orderCart[position].PM_ID!!] = holder.binding.cartProductQuantityTv.text.toString()

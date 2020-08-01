@@ -21,9 +21,11 @@ import com.velectico.rbm.order.adapters.OrderCartListAdapter
 import com.velectico.rbm.order.adapters.OrderPreviewListAdapter
 import com.velectico.rbm.order.model.OrderCart
 import com.velectico.rbm.order.views.CreateOrderFragment.Companion.orderItems
+import com.velectico.rbm.order.views.CreateOrderFragment.Companion.schemeItems
 import com.velectico.rbm.order.views.CreateOrderFragment.Companion.seletedItems
 import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SharedPreferenceUtils
+import com.velectico.rbm.utils.productItemClickListener
 import retrofit2.Callback
 
 
@@ -39,6 +41,7 @@ class OrderPreviewFragment : BaseFragment() {
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentOrderPreviewBinding
+
         binding.btnPlaceOrder.setOnClickListener {
           //
             callCreateOrderList()
@@ -124,6 +127,9 @@ class OrderPreviewFragment : BaseFragment() {
         ) {
             hide()
             response.data?.status?.let { status ->
+                seletedItems.clear()
+                orderItems.clear()
+                schemeItems.clear()
                 Log.e("test333","OrderHistoryDetailsResponse status="+response.data)
                 moveToOrderList()
 
@@ -137,5 +143,6 @@ class OrderPreviewFragment : BaseFragment() {
 
 
     }
+
 
 }

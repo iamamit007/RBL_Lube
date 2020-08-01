@@ -25,16 +25,19 @@ import com.velectico.rbm.order.model.OrderCart
 import com.velectico.rbm.order.model.OrderHead
 import com.velectico.rbm.utils.ImageUtils
 import com.velectico.rbm.utils.SharedPreferenceUtils
+import com.velectico.rbm.utils.productItemClickListener
 import retrofit2.Callback
 
 
-class CreateOrderFragment : BaseFragment() {
+class CreateOrderFragment : BaseFragment(),productItemClickListener {
     private lateinit var binding : FragmentCreateOrderBinding
     private var orderCartList : List<CreateOrderListDetails> = emptyList()
     private lateinit var adapter: OrderCartListAdapter
     private var locationManager : LocationManager? = null
+
     var segId= ""
     var catId= ""
+    private lateinit var listener: productItemClickListener
     override fun getLayout(): Int {
         return R.layout.fragment_create_order
     }
@@ -42,8 +45,6 @@ class CreateOrderFragment : BaseFragment() {
         var orderItems:HashMap<String,String> = HashMap()
         var schemeItems:HashMap<String,String?> = HashMap()
         var seletedItems = HashSet<CreateOrderListDetails>()
-
-
     }
 
 
@@ -62,12 +63,13 @@ class CreateOrderFragment : BaseFragment() {
             moveToProdFilter()
         }
         callCreateOrderList()
+        listener = this
         setUpRecyclerView()
 
     }
 
     private fun setUpRecyclerView() {
-        adapter = OrderCartListAdapter(context!!);
+        adapter = OrderCartListAdapter(context!!,listener);
         binding.rvCartList.adapter = adapter
         adapter.orderCart = orderCartList
         setUp()
@@ -147,4 +149,27 @@ class CreateOrderFragment : BaseFragment() {
 
 
     }
+    override fun onItemClick() {
+        caculateGross()
+
+    }
+
+
+    var grossGST = 0.0
+    fun caculateGross(){
+        var grossAmt = 0.0
+        if (seletedItems.size !=0){
+            for (i in seletedItems ){
+                val total  = (i.PM_Net_Price!!.toDouble())*(orderItems[i.PM_ID!!]!!.toDouble())
+                grossAmt += total
+
+            }
+        }else{
+            binding.tvProdId.setText("$grossAmt")
+
+        }
+
+        //binding.tvProdIdGst.setText("$grossGST")
+    }
+
 }
