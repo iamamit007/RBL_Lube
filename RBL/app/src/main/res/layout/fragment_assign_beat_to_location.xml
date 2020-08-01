@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/bg_dashboard"
+        android:background="@drawable/bg_dashboard_bkp"
         tools:context=".beats.views.AssignBeatToLocation">
 
         <LinearLayout
@@ -46,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:gravity="center"
-                    android:background="@color/colorOrange">
+                    android:background="@color/mdtp_dark_gray">
 
                     <TextView
                         android:id="@+id/tv_beat_schedule_name"
@@ -55,7 +55,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_toRightOf="@+id/thumbnail"
                         android:text="Add Beat Task (2020-02-17 to 2020-02-20)"
-                        android:textColor="#040404"
+                        android:textColor="#ffffff"
                         android:textSize="18dip"
                         android:typeface="sans"
                         android:textStyle="bold"

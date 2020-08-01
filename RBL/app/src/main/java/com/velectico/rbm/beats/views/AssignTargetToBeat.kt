@@ -61,7 +61,7 @@ class AssignTargetToBeat : BaseFragment() {
             .setAnimationSpeed(2)
             .setDimAmount(0.5f)
         binding.btnSaveTask.setOnClickListener {
-         //   moveToBeatList()
+           moveToBeatList()
             saveTaskToBEat()
 
 
