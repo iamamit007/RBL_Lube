@@ -4,7 +4,9 @@ import android.R
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
@@ -14,7 +16,9 @@ import com.velectico.rbm.databinding.RowProductCartBinding
 import com.velectico.rbm.order.model.OrderCart
 import com.velectico.rbm.order.model.OrderHead
 import com.velectico.rbm.order.views.CreateOrderFragment.Companion.orderItems
+import com.velectico.rbm.order.views.CreateOrderFragment.Companion.schemeItems
 import com.velectico.rbm.order.views.CreateOrderFragment.Companion.seletedItems
+import kotlinx.android.synthetic.main.fragment_beat_report.view.*
 import timber.log.Timber
 import java.util.ArrayList
 
@@ -61,7 +65,6 @@ class OrderCartListAdapter(val context: Context) : RecyclerView.Adapter<OrderCar
         var x  = ArrayAdapter<String>(context, R.layout.simple_spinner_item, statList);
 
         holder.binding.spBeatName.adapter = x
-        x.notifyDataSetChanged()
 
 
         var intger = 0
@@ -84,7 +87,23 @@ class OrderCartListAdapter(val context: Context) : RecyclerView.Adapter<OrderCar
         }
         Picasso.get().load(orderCart[position].PM_Image_Path).fit().into(holder.binding.listImage)
 
+
+        holder.binding.spBeatName.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(adapterView: AdapterView<*>, view: View?, pos: Int, id: Long) {
+                val x = orderCart[position].PSM_Scheme_Details
+                if (pos!=0 && statList.size > pos){
+                    val y = x!![pos].schemeId
+                    schemeItems[orderCart[position].PM_ID!!] = y
+                }
+
+
+            }
+
+            override fun onNothingSelected(adapterView: AdapterView<*>) {}
+        }
+        x.notifyDataSetChanged()
     }
+
 
 
 }

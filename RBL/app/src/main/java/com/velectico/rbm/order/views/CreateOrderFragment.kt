@@ -40,6 +40,7 @@ class CreateOrderFragment : BaseFragment() {
     }
     companion object{
         var orderItems:HashMap<String,String> = HashMap()
+        var schemeItems:HashMap<String,String?> = HashMap()
         var seletedItems = HashSet<CreateOrderListDetails>()
 
 
@@ -114,7 +115,7 @@ class CreateOrderFragment : BaseFragment() {
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getCreateOrderList(
-            CreateOrderListRequestParams("7001507620","22","34")
+            CreateOrderListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),segId,catId)
         )
         responseCall.enqueue(CreateOrderDetailsResponse as Callback<CreateOrderDetailsResponse>)
     }
