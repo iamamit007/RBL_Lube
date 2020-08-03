@@ -1,31 +1,40 @@
 package com.velectico.rbm.leave.view
 
 import android.content.Context
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.google.android.material.textfield.TextInputEditText
+import com.google.gson.annotations.SerializedName
+import com.kaopiz.kprogresshud.KProgressHUD
 import com.velectico.rbm.R
 import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
+import com.velectico.rbm.beats.model.*
+import com.velectico.rbm.beats.views.AssignBeatToLocation
 import com.velectico.rbm.databinding.DefaultFragmentBinding
 import com.velectico.rbm.databinding.FragmentApplyLeaveBinding
 import com.velectico.rbm.expense.views.CreateExpenseFragmentDirections
-import com.velectico.rbm.leave.model.ApplyLeaveRequest
-import com.velectico.rbm.leave.model.LeaveListModel
-import com.velectico.rbm.leave.model.LeaveReason
-import com.velectico.rbm.leave.model.LeaveReasonResponse
+import com.velectico.rbm.leave.model.*
 import com.velectico.rbm.leave.viewmodel.LeaveViewModel
 import com.velectico.rbm.masterdata.model.MasterDataItem
 import com.velectico.rbm.masterdata.model.MasterDataResponse
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
+import com.velectico.rbm.network.callbacks.NetworkCallBack
+import com.velectico.rbm.network.callbacks.NetworkError
+import com.velectico.rbm.network.manager.ApiClient
+import com.velectico.rbm.network.manager.ApiInterface
+import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.utils.*
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
+import retrofit2.Callback
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -54,15 +63,129 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
         observeViewModelData()
         getRoleWiseView(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString(),binding)
         setUp()
-        getLeaveListFromServer()
+        initHud()
+        //getLeaveListFromServer()
         showToastMessage(RBMLubricantsApplication.globalRole)
         if (RBMLubricantsApplication.globalRole == "Team" ){
             binding.approveBtn.visibility = View.VISIBLE
             binding.rejectBtn.visibility = View.VISIBLE
             binding.applyBtn.visibility = View.GONE
         }
+        callApi("Leave Reason")
 
     }
+
+
+    var hud: KProgressHUD? = null
+    fun  showHud(){
+        if (hud!=null){
+
+            hud!!.show()
+        }
+    }
+
+    fun hide(){
+        hud?.dismiss()
+
+    }
+    fun initHud(){
+        hud =  KProgressHUD.create(activity)
+            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+            .setLabel("Please wait")
+            .setCancellable(true)
+            .setAnimationSpeed(2)
+            .setDimAmount(0.5f)
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    fun callApi(type:String){
+        // DealerDetailsRequestParams(
+        //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
+        showHud()
+        val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
+        val responseCall = apiInterface.getOrdervsQualityList(
+            OrderVSQualityRequestParams(type)
+        )
+        responseCall.enqueue(segmentResponseResponse as Callback<OrderVSQualityResponse>)
+
+    }
+
+    var reasonId:String = ""
+    var segdataList : List<DropdownDetails> = emptyList<DropdownDetails>()
+    val segmentResponseResponse = object : NetworkCallBack<OrderVSQualityResponse>(){
+        override fun onSuccessNetwork(data: Any?, response: NetworkResponse<OrderVSQualityResponse>) {
+            response.data?.status?.let { status ->
+
+                hide()
+                segdataList  = response.data.BeatReportList
+                var statList: MutableList<String> = java.util.ArrayList()
+                for (i in segdataList){
+                    statList.add(i.Exp_Head_Name!!)
+                }
+                val adapter2 = context?.let {
+                    ArrayAdapter(
+                        it,
+                        android.R.layout.simple_spinner_item, statList)
+                }
+                binding.spLeaveReason.adapter = adapter2
+                binding.spLeaveReason.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
+                        if (segdataList.size > 0 ){
+                            val x = segdataList[position]
+                            reasonId = x.Exp_Head_Id!!
+
+                        }
+                    }
+
+                    override fun onNothingSelected(adapterView: AdapterView<*>) {}
+                }
+
+            }
+
+        }
+
+        override fun onFailureNetwork(data: Any?, error: NetworkError) {
+            hide()
+
+
+        }
+
+    }
+    fun callCreateApi(){
+        // DealerDetailsRequestParams(
+        //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
+        showHud()
+        val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
+        val responseCall = apiInterface.createLeave(
+            ApplyLeaveRequest(reasonId, SharedPreferenceUtils.getLoggedInUserId(context as Context),binding.leaveFromEt.text.toString(),binding.leaveToEt.text.toString(),binding.leaveCommentsEt.text.toString(),"")
+        )
+        responseCall.enqueue(createResponse as Callback<ApplyLeaveResponse>)
+
+    }
+
+
+    val createResponse = object : NetworkCallBack<ApplyLeaveResponse>(){
+        override fun onSuccessNetwork(data: Any?, response: NetworkResponse<ApplyLeaveResponse>) {
+            response.data?.status?.let { status ->
+
+                hide()
+              showToastMessage(response.data.respMessage)
+
+            }
+
+        }
+
+        override fun onFailureNetwork(data: Any?, error: NetworkError) {
+            hide()
+
+
+        }
+
+    }
+
 
     private fun setUp() {
         binding.leaveFromEt.setOnClickListener(this)
@@ -82,9 +205,9 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
                 binding.leaveCommentsEt.setText(leaveViewModel.leaveListData[position.toInt()].LD_Other_Reason)
                 binding.leaveFromEt.setText(leaveViewModel.leaveListData[position.toInt()].leaveFrom)
                 binding.leaveToEt.setText(leaveViewModel.leaveListData[position.toInt()].leaveTo)
-                selectedLeaveReason = LeaveReason(
-                    DD_Dropdown_Val = leaveViewModel.leaveListData[position.toInt()].leaveName as String,
-                    DD_ID = leaveViewModel.leaveListData[position.toInt()].leaveReasonId)
+//                selectedLeaveReason = LeaveReason(
+//                    DD_Dropdown_Val = leaveViewModel.leaveListData[position.toInt()].leaveName as String,
+//                    DD_ID = leaveViewModel.leaveListData[position.toInt()].leaveReasonId)
             }
         }
     }
@@ -184,7 +307,7 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
     private fun applyLeaveFromServer(){
         val fromDate = binding.leaveFromEt.text.toString()?.trim();
         val toDate = binding.leaveToEt.text.toString()?.trim();
-        if(selectedLeaveReason==null){
+        if(reasonId.isEmpty()){
             showToastMessage("Please select leave reason")
         }
         else if(binding.leaveFromEt==null || fromDate == ""){
@@ -197,15 +320,9 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
             binding?.progressLayout?.visibility = View.VISIBLE
             val userId : String = SharedPreferenceUtils.getLoggedInUserId(context as Context)
             val isEdit = flow == LeaveListFragment.EDIT
-            leaveViewModel.applyLeaveAPICall(
-                ApplyLeaveRequest(leaveFromDate = fromDate,
-                    leaveReasonId =  selectedLeaveReason?.DD_ID?.toInt() as Int,
-                    leaveReasonOther = binding.leaveCommentsEt.text.toString(),
-                    leaveToDate = toDate,
-                    userId = userId,
-                    leaveId = leaveID
-                ),isEdit
-            )
+            callCreateApi()
+
+
         }
     }
 

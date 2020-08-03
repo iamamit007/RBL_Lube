@@ -148,6 +148,13 @@ const val Save_AssignTask = APP_API_NAME+"Save_AssignTask"
 
 const val Create_Order = APP_API_NAME+"Create_Order"
 
+const val Apply_Leave = APP_API_NAME+"Apply_Leave"
+
+const val Edit_Leave = APP_API_NAME+"Edit_Leave"
+
+const val Leave_List = APP_API_NAME+"Leave_List"
+
+
 
 
 

@@ -33,12 +33,17 @@ import com.velectico.rbm.beats.model.TaskForListRequestParams;
 import com.velectico.rbm.beats.model.TaskForListResponse;
 import com.velectico.rbm.complaint.model.ComplaintListRequestParams;
 import com.velectico.rbm.complaint.model.ComplaintListResponse;
+import com.velectico.rbm.leave.model.ApplyLeaveRequest;
+import com.velectico.rbm.leave.model.ApplyLeaveResponse;
+import com.velectico.rbm.leave.model.LeaveListRequest;
+import com.velectico.rbm.leave.model.LeaveListResponse;
 
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Apply_Leave;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Beat_Report_By_Date;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Complaint_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Report;
@@ -47,6 +52,7 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Order;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Dealer_Distrib_Task_Worksheet;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.ENDPOINTBeat_Task_Details;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.ENDPOINT_GET_TASK_DETAILS_LIST_BY_BEAT_ID;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Edit_Leave;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_AssignTo_By_TaskFor_And_Location;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Beat_By_Level;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Deal_Dist_Mech_List;
@@ -55,6 +61,7 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Location_
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Order_History;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Product_List_By_Cat_Seg;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Task_For;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Leave_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Save_AssignTask;
 
 public interface ApiInterface {
@@ -121,5 +128,14 @@ public interface ApiInterface {
     @POST(Create_Order)
     Call<CreateOrderResponse> createOrder(@Body CreateOrderPRParams model);
 
+
+    @POST(Apply_Leave)
+    Call<ApplyLeaveResponse> createLeave(@Body ApplyLeaveRequest model);
+
+    @POST(Edit_Leave)
+    Call<ApplyLeaveResponse> updateLeave(@Body ApplyLeaveRequest model);
+
+    @POST(Leave_List)
+    Call<LeaveListResponse> getLeaveList(@Body LeaveListRequest model);
 
 }
