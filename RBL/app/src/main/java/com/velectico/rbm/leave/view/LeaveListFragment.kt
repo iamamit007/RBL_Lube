@@ -40,6 +40,7 @@ class LeaveListFragment : BaseFragment(){
         this.binding = binding as FragmentLeaveListBinding
         if (RBMLubricantsApplication.globalRole == "Team" ){
             binding.applyLeavesFB.visibility = View.GONE
+
         }
         binding.applyLeavesFB.setOnClickListener {
             activity?.let {
