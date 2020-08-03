@@ -155,7 +155,6 @@ class CreateOrderFragment : BaseFragment(),productItemClickListener {
     }
 
 
-    var grossGST = 0.0
     fun caculateGross(){
         var grossAmt = 0.0
         if (seletedItems.size !=0){
@@ -169,7 +168,7 @@ class CreateOrderFragment : BaseFragment(),productItemClickListener {
 
         }
 
-        //binding.tvProdIdGst.setText("$grossGST")
+        binding.tvProdId.setText("$grossAmt")
     }
 
 }
