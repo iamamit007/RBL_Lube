@@ -31,6 +31,7 @@ import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.utils.DateUtils
+import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
 import retrofit2.create
@@ -44,12 +45,20 @@ class BeatListFragment : BaseFragment() {
     private lateinit var binding: FragmentBeatListBinding;
     private  var beatList : List<TaskDetails> = emptyList<TaskDetails>()
     private lateinit var adapter: BeatListAdapter
+    var userId = ""
     override fun getLayout(): Int {
         return R.layout.fragment_beat_list
     }
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentBeatListBinding
+        if (RBMLubricantsApplication.globalRole == "Team" ){
+            userId = GloblalDataRepository.getInstance().teamUserId
+        }
+        else{
+            userId = SharedPreferenceUtils.getLoggedInUserId(context as Context)
+        }
+        showToastMessage(userId)
         val  getstring = arguments?.getString(  "scheduleId").toString()
         binding.tvBeatScheduleName.text = getstring
         callApi(getstring)
@@ -64,7 +73,7 @@ class BeatListFragment : BaseFragment() {
         adapter = BeatListAdapter(object : BeatListAdapter.IBeatListActionCallBack{
             override fun moveToBeatTaskDetails(position: Int, beatTaskId: String?,binding: RowBeatListBinding) {
                 Log.e("test","onAddTask"+beatTaskId)
-                val navDirection =  BeatListFragmentDirections.actionBeatListFragmentToBeatTaskDetailsViewFragment(SharedPreferenceUtils.getLoggedInUserId(context as Context),"75",beatList[position])
+                val navDirection =  BeatListFragmentDirections.actionBeatListFragmentToBeatTaskDetailsViewFragment(userId,"75",beatList[position])
                 Navigation.findNavController(binding.navigateToTaskDetails).navigate(navDirection)
             }
         },data.toString());
@@ -77,7 +86,7 @@ class BeatListFragment : BaseFragment() {
       val inpFormat =  SimpleDateFormat("dd-MMM-yyyy", Locale.US);
         val  outputformat =  SimpleDateFormat("yyyy-MM-dd", Locale.US);
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
-        val responseCall = apiInterface.getTaskDetailsByBeat(GetBeatDeatilsRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),DateUtils.parseDate(getstring,inpFormat,outputformat)))
+        val responseCall = apiInterface.getTaskDetailsByBeat(GetBeatDeatilsRequestParams(userId,DateUtils.parseDate(getstring,inpFormat,outputformat)))
         responseCall.enqueue(readLeaveListResponse as Callback<BeatWiseTakListResponse>)
     }
     private val readLeaveListResponse = object : NetworkCallBack<BeatWiseTakListResponse>(){

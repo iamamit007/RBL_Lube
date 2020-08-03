@@ -14,6 +14,7 @@ import androidx.databinding.ViewDataBinding
 import com.kaopiz.kprogresshud.KProgressHUD
 
 import com.velectico.rbm.R
+import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.adapters.BeatReportListAdapter
 import com.velectico.rbm.beats.model.*
@@ -29,6 +30,7 @@ import com.velectico.rbm.teamlist.adapter.TeamPerformanceDetailsAdapter
 import com.velectico.rbm.teamlist.model.TeamPerformanceModel
 import com.velectico.rbm.utils.DateUtility
 import com.velectico.rbm.utils.DateUtils
+import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import kotlinx.android.synthetic.main.fragment_beat_report.view.*
 import retrofit2.Callback
@@ -48,6 +50,7 @@ class BeatReportListFragment : BaseFragment() , DatePickerDialog.OnDateSetListen
     var dlrDtl = DealerDetails()
     var startDate = "2020-07-28"
     var enddate = "2020-07-31"
+    var userId = ""
 
     override fun getLayout(): Int {
         return R.layout.fragment_beat_report_list
@@ -57,9 +60,12 @@ class BeatReportListFragment : BaseFragment() , DatePickerDialog.OnDateSetListen
     override fun init(binding: ViewDataBinding) {
 
         this.binding = binding as FragmentBeatReportListBinding
-       // startDate = ""
-       // enddate = ""
-        //reportList = BeatReport().getDummyBeatComList()
+        if (RBMLubricantsApplication.globalRole == "Team" ){
+            userId = GloblalDataRepository.getInstance().teamUserId
+        }
+        else{
+            userId = SharedPreferenceUtils.getLoggedInUserId(context as Context)
+        }
         taskDetails = arguments!!.get("taskDetail") as BeatTaskDetails
         dlrDtl = arguments!!.get("dealerDetails") as DealerDetails
         callApiBeatReportList(startDate,enddate)
@@ -142,7 +148,7 @@ class BeatReportListFragment : BaseFragment() , DatePickerDialog.OnDateSetListen
         val responseCall = apiInterface.getBeatReportList(
             //BeatAllOrderListRequestParams("7001507620","61")
 
-            BeatReportListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),taskDetails.taskId.toString(),taskDetails.dealerId.toString(),taskDetails.distribId.toString(),date1,date2)
+            BeatReportListRequestParams(userId,taskDetails.taskId.toString(),taskDetails.dealerId.toString(),taskDetails.distribId.toString(),date1,date2)
 
             //BeatReportListRequestParams("7001507620","109","61","0","2020-07-26","2020-07-26")
         )

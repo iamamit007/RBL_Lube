@@ -4,7 +4,7 @@
     <data>
         <variable
             name="teamListInfo"
-            type="com.velectico.rbm.teamlist.model.TeamListModel" />
+            type="com.velectico.rbm.teamlist.model.TeamListDetails" />
     </data>
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -19,7 +19,7 @@
             android:id="@+id/secondLine"
             android:layout_width="fill_parent"
             android:layout_height="26dip"
-            android:text="Anil Sen"
+            android:text="@{teamListInfo.UM_Name}"
             android:layout_centerVertical="true"
             android:textColor="@color/black"
             android:textSize="12sp"
@@ -32,7 +32,7 @@
             android:layout_height="25dip"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_right_arrow" />
+            android:src="@drawable/arrow" />
 
 
 

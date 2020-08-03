@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.velectico.rbm.databinding.RowBeatListDatesBinding
 import com.velectico.rbm.databinding.RowTeamListBinding
+import com.velectico.rbm.teamlist.model.TeamListDetails
 import com.velectico.rbm.teamlist.model.TeamListModel
 
 class TeamListAdapter (var setCallback: TeamListAdapter.ITeamListActionCallBack) : RecyclerView.Adapter<TeamListAdapter.ViewHolder>() {
     var callBack : TeamListAdapter.ITeamListActionCallBack?=null
-    var teamList = listOf<TeamListModel>()
+    var teamList = listOf<TeamListDetails>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -27,7 +28,7 @@ class TeamListAdapter (var setCallback: TeamListAdapter.ITeamListActionCallBack)
             }
         }
 
-        fun bind(teamListModel: TeamListModel?) {
+        fun bind(teamListModel: TeamListDetails?) {
             binding.teamListInfo = teamListModel
             binding.executePendingBindings()
         }

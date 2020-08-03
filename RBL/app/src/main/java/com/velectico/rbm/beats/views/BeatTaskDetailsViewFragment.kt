@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import com.kaopiz.kprogresshud.KProgressHUD
 
 import com.velectico.rbm.R
+import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.adapters.BeatListAdapter
@@ -25,6 +26,7 @@ import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
+import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SALES_LEAD_ROLE
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
@@ -44,8 +46,15 @@ class BeatTaskDetailsViewFragment : BaseFragment() {
 
     var  scheduleId = TaskDetails()
     var  userId = ""
+    var  userIdB = ""
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentBeatTaskDetailsViewBinding
+        if (RBMLubricantsApplication.globalRole == "Team" ){
+            userIdB = GloblalDataRepository.getInstance().teamUserId
+        }
+        else{
+            userIdB = SharedPreferenceUtils.getLoggedInUserId(context as Context)
+        }
         menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
         if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() != SALES_LEAD_ROLE){
            binding.beatSummary.visibility = View.GONE
@@ -83,7 +92,7 @@ class BeatTaskDetailsViewFragment : BaseFragment() {
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getScheduleTaskDetailsByBeat(BeatTaskDetailsRequestParams(
-            SharedPreferenceUtils.getLoggedInUserId(context as Context),scheduleId.schedule_id.toString()))
+            userIdB,scheduleId.schedule_id.toString()))
         responseCall.enqueue(beatTaskDetailsListResponse as Callback<BeatTaskDetailsListResponse>)
     }
 

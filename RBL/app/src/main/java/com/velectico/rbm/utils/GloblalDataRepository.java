@@ -3,6 +3,7 @@ package com.velectico.rbm.utils;
 public class GloblalDataRepository {
     private static GloblalDataRepository globalDataService = null;
     private String scheduleId = "";
+    private String teamUserId = "";
 
     public static GloblalDataRepository getInstance() {
         if (globalDataService == null)
@@ -18,6 +19,16 @@ public class GloblalDataRepository {
     public void setScheduleId(String scheduleId) {
         this.scheduleId = scheduleId;
     }
+
+
+    public String getTeamUserId() {
+        return teamUserId;
+    }
+
+    public void setTeamUserId(String teamUserId) {
+        this.teamUserId = teamUserId;
+    }
+
 
     private String distribId = "";
     private String taskId = "";

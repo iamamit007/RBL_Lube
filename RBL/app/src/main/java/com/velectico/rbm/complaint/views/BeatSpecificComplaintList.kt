@@ -28,6 +28,7 @@ import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
+import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
 
@@ -42,12 +43,20 @@ class BeatSpecificComplaintList : BaseFragment() {
     var orderStatus = "O"
     var taskDetails = BeatTaskDetails()
     var dlrDtl = DealerDetails()
+    var userId = ""
+
     override fun getLayout(): Int {
         return R.layout.fragment_beat_specific_complaint_list
     }
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentBeatSpecificComplaintListBinding
+        if (RBMLubricantsApplication.globalRole == "Team" ){
+            userId = GloblalDataRepository.getInstance().teamUserId
+        }
+        else{
+            userId = SharedPreferenceUtils.getLoggedInUserId(context as Context)
+        }
         taskDetails = arguments!!.get("taskDetails") as BeatTaskDetails
         dlrDtl = arguments!!.get("dealerDetails") as DealerDetails
         //showToastMessage(taskDetails.toString())
@@ -121,7 +130,7 @@ class BeatSpecificComplaintList : BaseFragment() {
             //BeatAllOrderListRequestParams("7001507620","61")
             //ComplaintListRequestParams("7001507620","109","61","0","",orderStatus)
 
-            ComplaintListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),taskDetails.taskId.toString(),taskDetails.dealerId.toString(),taskDetails.distribId.toString(),"",orderStatus)
+            ComplaintListRequestParams(userId,taskDetails.taskId.toString(),taskDetails.dealerId.toString(),taskDetails.distribId.toString(),"",orderStatus)
         )
         responseCall.enqueue(ComplaintListResponse as Callback<ComplaintListResponse>)
     }
