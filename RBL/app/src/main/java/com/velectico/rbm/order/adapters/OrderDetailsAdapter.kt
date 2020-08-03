@@ -3,6 +3,7 @@ package com.velectico.rbm.order.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import com.velectico.rbm.beats.adapters.BeatDateListAdapter
 import com.velectico.rbm.beats.model.OrderProductListDetails
 import com.velectico.rbm.databinding.RowBeatListDatesBinding
@@ -45,6 +46,7 @@ class OrderDetailsAdapter : RecyclerView.Adapter<OrderDetailsAdapter.ViewHolder>
 
     override fun onBindViewHolder(holder: OrderDetailsAdapter.ViewHolder, position: Int) {
         holder.bind(orderCart[position])
+        Picasso.get().load(orderCart[position].prodImage).fit().into(holder.binding.listImage)
     }
 
 

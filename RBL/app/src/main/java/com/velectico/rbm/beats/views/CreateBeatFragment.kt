@@ -165,7 +165,8 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
                 binding.etAssignTo.setText( dataList[position].BM_Beat_Name)
                 mBeatSharedViewModel.beats.value?.salesPersonId = position.toString()
                 mBeatSharedViewModel.beats.value?.salesPersonName = dataList[position].BM_Beat_Name
-                masterId = dataList[position].BM_DM_ID!!
+                masterId = dataList[position].BM_ID!!
+                GloblalDataRepository.getInstance().scheduleId = dataList[position].BM_ID!!
 
             }
 
@@ -241,6 +242,8 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
             CreateBeatScheduleRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),masterId,stdate,endate)
            // CreateBeatScheduleRequestParams((SharedPreferenceUtils.getLoggedInUserId(context as Context),masterId,"2020-07-22","2020-07-25")
         )
+
+
         responseCall.enqueue(createBeatScheduleResponseResponse as Callback<CreateBeatReportResponse>)
 
     }
@@ -250,7 +253,7 @@ class CreateBeatFragment : BaseFragment() , OnDateSetListener {
 
                 hide()
                 showToastMessage( response.data?.respMessage!!)
-                GloblalDataRepository.getInstance().scheduleId =   response.data?.beatScheduleId
+
                 val navDirection =  CreateBeatFragmentDirections.actionCreateBeatFragmentToAssignBeatToLocation(binding.etStartDate.text.toString(),binding.etEndDate.text.toString())
                 Navigation.findNavController(binding.btnAssignTask).navigate(navDirection)
 

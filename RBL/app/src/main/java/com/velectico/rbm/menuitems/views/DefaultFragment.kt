@@ -90,6 +90,7 @@ class DefaultFragment : BaseFragment(){
         }
 
         binding.leaveButton.setOnClickListener {
+            RBMLubricantsApplication.globalRole = ""
             val navDirection =  DefaultFragmentDirections.actionHomeFragmentToLeaveListFragment()
             Navigation.findNavController(binding.leaveButton).navigate(navDirection)
         }

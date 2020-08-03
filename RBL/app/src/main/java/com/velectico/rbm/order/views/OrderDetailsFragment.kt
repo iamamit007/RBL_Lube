@@ -22,6 +22,7 @@ class OrderDetailsFragment : BaseFragment() {
     private lateinit var adapter: OrderDetailsAdapter
     var taskDetails = BeatTaskDetails()
     var orderDetails = OrderListDetails()
+    var status = ""
     override fun getLayout(): Int {
         return R.layout.fragment_order_details
     }
@@ -35,6 +36,13 @@ class OrderDetailsFragment : BaseFragment() {
         binding.tvOrddate.text = orderDetails.orderDate
         binding.tvProdpriceTotal.text = "₹" +orderDetails.totalPrice
         binding.tvProdGst.text = "12%"
+        if (orderDetails.OH_Status == "O"){
+            status = "Pending"
+        }
+        else if (orderDetails.OH_Status == "C"){
+            status = "Completed"
+        }
+        binding.tvOrdStat.text = status
 
         if (RBMLubricantsApplication.globalRole == "Team" ) {
             binding.btnCancel.visibility = View.GONE

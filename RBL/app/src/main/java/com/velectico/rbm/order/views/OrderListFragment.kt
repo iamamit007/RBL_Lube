@@ -100,8 +100,8 @@ class OrderListFragment : BaseFragment()  {
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getBeatAllOrderHistory(
-            BeatAllOrderListRequestParams("7001507620","61","0",orderStatus)
-            //BeatAllOrderListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),taskDetails.dealerId.toString(),taskDetails.distribId.toString(),orderStatus)
+            //BeatAllOrderListRequestParams("7001507620","61","0",orderStatus)
+            BeatAllOrderListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),taskDetails.dealerId.toString(),taskDetails.distribId.toString(),orderStatus)
         )
         responseCall.enqueue(OrderHistoryDetailsResponse as Callback<OrderHistoryDetailsResponse>)
     }
@@ -110,7 +110,7 @@ class OrderListFragment : BaseFragment()  {
         override fun onSuccessNetwork(data: Any?, response: NetworkResponse<OrderHistoryDetailsResponse>) {
             hide()
             response.data?.status?.let { status ->
-                //Log.e("test222","OrderHistoryDetailsResponse status="+response.data)
+                Log.e("test33333333","OrderHistoryDetailsResponse status="+response.data)
                 orderHeadList.toMutableList().clear()
                 if (response.data.count > 0){
                     orderHeadList = response.data.OrderList!!.toMutableList()

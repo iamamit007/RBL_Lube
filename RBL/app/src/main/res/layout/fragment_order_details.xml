@@ -126,8 +126,8 @@
                                         android:text="@string/order_status" />
 
                                     <TextView
-                                        android:id="@+id/tv_prodCode"
-                                        android:text="Pending"
+                                        android:id="@+id/tv_ordStat"
+                                        android:text=""
                                         style="@style/small_font_txt" />
 
                                 </LinearLayout>

@@ -89,10 +89,11 @@ data class BeatTaskDetails(
     val distribAddress: String? = null,
     val BSD_Work_Assg_Comment: String? = null,
     val distribGrade: String? = null,
-    val BSD_Targer_Qty: String? = null,
-    val BSD_Targer_Amt: String? = null,
+    val BSD_Order_Target: String? = null,
+    val BSD_Collection_Target: String? = null,
     val dealerId: String? = null,
-    val distribId: String? = null
+    val distribId: String? = null,
+    val visit:String?=null
 ):Serializable
 
 
@@ -156,6 +157,8 @@ data class OrderListDetails(
     val OH_Distrib_ID: String? = null,
     val distribName: String? = null,
     val orderDate: String? = null,
+    val OH_Status: String? = null,
+
     @SerializedName("prod_details")
     val prod_details: List<OrderProductListDetails> = emptyList()
 
@@ -176,7 +179,9 @@ data class OrderProductListDetails(
     val Create_Date: String? = null,
     val Created_By: String? = null,
     val Modified_Date: String? = null,
-    val Modified_By: String? = null
+    val Modified_By: String? = null,
+    val brandName: String? = null,
+    val prodImage: String? = null
 
 ):Serializable
 

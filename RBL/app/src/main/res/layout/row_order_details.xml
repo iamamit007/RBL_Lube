@@ -26,7 +26,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/thumbnail"
-                    android:text="Lube Oil Plus"
+                    android:text="@{orderCartInfo.brandName}"
                     android:textColor="#040404"
                     android:textSize="15dip"
                     android:typeface="sans"

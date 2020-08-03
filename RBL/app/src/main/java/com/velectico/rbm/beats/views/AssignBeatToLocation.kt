@@ -52,7 +52,7 @@ class AssignBeatToLocation : BaseFragment() {
     }
 
     override fun init(binding: ViewDataBinding) {
-
+        showToastMessage(GloblalDataRepository.getInstance().scheduleId)
         this.binding = binding as FragmentAssignBeatToLocationBinding
         startDate = arguments?.getString(  "startDate").toString()
         endDate = arguments?.getString(  "endDate").toString()
