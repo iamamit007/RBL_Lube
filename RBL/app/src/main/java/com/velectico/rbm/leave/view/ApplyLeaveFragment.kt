@@ -53,6 +53,11 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
     private var leaveID : String = ""
     private lateinit var menuViewModel: MenuViewModel
 
+
+//    companion object{
+//        var LeaveListModel:LeaveListModel? = null
+//    }
+
     override fun getLayout(): Int {
         return R.layout.fragment_apply_leave
     }
@@ -71,7 +76,7 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
             binding.rejectBtn.visibility = View.VISIBLE
             binding.applyBtn.visibility = View.GONE
         }
-        callApi("Leave Reason")
+
 
     }
 
@@ -99,6 +104,7 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
 
     override fun onResume() {
         super.onResume()
+        callApi("Leave Reason")
     }
 
     fun callApi(type:String){
@@ -166,6 +172,18 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
 
     }
 
+    fun callUpdateApi(){
+        // DealerDetailsRequestParams(
+        //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
+        showHud()
+        val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
+        val responseCall = apiInterface.updateLeave(
+            ApplyLeaveRequest(reasonId, SharedPreferenceUtils.getLoggedInUserId(context as Context),binding.leaveFromEt.text.toString(),binding.leaveToEt.text.toString(),binding.leaveCommentsEt.text.toString(),leaveID)
+        )
+        responseCall.enqueue(createResponse as Callback<ApplyLeaveResponse>)
+
+    }
+
 
     val createResponse = object : NetworkCallBack<ApplyLeaveResponse>(){
         override fun onSuccessNetwork(data: Any?, response: NetworkResponse<ApplyLeaveResponse>) {
@@ -200,11 +218,12 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
             flow = ApplyLeaveFragmentArgs.fromBundle(it).flow
             val position = ApplyLeaveFragmentArgs.fromBundle(it).item
             if(flow == LeaveListFragment.EDIT){
-                leaveID = leaveViewModel.leaveListData[position.toInt()].leaveID
-                binding.leaveNameEt.setText(leaveViewModel.leaveListData[position.toInt()].leaveName)
-                binding.leaveCommentsEt.setText(leaveViewModel.leaveListData[position.toInt()].LD_Other_Reason)
-                binding.leaveFromEt.setText(leaveViewModel.leaveListData[position.toInt()].leaveFrom)
-                binding.leaveToEt.setText(leaveViewModel.leaveListData[position.toInt()].leaveTo)
+                val model = GloblalDataRepository.getInstance().leaveListModel
+                leaveID = model.leaveID
+                binding.leaveNameEt.setText(model.leaveName)
+                binding.leaveCommentsEt.setText(model.LD_Other_Reason)
+                binding.leaveFromEt.setText(model.leaveFrom)
+                binding.leaveToEt.setText(model.leaveTo)
 //                selectedLeaveReason = LeaveReason(
 //                    DD_Dropdown_Val = leaveViewModel.leaveListData[position.toInt()].leaveName as String,
 //                    DD_ID = leaveViewModel.leaveListData[position.toInt()].leaveReasonId)
@@ -243,9 +262,11 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
             }
             R.id.applyBtn -> {
                 if(flow == LeaveListFragment.EDIT){
-
+                    callUpdateApi()
+                }else{
+                    applyLeaveFromServer()
                 }
-                applyLeaveFromServer()
+
 
             }
         }

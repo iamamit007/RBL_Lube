@@ -1,8 +1,11 @@
 package com.velectico.rbm.utils;
 
+import com.velectico.rbm.leave.model.LeaveListModel;
+
 public class GloblalDataRepository {
     private static GloblalDataRepository globalDataService = null;
     private String scheduleId = "";
+    private LeaveListModel leaveListModel = null;
 
     public static GloblalDataRepository getInstance() {
         if (globalDataService == null)
@@ -62,5 +65,13 @@ public class GloblalDataRepository {
 
     public void setDelalerId(String delalerId) {
         this.delalerId = delalerId;
+    }
+
+    public LeaveListModel getLeaveListModel() {
+        return leaveListModel;
+    }
+
+    public void setLeaveListModel(LeaveListModel leaveListModel) {
+        this.leaveListModel = leaveListModel;
     }
 }

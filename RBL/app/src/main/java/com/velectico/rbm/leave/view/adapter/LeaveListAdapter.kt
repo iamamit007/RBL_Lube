@@ -13,7 +13,7 @@ import com.velectico.rbm.leave.model.LeaveListModel
  * Created by mymacbookpro on 2020-05-08
  * TODO: Add a class header comment!
  */
-class LeaveListAdapter(private var list:ArrayList<LeaveListModel>, private val onClickListener: (View, Int , Int) -> Unit)
+class LeaveListAdapter(private var list:List<LeaveListModel>, private val onClickListener: (View, Int , Int) -> Unit)
     : RecyclerView.Adapter<LeaveListAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = DataBindingUtil.inflate<ItemLeaveListBinding>(
