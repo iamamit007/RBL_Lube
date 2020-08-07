@@ -35,6 +35,7 @@ import com.velectico.rbm.complaint.model.ComplaintListRequestParams;
 import com.velectico.rbm.complaint.model.ComplaintListResponse;
 import com.velectico.rbm.leave.model.ApplyLeaveRequest;
 import com.velectico.rbm.leave.model.ApplyLeaveResponse;
+import com.velectico.rbm.leave.model.ApproveRejectLeaveListRequest;
 import com.velectico.rbm.leave.model.LeaveListRequest;
 import com.velectico.rbm.leave.model.LeaveListResponse;
 import com.velectico.rbm.teamlist.model.TeamListRequestParams;
@@ -46,6 +47,7 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Apply_Leave;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Approved_Reject_Leave;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Beat_Report_By_Date;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Complaint_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Report;
@@ -143,5 +145,13 @@ public interface ApiInterface {
 
     @POST(Leave_List)
     Call<LeaveListResponse> getLeaveList(@Body LeaveListRequest model);
+
+    @POST(Approved_Reject_Leave)
+    Call<ApplyLeaveResponse> accepeRejectLeave(@Body ApproveRejectLeaveListRequest model);
+
+
+
+
+
 
 }

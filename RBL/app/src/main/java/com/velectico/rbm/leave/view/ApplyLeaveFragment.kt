@@ -165,23 +165,55 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
         // DealerDetailsRequestParams(
         //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
         showHud()
+        val userId = if (RBMLubricantsApplication.globalRole == "Team" ){
+            GloblalDataRepository.getInstance().teamUserId
+        }
+        else{
+            SharedPreferenceUtils.getLoggedInUserId(context as Context)
+        }
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.createLeave(
-            ApplyLeaveRequest(reasonId, SharedPreferenceUtils.getLoggedInUserId(context as Context),binding.leaveFromEt.text.toString(),binding.leaveToEt.text.toString(),binding.leaveCommentsEt.text.toString(),"")
+            ApplyLeaveRequest(reasonId, userId,binding.leaveFromEt.text.toString(),binding.leaveToEt.text.toString(),binding.leaveCommentsEt.text.toString(),"")
         )
         responseCall.enqueue(createResponse as Callback<ApplyLeaveResponse>)
 
     }
 
+    fun callACCEPEREJECT(status:String){
+        // DealerDetailsRequestParams(
+        //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
+        showHud()
+        val userId = if (RBMLubricantsApplication.globalRole == "Team" ){
+            GloblalDataRepository.getInstance().teamUserId
+        }
+        else{
+            SharedPreferenceUtils.getLoggedInUserId(context as Context)
+        }
+        val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
+        Log.d("VVVVV",""+ ApplyLeaveRequest(reasonId, userId,binding.leaveFromEt.text.toString(),binding.leaveToEt.text.toString(),binding.leaveCommentsEt.text.toString(),leaveID)
+        )
+        val responseCall = apiInterface.accepeRejectLeave(
+            ApproveRejectLeaveListRequest(SharedPreferenceUtils.getLoggedInUserId(context as Context),status,leaveID)
+        )
+        responseCall.enqueue(createResponse as Callback<ApplyLeaveResponse>)
+
+    }
+
+
+
     fun callUpdateApi(){
         // DealerDetailsRequestParams(
         //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
         showHud()
+        val userId = if (RBMLubricantsApplication.globalRole == "Team" ){
+            GloblalDataRepository.getInstance().teamUserId
+        }
+        else{
+            SharedPreferenceUtils.getLoggedInUserId(context as Context)
+        }
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
-        Log.d("VVVVV",""+ ApplyLeaveRequest(reasonId, SharedPreferenceUtils.getLoggedInUserId(context as Context),binding.leaveFromEt.text.toString(),binding.leaveToEt.text.toString(),binding.leaveCommentsEt.text.toString(),leaveID)
-        )
-        val responseCall = apiInterface.updateLeave(
-            ApplyLeaveRequest(reasonId, SharedPreferenceUtils.getLoggedInUserId(context as Context),binding.leaveFromEt.text.toString(),binding.leaveToEt.text.toString(),binding.leaveCommentsEt.text.toString(),leaveID)
+        val responseCall = apiInterface.createLeave(
+            ApplyLeaveRequest(reasonId, userId,binding.leaveFromEt.text.toString(),binding.leaveToEt.text.toString(),binding.leaveCommentsEt.text.toString(),"")
         )
         responseCall.enqueue(createResponse as Callback<ApplyLeaveResponse>)
 
@@ -194,6 +226,7 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
 
                 hide()
               showToastMessage(response.data.respMessage)
+                activity!!.onBackPressed()
 
             }
 
@@ -212,6 +245,8 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
         binding.leaveFromEt.setOnClickListener(this)
         binding.leaveToEt.setOnClickListener(this)
         binding.applyBtn.setOnClickListener(this)
+        binding.approveBtn.setOnClickListener(this)
+        binding.rejectBtn.setOnClickListener(this)
 
         binding.leaveNameEt.setOnClickListener {
             binding.spLeaveReason.performClick()
@@ -270,6 +305,15 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
                 }else{
                     applyLeaveFromServer()
                 }
+
+            }
+            R.id.approveBtn ->{
+
+                callACCEPEREJECT("A")
+
+            }
+            R.id.rejectBtn ->{
+                callACCEPEREJECT("A")
 
 
             }
