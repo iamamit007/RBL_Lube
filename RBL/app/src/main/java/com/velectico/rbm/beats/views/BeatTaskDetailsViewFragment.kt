@@ -26,10 +26,13 @@ import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
+import com.velectico.rbm.utils.DateUtils
 import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SALES_LEAD_ROLE
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -66,7 +69,11 @@ class BeatTaskDetailsViewFragment : BaseFragment() {
         binding.task = x
 
         //showToastMessage(scheduleId.toString())
-
+        val inpFormat =  SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        val  outputformat =  SimpleDateFormat("dd-MMM-yy", Locale.US);
+        val stdate =  DateUtils.parseDate(x.schedule_startDate,inpFormat,outputformat)
+        val endate =  DateUtils.parseDate(x.schedule_endDate,inpFormat,outputformat)
+        binding.dattxt.text = stdate + " To " + endate
         setUpRecyclerView()
         callApi2()
         /*binding.fab.setOnClickListener {

@@ -208,7 +208,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
                     binding.actQtyVal.text = response.data.actualOrderAmt
                     binding.tarQtyVal.text = response.data.scheduleDates[0].orderAmt
                     binding.dealerName.text = taskDetails.dealerName.toString()
-                    binding.etTaskAssigned.setText(taskDetails.BSD_Work_Assg_Comment.toString())
+                    binding.etTaskAssigned.setText("  "+taskDetails.BSD_Work_Assg_Comment.toString())
                     if (taskDetails.distribName != null){
                         binding.gradeval.text = taskDetails.distribGrade
                         binding.type.text = "Distributor"

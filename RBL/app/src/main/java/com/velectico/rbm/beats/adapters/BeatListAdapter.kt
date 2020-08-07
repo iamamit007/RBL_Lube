@@ -23,7 +23,9 @@ import com.velectico.rbm.databinding.RowBeatListBinding
 import com.velectico.rbm.databinding.RowBeatListDatesBinding
 import com.velectico.rbm.expense.adapter.ExpenseListAdapter
 import com.velectico.rbm.utils.DateUtility
+import com.velectico.rbm.utils.DateUtils
 import com.velectico.rbm.utils.GloblalDataRepository
+import java.text.SimpleDateFormat
 import java.util.*
 
 class BeatListAdapter(var setCallback: BeatListAdapter.IBeatListActionCallBack,val visit:String) : RecyclerView.Adapter<BeatListAdapter.ViewHolder>() {
@@ -62,6 +64,11 @@ class BeatListAdapter(var setCallback: BeatListAdapter.IBeatListActionCallBack,v
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         try {
             holder.bind(beatList[position])
+            val inpFormat =  SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            val  outputformat =  SimpleDateFormat("dd-MMM-yy", Locale.US);
+            val stdate =  DateUtils.parseDate(beatList[position].schedule_startDate,inpFormat,outputformat)
+            val endate =  DateUtils.parseDate(beatList[position].schedule_endDate,inpFormat,outputformat)
+            holder.binding.datetxt.text = stdate + " To " + endate
            holder.binding.navigateToTaskDetails.setOnClickListener {
                 GloblalDataRepository.getInstance().scheduleId = beatList[position].schedule_id
                 callBack?.moveToBeatTaskDetails(position, "1",holder.binding )
