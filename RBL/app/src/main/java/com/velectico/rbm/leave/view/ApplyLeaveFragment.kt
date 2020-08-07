@@ -142,6 +142,7 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
                         if (segdataList.size > 0 ){
                             val x = segdataList[position]
                             reasonId = x.Exp_Head_Id!!
+                            binding.leaveNameEt.setText(x.Exp_Head_Name)
 
                         }
                     }
@@ -177,6 +178,8 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
         //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
         showHud()
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
+        Log.d("VVVVV",""+ ApplyLeaveRequest(reasonId, SharedPreferenceUtils.getLoggedInUserId(context as Context),binding.leaveFromEt.text.toString(),binding.leaveToEt.text.toString(),binding.leaveCommentsEt.text.toString(),leaveID)
+        )
         val responseCall = apiInterface.updateLeave(
             ApplyLeaveRequest(reasonId, SharedPreferenceUtils.getLoggedInUserId(context as Context),binding.leaveFromEt.text.toString(),binding.leaveToEt.text.toString(),binding.leaveCommentsEt.text.toString(),leaveID)
         )
@@ -220,6 +223,7 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
             if(flow == LeaveListFragment.EDIT){
                 val model = GloblalDataRepository.getInstance().leaveListModel
                 leaveID = model.leaveID
+                reasonId = model.leaveReasonId
                 binding.leaveNameEt.setText(model.leaveName)
                 binding.leaveCommentsEt.setText(model.LD_Other_Reason)
                 binding.leaveFromEt.setText(model.leaveFrom)
