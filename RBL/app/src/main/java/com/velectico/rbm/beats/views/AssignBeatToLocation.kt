@@ -27,10 +27,12 @@ import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
+import com.velectico.rbm.utils.DateUtils
 import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
-import java.util.ArrayList
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class AssignBeatToLocation : BaseFragment() {
@@ -59,7 +61,12 @@ class AssignBeatToLocation : BaseFragment() {
         binding.btnAssignTaskToLocation.setOnClickListener {
             moveToBeatTarget()
         }
-        binding.tvBeatScheduleName.text = "Add Beat Task (" +startDate +" to " + endDate +")"
+        val inpFormat =  SimpleDateFormat("dd/MM/yy", Locale.US);
+        val  outputformat =  SimpleDateFormat("dd-MMM-yy", Locale.US);
+        val stdate =  DateUtils.parseDate(startDate,inpFormat,outputformat)
+        val endate =  DateUtils.parseDate(endDate,inpFormat,outputformat)
+
+        binding.tvBeatScheduleName.text = "Add Beat Task (" +stdate +" to " + endate +")"
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -84,7 +91,7 @@ class AssignBeatToLocation : BaseFragment() {
 
         binding.spinner3.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
-                binding.etLocation.setText( personList[position].UM_Name)
+                //binding.etLocation.setText( personList[position].UM_Name)
                 personId = personList[position].UM_ID!!
 
 
@@ -146,7 +153,7 @@ class AssignBeatToLocation : BaseFragment() {
                             ) {
                                 //   if ( binding.spinner.tag == 0){
                                 binding.spinner.tag = 1
-                                binding.etHigherLocation.setText(dataList[position].respValue)
+                                //binding.etHigherLocation.setText(dataList[position].respValue)
                                 taskLevel = dataList[position].taskLevel!!
                                 Handler().postDelayed({
                                     callApi2(dataList[position].taskLevel!!)
@@ -207,7 +214,7 @@ class AssignBeatToLocation : BaseFragment() {
                 binding.spinner2.setSelection(0,false)
                 binding.spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
-                        binding.etHigherLocation.setText( locationList[position].locValue)
+                        //binding.etHigherLocation.setText( locationList[position].locValue)
                         areaList = locationList[position].locId!!
                         Handler().postDelayed({
                             callApi3(taskLevel,locationList[position].locId!!)

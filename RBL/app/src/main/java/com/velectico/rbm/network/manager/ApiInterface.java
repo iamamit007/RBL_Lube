@@ -37,6 +37,8 @@ import com.velectico.rbm.leave.model.ApplyLeaveRequest;
 import com.velectico.rbm.leave.model.ApplyLeaveResponse;
 import com.velectico.rbm.leave.model.LeaveListRequest;
 import com.velectico.rbm.leave.model.LeaveListResponse;
+import com.velectico.rbm.teamlist.model.TeamListRequestParams;
+import com.velectico.rbm.teamlist.model.TeamListResponse;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -62,6 +64,7 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Order_His
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Product_List_By_Cat_Seg;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Task_For;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Leave_List;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Team_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Save_AssignTask;
 
 public interface ApiInterface {
@@ -127,6 +130,9 @@ public interface ApiInterface {
 
     @POST(Create_Order)
     Call<CreateOrderResponse> createOrder(@Body CreateOrderPRParams model);
+
+    @POST(Get_Team_List)
+    Call<TeamListResponse> getTeamList(@Body TeamListRequestParams model);
 
 
     @POST(Apply_Leave)

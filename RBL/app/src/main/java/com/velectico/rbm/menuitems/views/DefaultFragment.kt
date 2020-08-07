@@ -72,9 +72,9 @@ class DefaultFragment : BaseFragment(){
             binding.progressLayout.visibility = if(progress) View.VISIBLE else View.GONE
         })
 
-        menuViewModel.errorLiveData.observe(this, Observer {
-            (activity as BaseActivity).showAlertDialog(it.errorMessage ?: "No data available")
-        })
+//        menuViewModel.errorLiveData.observe(this, Observer {
+//            (activity as BaseActivity).showAlertDialog(it.errorMessage ?: "No data available")
+//        })
 
         binding.beatButton.setOnClickListener {
             RBMLubricantsApplication.fromBeat = "Beat"

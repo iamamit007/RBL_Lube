@@ -28,10 +28,13 @@ import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
+import com.velectico.rbm.utils.DateUtils
 import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
-import java.util.ArrayList
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashSet
 
 /**
  * A simple [Fragment] subclass.
@@ -58,7 +61,11 @@ class AssignTargetToBeat : BaseFragment() {
         this.binding = binding as FragmentAssignTargetToBeatBinding
         startDate = arguments?.getString(  "startDate").toString()
         endDate = arguments?.getString(  "endDate").toString()
-        binding.tvBeatScheduleName.text = "Date (" +startDate +" to " + endDate +")"
+        val inpFormat =  SimpleDateFormat("dd/MM/yy", Locale.US);
+        val  outputformat =  SimpleDateFormat("dd-MMM-yy", Locale.US);
+        val stdate =  DateUtils.parseDate(startDate,inpFormat,outputformat)
+        val endate =  DateUtils.parseDate(endDate,inpFormat,outputformat)
+        binding.tvBeatScheduleName.text = "Date (" +stdate +" to " + endate +")"
         hud =  KProgressHUD.create(activity)
             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
             .setLabel("Please wait")

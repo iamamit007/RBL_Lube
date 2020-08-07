@@ -81,8 +81,7 @@
                         android:inputType="text"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
-                        android:drawableRight="@drawable/ic_expand"
-                        android:text="Region" />
+                        android:text="" />
                     <Spinner
                         android:spinnerMode="dialog"
                         android:id="@+id/spinner"
@@ -110,9 +109,8 @@
                         style="@style/login_reg_input_text"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
-                        android:drawableRight="@drawable/ic_expand"
                         android:inputType="text"
-                        android:text="Test Location" />
+                        android:text="" />
                     />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
@@ -139,9 +137,8 @@
                         style="@style/login_reg_input_text"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
-                        android:drawableRight="@drawable/ic_expand"
                         android:inputType="text"
-                        android:text="Assign To" />
+                        android:text="" />
                     />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.chivorn.smartmaterialspinner.SmartMaterialSpinner

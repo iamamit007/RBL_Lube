@@ -48,6 +48,7 @@ class LeaveListFragment : BaseFragment(){
         initHud()
         if (RBMLubricantsApplication.globalRole == "Team" ){
             binding.applyLeavesFB.visibility = View.GONE
+
         }
         binding.applyLeavesFB.setOnClickListener {
             activity?.let {

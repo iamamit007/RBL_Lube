@@ -24,6 +24,7 @@ import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.order.adapters.OrderDetailsAdapter
 import com.velectico.rbm.order.adapters.OrderHeadListAdapter
 import com.velectico.rbm.order.model.OrderHead
+import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SALES_LEAD_ROLE
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
@@ -35,6 +36,7 @@ class OrderListFragment : BaseFragment()  {
     private lateinit var adapter: OrderHeadListAdapter
     var orderStatus = ""
     var taskDetails = BeatTaskDetails()
+    var userId = ""
     override fun getLayout(): Int {
         return R.layout.fragment_order_list
     }
@@ -53,6 +55,10 @@ class OrderListFragment : BaseFragment()  {
         if (RBMLubricantsApplication.globalRole == "Team" ) {
             binding.fab.visibility = View.GONE
 
+            userId = GloblalDataRepository.getInstance().teamUserId
+        }
+        else{
+            userId = SharedPreferenceUtils.getLoggedInUserId(context as Context)
         }
         binding.fab.setOnClickListener {
             moveToCreateOrder()
@@ -101,7 +107,7 @@ class OrderListFragment : BaseFragment()  {
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getBeatAllOrderHistory(
             //BeatAllOrderListRequestParams("7001507620","61","0",orderStatus)
-            BeatAllOrderListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),taskDetails.dealerId.toString(),taskDetails.distribId.toString(),orderStatus)
+            BeatAllOrderListRequestParams(userId,taskDetails.dealerId.toString(),taskDetails.distribId.toString(),orderStatus)
         )
         responseCall.enqueue(OrderHistoryDetailsResponse as Callback<OrderHistoryDetailsResponse>)
     }
@@ -114,6 +120,7 @@ class OrderListFragment : BaseFragment()  {
                 orderHeadList.toMutableList().clear()
                 if (response.data.count > 0){
                     orderHeadList = response.data.OrderList!!.toMutableList()
+                    binding.rvOrderList.visibility = View.VISIBLE
                     setUpRecyclerView()
                 }
                 else{

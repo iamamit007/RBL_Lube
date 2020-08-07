@@ -30,6 +30,7 @@ import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.order.model.OrderHead
 import com.velectico.rbm.order.views.OrderListFragmentDirections
+import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import kotlinx.android.synthetic.main.fragment_beat_report.view.*
 import retrofit2.Callback
@@ -42,6 +43,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     private lateinit var binding: FragmentBeatTaskDealerDetailsBinding
     var taskDetails = BeatTaskDetails()
     var dealerDetails = DealerDetails()
+    var userId = ""
     private var complaintList = ComplainListDetails()
     override fun getLayout(): Int {
         return R.layout.fragment_beat_task_dealer_details
@@ -57,6 +59,10 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
             binding.btnNewOrder.visibility = View.INVISIBLE
             binding.btnComplaints.visibility = View.INVISIBLE
             binding.btnBeatReport.visibility = View.INVISIBLE
+            userId = GloblalDataRepository.getInstance().teamUserId
+        }
+        else{
+            userId = SharedPreferenceUtils.getLoggedInUserId(context as Context)
         }
         binding.btnPerformanceHistory.setOnClickListener {
             moveToPerformanceHistory()
@@ -183,8 +189,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
         //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getDealerDetailsByBeat(
-            DealerDetailsRequestParams(
-            SharedPreferenceUtils.getLoggedInUserId(context as Context),arg.taskId,arg.dealerId,arg.distribId!!)
+            DealerDetailsRequestParams(userId,arg.taskId,arg.dealerId,arg.distribId!!)
         )
         responseCall.enqueue(beatTaskDetailsListResponse as Callback<DealerDetailsResponse>)
     }
@@ -203,7 +208,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
                     binding.actQtyVal.text = response.data.actualOrderAmt
                     binding.tarQtyVal.text = response.data.scheduleDates[0].orderAmt
                     binding.dealerName.text = taskDetails.dealerName.toString()
-                    binding.etTaskAssigned.setText(taskDetails.BSD_Work_Assg_Comment.toString())
+                    binding.etTaskAssigned.setText("  "+taskDetails.BSD_Work_Assg_Comment.toString())
                     if (taskDetails.distribName != null){
                         binding.gradeval.text = taskDetails.distribGrade
                         binding.type.text = "Distributor"
