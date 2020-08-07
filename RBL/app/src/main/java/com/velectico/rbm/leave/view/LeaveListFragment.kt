@@ -2,7 +2,6 @@ package com.velectico.rbm.leave.view
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
@@ -14,10 +13,7 @@ import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.R
 import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.databinding.FragmentLeaveListBinding
-import com.velectico.rbm.expense.model.Expense
-import com.velectico.rbm.expense.viewmodel.ExpenseViewModel
 import com.velectico.rbm.leave.model.*
-import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 import com.velectico.rbm.leave.view.adapter.LeaveListAdapter
 import com.velectico.rbm.leave.viewmodel.LeaveViewModel
 import com.velectico.rbm.network.callbacks.NetworkCallBack
@@ -61,7 +57,7 @@ class LeaveListFragment : BaseFragment(){
         }
       //  observeViewModelData()
         //getLeaveListFromServer()
-        callCreateApi()
+        getLeaveList()
 
     }
 
@@ -99,13 +95,19 @@ class LeaveListFragment : BaseFragment(){
             .setDimAmount(0.5f)
     }
 
-    fun callCreateApi(){
+    fun getLeaveList(){
         // DealerDetailsRequestParams(
         //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
         showHud()
+     val userId = if (RBMLubricantsApplication.globalRole == "Team" ){
+            GloblalDataRepository.getInstance().teamUserId
+        }
+        else{
+            SharedPreferenceUtils.getLoggedInUserId(context as Context)
+        }
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getLeaveList(
-            LeaveListRequest(SharedPreferenceUtils.getLoggedInUserId(context as Context)
+            LeaveListRequest(userId
         ))
         responseCall.enqueue(createResponse as Callback<LeaveListResponse>)
 
