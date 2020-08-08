@@ -108,7 +108,7 @@ class DashboardActivity : BaseActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_myprofile -> navController.navigate(R.id.userProfileFragment)
 
             //R.id.nav_order -> navController.navigate(R.id.orderCreateFragment)
-            R.id.nav_order -> navController.navigate(R.id.orderListFragment)
+            //R.id.nav_order -> navController.navigate(R.id.orderListFragment)
             R.id.nav_payment -> navController.navigate(R.id.fragmentPaymentList)
             R.id.nav_complaints -> navController.navigate(R.id.complaintList)
             //R.id.nav_performance -> commingSoonToast()

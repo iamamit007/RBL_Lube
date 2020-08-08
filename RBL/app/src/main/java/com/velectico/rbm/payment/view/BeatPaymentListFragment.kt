@@ -54,12 +54,12 @@ class BeatPaymentListFragment :  BaseFragment() {
         }*/
 
         binding.paymenthistory.setOnClickListener{
-            showToastMessage("popup")
+            //showToastMessage("popup")
             val navDirection =  BeatPaymentListFragmentDirections.actionBeatPaymentListFragmentToPaymentHistoryList()
             Navigation.findNavController(binding.paymenthistory).navigate(navDirection)
         }
         binding.paybtn.setOnClickListener{
-            showToastMessage("pay")
+            //showToastMessage("pay")
 
             val navDirection =  BeatPaymentListFragmentDirections.actionBeatPaymentListFragmentToFragmentAddPaymentInfo()
             Navigation.findNavController(binding.paybtn).navigate(navDirection)

@@ -35,6 +35,7 @@ import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.utils.*
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import retrofit2.Callback
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -70,7 +71,7 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
         setUp()
         initHud()
         //getLeaveListFromServer()
-        showToastMessage(RBMLubricantsApplication.globalRole)
+        //showToastMessage(RBMLubricantsApplication.globalRole)
         if (RBMLubricantsApplication.globalRole == "Team" ){
             binding.approveBtn.visibility = View.VISIBLE
             binding.rejectBtn.visibility = View.VISIBLE
@@ -261,8 +262,12 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
                 reasonId = model.leaveReasonId
                 binding.leaveNameEt.setText(model.leaveName)
                 binding.leaveCommentsEt.setText(model.LD_Other_Reason)
-                binding.leaveFromEt.setText(model.leaveFrom)
-                binding.leaveToEt.setText(model.leaveTo)
+                val inpFormat =  SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                val outputformat =  SimpleDateFormat("dd-MMM-yy", Locale.US);
+                val stdate =  DateUtils.parseDate(model.leaveFrom,inpFormat,outputformat)
+                val endate =  DateUtils.parseDate(model.leaveTo,inpFormat,outputformat)
+                binding.leaveFromEt.setText(stdate)
+                binding.leaveToEt.setText(endate)
 //                selectedLeaveReason = LeaveReason(
 //                    DD_Dropdown_Val = leaveViewModel.leaveListData[position.toInt()].leaveName as String,
 //                    DD_ID = leaveViewModel.leaveListData[position.toInt()].leaveReasonId)

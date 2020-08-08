@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.velectico.rbm.R
 import com.velectico.rbm.databinding.ItemLeaveListBinding
 import com.velectico.rbm.leave.model.LeaveListModel
+import com.velectico.rbm.utils.DateUtils
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by mymacbookpro on 2020-05-08
@@ -33,6 +36,12 @@ class LeaveListAdapter(private var list:List<LeaveListModel>, private val onClic
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder){
             bind(list.get(position))
+            val inpFormat =  SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            val outputformat =  SimpleDateFormat("dd-MMM-yy", Locale.US);
+            val stdate =  DateUtils.parseDate(list.get(position).leaveFrom,inpFormat,outputformat)
+            val endate =  DateUtils.parseDate(list.get(position).leaveTo,inpFormat,outputformat)
+            holder.binding.leaveFromTv.text = stdate
+            holder.binding.leaveToTv.text = endate
             holder.binding.ivDelete.setOnClickListener(View.OnClickListener {
                 onClickListener.invoke(holder.itemView, position,1) //delete
             })

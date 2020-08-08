@@ -60,12 +60,12 @@ class FragmentPaymentList :  BaseFragment()  {
             moveToCreateBeat()
         }*/
         binding.paymenthistory1.setOnClickListener{
-            showToastMessage("popup")
+            //showToastMessage("popup")
             val navDirection =  FragmentPaymentListDirections.actionFragmentPaymentListToPaymentHistoryList()
             Navigation.findNavController(binding.paymenthistory1).navigate(navDirection)
         }
         binding.paybtn1.setOnClickListener{
-            showToastMessage("pay")
+            //showToastMessage("pay")
             val navDirection =  FragmentPaymentListDirections.actionFragmentPaymentListToFragmentAddPaymentInfo()
             Navigation.findNavController(binding.paybtn1).navigate(navDirection)
 

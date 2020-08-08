@@ -58,7 +58,7 @@ class BeatListFragment : BaseFragment() {
         else{
             userId = SharedPreferenceUtils.getLoggedInUserId(context as Context)
         }
-        showToastMessage(userId)
+        //showToastMessage(userId)
         val  getstring = arguments?.getString(  "scheduleId").toString()
         binding.tvBeatScheduleName.text = getstring
         callApi(getstring)

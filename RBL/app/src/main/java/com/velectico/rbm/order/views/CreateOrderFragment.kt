@@ -54,7 +54,7 @@ class CreateOrderFragment : BaseFragment(),productItemClickListener {
         //orderCartList = OrderCart().getDummyOrderCart()
         catId = arguments?.getString(  "catId").toString()
         segId = arguments?.getString(  "segId").toString()
-        showToastMessage(catId)
+        //showToastMessage(catId)
         binding.btnCheckOut.setOnClickListener {
             moveToOrderPreview()
         }
