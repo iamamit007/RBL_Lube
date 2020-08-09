@@ -38,6 +38,8 @@ import com.velectico.rbm.leave.model.ApplyLeaveResponse;
 import com.velectico.rbm.leave.model.ApproveRejectLeaveListRequest;
 import com.velectico.rbm.leave.model.LeaveListRequest;
 import com.velectico.rbm.leave.model.LeaveListResponse;
+import com.velectico.rbm.menuitems.viewmodel.AttendancResponse;
+import com.velectico.rbm.menuitems.viewmodel.AttendanceRequestParams;
 import com.velectico.rbm.teamlist.model.TeamListRequestParams;
 import com.velectico.rbm.teamlist.model.TeamListResponse;
 
@@ -54,6 +56,7 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_R
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Schedule;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Order;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Dealer_Distrib_Task_Worksheet;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.DoAttend;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.ENDPOINTBeat_Task_Details;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.ENDPOINT_GET_TASK_DETAILS_LIST_BY_BEAT_ID;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Edit_Leave;
@@ -148,6 +151,9 @@ public interface ApiInterface {
 
     @POST(Approved_Reject_Leave)
     Call<ApplyLeaveResponse> accepeRejectLeave(@Body ApproveRejectLeaveListRequest model);
+
+    @POST(DoAttend)
+    Call<AttendancResponse> doAttendance(@Body AttendanceRequestParams model);
 
 
 

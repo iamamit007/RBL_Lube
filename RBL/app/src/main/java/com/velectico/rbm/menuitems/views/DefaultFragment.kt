@@ -1,5 +1,6 @@
 package com.velectico.rbm.menuitems.views
 
+import android.content.Context
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -10,14 +11,28 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.google.android.material.navigation.NavigationView
+import com.kaopiz.kprogresshud.KProgressHUD
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.R
 import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.beats.model.BeatTaskDetails
+import com.velectico.rbm.beats.model.CreateBeatReportResponse
+import com.velectico.rbm.beats.model.CreateBeatScheduleRequestParams
+import com.velectico.rbm.beats.views.CreateBeatFragmentDirections
 import com.velectico.rbm.databinding.DefaultFragmentBinding
+import com.velectico.rbm.menuitems.viewmodel.AttendancResponse
+import com.velectico.rbm.menuitems.viewmodel.AttendanceRequestParams
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
+import com.velectico.rbm.network.callbacks.NetworkCallBack
+import com.velectico.rbm.network.callbacks.NetworkError
+import com.velectico.rbm.network.manager.ApiClient
+import com.velectico.rbm.network.manager.ApiInterface
+import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.utils.*
+import retrofit2.Callback
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by mymacbookpro on 2020-04-26
@@ -179,15 +194,11 @@ class DefaultFragment : BaseFragment(){
 
     override
     fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            /*.id.action_add -> {
-                beatAssignmentList.add(BeatAssignments())
-                binding?.rvAssignmentList?.layoutManager?.scrollToPosition(beatAssignmentList.size-1)
-                adapter.beatAssignmentList = beatAssignmentList
-                super.onOptionsItemSelected(item)
-            }*/
-            else -> super.onOptionsItemSelected(item)
+        if (item.itemId == R.id.action_attandance){
+            //callAttendance()
+            showToastMessage("attendance")
         }
+        return true
     }
 
 
@@ -277,6 +288,47 @@ class DefaultFragment : BaseFragment(){
             }
         }
 
+
+    }
+    var hud: KProgressHUD? = null
+    fun  showHud(){
+        if (hud!=null){
+
+            hud!!.show()
+        }
+    }
+
+    fun hide(){
+        hud?.dismiss()
+
+    }
+
+    fun callAttendance(){
+        showHud()
+        val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
+        val responseCall = apiInterface.doAttendance(
+            AttendanceRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context))
+        )
+
+
+        responseCall.enqueue(AttendancResponse as Callback<AttendancResponse>)
+
+    }
+    private val AttendancResponse = object : NetworkCallBack<AttendancResponse>(){
+        override fun onSuccessNetwork(data: Any?, response: NetworkResponse<AttendancResponse>) {
+            response.data?.respMessage?.let { status ->
+
+                hide()
+                showToastMessage( response.data?.respMessage!!)
+
+
+            }
+
+        }
+
+        override fun onFailureNetwork(data: Any?, error: NetworkError) {
+            hide()
+        }
 
     }
 
