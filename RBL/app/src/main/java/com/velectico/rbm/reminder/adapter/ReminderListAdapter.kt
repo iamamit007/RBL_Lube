@@ -5,11 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.velectico.rbm.databinding.RowReminderListBinding
 import com.velectico.rbm.reminder.model.ReminderList
+import com.velectico.rbm.reminder.model.ReminderListDetails
+import com.velectico.rbm.utils.DateUtils
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ReminderListAdapter (var setCallback: ReminderListAdapter.IBeatListActionCallBack) : RecyclerView.Adapter<ReminderListAdapter.ViewHolder>() {
 
     var callBack: ReminderListAdapter.IBeatListActionCallBack? = null
-    var beatList = listOf<ReminderList>()
+    var beatList = listOf<ReminderListDetails>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -27,7 +31,7 @@ class ReminderListAdapter (var setCallback: ReminderListAdapter.IBeatListActionC
             }
         }
 
-        fun bind(beats: ReminderList?) {
+        fun bind(beats: ReminderListDetails?) {
             binding.reminderlist = beats
             binding.executePendingBindings()
         }
@@ -45,6 +49,16 @@ class ReminderListAdapter (var setCallback: ReminderListAdapter.IBeatListActionC
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(beatList[position])
+        if (beatList[position].dealName != null){
+            holder.binding.typ.text = "Dealer"
+        }
+        else {
+            holder.binding.typ.text = "Distributor"
+        }
+        val inpFormat =  SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        val  outputformat =  SimpleDateFormat("dd-MMM-yy", Locale.US);
+        val stdate =  DateUtils.parseDate(beatList[position].RM_Followup_Date,inpFormat,outputformat)
+        holder.binding.dateRem.text = stdate
     }
 
 

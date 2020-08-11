@@ -3,6 +3,9 @@ package com.velectico.rbm.order.views
 import android.content.Context
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import androidx.core.view.get
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.Navigation
 import com.kaopiz.kprogresshud.KProgressHUD
@@ -27,7 +30,9 @@ import com.velectico.rbm.order.model.OrderHead
 import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SALES_LEAD_ROLE
 import com.velectico.rbm.utils.SharedPreferenceUtils
+import kotlinx.android.synthetic.main.fragment_order_list.*
 import retrofit2.Callback
+import java.util.ArrayList
 
 
 class OrderListFragment : BaseFragment()  {
@@ -37,6 +42,8 @@ class OrderListFragment : BaseFragment()  {
     var orderStatus = ""
     var taskDetails = BeatTaskDetails()
     var userId = ""
+    var dealerId = "0"
+    var distribId = "0"
     override fun getLayout(): Int {
         return R.layout.fragment_order_list
     }
@@ -45,13 +52,49 @@ class OrderListFragment : BaseFragment()  {
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentOrderListBinding
+        val languages = resources.getStringArray(R.array.array_dealDist)
+
+        // access the spinner
+
+        if (binding.spinnerType != null) {
+            val adapter = context?.let {
+                ArrayAdapter(
+                    it,
+                    android.R.layout.simple_spinner_item, languages)
+            }
+            binding.spinnerType.adapter = adapter
+
+            binding.spinnerType.onItemSelectedListener = object :
+                AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>,
+                                            view: View, position: Int, id: Long) {
+                    showToastMessage(languages[position])
+                    if (languages[position] == "Dealer"){
+                        binding.spinnerDeal.visibility = View.VISIBLE
+                        binding.spinnerDealDis.visibility = View.GONE
+
+                    }
+                    else{
+                        binding.spinnerDeal.visibility = View.GONE
+                        binding.spinnerDealDis.visibility = View.VISIBLE
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // write code to perform some action
+                }
+            }
+        }
         //showToastMessage(SharedPreferenceUtils.getLoggedInUserId(context as Context))
         //orderHeadList = OrderHead().getDummyOrderList()
         taskDetails = arguments!!.get("taskDetails") as BeatTaskDetails
-        if (RBMLubricantsApplication.fromBeat == "Beat" ){
-            binding.tilDealer.visibility = View.GONE
+        //showToastMessage(taskDetails.toString())
+            if (taskDetails.dealerId != null){
+                dealerId = taskDetails.dealerId.toString()
+                distribId = taskDetails.distribId.toString()
 
-        }
+            }
+
         if (RBMLubricantsApplication.globalRole == "Team" ) {
             binding.fab.visibility = View.GONE
 
@@ -60,6 +103,16 @@ class OrderListFragment : BaseFragment()  {
         else{
             userId = SharedPreferenceUtils.getLoggedInUserId(context as Context)
         }
+        if (RBMLubricantsApplication.fromBeat == "Beat" ){
+            binding.spinnerDealDis.visibility = View.GONE
+            binding.spinnerType.visibility = View.GONE
+        }
+        else{
+            callDistApi()
+            callDealApi()
+        }
+        //showToastMessage(spinnerType.selectedItem.toString())
+
         binding.fab.setOnClickListener {
             moveToCreateOrder()
 
@@ -73,18 +126,45 @@ class OrderListFragment : BaseFragment()  {
 
         binding.allButton.setOnClickListener{
             orderStatus = ""
-            setUpRecyclerView()
+            //setUpRecyclerView()
             callApiOrderList()
         }
         binding.pendingButton.setOnClickListener{
             orderStatus = "O"
-            setUpRecyclerView()
+            //setUpRecyclerView()
             callApiOrderList()
         }
         binding.completedButton.setOnClickListener{
             orderStatus = "C"
-            setUpRecyclerView()
+            //setUpRecyclerView()
             callApiOrderList()
+        }
+
+
+
+
+        binding.spinnerDealDis.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
+                if (distNameList.size > 0 ){
+                    val x = distNameList[position]
+                    distribId = x.UM_ID!!
+                    callApiOrderList()
+                }
+            }
+
+            override fun onNothingSelected(adapterView: AdapterView<*>) {}
+        }
+        binding.spinnerDeal.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
+                if (dealNameList.size > 0 ){
+                    val x = dealNameList[position]
+                    dealerId = x.UM_ID!!
+                    callApiOrderList()
+
+                }
+            }
+
+            override fun onNothingSelected(adapterView: AdapterView<*>) {}
         }
 
     }
@@ -107,7 +187,7 @@ class OrderListFragment : BaseFragment()  {
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getBeatAllOrderHistory(
             //BeatAllOrderListRequestParams("7001507620","61","0",orderStatus)
-            BeatAllOrderListRequestParams(userId,taskDetails.dealerId.toString(),taskDetails.distribId.toString(),orderStatus)
+            BeatAllOrderListRequestParams(userId,dealerId,distribId,orderStatus)
         )
         responseCall.enqueue(OrderHistoryDetailsResponse as Callback<OrderHistoryDetailsResponse>)
     }
@@ -120,7 +200,7 @@ class OrderListFragment : BaseFragment()  {
                 orderHeadList.toMutableList().clear()
                 if (response.data.count > 0){
                     orderHeadList = response.data.OrderList!!.toMutableList()
-                    binding.rvOrderList.visibility = View.VISIBLE
+                    //binding.rvOrderList.visibility = View.VISIBLE
                     setUpRecyclerView()
                 }
                 else{
@@ -128,7 +208,7 @@ class OrderListFragment : BaseFragment()  {
                     //binding.pendingButton.visibility = View.GONE
                     //binding.completedButton.visibility = View.GONE
                     //binding.allButton.visibility = View.GONE
-                    binding.rvOrderList.visibility = View.GONE
+                    //binding.rvOrderList.visibility = View.GONE
                 }
 
             }
@@ -181,7 +261,82 @@ private fun setUpRecyclerView() {
     }
 
 
+    private  var distNameList : List<DistDropdownDetails> = emptyList<DistDropdownDetails>()
+    private val distNameResponse = object : NetworkCallBack<DistListResponse>(){
+        override fun onSuccessNetwork(data: Any?, response: NetworkResponse<DistListResponse>) {
+            response.data?.status?.let { status ->
+                //showToastMessage(response.data.DistList.toString())
+                hide()
+                distNameList  = response.data.DistList
+                var statList: MutableList<String> = ArrayList()
+                for (i in distNameList){
+                    statList.add(i.UM_Name!!)
+                }
+                val adapter2 = context?.let {
+                    ArrayAdapter(
+                        it,
+                        android.R.layout.simple_spinner_item, statList)
+                }
+                binding.spinnerDealDis.adapter = adapter2
 
+
+            }
+
+        }
+
+        override fun onFailureNetwork(data: Any?, error: NetworkError) {
+            hide()
+        }
+
+    }
+
+    fun callDistApi(){
+        val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
+        val responseCall = apiInterface.distDropDownList(DistListRequestParams(userId)
+        )
+
+                responseCall.enqueue(distNameResponse as Callback<DistListResponse>)
+
+    }
+
+    private  var dealNameList : List<DealDropdownDetails> = emptyList<DealDropdownDetails>()
+    private val dealNameResponse = object : NetworkCallBack<DealListResponse>(){
+        override fun onSuccessNetwork(data: Any?, response: NetworkResponse<DealListResponse>) {
+            response.data?.status?.let { status ->
+                //showToastMessage(response.data.DealList.toString())
+                hide()
+                dealNameList  = response.data.DealList
+                var statList: MutableList<String> = ArrayList()
+                for (i in dealNameList){
+                    statList.add(i.UM_Name!!)
+                }
+                val adapter2 = context?.let {
+                    ArrayAdapter(
+                        it,
+                        android.R.layout.simple_spinner_item, statList)
+                }
+                binding.spinnerDeal.adapter = adapter2
+
+
+            }
+
+        }
+
+        override fun onFailureNetwork(data: Any?, error: NetworkError) {
+            hide()
+        }
+
+    }
+
+    fun callDealApi(){
+        val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
+        val responseCall = apiInterface.dealDropDownList(
+            DealListRequestParams(userId)
+        )
+
+        responseCall.enqueue(dealNameResponse as Callback<DealListResponse>)
+
+    }
 
 
 }

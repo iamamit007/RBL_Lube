@@ -160,8 +160,11 @@ const val Approved_Reject_Leave = APP_API_NAME+"Approved_Reject_Leave"
 
 const val DoAttend = APP_API_NAME+"DoAttend"
 
+const val Distrib_Dropdown = APP_API_NAME+"Distrib_Dropdown"
 
+const val Dealer_Dropdown = APP_API_NAME+"Dealer_Dropdown"
 
+const val Get_ReminderList = APP_API_NAME+"Get_ReminderList"
 
 
 

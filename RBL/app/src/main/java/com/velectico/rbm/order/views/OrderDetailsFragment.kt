@@ -31,7 +31,13 @@ class OrderDetailsFragment : BaseFragment() {
         this.binding = binding as FragmentOrderDetailsBinding
         taskDetails = arguments!!.get("taskDetail") as BeatTaskDetails
         orderDetails = arguments!!.get("orderListDetail") as OrderListDetails
-        binding.tvAddressTxt.text = taskDetails.dealerAddress
+        if (taskDetails.dealerAddress != null){
+            binding.tvAddressTxt.text = taskDetails.dealerAddress
+        }
+        else{
+            binding.tvAddressTxt.visibility = View.GONE
+        }
+
         binding.orederID.text = orderDetails.OH_Order_No
         binding.tvOrddate.text = orderDetails.orderDate
         binding.tvProdpriceTotal.text = "₹" +orderDetails.totalPrice

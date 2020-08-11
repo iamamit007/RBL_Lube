@@ -22,14 +22,18 @@
                 android:id="@+id/button1"
                 android:layout_width="0dip"
                 android:alpha=".75"
-                android:layout_weight="5"
+                android:layout_weight="4.5"
                 android:background="@drawable/complaint_spinner"
                 android:layout_height="wrap_content"
                 android:text="Current" />
+                <View
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_height="20dp"></View>
             <Button
                 android:id="@+id/button2"
                 android:layout_width="0dip"
-                android:layout_weight="5"
+                android:layout_weight="4.5"
                 android:alpha=".75"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/button1"

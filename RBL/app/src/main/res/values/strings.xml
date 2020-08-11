@@ -266,5 +266,11 @@
         <item>-- Segment --</item>
     </string-array>
 
+    <string-array name="array_dealDist">
+
+    <item>Dealer</item>
+    <item>Distributor</item>
+</string-array>
+
 
 </resources>

@@ -20,8 +20,12 @@ import com.velectico.rbm.beats.model.CreateOrderPRParams;
 import com.velectico.rbm.beats.model.CreateOrderResponse;
 import com.velectico.rbm.beats.model.DealDistMechListRequestParams;
 import com.velectico.rbm.beats.model.DealDistMechListResponse;
+import com.velectico.rbm.beats.model.DealListRequestParams;
+import com.velectico.rbm.beats.model.DealListResponse;
 import com.velectico.rbm.beats.model.DealerDetailsRequestParams;
 import com.velectico.rbm.beats.model.DealerDetailsResponse;
+import com.velectico.rbm.beats.model.DistListRequestParams;
+import com.velectico.rbm.beats.model.DistListResponse;
 import com.velectico.rbm.beats.model.GetBeatDeatilsRequestParams;
 import com.velectico.rbm.beats.model.LocationByLevelListRequestParams;
 import com.velectico.rbm.beats.model.LocationByLevelListResponse;
@@ -40,6 +44,8 @@ import com.velectico.rbm.leave.model.LeaveListRequest;
 import com.velectico.rbm.leave.model.LeaveListResponse;
 import com.velectico.rbm.menuitems.viewmodel.AttendancResponse;
 import com.velectico.rbm.menuitems.viewmodel.AttendanceRequestParams;
+import com.velectico.rbm.reminder.model.ReminderListRequestParams;
+import com.velectico.rbm.reminder.model.ReminderListResponse;
 import com.velectico.rbm.teamlist.model.TeamListRequestParams;
 import com.velectico.rbm.teamlist.model.TeamListResponse;
 
@@ -56,6 +62,8 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_R
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Schedule;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Order;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Dealer_Distrib_Task_Worksheet;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Dealer_Dropdown;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Distrib_Dropdown;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.DoAttend;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.ENDPOINTBeat_Task_Details;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.ENDPOINT_GET_TASK_DETAILS_LIST_BY_BEAT_ID;
@@ -67,6 +75,7 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Dropdown_
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Location_By_Level;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Order_History;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Product_List_By_Cat_Seg;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_ReminderList;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Task_For;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Leave_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Team_List;
@@ -154,6 +163,15 @@ public interface ApiInterface {
 
     @POST(DoAttend)
     Call<AttendancResponse> doAttendance(@Body AttendanceRequestParams model);
+
+    @POST(Distrib_Dropdown)
+    Call<DistListResponse> distDropDownList(@Body DistListRequestParams model);
+
+    @POST(Dealer_Dropdown)
+    Call<DealListResponse> dealDropDownList(@Body DealListRequestParams model);
+
+    @POST(Get_ReminderList)
+    Call<ReminderListResponse> getReminderList(@Body ReminderListRequestParams model);
 
 
 

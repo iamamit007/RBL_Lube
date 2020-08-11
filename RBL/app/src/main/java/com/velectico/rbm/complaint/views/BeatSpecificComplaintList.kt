@@ -78,12 +78,12 @@ class BeatSpecificComplaintList : BaseFragment() {
         binding.resolvButton.setOnClickListener{
             orderStatus = "C"
             callApiList()
-            setUpRecyclerView()
+            //setUpRecyclerView()
         }
         binding.pendButton.setOnClickListener{
             orderStatus = "O"
             callApiList()
-            setUpRecyclerView()
+            //setUpRecyclerView()
         }
 
         callApiList()
@@ -144,7 +144,7 @@ class BeatSpecificComplaintList : BaseFragment() {
                 if (response.data.count > 0){
                     complaintList = response.data.ComplaintList!!.toMutableList()
                     setUpRecyclerView()
-                    binding.rvComplaintList.visibility = View.VISIBLE
+                   // binding.rvComplaintList.visibility = View.VISIBLE
                 }
                 else{
                     showToastMessage("No data found")

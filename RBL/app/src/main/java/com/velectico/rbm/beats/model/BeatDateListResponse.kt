@@ -498,3 +498,42 @@ data class CreateOrderResponse(
 ):Serializable
 
 
+data class  DistListRequestParams(
+    @SerializedName("userId") var userId: String?
+
+): BaseModel()
+
+data class DistListResponse(
+    val count: Int,
+    @SerializedName("distribDetails")
+    val DistList: List<DistDropdownDetails>,
+    @SerializedName("status")
+    val status: Int? = null
+
+)
+
+data class DistDropdownDetails(
+    val UM_ID: String?,
+    val UM_Name: String?
+
+):Serializable
+
+data class  DealListRequestParams(
+    @SerializedName("userId") var userId: String?
+
+): BaseModel()
+
+data class DealListResponse(
+    val count: Int,
+    @SerializedName("dealerDetails")
+    val DealList: List<DealDropdownDetails>,
+    @SerializedName("status")
+    val status: Int? = null
+
+)
+
+data class DealDropdownDetails(
+    val UM_ID: String?,
+    val UM_Name: String?
+
+):Serializable

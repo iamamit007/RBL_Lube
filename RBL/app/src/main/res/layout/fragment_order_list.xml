@@ -12,24 +12,42 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
+            <Spinner
+                android:id="@+id/spinnerType"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:drawSelectorOnTop="true"
+                android:drawableRight="@drawable/ic_expand"
+                android:entries="@array/array_dealDist"
+                />
+            <Spinner
+                android:id="@+id/spinnerDealDis"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:layout_below="@+id/spinnerType"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:drawSelectorOnTop="true"
+                android:drawableRight="@drawable/ic_expand"
+                />
+            <Spinner
+                android:id="@+id/spinnerDeal"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:layout_below="@+id/spinnerType"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:drawSelectorOnTop="true"
+                android:drawableRight="@drawable/ic_expand"
+                />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/ly"
+            android:layout_below="@+id/spinnerDealDis"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_dealer"
-                style="@style/login_reg_input_label"
-                android:hint="@string/order_dealer_name"
-                app:hintTextAppearance="@style/hintLabelColor">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/input_email"
-                    style="@style/login_reg_input_text"
-                    android:inputType="text"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
