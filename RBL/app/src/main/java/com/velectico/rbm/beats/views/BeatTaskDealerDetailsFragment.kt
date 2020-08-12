@@ -18,11 +18,13 @@ import com.kaopiz.kprogresshud.KProgressHUD
 
 import com.velectico.rbm.R
 import com.velectico.rbm.RBMLubricantsApplication
+import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.model.*
 import com.velectico.rbm.complaint.model.ComplainListDetails
 import com.velectico.rbm.databinding.FragmentBeatTaskDealerDetailsBinding
 import com.velectico.rbm.databinding.FragmentOrderListBinding
+import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 import com.velectico.rbm.network.callbacks.NetworkCallBack
 import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
@@ -30,8 +32,7 @@ import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.order.model.OrderHead
 import com.velectico.rbm.order.views.OrderListFragmentDirections
-import com.velectico.rbm.utils.GloblalDataRepository
-import com.velectico.rbm.utils.SharedPreferenceUtils
+import com.velectico.rbm.utils.*
 import kotlinx.android.synthetic.main.fragment_beat_report.view.*
 import retrofit2.Callback
 
@@ -45,6 +46,7 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
     var dealerDetails = DealerDetails()
     var userId = ""
     private var complaintList = ComplainListDetails()
+    private lateinit var menuViewModel: MenuViewModel
     override fun getLayout(): Int {
         return R.layout.fragment_beat_task_dealer_details
     }
@@ -52,9 +54,18 @@ class BeatTaskDealerDetailsFragment : BaseFragment() {
 
     override fun init(binding: ViewDataBinding) {
         checkPermission()
+        menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
+
         taskDetails = arguments!!.get("beatTaskDetails") as BeatTaskDetails
         //showToastMessage(arguments.)
         this.binding = binding as FragmentBeatTaskDealerDetailsBinding
+        if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == MECHANIC_ROLE){
+
+            binding.btnNewOrder.visibility = View.INVISIBLE
+            binding.btnOrderHistory.visibility = View.INVISIBLE
+            binding.btnPerformanceHistory.visibility = View.INVISIBLE
+            binding.viewAllTransBtn.visibility = View.INVISIBLE
+        }
         if (RBMLubricantsApplication.globalRole == "Team" ){
             binding.btnNewOrder.visibility = View.INVISIBLE
             binding.btnComplaints.visibility = View.INVISIBLE

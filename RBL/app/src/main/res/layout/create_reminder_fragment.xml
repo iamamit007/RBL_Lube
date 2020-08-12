@@ -11,24 +11,31 @@
         tools:context=".beats.views.CreateBeatFragment">
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_dealName"
-            style="@style/login_reg_input_label"
-            android:layout_marginTop="10dp"
-            android:hint="Dealer Name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_prodName"
-                style="@style/login_reg_input_text"
-                android:inputType="text"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
+        <Spinner
+            android:id="@+id/spinner111"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:drawSelectorOnTop="true"
+            android:drawableRight="@drawable/ic_expand"
+            android:entries="@array/array_dealDist"
+            />
+        <Spinner
+            android:id="@+id/dealerList11"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:drawSelectorOnTop="true"
+            android:layout_below="@+id/spinner111"
+            android:drawableRight="@drawable/ic_expand"
+            android:entries="@array/dealer_List"
+            />
         <!--End Date-->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/login_reg_input_label"
             android:hint="Followup Date"
             android:layout_marginTop="10dp"
-            android:layout_below="@+id/til_dealName"
+            android:layout_below="@+id/dealerList11"
             android:id="@+id/til_endDt"
             app:hintTextAppearance="@style/hintLabelColor">
 

@@ -28,3 +28,22 @@ data class ReminderListDetails(
 
 
 ): Serializable
+
+
+data class  CreateReminderRequestParams(
+    @SerializedName("userId") var userId: String?,
+    @SerializedName("taskId") var taskId: String?,
+    @SerializedName("dealerId") var dealerId: String?,
+    @SerializedName("distribId") var distribId: String?,
+    @SerializedName("followupDate") var followupDate: String?,
+    @SerializedName("followupDesc") var followupDesc: String?
+
+
+): BaseModel()
+data class CreateReminderResponse(
+    val count: Int,
+    val respMessage:String,
+    val reportId:String
+
+
+):Serializable

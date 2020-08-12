@@ -5,7 +5,7 @@
     <data>
         <variable
             name="productInfo"
-            type="com.velectico.rbm.products.models.ProductInfo" />
+            type="com.velectico.rbm.beats.model.CreateOrderListDetails" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -37,7 +37,7 @@
                 <TextView
                     android:id="@+id/tv_prodName"
                     style="@style/rv_caption"
-                    android:text="@{productInfo.prodName}" />
+                    android:text="@{productInfo.PM_Brand_name}" />
 
             </LinearLayout>
 
@@ -53,7 +53,7 @@
                 <TextView
                     android:id="@+id/tv_prodType"
                     style="@style/rv_caption"
-                    android:text="@{productInfo.PM_Type}" />
+                    android:text="@{productInfo.PM_Type_Name}" />
 
             </LinearLayout>
 
@@ -70,7 +70,7 @@
                 <TextView
                     android:id="@+id/tv_prodCategory"
                     style="@style/rv_caption"
-                    android:text="@{productInfo.prodCategoty}" />
+                    android:text="@{productInfo.PM_Cat_Name}" />
 
             </LinearLayout>
 
@@ -87,7 +87,7 @@
                 <TextView
                     android:id="@+id/tv_prodUom"
                     style="@style/rv_caption"
-                    android:text="@{productInfo.prodPackaging}" />
+                    android:text="@{productInfo.PM_UOM_Detail}" />
 
             </LinearLayout>
 
@@ -104,7 +104,7 @@
                 <TextView
                     android:id="@+id/tv_price"
                     style="@style/rv_caption"
-                    android:text="@{productInfo.prodTotalPrice}" />
+                    android:text="@{`₹ ` +productInfo.PM_Net_Price}" />
 
             </LinearLayout>
 

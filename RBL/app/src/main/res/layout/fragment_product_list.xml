@@ -26,6 +26,7 @@
             style="@style/add_fab"
             android:layout_alignParentRight="true"
             app:backgroundTint="@color/primary"
+            android:visibility="gone"
             app:fabSize="normal"
             app:srcCompat="@drawable/ic_filter" />
             <com.google.android.material.floatingactionbutton.FloatingActionButton

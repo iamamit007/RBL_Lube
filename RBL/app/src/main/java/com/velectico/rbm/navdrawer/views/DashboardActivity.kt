@@ -71,6 +71,7 @@ class DashboardActivity : BaseActivity(), NavigationView.OnNavigationItemSelecte
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(navigationView, navController)
         navigationView.setNavigationItemSelectedListener(this)
+        navigationView.menu.removeItem(R.id.nav_order)
 
         if(menuViewModel.loginResponse?.value?.userDetails?.get(0)?.uMRole.toString().equals("M")){
             navigationView.menu.removeItem(R.id.nav_leave)
@@ -97,7 +98,7 @@ class DashboardActivity : BaseActivity(), NavigationView.OnNavigationItemSelecte
             R.id.third -> navController.navigate(R.id.thirdFragment)*/
             R.id.nav_home -> navController.navigate((R.id.homeFragment))
 
-            R.id.nav_product -> navController.navigate(R.id.productList)
+            R.id.nav_product -> gotoorderFilter()//navController.navigate(R.id.productFilterFragment)
 
             R.id.nav_beat -> navController.navigate(R.id.dateWiseBeatListFragment)
 
@@ -131,6 +132,11 @@ class DashboardActivity : BaseActivity(), NavigationView.OnNavigationItemSelecte
 
     public fun commingSoonToast(){
         Toast.makeText(applicationContext,"Work in-progress.Feature Will be available shortly!",Toast.LENGTH_SHORT).show()
+    }
+
+    public fun gotoorderFilter(){
+        RBMLubricantsApplication.filterFrom = "Product"
+        navController.navigate(R.id.productFilterFragment)
     }
 
 

@@ -271,6 +271,7 @@ private fun setUpRecyclerView() {
     }
 
     private fun moveToFilterOrder(){
+        RBMLubricantsApplication.filterFrom = ""
         val navDirection =  OrderListFragmentDirections.actionOrderListFragmentToOrderFilter()
         Navigation.findNavController(binding.fabFilter).navigate(navDirection)
     }

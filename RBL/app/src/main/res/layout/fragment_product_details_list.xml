@@ -225,7 +225,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="GST (%)"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:layout_below="@+id/featureDetail"
                         style="@style/rv_caption" />
                     <TextView
@@ -282,10 +282,12 @@
 
                         <TextView
                             style="@style/rv_caption"
+                            android:id="@+id/tv_schemeName"
                             android:text="Scheme Name" />
 
                         <TextView
-                            android:id="@+id/tv_schemeName"
+
+                            android:visibility="gone"
                             android:text="Buy 1 get 2 free"
                             style="@style/rv_caption" />
 
@@ -300,11 +302,13 @@
 
                         <TextView
                             style="@style/rv_caption"
+                            android:visibility="gone"
                             android:text="Product Type" />
 
                         <TextView
                             android:id="@+id/tv_prodType"
                             android:text="xcxcx"
+                            android:visibility="gone"
                             style="@style/rv_caption" />
 
                     </LinearLayout>
@@ -319,10 +323,12 @@
 
                         <TextView
                             style="@style/rv_caption"
+                            android:visibility="gone"
                             android:text="Product Category" />
 
                         <TextView
                             android:id="@+id/tv_prodCategory"
+                            android:visibility="gone"
                             android:text="ssdsd"
                             style="@style/rv_caption" />
 

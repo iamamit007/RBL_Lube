@@ -44,6 +44,8 @@ import com.velectico.rbm.leave.model.LeaveListRequest;
 import com.velectico.rbm.leave.model.LeaveListResponse;
 import com.velectico.rbm.menuitems.viewmodel.AttendancResponse;
 import com.velectico.rbm.menuitems.viewmodel.AttendanceRequestParams;
+import com.velectico.rbm.reminder.model.CreateReminderRequestParams;
+import com.velectico.rbm.reminder.model.CreateReminderResponse;
 import com.velectico.rbm.reminder.model.ReminderListRequestParams;
 import com.velectico.rbm.reminder.model.ReminderListResponse;
 import com.velectico.rbm.teamlist.model.TeamListRequestParams;
@@ -61,6 +63,7 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Complaint_Lis
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Report;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Schedule;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Order;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Reminder;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Dealer_Distrib_Task_Worksheet;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Dealer_Dropdown;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Distrib_Dropdown;
@@ -173,6 +176,8 @@ public interface ApiInterface {
     @POST(Get_ReminderList)
     Call<ReminderListResponse> getReminderList(@Body ReminderListRequestParams model);
 
+    @POST(Create_Reminder)
+    Call<CreateReminderResponse> addReminder(@Body CreateReminderRequestParams model);
 
 
 

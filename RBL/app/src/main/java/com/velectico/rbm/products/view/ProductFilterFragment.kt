@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import com.kaopiz.kprogresshud.KProgressHUD
 
 import com.velectico.rbm.R
+import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.model.DropdownDetails
 import com.velectico.rbm.beats.model.OrderVSQualityRequestParams
@@ -124,12 +125,22 @@ class ProductFilterFragment : BaseFragment()  {
     }
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentProductFilterBinding
-
+        showToastMessage(RBMLubricantsApplication.filterFrom)
         initHud()
         binding.btnOrderHistory.setOnClickListener {
+            if (RBMLubricantsApplication.filterFrom == "Product"){
+                val navDirection =  ProductFilterFragmentDirections.actionProductFilterFragmentToProductList(catId, segId)
+                Navigation.findNavController(binding.btnOrderHistory).navigate(navDirection)
+            }
+            else {
 
-            val navDirection =  ProductFilterFragmentDirections.actionProductFilterFragmentToCreateOrderFragment(catId, segId)
-            Navigation.findNavController(binding.btnOrderHistory).navigate(navDirection)
+                val navDirection =
+                    ProductFilterFragmentDirections.actionProductFilterFragmentToCreateOrderFragment(
+                        catId,
+                        segId
+                    )
+                Navigation.findNavController(binding.btnOrderHistory).navigate(navDirection)
+            }
         }
         binding.btnClr.setOnClickListener {
             callApi("Product Segment")

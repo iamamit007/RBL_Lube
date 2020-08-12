@@ -166,7 +166,7 @@ const val Dealer_Dropdown = APP_API_NAME+"Dealer_Dropdown"
 
 const val Get_ReminderList = APP_API_NAME+"Get_ReminderList"
 
-
+const val Create_Reminder = APP_API_NAME+"Create_Reminder"
 
 
 

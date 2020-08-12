@@ -60,6 +60,9 @@
         <action
             android:id="@+id/action_homeFragment_to_fragmentPaymentList"
             app:destination="@id/fragmentPaymentList" />
+        <action
+            android:id="@+id/action_homeFragment_to_productFilterFragment"
+            app:destination="@id/productFilterFragment" />
 
     </fragment>
     <fragment
@@ -76,6 +79,12 @@
         <action
             android:id="@+id/action_productList_to_productFilterFragment"
             app:destination="@id/productFilterFragment" />
+        <argument
+            android:name="catId"
+            app:argType="string" />
+        <argument
+            android:name="segId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/createBeatFragment"
@@ -421,7 +430,11 @@
     <fragment
         android:id="@+id/productDetailsListFragment"
         android:name="com.velectico.rbm.products.view.ProductDetailsListFragment"
-        android:label="Product Details" />
+        android:label="Product Details" >
+        <argument
+            android:name="productDetails"
+            app:argType="com.velectico.rbm.beats.model.CreateOrderListDetails" />
+    </fragment>
     <fragment
         android:id="@+id/teamPerformanceFragment"
         android:name="com.velectico.rbm.teamlist.view.TeamPerformanceFragment"

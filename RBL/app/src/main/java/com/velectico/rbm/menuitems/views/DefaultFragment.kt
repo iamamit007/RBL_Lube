@@ -157,7 +157,7 @@ class DefaultFragment : BaseFragment(){
         }
         binding.productButton.setOnClickListener {
 
-            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToProductList()
+            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToProductFilterFragment()
             Navigation.findNavController(binding.productButton).navigate(navDirection)
         }
         binding.orderDealerButton.setOnClickListener {
