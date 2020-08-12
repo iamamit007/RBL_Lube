@@ -49,6 +49,7 @@ class ComplaintList : BaseFragment() {
     private lateinit var menuViewModel: MenuViewModel
     private lateinit var binding: FragmentComplaintListBinding;
     private var complaintList : List<ComplainListDetails> = emptyList()
+    private var complaintList11 = ComplainListDetails()
     private lateinit var adapter: ComplaintListAdapter
     var dealerId = "0"
     var distribId = "0"
@@ -88,6 +89,7 @@ class ComplaintList : BaseFragment() {
         callDealApi()
 
         setUpRecyclerView()
+        callApiList()
         binding.expenseButton.setOnClickListener{
             orderStatus = "C"
             callApiList()
@@ -120,7 +122,7 @@ class ComplaintList : BaseFragment() {
         adapter = ComplaintListAdapter(object : ComplaintListAdapter.IComplaintListActionCallBack{
             override fun moveToComplainDetails(position: Int, beatTaskId: String?,binding: RowComplaintListBinding) {
                 Log.e("test","onAddTask"+beatTaskId)
-                val navDirection =  ComplaintListDirections.actionComplaintListToCreateComplaintsUserWise()
+                val navDirection =  ComplaintListDirections.actionComplaintListToCreateComplaintsUserWise(complaintList[position])
                 Navigation.findNavController(binding.navigateToDetails).navigate(navDirection)
             }
         })
@@ -129,7 +131,7 @@ class ComplaintList : BaseFragment() {
     }
 
      private fun moveToCreateComplaint(){
-      val navDirection =  ComplaintListDirections.actionComplaintListToCreateComplaintsUserWise()
+      val navDirection =  ComplaintListDirections.actionComplaintListToCreateComplaintsUserWise(complaintList11)
          Navigation.findNavController(binding.fab).navigate(navDirection)
      }
 
@@ -148,6 +150,7 @@ class ComplaintList : BaseFragment() {
                 var statList: MutableList<String> = ArrayList()
                 for (i in distNameList){
                     statList.add(i.UM_Name!!)
+                    distribId = i.UM_ID!!
                 }
                 val adapter2 = context?.let {
                     ArrayAdapter(
@@ -187,6 +190,7 @@ class ComplaintList : BaseFragment() {
                 var statList: MutableList<String> = ArrayList()
                 for (i in dealNameList){
                     statList.add(i.UM_Name!!)
+                    dealerId = i.UM_ID!!
                 }
                 val adapter2 = context?.let {
                     ArrayAdapter(

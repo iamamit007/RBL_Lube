@@ -52,6 +52,7 @@ class OrderListFragment : BaseFragment()  {
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentOrderListBinding
+        binding.spinnerDeal.visibility = View.GONE
         val languages = resources.getStringArray(R.array.array_dealDist)
 
         // access the spinner
@@ -69,14 +70,16 @@ class OrderListFragment : BaseFragment()  {
                 override fun onItemSelected(parent: AdapterView<*>,
                                             view: View, position: Int, id: Long) {
                     showToastMessage(languages[position])
-                    if (languages[position] == "Dealer"){
-                        binding.spinnerDeal.visibility = View.VISIBLE
-                        binding.spinnerDealDis.visibility = View.GONE
 
+                    if (languages[position] == "Dealer"){
+                        //binding.spinnerDeal.visibility = View.VISIBLE
+                        //binding.spinnerDealDis.visibility = View.GONE
+                        callDealApi()
                     }
                     else{
-                        binding.spinnerDeal.visibility = View.GONE
-                        binding.spinnerDealDis.visibility = View.VISIBLE
+                        //binding.spinnerDeal.visibility = View.GONE
+                        //binding.spinnerDealDis.visibility = View.VISIBLE
+                        callDistApi()
                     }
                 }
 
@@ -108,8 +111,8 @@ class OrderListFragment : BaseFragment()  {
             binding.spinnerType.visibility = View.GONE
         }
         else{
-            callDistApi()
-            callDealApi()
+            //callDistApi()
+            //callDealApi()
         }
         //showToastMessage(spinnerType.selectedItem.toString())
 
@@ -145,27 +148,39 @@ class OrderListFragment : BaseFragment()  {
 
         binding.spinnerDealDis.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
-                if (distNameList.size > 0 ){
-                    val x = distNameList[position]
-                    distribId = x.UM_ID!!
-                    callApiOrderList()
+
+                if (binding.spinnerType.selectedItem == "Dealer"){
+                    if (dealNameList.size > 0 ){
+                        val x = dealNameList[position]
+                        dealerId = x.UM_ID!!
+                        callApiOrderList()
+
+                    }
+
+                }
+                else if (binding.spinnerType.selectedItem == "Distributor"){
+                    if (distNameList.size > 0) {
+                        val x = distNameList[position]
+                        distribId = x.UM_ID!!
+                        callApiOrderList()
+                    }
                 }
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>) {}
         }
-        binding.spinnerDeal.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
-                if (dealNameList.size > 0 ){
-                    val x = dealNameList[position]
-                    dealerId = x.UM_ID!!
-                    callApiOrderList()
-
-                }
-            }
-
-            override fun onNothingSelected(adapterView: AdapterView<*>) {}
-        }
+//        binding.spinnerDeal.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
+//                if (dealNameList.size > 0 ){
+//                    val x = dealNameList[position]
+//                    dealerId = x.UM_ID!!
+//                    callApiOrderList()
+//
+//                }
+//            }
+//
+//            override fun onNothingSelected(adapterView: AdapterView<*>) {}
+//        }
 
     }
     var hud: KProgressHUD? = null
@@ -271,14 +286,17 @@ private fun setUpRecyclerView() {
                 var statList: MutableList<String> = ArrayList()
                 for (i in distNameList){
                     statList.add(i.UM_Name!!)
+                    distribId = i.UM_ID!!
                 }
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
                         android.R.layout.simple_spinner_item, statList)
                 }
-                binding.spinnerDealDis.adapter = adapter2
 
+            if (binding.spinnerType.selectedItem == "Distributor"){
+                binding.spinnerDealDis.adapter = adapter2
+            }
 
             }
 
@@ -309,13 +327,17 @@ private fun setUpRecyclerView() {
                 var statList: MutableList<String> = ArrayList()
                 for (i in dealNameList){
                     statList.add(i.UM_Name!!)
+                    dealerId = i.UM_ID!!
                 }
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
                         android.R.layout.simple_spinner_item, statList)
                 }
-                binding.spinnerDeal.adapter = adapter2
+                if (binding.spinnerType.selectedItem == "Dealer"){
+                    binding.spinnerDealDis.adapter = adapter2
+                }
+
 
 
             }

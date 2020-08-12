@@ -372,7 +372,11 @@
     <fragment
         android:id="@+id/createComplaintsUserWise"
         android:name="com.velectico.rbm.complaint.views.CreateComplaintsUserWise"
-        android:label="Complaint Entry" />
+        android:label="Complaint Entry" >
+        <argument
+            android:name="complainDetail"
+            app:argType="com.velectico.rbm.complaint.model.ComplainListDetails" />
+    </fragment>
     <fragment
         android:id="@+id/reminderListFragment"
         android:name="com.velectico.rbm.reminder.view.ReminderListFragment"

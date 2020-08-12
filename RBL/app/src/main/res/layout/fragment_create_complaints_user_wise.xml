@@ -52,7 +52,7 @@
                             android:layout_height="50dp"
                             android:drawSelectorOnTop="true"
                             android:drawableRight="@drawable/ic_expand"
-                            android:entries="@array/array_name"
+                            android:entries="@array/array_dealDist"
                             />
                         <Spinner
                             android:id="@+id/dealerList"
