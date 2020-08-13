@@ -35,6 +35,8 @@ const val MASTER_DATA_LIST = "MasterDataList"
 const val EXPENSE_CREATE_EDIT = "CreateEditExpense"
 const val EXPENSE_DELETE = "DeleteExpense"
 
+const val COMPLAINT_CREATE = "Save_Complaint"
+
 const val LEAVE_REASON = "LeaveReason"
 const val LEAVE_APPLY = "ApplyLeave"
 const val LEAVE_EDIT = "EditLeave"
@@ -101,6 +103,7 @@ const val ENDPOINT_EXPENSE_LIST  = APP_API_NAME+"Expense_List"
 const val ENDPOINT_EXPENSE_CREATE_EDIT  = APP_API_NAME+"Create_Expense"
 const val ENDPOINT_DELETE_EXPENSE  = APP_API_NAME+"Delete_Expense"
 const val ENDPOINT_MASTER_DATA_LIST  = APP_API_NAME+"Get_Dropdown_Details_byName"
+const val ENDPOINT_COMPLAINT_CREATE  = APP_API_NAME+"Save_Complaint"
 
 //LEAVE ENDPOINTS
 

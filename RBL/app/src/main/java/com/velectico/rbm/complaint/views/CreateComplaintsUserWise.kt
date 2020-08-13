@@ -50,16 +50,13 @@ import java.util.ArrayList
 /**
  * A simple [Fragment] subclass.
  */
-class CreateComplaintsUserWise : BaseFragment() {
+class CreateComplaintsUserWise(private val networkManager: INetworkManager) : BaseFragment() {
     private lateinit var binding: FragmentCreateComplaintsUserWiseBinding
     private lateinit var menuViewModel: MenuViewModel
     var complainDetail = ComplainListDetails()
     val loading = MutableLiveData<Boolean>()
     var complainCreateResponse = MutableLiveData<ComplaintCreateResponse>()
-    private val networkManager : INetworkManager
-        get() {
-            TODO()
-        }
+
     private var imageUtils : ImageUtils?=null
     private var imageUrl : String? = null
     private var cameraImgUri : Uri?= null
@@ -245,8 +242,8 @@ class CreateComplaintsUserWise : BaseFragment() {
         loading.postValue(true)
 
         val complainCreateRequest = NetworkRequest(
-            apiName = EXPENSE_CREATE_EDIT,
-            endPoint = ENDPOINT_EXPENSE_CREATE_EDIT,
+            apiName = COMPLAINT_CREATE,
+            endPoint = ENDPOINT_COMPLAINT_CREATE,
             request = complainCreateRequest,
             requestBody= getComplaintCreateRequestBody(complainCreateRequest)
         )
