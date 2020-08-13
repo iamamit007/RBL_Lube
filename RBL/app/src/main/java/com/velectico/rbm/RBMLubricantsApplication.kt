@@ -17,6 +17,7 @@ class RBMLubricantsApplication : Application(){
         var globalRole = ""
         var fromBeat = ""
         var filterFrom = ""
+        var fromProductList = ""
         @JvmStatic
         fun getAppContext():Context?{
             return instance?.applicationContext

@@ -4,10 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.util.Log
+import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
@@ -19,10 +21,18 @@ import com.velectico.rbm.complaint.adapter.ComplaintListAdapter
 import com.velectico.rbm.databinding.RowBeatListDatesBinding
 import com.velectico.rbm.databinding.RowProductListBinding
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
+import com.velectico.rbm.order.views.CreateOrderFragment
 import com.velectico.rbm.products.models.ProductInfo
+import com.velectico.rbm.products.view.ProductListFragment
+import com.velectico.rbm.products.view.ProductListFragment.Companion.seletedItemsChecked
 import com.velectico.rbm.utils.MECHANIC_ROLE
+import com.velectico.rbm.utils.SALES_LEAD_ROLE
 import com.velectico.rbm.utils.TEMP_CURRENT_LOGGED_IN
 import com.velectico.rbm.utils.productItemClickListener
+
+
+import kotlin.math.log
+import kotlin.random.Random.Default.Companion
 
 //https://codelabs.developers.google.com/codelabs/kotlin-android-training-recyclerview-fundamentals/#4
 //https://medium.com/@sanjeevy133/an-idiots-guide-to-android-recyclerview-and-databinding-4ebf8db0daff
@@ -31,9 +41,10 @@ import com.velectico.rbm.utils.productItemClickListener
 class ProductListAdapter(var setCallback: ProductListAdapter.IProdListActionCallBack) : RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
 //    private val userRole = userRole
 //    private lateinit var menuViewModel: MenuViewModel
-//    private val mActivity = _activity
-var callBack : ProductListAdapter.IProdListActionCallBack?=null
+    //private val mActivity = ProductListFragment()
+    var callBack : ProductListAdapter.IProdListActionCallBack?=null
     var data = listOf<CreateOrderListDetails>()
+    var checkBoxStateArray = SparseBooleanArray()
     set(value) {
         field = value
         notifyDataSetChanged()
@@ -43,10 +54,13 @@ var callBack : ProductListAdapter.IProdListActionCallBack?=null
     inner class ViewHolder(_binding: RowProductListBinding) : RecyclerView.ViewHolder(_binding.root) {
         val binding = _binding
         init {
+
             callBack = setCallback;
             binding.navigateToDetails.setOnClickListener {
                 callBack?.moveToProdDetails(adapterPosition, "1",binding )
             }
+
+
         }
 
         fun bind(productInfo: CreateOrderListDetails?) {
@@ -70,6 +84,17 @@ var callBack : ProductListAdapter.IProdListActionCallBack?=null
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(data[position])
         Picasso.get().load(data[position].PM_Image_Path).fit().into(holder.binding.ivProdImageUrl)
+        //holder.binding.cbProdSel.isChecked = checkBoxStateArray.get(position,false)
+        holder.binding.cbProdSel.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked){
+                //listener.onItemClick()
+                seletedItemsChecked.add(data[position])
+                // show toast , check box is checked
+            }else{
+                seletedItemsChecked.remove(data[position])
+                // show toast , check box is not checked
+            }
+        }
 
     }
 
@@ -79,4 +104,6 @@ var callBack : ProductListAdapter.IProdListActionCallBack?=null
         fun moveToProdDetails(position:Int,beatTaskId:String?,binding: RowProductListBinding)
 
     }
+
+
 }

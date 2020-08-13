@@ -11,6 +11,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.navigation.Navigation
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.velectico.rbm.R
+import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.model.*
 import com.velectico.rbm.databinding.FragmentCreateOrderBinding
@@ -21,8 +22,11 @@ import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.order.adapters.OrderCartListAdapter
 import com.velectico.rbm.order.adapters.OrderHeadListAdapter
+import com.velectico.rbm.order.adapters.OrderPreviewListAdapter
 import com.velectico.rbm.order.model.OrderCart
 import com.velectico.rbm.order.model.OrderHead
+import com.velectico.rbm.products.view.ProductListFragment
+import com.velectico.rbm.products.view.ProductListFragment.Companion.seletedItemsChecked
 import com.velectico.rbm.utils.ImageUtils
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import com.velectico.rbm.utils.productItemClickListener
@@ -51,6 +55,7 @@ class CreateOrderFragment : BaseFragment(),productItemClickListener {
     override fun init(binding: ViewDataBinding) {
 
         this.binding = binding as FragmentCreateOrderBinding
+        listener = this
         //orderCartList = OrderCart().getDummyOrderCart()
         catId = arguments?.getString(  "catId").toString()
         segId = arguments?.getString(  "segId").toString()
@@ -62,9 +67,25 @@ class CreateOrderFragment : BaseFragment(),productItemClickListener {
         binding.fabFilter.setOnClickListener {
             moveToProdFilter()
         }
-        callCreateOrderList()
-        listener = this
-        setUpRecyclerView()
+        if (RBMLubricantsApplication.fromProductList == "Product"){
+            showToastMessage("from Product")
+            orderCartList.toMutableList().clear()
+            orderCartList = seletedItemsChecked.toMutableList()
+            setUpRecyclerView()
+//            adapter = OrderCartListAdapter(context!!,listener);
+//            binding.rvCartList.adapter = adapter
+//            val x = mutableListOf<CreateOrderListDetails>()
+//            for (i in seletedItemsChecked ){
+//                x.add(i)
+//            }
+//            adapter.orderCart = seletedItemsChecked.toList()
+//            adapter.notifyDataSetChanged()
+        }
+        else {
+            callCreateOrderList()
+        }
+
+        //setUpRecyclerView()
 
     }
 
@@ -132,8 +153,10 @@ class CreateOrderFragment : BaseFragment(),productItemClickListener {
                 Log.e("test333","OrderHistoryDetailsResponse status="+response.data)
                 orderCartList.toMutableList().clear()
                 if (response.data.count > 0) {
-                    orderCartList = response.data.CreateOrderList!!.toMutableList()
-                    setUpRecyclerView()
+
+                        orderCartList = response.data.CreateOrderList!!.toMutableList()
+                        setUpRecyclerView()
+
                 } else {
                     showToastMessage("No data found")
 

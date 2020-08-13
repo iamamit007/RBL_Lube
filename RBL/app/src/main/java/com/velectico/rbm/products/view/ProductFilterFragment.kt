@@ -133,7 +133,7 @@ class ProductFilterFragment : BaseFragment()  {
                 Navigation.findNavController(binding.btnOrderHistory).navigate(navDirection)
             }
             else {
-
+                RBMLubricantsApplication.fromProductList = ""
                 val navDirection =
                     ProductFilterFragmentDirections.actionProductFilterFragmentToCreateOrderFragment(
                         catId,

@@ -46,10 +46,13 @@ class ProductListFragment : BaseFragment() {
 
     private lateinit var binding: FragmentProductListBinding
     private lateinit var adapter : ProductListAdapter
-    private lateinit var menuViewModel: MenuViewModel
+    lateinit var menuViewModel: MenuViewModel
     private var orderCartList : List<CreateOrderListDetails> = emptyList()
     var segId= ""
     var catId= ""
+    companion object {
+        var seletedItemsChecked = HashSet<CreateOrderListDetails>()
+    }
     override fun getLayout(): Int {
         return R.layout.fragment_product_list
     }
@@ -70,7 +73,15 @@ class ProductListFragment : BaseFragment() {
 
 
         binding.fab.setOnClickListener {
-            //moveToFilter()
+            if (seletedItemsChecked.count() > 0){
+                RBMLubricantsApplication.filterFrom = ""
+                RBMLubricantsApplication.fromProductList = "Product"
+                moveToOrder()
+            }
+            else{
+                showToastMessage("Please select atleast one list to continue")
+            }
+
         }
 
         binding.fabFilter.setOnClickListener {
@@ -100,7 +111,6 @@ class ProductListFragment : BaseFragment() {
 
         binding?.rvProductList?.adapter = adapter
         adapter.data = orderCartList
-       // adapter?.data = ProductInfo().getDummyData()
     }
 
 
@@ -110,7 +120,7 @@ class ProductListFragment : BaseFragment() {
     }
 
     private fun moveToFilter(){
-        RBMLubricantsApplication.filterFrom = ""
+
         val navDirection =  ProductListFragmentDirections.actionProductListToProductFilterFragment()
         Navigation.findNavController(binding.fabFilter).navigate(navDirection)
     }
