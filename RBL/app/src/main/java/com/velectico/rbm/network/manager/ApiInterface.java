@@ -33,6 +33,7 @@ import com.velectico.rbm.beats.model.TaskForListRequestParams;
 import com.velectico.rbm.beats.model.TaskForListResponse;
 import com.velectico.rbm.complaint.model.ComplaintListRequestParams;
 import com.velectico.rbm.complaint.model.ComplaintListResponse;
+import com.velectico.rbm.expense.model.BidListResponse;
 import com.velectico.rbm.leave.model.ApplyLeaveRequest;
 import com.velectico.rbm.leave.model.ApplyLeaveResponse;
 import com.velectico.rbm.leave.model.ApproveRejectLeaveListRequest;
@@ -68,6 +69,7 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Location_
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Order_History;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Product_List_By_Cat_Seg;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Task_For;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Task_dropdown_in_expens;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Leave_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Team_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Save_AssignTask;
@@ -155,7 +157,8 @@ public interface ApiInterface {
     @POST(DoAttend)
     Call<AttendancResponse> doAttendance(@Body AttendanceRequestParams model);
 
-
+    @POST(Get_Task_dropdown_in_expens)
+    Call<BidListResponse> getBitList(@Body AttendanceRequestParams model);
 
 
 
