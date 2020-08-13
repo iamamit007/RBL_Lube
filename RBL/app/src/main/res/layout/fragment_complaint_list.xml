@@ -13,76 +13,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:weightSum="100"
-                android:orientation="horizontal"
-                android:id="@+id/laydeal">
 
-                <TextView
-                    android:id="@+id/dealButton"
-                    android:layout_width="0dip"
-                    android:layout_height="50dp"
-                    android:layout_weight="25"
-                    android:background="@color/smsp_transparent_color"
-                    android:textStyle="bold"
-                    android:text="Dealer" />
-
-                <View
-                    android:layout_width="0dip"
-                    android:layout_weight="4"
-                    android:layout_height="50dp"></View>
                 <Spinner
-                    android:id="@+id/spinnerDeal1"
-                    android:layout_width="0dip"
+                    android:id="@+id/spinnerTp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_weight="71"
                     android:drawSelectorOnTop="true"
+                    android:entries="@array/array_dealDist"
                     android:drawableRight="@drawable/ic_expand"
                     />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:weightSum="100"
-                android:orientation="horizontal"
-                android:layout_below="@+id/laydeal"
-                android:id="@+id/laydist">
-
-                <TextView
-                    android:id="@+id/distButton"
-                    android:layout_width="0dip"
-                    android:layout_height="50dp"
-                    android:layout_weight="25"
-                    android:background="@color/smsp_transparent_color"
-                    android:textStyle="bold"
-                    android:text="Distributor" />
-
-                <View
-                    android:layout_width="0dip"
-                    android:layout_weight="4"
-                    android:layout_height="50dp"></View>
                 <Spinner
-                    android:id="@+id/spinnerDist"
-                    android:layout_width="0dip"
+                    android:id="@+id/spinnerDealDist"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_weight="71"
-                    android:drawSelectorOnTop="true"
+                    android:layout_below="@+id/spinnerTp"
                     android:drawableRight="@drawable/ic_expand"
                     />
 
-            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:weightSum="100"
-                android:layout_below="@+id/laydist"
+                android:layout_below="@+id/spinnerDealDist"
                 android:orientation="horizontal"
                 android:id="@+id/lay1">
 

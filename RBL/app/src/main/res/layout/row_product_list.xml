@@ -18,8 +18,8 @@
 
             <ImageView
                 android:id="@+id/iv_prodImageUrl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dimen_40dp"
+                android:layout_height="@dimen/dimen_40dp"
                 android:layout_marginRight="@dimen/dimen_16dp"
                 android:contentDescription="@string/content_description_media"
                 app:srcCompat="@mipmap/ic_launcher" />

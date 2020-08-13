@@ -173,8 +173,8 @@ class DefaultFragment : BaseFragment(){
             Navigation.findNavController(binding.paymentButton).navigate(navDirection)
         }
         binding.performanceButtonLong.setOnClickListener {
-            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToTeamListFragment(binding.performanceButtonLong.text.toString())
-            Navigation.findNavController(binding.performanceButtonLong).navigate(navDirection)
+            //val navDirection =  DefaultFragmentDirections.actionHomeFragmentToTeamListFragment(binding.performanceButtonLong.text.toString())
+            //Navigation.findNavController(binding.performanceButtonLong).navigate(navDirection)
         }
         binding.orderButtonLong.setOnClickListener {
             val navDirection =  DefaultFragmentDirections.actionHomeFragmentToOrderListFragment(taskDetails)

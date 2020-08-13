@@ -60,36 +60,69 @@ class ComplaintList : BaseFragment() {
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentComplaintListBinding
-        //complaintList = ComplaintModel().getDummyComplaintList()
         menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
-        binding.spinnerDist.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        val languages = resources.getStringArray(R.array.array_dealDist)
+
+        // access the spinner
+
+        if (binding.spinnerTp != null) {
+            val adapter = context?.let {
+                ArrayAdapter(
+                    it,
+                    android.R.layout.simple_spinner_item, languages)
+            }
+            binding.spinnerTp.adapter = adapter
+
+            binding.spinnerTp.onItemSelectedListener = object :
+                AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>,
+                                            view: View, position: Int, id: Long) {
+                    showToastMessage(languages[position])
+
+                    if (languages[position] == "Dealer"){
+                        //binding.spinnerDeal.visibility = View.VISIBLE
+                        //binding.spinnerDealDis.visibility = View.GONE
+                        callDealApi()
+                    }
+                    else{
+                        //binding.spinnerDeal.visibility = View.GONE
+                        //binding.spinnerDealDis.visibility = View.VISIBLE
+                        callDistApi()
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // write code to perform some action
+                }
+            }
+        }
+        binding.spinnerDealDist.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
-                if (distNameList.size > 0 ){
-                    val x = distNameList[position]
-                    distribId = x.UM_ID!!
-                    callApiList()
+
+                if (binding.spinnerTp.selectedItem == "Dealer"){
+                    if (dealNameList.size > 0 ){
+                        val x = dealNameList[position]
+                        dealerId = x.UM_ID!!
+                        callApiList()
+
+                    }
+
+                }
+                else if (binding.spinnerTp.selectedItem == "Distributor"){
+                    if (distNameList.size > 0) {
+                        val x = distNameList[position]
+                        distribId = x.UM_ID!!
+                        callApiList()
+                    }
                 }
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>) {}
         }
-        binding.spinnerDeal1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
-                if (dealNameList.size > 0 ){
-                    val x = dealNameList[position]
-                    dealerId = x.UM_ID!!
-                    callApiList()
 
-                }
-            }
-
-            override fun onNothingSelected(adapterView: AdapterView<*>) {}
-        }
-        callDistApi()
-        callDealApi()
 
         setUpRecyclerView()
-        callApiList()
+
         binding.expenseButton.setOnClickListener{
             orderStatus = "C"
             callApiList()
@@ -157,7 +190,7 @@ class ComplaintList : BaseFragment() {
                         it,
                         android.R.layout.simple_spinner_item, statList)
                 }
-                binding.spinnerDist.adapter = adapter2
+                binding.spinnerDealDist.adapter = adapter2
 
 
             }
@@ -197,7 +230,7 @@ class ComplaintList : BaseFragment() {
                         it,
                         android.R.layout.simple_spinner_item, statList)
                 }
-                binding.spinnerDeal1.adapter = adapter2
+                binding.spinnerDealDist.adapter = adapter2
 
 
             }

@@ -70,7 +70,7 @@ class ProductListFragment : BaseFragment() {
 
 
         binding.fab.setOnClickListener {
-            moveToFilter()
+            //moveToFilter()
         }
 
         binding.fabFilter.setOnClickListener {
