@@ -34,6 +34,8 @@ import com.velectico.rbm.beats.model.TaskForListResponse;
 import com.velectico.rbm.complaint.model.ComplaintListRequestParams;
 import com.velectico.rbm.complaint.model.ComplaintListResponse;
 import com.velectico.rbm.expense.model.BidListResponse;
+import com.velectico.rbm.expense.model.CreateExpenseResponse;
+import com.velectico.rbm.expense.model.ExpenseCreateRequest;
 import com.velectico.rbm.leave.model.ApplyLeaveRequest;
 import com.velectico.rbm.leave.model.ApplyLeaveResponse;
 import com.velectico.rbm.leave.model.ApproveRejectLeaveListRequest;
@@ -55,6 +57,7 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Beat_Report_B
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Complaint_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Report;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Schedule;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Expense;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Order;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Dealer_Distrib_Task_Worksheet;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.DoAttend;
@@ -159,6 +162,9 @@ public interface ApiInterface {
 
     @POST(Get_Task_dropdown_in_expens)
     Call<BidListResponse> getBitList(@Body AttendanceRequestParams model);
+
+    @POST(Create_Expense)
+    Call<CreateExpenseResponse> createExpense(@Body ExpenseCreateRequest model);
 
 
 

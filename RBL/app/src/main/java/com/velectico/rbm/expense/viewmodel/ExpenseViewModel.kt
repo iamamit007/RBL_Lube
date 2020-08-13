@@ -33,19 +33,19 @@ class ExpenseViewModel(private val networkManager: INetworkManager) : BaseViewMo
 
 
 
-    fun expenseCreateAPICall(expenseCreateRequest : ExpenseCreateRequest){
-        loading.postValue(true)
-        //val expenseCreateRequestObj = ExpenseCreateRequest(userId,beatTaskId,Exp_Head_Id,misExpenseAmt,appliedOnDate,applieedByUserId,recPhoto)
-
-        val expenseCreateRequest = NetworkRequest(
-            apiName = EXPENSE_CREATE_EDIT,
-            endPoint = ENDPOINT_EXPENSE_CREATE_EDIT,
-            request = expenseCreateRequest,
-            requestBody= getExpenseCreateRequestBody(expenseCreateRequest),
-            headers = getLoginRequestHeaderParams()
-        )
-        networkManager.makeAsyncCall(request = expenseCreateRequest, callBack = readExpenseCreateResponse)
-    }
+//    fun expenseCreateAPICall(expenseCreateRequest : ExpenseCreateRequest){
+//        loading.postValue(true)
+//        //val expenseCreateRequestObj = ExpenseCreateRequest(userId,beatTaskId,Exp_Head_Id,misExpenseAmt,appliedOnDate,applieedByUserId,recPhoto)
+//
+//        val expenseCreateRequest = NetworkRequest(
+//            apiName = EXPENSE_CREATE_EDIT,
+//            endPoint = ENDPOINT_EXPENSE_CREATE_EDIT,
+//            request = expenseCreateRequest,
+//            requestBody= getExpenseCreateRequestBody(expenseCreateRequest),
+//            headers = getLoginRequestHeaderParams()
+//        )
+//        networkManager.makeAsyncCall(request = expenseCreateRequest, callBack = readExpenseCreateResponse)
+//    }
 
     fun expenseListAPICall(userId:String){
         loading.postValue(true)
@@ -90,22 +90,22 @@ class ExpenseViewModel(private val networkManager: INetworkManager) : BaseViewMo
         return builder.build();
     }
 
-    private fun getExpenseCreateRequestBody(expenseCreateRequest : ExpenseCreateRequest):RequestBody{
-        val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
-        builder.addFormDataPart(USER_ID, expenseCreateRequest.userId)
-            .addFormDataPart(BEAT_TASK_ID, expenseCreateRequest.beatTaskId.toString())
-            .addFormDataPart(EXP_HEAD_ID, expenseCreateRequest.Exp_Head_Id.toString())
-            .addFormDataPart(MIS_EXPENSE_AMOUNT, expenseCreateRequest.Exp_Head_Id.toString())
-            .addFormDataPart(APPLIED_ON_DATE, expenseCreateRequest.appliedOnDate)
-            .addFormDataPart(APPLIED_BY_USER_ID, expenseCreateRequest.applieedByUserId)
-         if(expenseCreateRequest.recPhoto!=null){
-             if (expenseCreateRequest.recPhoto.exists()) {
-                 builder.addFormDataPart(FILE_TO_UPLOAD, expenseCreateRequest.recPhoto.getName(), RequestBody.create(MultipartBody.FORM, expenseCreateRequest.recPhoto));
-             }
-         }
-
-        return builder.build();
-    }
+//    private fun getExpenseCreateRequestBody(expenseCreateRequest : ExpenseCreateRequest):RequestBody{
+//        val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
+//        builder.addFormDataPart(USER_ID, expenseCreateRequest.userId)
+//            .addFormDataPart(BEAT_TASK_ID, expenseCreateRequest.beatTaskId.toString())
+//            .addFormDataPart(EXP_HEAD_ID, expenseCreateRequest.Exp_Head_Id.toString())
+//            .addFormDataPart(MIS_EXPENSE_AMOUNT, expenseCreateRequest.Exp_Head_Id.toString())
+//            .addFormDataPart(APPLIED_ON_DATE, expenseCreateRequest.appliedOnDate)
+//            .addFormDataPart(APPLIED_BY_USER_ID, expenseCreateRequest.applieedByUserId)
+//         if(expenseCreateRequest.recPhoto!=null){
+//             if (expenseCreateRequest.recPhoto.exists()) {
+//                 builder.addFormDataPart(FILE_TO_UPLOAD, expenseCreateRequest.recPhoto.getName(), RequestBody.create(MultipartBody.FORM, expenseCreateRequest.recPhoto));
+//             }
+//         }
+//
+//        return builder.build();
+//    }
 
     private val readExpenseListResponse = object : NetworkCallBack<ExpenseListResponse>(){
         override fun onSuccessNetwork(data: Any?, response: NetworkResponse<ExpenseListResponse>) {

@@ -14,10 +14,10 @@
                 app:hintTextAppearance="@style/hintLabelColor">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_date"
+                    android:id="@+id/et_name"
                     style="@style/login_reg_input_text"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false" />
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Spinner
@@ -81,31 +81,104 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginBottom="4dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                   android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/iv_img1"
+                        android:layout_margin="@dimen/dimen_16dp"
+                        android:src="@drawable/ic_delete"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+                    <ImageView
+                        android:id="@+id/iv_img2"
+                        android:layout_margin="@dimen/dimen_16dp"
+                        android:src="@drawable/ic_delete"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+                    <ImageView
+                        android:id="@+id/iv_img3"
+                        android:layout_margin="@dimen/dimen_16dp"
+                        android:src="@drawable/ic_delete"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/iv_img4"
+                        android:layout_margin="@dimen/dimen_16dp"
+                        android:src="@drawable/ic_delete"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+                    <ImageView
+                        android:id="@+id/iv_img5"
+                        android:layout_margin="@dimen/dimen_16dp"
+                        android:src="@drawable/ic_delete"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+                    <ImageView
+                        android:id="@+id/iv_img6"
+                        android:layout_margin="@dimen/dimen_16dp"
+                        android:src="@drawable/ic_delete"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_save"
+                        style="@style/styleAppCompactButton"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:text="@string/save" />
+                    <View
+                        android:layout_width="16dp"
+                        android:layout_height="2dp"></View>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_cancel"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        style="@style/styleAppCompactButton"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:text="@string/cancel" />
+
+
+                </LinearLayout>
 
 
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_save"
-                    style="@style/styleAppCompactButton"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/colorPrimaryDark"
-                    android:text="@string/save" />
-                <View
-                    android:layout_width="16dp"
-                    android:layout_height="2dp"></View>
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_cancel"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    style="@style/styleAppCompactButton"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:backgroundTint="@color/colorPrimaryDark"
-                    android:text="@string/cancel" />
 
 
             </LinearLayout>

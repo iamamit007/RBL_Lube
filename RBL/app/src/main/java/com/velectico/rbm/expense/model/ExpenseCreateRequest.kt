@@ -1,18 +1,30 @@
 package com.velectico.rbm.expense.model
 
+import com.google.gson.annotations.SerializedName
 import com.velectico.rbm.base.model.BaseModel
 import okhttp3.MultipartBody
 import java.io.File
+import java.io.Serializable
 
 data class ExpenseCreateRequest(
-    val userId: String?,
-    val beatTaskId: Int,
-    val Exp_Head_Id: Int,
-    val misExpenseAmt: Int,
-    val appliedOnDate : String?,
-    val applieedByUserId : String?,
-    val recPhoto : File?
+    @SerializedName("userId") var userId: String?,
+    @SerializedName("taskId") val taskId: String?,
+    @SerializedName("expName") val expName: String?,
+    @SerializedName("ExpDetails") val expDetails:List<ExpDetailsRequest>?
 ): BaseModel()
+
+data class ExpDetailsRequest(
+    @SerializedName("expHeadId") var expHeadId: String?,
+    @SerializedName("expAmt") val expAmt: String?,
+    @SerializedName("km_run") val km_run: String?,
+    @SerializedName("expDate") val expDate: String?
+): BaseModel()
+
+data class CreateExpenseResponse(
+    val status: Int?,
+    val respMessage: String?,
+    val expensId: Int?
+):Serializable
 
 data class ComplaintCreateRequest(
     val userId: String?,

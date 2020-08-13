@@ -49,6 +49,8 @@ class CreateExpenseFragment : BaseFragmentWithMasterData(), DatePickerDialog.OnD
     private var selectedBeat : MasterDataItem?=null
     //private  val btn_create_exp : AppCompatButton?=null;
 
+
+
     override fun getLayout(): Int {
         return R.layout.fragment_create_expense
     }
@@ -224,16 +226,7 @@ class CreateExpenseFragment : BaseFragmentWithMasterData(), DatePickerDialog.OnD
             showToastMessage("Please provide a date")
         }
         else{
-            binding.progressLayout.visibility=View.VISIBLE
-            val userId = SharedPreferenceUtils.getLoggedInUserId(context as Context);
-            val expReq = ExpenseCreateRequest(userId = userId,
-                beatTaskId = selectedBeat?.Exp_Head_Id?.toInt() as Int,
-                Exp_Head_Id = selectedExpense?.Exp_Head_Id?.toInt() as Int,
-                misExpenseAmt = binding.etMiscAmt.text.toString().trim()?.toInt() as Int,
-                appliedOnDate = binding.etDate.text.toString(),
-                applieedByUserId = userId,
-                recPhoto = if(imageUrl!=null) File(imageUrl) else null)
-            expenseViewModel.expenseCreateAPICall(expReq)
+
         }
     }
 

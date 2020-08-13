@@ -33,13 +33,11 @@ import com.velectico.rbm.beats.viewmodel.BeatSharedViewModel
 import com.velectico.rbm.databinding.FragmentAssignTaskForBeatBinding
 import com.velectico.rbm.databinding.FragmentCreateMultipleExpenseBinding
 import com.velectico.rbm.expense.adapter.MultipleExpenseAdapter
-import com.velectico.rbm.expense.model.BidListResponse
-import com.velectico.rbm.expense.model.ComplaintCreateRequest
-import com.velectico.rbm.expense.model.ComplaintCreateResponse
-import com.velectico.rbm.expense.model.Details
+import com.velectico.rbm.expense.model.*
 import com.velectico.rbm.leave.model.LeaveListModel
 import com.velectico.rbm.leave.model.LeaveListRequest
 import com.velectico.rbm.leave.model.LeaveListResponse
+import com.velectico.rbm.leave.view.ApplyLeaveFragment
 import com.velectico.rbm.leave.view.adapter.LeaveListAdapter
 import com.velectico.rbm.menuitems.viewmodel.AttendanceRequestParams
 import com.velectico.rbm.network.apiconstants.*
@@ -49,20 +47,22 @@ import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.request.NetworkRequest
 import com.velectico.rbm.network.response.NetworkResponse
+import com.velectico.rbm.utils.DateUtility
 import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.ImageUtils
 import com.velectico.rbm.utils.SharedPreferenceUtils
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.fragment_beat_report.view.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Callback
 import java.io.File
-import java.util.ArrayList
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
  */
-class CreateMultipleExpenseFragment : BaseFragment() {
+class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetListener {
 
     private var binding: FragmentCreateMultipleExpenseBinding? = null
     private lateinit var mBeatSharedViewModel: BeatSharedViewModel
@@ -77,6 +77,7 @@ class CreateMultipleExpenseFragment : BaseFragment() {
     override fun getLayout(): Int {
         return R.layout.fragment_create_multiple_expense
     }
+
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentCreateMultipleExpenseBinding
@@ -119,6 +120,26 @@ class CreateMultipleExpenseFragment : BaseFragment() {
             .setAnimationSpeed(2)
             .setDimAmount(0.5f)
     }
+    private fun showCustomDatePicker(minStartDate:String = ""){
+        var now = DateUtility.dateStrToCalendar(minStartDate)
+        val year = now[Calendar.YEAR]
+        val dpd: DatePickerDialog = DatePickerDialog.newInstance(
+            this, year,  // Initial year selection
+            now[Calendar.MONTH],  // Initial month selection
+            now[Calendar.DAY_OF_MONTH] // Inital day selection
+        )
+        val calenderMaxDate = Calendar.getInstance()
+        calenderMaxDate[Calendar.YEAR] = year + 1
+        dpd.minDate = now
+        dpd.maxDate = calenderMaxDate
+        fragmentManager?.let {
+            dpd.show(it, ApplyLeaveFragment.DATE_PICKER)
+        }
+        val holidays = arrayOf("20-05-2020", "21-05-2020", "25-05-2020")
+        val disabledDays = DateUtility.getDisabledDatesArr(holidays).toTypedArray()
+        dpd.highlightedDays = disabledDays
+        dpd.disabledDays = disabledDays
+    }
 
 
     fun getBeatList(){
@@ -137,7 +158,7 @@ class CreateMultipleExpenseFragment : BaseFragment() {
 
     }
 
-
+    var beatId:String? = ""
     var detailsList :List<Details> = emptyList()
     val createResponse = object : NetworkCallBack<BidListResponse>(){
         override fun onSuccessNetwork(data: Any?, response: NetworkResponse<BidListResponse>) {
@@ -155,6 +176,44 @@ class CreateMultipleExpenseFragment : BaseFragment() {
                         android.R.layout.simple_spinner_item, itemList)
                 }
                 binding?.spinnerBeatList?.adapter = adapter2
+                binding?.spinnerBeatList?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
+                        if (detailsList[position].BSD_Dealer_ID == "0"){
+                            beatId = detailsList[position].BSD_Distrib_ID
+                        }else{
+                            beatId = detailsList[position].BSD_Dealer_ID
+
+                        }
+
+
+
+                    }
+
+                    override fun onNothingSelected(adapterView: AdapterView<*>) {}
+                }
+
+            }
+
+        }
+
+        override fun onFailureNetwork(data: Any?, error: NetworkError) {
+            hide()
+
+
+        }
+
+    }
+    var expId = 0
+
+    private val createExpenseResponse = object : NetworkCallBack<CreateExpenseResponse>(){
+        override fun onSuccessNetwork(data: Any?, response: NetworkResponse<CreateExpenseResponse>) {
+            response.data?.status?.let { status ->
+
+                hide()
+                showToastMessage(response.data.respMessage!!)
+                expId = response.data.expensId!!
+
+
 
             }
 
@@ -168,6 +227,18 @@ class CreateMultipleExpenseFragment : BaseFragment() {
 
     }
 
+
+//    private val createExpenseResponse = object : NetworkCallBack<CreateExpenseResponse>(){
+//        override fun onSuccessNetwork(data: Any?, response: NetworkResponse<CreateExpenseResponse>) {
+//            response.data?.status?.let { status ->
+//                expId = response.data.expenseId!!
+//                hide()
+//
+//
+//
+//            }
+//
+//        })}
 
     fun callApi(type:String){
 
@@ -192,6 +263,7 @@ class CreateMultipleExpenseFragment : BaseFragment() {
                 for (i in dataList){
                     statList.add(i.Exp_Head_Name!!)
                 }
+                currentImage += 1
                addCalf(currentImage)
 
 
@@ -262,7 +334,8 @@ class CreateMultipleExpenseFragment : BaseFragment() {
 
 
 
-    var currentImage = 1
+    var currentImage = 0
+    var details:MutableList<ExpDetailsRequest> = mutableListOf()
 
     private fun setUp() {
         binding?.btnCancel?.setOnClickListener {
@@ -270,16 +343,30 @@ class CreateMultipleExpenseFragment : BaseFragment() {
 
         }
         binding?.btnSave?.setOnClickListener {
-            for (i in 0 until 6) {
+           // for (i in 0 until currentImage - 1) {
+            for (i in 0 until currentImage) {
                 val view = binding?.con?.getChildAt(i)
-                val et_date_val = (view?.findViewById(R.id.et_date) as TextInputEditText).text.toString()
-                val et_expense_type = (view?.findViewById(R.id.et_expense_type) as TextInputEditText).text.toString()
-                //val sp_dealerName = view.findViewById(R.id.sp_dealerName) as SmartMaterialSpinner<*>
-                val et_task = (view?.findViewById(R.id.sp_dealerName) as TextInputEditText).text?.toString()
+               if (view !=null){
+                   if ((view?.findViewById(R.id.et_date) as TextInputEditText) != null){
+                           val et_date_val = (view?.findViewById(R.id.et_date) as TextInputEditText).text.toString()
+                           val et_expense_type = (view?.findViewById(R.id.et_expense_type) as TextInputEditText).text.toString()
+                           //val sp_dealerName = view.findViewById(R.id.sp_dealerName) as SmartMaterialSpinner<*>
+                           val et_task = (view?.findViewById(R.id.et_task) as TextInputEditText).text?.toString()
+                           val id = dataList.find { it.Exp_Head_Name == et_expense_type }
+                           if (id !=null){
+                               details.add(ExpDetailsRequest(id.Exp_Head_Id,et_task,"0",et_date_val))
+                            }
 
-
+                   }
+               }
 
             }
+
+            val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
+            val responseCall = apiInterface.createExpense(
+                ExpenseCreateRequest( SharedPreferenceUtils.getLoggedInUserId(context as Context),beatId,binding?.etName?.text.toString(),details)
+            )
+            responseCall.enqueue(createExpenseResponse as Callback<CreateExpenseResponse>)
         }
         binding?.ivAdd?.setOnClickListener {
             currentImage = currentImage+1
@@ -287,6 +374,8 @@ class CreateMultipleExpenseFragment : BaseFragment() {
         }
 
     }
+
+    var currInstance :TextInputEditText? = null
 
     private fun addCalf(x: Int) {
         try {
@@ -302,9 +391,22 @@ class CreateMultipleExpenseFragment : BaseFragment() {
             val adapter2 = context?.let {
                 ArrayAdapter(
                     it,
-                    android.R.layout.simple_spinner_item, statList)
+                    android.R.layout.simple_spinner_item,
+                    statList
+                )
             }
             resonList.adapter = adapter2
+                 resonList.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
+                    et_expense_type.setText(statList[position])
+                }
+
+                override fun onNothingSelected(adapterView: AdapterView<*>) {}
+            }
+            et_date.setOnClickListener {
+                currInstance = et_date
+                showCustomDatePicker(et_date.text.toString())
+            }
             binding!!.con.addView(view)
 //            calf_list_container.postDelayed({
 //                val item = ll_calf_layout_edit_mode_list.getChildAt(calfCount - 1)
@@ -434,4 +536,13 @@ class CreateMultipleExpenseFragment : BaseFragment() {
 //
 //    }
 
-}}
+}
+
+    override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
+        val tempDate: Date = DateUtility.getDateFromYearMonthDay(year, monthOfYear, dayOfMonth)
+        val subDateString: String = DateUtility.getStringDateFromTimestamp((tempDate.time), DateUtility.YYYY_DASH_MM_DASH_DD)
+        if (currInstance != null){
+            currInstance?.setText(subDateString)}
+    }
+
+}
