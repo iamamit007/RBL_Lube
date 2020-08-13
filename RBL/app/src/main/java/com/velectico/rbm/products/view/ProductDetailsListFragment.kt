@@ -46,12 +46,7 @@ class ProductDetailsListFragment : BaseFragment() {
         productDetail = arguments!!.get("productDetails")  as CreateOrderListDetails
         menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
         schemeList = productDetail.PSM_Scheme_Details?.toMutableList()!!
-        if (schemeList.count() > 0){
-            setUpRecyclerView()
-        }
-        else{
-            showToastMessage("No scheme Found")
-        }
+
 
         binding.tvProdName.text = productDetail.PM_Seg_Name
         binding.tvTypes.text = productDetail.PM_Type_Name
@@ -98,6 +93,12 @@ class ProductDetailsListFragment : BaseFragment() {
         }
 
         binding.schemeLayout.setOnClickListener {
+            if (schemeList.count() > 0){
+                setUpRecyclerView()
+            }
+            else{
+                showToastMessage("No scheme Found")
+            }
             cardDescription.visibility = View.GONE;
             featurecard.visibility = View.GONE;
             schemecard.visibility = View.VISIBLE;
