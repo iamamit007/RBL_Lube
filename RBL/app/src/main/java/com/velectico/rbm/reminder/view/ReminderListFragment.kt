@@ -1,26 +1,13 @@
 package com.velectico.rbm.reminder.view
 
 import android.content.Context
-import androidx.lifecycle.ViewModelProviders
-import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.Navigation
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.velectico.rbm.R
 import com.velectico.rbm.base.views.BaseFragment
-import com.velectico.rbm.beats.adapters.BeatListAdapter
-import com.velectico.rbm.beats.model.Beats
-import com.velectico.rbm.beats.views.BeatListFragmentDirections
-import com.velectico.rbm.complaint.model.ComplaintListRequestParams
-import com.velectico.rbm.complaint.model.ComplaintListResponse
-import com.velectico.rbm.databinding.FragmentBeatListBinding
 import com.velectico.rbm.databinding.FragmentReminderListBinding
-import com.velectico.rbm.databinding.RowBeatListBinding
 import com.velectico.rbm.databinding.RowReminderListBinding
 import com.velectico.rbm.network.callbacks.NetworkCallBack
 import com.velectico.rbm.network.callbacks.NetworkError
@@ -28,7 +15,6 @@ import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.reminder.adapter.ReminderListAdapter
-import com.velectico.rbm.reminder.model.ReminderList
 import com.velectico.rbm.reminder.model.ReminderListDetails
 import com.velectico.rbm.reminder.model.ReminderListRequestParams
 import com.velectico.rbm.reminder.model.ReminderListResponse

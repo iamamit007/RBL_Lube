@@ -1,12 +1,9 @@
 package com.velectico.rbm.complaint.views
 
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.Navigation
 import com.kaopiz.kprogresshud.KProgressHUD
@@ -14,14 +11,11 @@ import com.kaopiz.kprogresshud.KProgressHUD
 import com.velectico.rbm.R
 import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseFragment
-import com.velectico.rbm.beats.model.BeatAllOrderListRequestParams
 import com.velectico.rbm.beats.model.BeatTaskDetails
 import com.velectico.rbm.beats.model.DealerDetails
-import com.velectico.rbm.beats.model.OrderHistoryDetailsResponse
 import com.velectico.rbm.complaint.adapter.ComplaintListAdapter
 import com.velectico.rbm.complaint.model.*
 import com.velectico.rbm.databinding.FragmentBeatSpecificComplaintListBinding
-import com.velectico.rbm.databinding.FragmentComplaintListBinding
 import com.velectico.rbm.databinding.RowComplaintListBinding
 import com.velectico.rbm.network.callbacks.NetworkCallBack
 import com.velectico.rbm.network.callbacks.NetworkError

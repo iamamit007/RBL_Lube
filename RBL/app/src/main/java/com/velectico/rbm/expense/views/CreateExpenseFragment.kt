@@ -14,12 +14,10 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.DatePicker
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.AppCompatButton
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
-import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 
 import com.velectico.rbm.R

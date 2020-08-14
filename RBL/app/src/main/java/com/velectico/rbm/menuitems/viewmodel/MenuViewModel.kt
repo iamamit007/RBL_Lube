@@ -179,7 +179,7 @@ class MenuViewModel(private val networkManager: INetworkManager) : BaseViewModel
             request = complainCreateRequest,
             requestBody= getComplaintCreateRequestBody(complainCreateRequest)
         )
-        Log.e("MULtipart55555555","status="+complainCreateRequest)
+        Log.e("MULtipart55555555","status="+complainCreateRequest.toString())
         networkManager.makeAsyncCall(request = complainCreateRequest, callBack = readComplaintCreateResponse)
     }
     private fun getComplaintCreateRequestBody(complainCreateRequest : ComplaintCreateRequest): RequestBody {

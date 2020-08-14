@@ -1,14 +1,8 @@
 package com.velectico.rbm.products.view
 
-import android.graphics.Color
-import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
-import androidx.navigation.Navigation
 import com.squareup.picasso.Picasso
 
 import com.velectico.rbm.R
@@ -16,12 +10,9 @@ import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.model.CreateOrderListDetails
 import com.velectico.rbm.beats.model.PSM_Scheme_DetailsResponse
-import com.velectico.rbm.complaint.model.ComplainListDetails
 import com.velectico.rbm.databinding.FragmentProductDetailsListBinding
-import com.velectico.rbm.databinding.FragmentProductListBinding
 import com.velectico.rbm.databinding.RowProductListBinding
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
-import com.velectico.rbm.products.adapters.ProductListAdapter
 import com.velectico.rbm.products.adapters.ProductSchemeListAdapter
 import com.velectico.rbm.utils.MECHANIC_ROLE
 import kotlinx.android.synthetic.main.fragment_product_details_list.*

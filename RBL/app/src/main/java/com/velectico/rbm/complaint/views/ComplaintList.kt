@@ -1,12 +1,9 @@
 package com.velectico.rbm.complaint.views
 
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.databinding.ViewDataBinding
@@ -16,17 +13,12 @@ import com.kaopiz.kprogresshud.KProgressHUD
 import com.velectico.rbm.R
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
-import com.velectico.rbm.beats.adapters.BeatListAdapter
 import com.velectico.rbm.beats.model.*
-import com.velectico.rbm.beats.views.BeatListFragmentDirections
 import com.velectico.rbm.complaint.adapter.ComplaintListAdapter
 import com.velectico.rbm.complaint.model.ComplainListDetails
 import com.velectico.rbm.complaint.model.ComplaintListRequestParams
 import com.velectico.rbm.complaint.model.ComplaintListResponse
-import com.velectico.rbm.complaint.model.ComplaintModel
-import com.velectico.rbm.databinding.FragmentBeatListBinding
 import com.velectico.rbm.databinding.FragmentComplaintListBinding
-import com.velectico.rbm.databinding.RowBeatListBinding
 import com.velectico.rbm.databinding.RowComplaintListBinding
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 import com.velectico.rbm.network.callbacks.NetworkCallBack
@@ -34,10 +26,7 @@ import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
-import com.velectico.rbm.utils.MECHANIC_ROLE
-import com.velectico.rbm.utils.SALES_LEAD_ROLE
 import com.velectico.rbm.utils.SharedPreferenceUtils
-import com.velectico.rbm.utils.TEMP_CURRENT_LOGGED_IN
 import retrofit2.Callback
 import java.util.ArrayList
 

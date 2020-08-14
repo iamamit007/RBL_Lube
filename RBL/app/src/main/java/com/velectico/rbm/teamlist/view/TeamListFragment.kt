@@ -1,26 +1,16 @@
 package com.velectico.rbm.teamlist.view
 
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.Navigation
 import com.kaopiz.kprogresshud.KProgressHUD
 
 import com.velectico.rbm.R
 import com.velectico.rbm.base.views.BaseFragment
-import com.velectico.rbm.beats.adapters.BeatDateListAdapter
-import com.velectico.rbm.beats.model.BeatDate
-import com.velectico.rbm.beats.views.DateWiseBeatListFragmentDirections
-import com.velectico.rbm.complaint.model.ComplaintListRequestParams
-import com.velectico.rbm.complaint.model.ComplaintListResponse
-import com.velectico.rbm.databinding.FragmentDateWiseBeatListBinding
 import com.velectico.rbm.databinding.FragmentTeamListBinding
-import com.velectico.rbm.databinding.RowBeatListDatesBinding
 import com.velectico.rbm.databinding.RowTeamListBinding
 import com.velectico.rbm.network.callbacks.NetworkCallBack
 import com.velectico.rbm.network.callbacks.NetworkError
@@ -29,7 +19,6 @@ import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.teamlist.adapter.TeamListAdapter
 import com.velectico.rbm.teamlist.model.TeamListDetails
-import com.velectico.rbm.teamlist.model.TeamListModel
 import com.velectico.rbm.teamlist.model.TeamListRequestParams
 import com.velectico.rbm.teamlist.model.TeamListResponse
 import com.velectico.rbm.utils.GloblalDataRepository

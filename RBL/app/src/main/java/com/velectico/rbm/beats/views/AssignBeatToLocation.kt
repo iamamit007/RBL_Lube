@@ -6,22 +6,15 @@ import android.os.Handler
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Button
-import androidx.fragment.app.Fragment
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import com.google.gson.annotations.SerializedName
 import com.kaopiz.kprogresshud.KProgressHUD
 
 import com.velectico.rbm.R
 import com.velectico.rbm.base.views.BaseFragment
-import com.velectico.rbm.beats.adapters.BeatAssignmentTaskListAdapter
 import com.velectico.rbm.beats.model.*
 import com.velectico.rbm.beats.viewmodel.BeatSharedViewModel
 import com.velectico.rbm.databinding.FragmentAssignBeatToLocationBinding
-import com.velectico.rbm.databinding.FragmentAssignTaskForBeatBinding
-import com.velectico.rbm.databinding.FragmentBeatListBinding
 import com.velectico.rbm.network.callbacks.NetworkCallBack
 import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient

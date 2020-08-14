@@ -10,10 +10,6 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import com.velectico.rbm.expense.viewmodel.ExpenseViewModel
-import com.velectico.rbm.masterdata.viewmodel.MasterDataViewModel
-import com.velectico.rbm.network.manager.INetworkManager
 
 /**
  * Created by mymacbookpro on 2020-04-26
@@ -40,7 +36,7 @@ abstract class BaseFragment : Fragment(), IBaseFragment {
         return binding.root
     }
 
-    protected fun showToastMessage(message:String){
+    protected fun showToastMessage(message: String){
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 

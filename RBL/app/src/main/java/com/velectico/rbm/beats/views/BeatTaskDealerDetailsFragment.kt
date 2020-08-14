@@ -4,12 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
@@ -23,17 +20,13 @@ import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.model.*
 import com.velectico.rbm.complaint.model.ComplainListDetails
 import com.velectico.rbm.databinding.FragmentBeatTaskDealerDetailsBinding
-import com.velectico.rbm.databinding.FragmentOrderListBinding
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 import com.velectico.rbm.network.callbacks.NetworkCallBack
 import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
-import com.velectico.rbm.order.model.OrderHead
-import com.velectico.rbm.order.views.OrderListFragmentDirections
 import com.velectico.rbm.utils.*
-import kotlinx.android.synthetic.main.fragment_beat_report.view.*
 import retrofit2.Callback
 
 /**

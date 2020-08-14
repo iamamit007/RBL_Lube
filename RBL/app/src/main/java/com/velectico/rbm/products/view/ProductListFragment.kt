@@ -1,30 +1,19 @@
 package com.velectico.rbm.products.view
 
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
-import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.velectico.rbm.R
 import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
-import com.velectico.rbm.beats.adapters.BeatDateListAdapter
-import com.velectico.rbm.beats.model.BeatAssignments
 import com.velectico.rbm.beats.model.CreateOrderDetailsResponse
 import com.velectico.rbm.beats.model.CreateOrderListDetails
 import com.velectico.rbm.beats.model.CreateOrderListRequestParams
-import com.velectico.rbm.beats.views.BeatTaskDealerDetailsFragmentDirections
-import com.velectico.rbm.beats.views.DateWiseBeatListFragmentDirections
-import com.velectico.rbm.databinding.FragmentBeatTaskDealerDetailsBinding
 import com.velectico.rbm.databinding.FragmentProductListBinding
-import com.velectico.rbm.databinding.RowBeatListDatesBinding
 import com.velectico.rbm.databinding.RowProductListBinding
-import com.velectico.rbm.loginreg.viewmodel.LoginViewModel
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 import com.velectico.rbm.network.callbacks.NetworkCallBack
 import com.velectico.rbm.network.callbacks.NetworkError
@@ -32,8 +21,6 @@ import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.products.adapters.ProductListAdapter
-import com.velectico.rbm.products.models.ProductInfo
-import com.velectico.rbm.products.viewmodel.ProductViewModel
 import com.velectico.rbm.utils.*
 import retrofit2.Callback
 

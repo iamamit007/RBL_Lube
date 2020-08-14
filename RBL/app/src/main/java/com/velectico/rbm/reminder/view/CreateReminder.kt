@@ -2,24 +2,17 @@ package com.velectico.rbm.reminder.view
 
 import android.app.DatePickerDialog
 import android.content.Context
-import androidx.lifecycle.ViewModelProviders
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import com.kaopiz.kprogresshud.KProgressHUD
-import com.velectico.rbm.CreateReminderViewModel
 import com.velectico.rbm.R
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.model.*
 import com.velectico.rbm.databinding.CreateReminderFragmentBinding
-import com.velectico.rbm.databinding.FragmentCreateComplaintsUserWiseBinding
 import com.velectico.rbm.network.callbacks.NetworkCallBack
 import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
@@ -30,7 +23,6 @@ import com.velectico.rbm.reminder.model.CreateReminderResponse
 import com.velectico.rbm.utils.DateUtility
 import com.velectico.rbm.utils.DateUtils
 import com.velectico.rbm.utils.SharedPreferenceUtils
-import kotlinx.android.synthetic.main.fragment_beat_report.view.*
 import retrofit2.Callback
 import java.text.SimpleDateFormat
 import java.util.*

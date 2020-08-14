@@ -1,14 +1,10 @@
 package com.velectico.rbm.beats.views
 
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.navigation.Navigation
 import com.kaopiz.kprogresshud.KProgressHUD
 
@@ -16,7 +12,6 @@ import com.velectico.rbm.R
 import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
-import com.velectico.rbm.beats.adapters.BeatListAdapter
 import com.velectico.rbm.beats.adapters.BeatTaskDetailsViewAdapter
 import com.velectico.rbm.beats.model.*
 import com.velectico.rbm.databinding.*

@@ -6,7 +6,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
@@ -17,9 +16,6 @@ import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.R
 import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.beats.model.BeatTaskDetails
-import com.velectico.rbm.beats.model.CreateBeatReportResponse
-import com.velectico.rbm.beats.model.CreateBeatScheduleRequestParams
-import com.velectico.rbm.beats.views.CreateBeatFragmentDirections
 import com.velectico.rbm.databinding.DefaultFragmentBinding
 import com.velectico.rbm.menuitems.viewmodel.AttendancResponse
 import com.velectico.rbm.menuitems.viewmodel.AttendanceRequestParams
@@ -31,8 +27,6 @@ import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.utils.*
 import retrofit2.Callback
-import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * Created by mymacbookpro on 2020-04-26

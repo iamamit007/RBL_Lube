@@ -41,53 +41,5 @@ class ForgotPassword: BaseActivity() {
 
     }
 
-    fun forgotPassword(){
-        if (binding.inputEmail.text.toString()?.trim() == ""){
-            showToastMessage("Please enter email id")
-        }
 
-        else {
-            val param = forgotPasswordRequestParams(""
-                //SharedPreferenceUtils.getLoggedInUserId(this)
-
-            )
-            showHud()
-            val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
-            val responseCall = apiInterface.forgotPassword(param)
-            responseCall.enqueue(forgotPasswordResponse as Callback<forgotPasswordResponse>)
-        }
-    }
-
-    private val forgotPasswordResponse = object : NetworkCallBack<forgotPasswordResponse>(){
-        override fun onSuccessNetwork(
-            data: Any?,
-            response: NetworkResponse<forgotPasswordResponse>
-        ) {
-            response.data?.respMessage?.let { status ->
-                Toast.makeText(this@ForgotPassword!!, "Reset your password", Toast.LENGTH_SHORT)
-                    .show()
-                hide()
-                this@ForgotPassword!!.onBackPressed()
-
-            }
-
-        }
-
-        override fun onFailureNetwork(data: Any?, error: NetworkError) {
-            hide()
-        }
-
-    }
-    var hud: KProgressHUD? = null
-    fun  showHud(){
-        if (hud!=null){
-
-            hud!!.show()
-        }
-    }
-
-    fun hide(){
-        hud?.dismiss()
-
-    }
 }

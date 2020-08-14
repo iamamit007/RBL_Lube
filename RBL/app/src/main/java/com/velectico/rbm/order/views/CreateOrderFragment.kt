@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.util.Log
-import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
@@ -21,13 +20,7 @@ import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.order.adapters.OrderCartListAdapter
-import com.velectico.rbm.order.adapters.OrderHeadListAdapter
-import com.velectico.rbm.order.adapters.OrderPreviewListAdapter
-import com.velectico.rbm.order.model.OrderCart
-import com.velectico.rbm.order.model.OrderHead
-import com.velectico.rbm.products.view.ProductListFragment
 import com.velectico.rbm.products.view.ProductListFragment.Companion.seletedItemsChecked
-import com.velectico.rbm.utils.ImageUtils
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import com.velectico.rbm.utils.productItemClickListener
 import retrofit2.Callback

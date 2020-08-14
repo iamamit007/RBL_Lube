@@ -1,11 +1,5 @@
 package com.velectico.rbm.profile.view
 
-import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import com.google.gson.Gson
 
@@ -22,6 +16,7 @@ import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 class UserProfileFragment : BaseFragment() {
     private  lateinit var menuViewModel: MenuViewModel
     private  lateinit var binding: FragmentUserProfileBinding
+    //var userDetail : List<UserDetail> = emptyList()
 
     override fun getLayout(): Int {
         return R.layout.fragment_user_profile
@@ -30,7 +25,11 @@ class UserProfileFragment : BaseFragment() {
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentUserProfileBinding
         menuViewModel = MenuViewModel.getInstance(baseActivity)
-        binding.userdetail = getUserData()
+        //showToastMessage(menuViewModel.loginResponse.value?.userDashboardDetails?.noOfDaysAbsent.toString())
+        //userDetail = menuViewModel.loginResponse.value?.userDetails?.toMutableList()!!
+        //binding.userName.setText(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMName.toString())
+        //val gg = menuViewModel.loginResponse.value?.userDashboardDetails.
+        binding.userdetail = menuViewModel.loginResponse.value?.userDetails?.get(0)//userDetail//getUserData()
     }
 
     fun getUserData(): UserDetail? {

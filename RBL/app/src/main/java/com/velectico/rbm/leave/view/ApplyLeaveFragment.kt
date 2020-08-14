@@ -1,7 +1,6 @@
 package com.velectico.rbm.leave.view
 
 import android.content.Context
-import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -9,23 +8,16 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
 import com.google.android.material.textfield.TextInputEditText
-import com.google.gson.annotations.SerializedName
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.velectico.rbm.R
 import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.model.*
-import com.velectico.rbm.beats.views.AssignBeatToLocation
-import com.velectico.rbm.databinding.DefaultFragmentBinding
 import com.velectico.rbm.databinding.FragmentApplyLeaveBinding
-import com.velectico.rbm.expense.views.CreateExpenseFragmentDirections
 import com.velectico.rbm.leave.model.*
 import com.velectico.rbm.leave.viewmodel.LeaveViewModel
-import com.velectico.rbm.masterdata.model.MasterDataItem
-import com.velectico.rbm.masterdata.model.MasterDataResponse
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 import com.velectico.rbm.network.callbacks.NetworkCallBack
 import com.velectico.rbm.network.callbacks.NetworkError
@@ -66,6 +58,8 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentApplyLeaveBinding
         menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
+        binding.tvProdCode.text = menuViewModel.loginResponse.value?.userDashboardDetails?.noOfDaysPresent.toString()
+        binding.tvProdCat.text = menuViewModel.loginResponse.value?.userDashboardDetails?.noOfDaysAbsent.toString()
         observeViewModelData()
         getRoleWiseView(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString(),binding)
         setUp()

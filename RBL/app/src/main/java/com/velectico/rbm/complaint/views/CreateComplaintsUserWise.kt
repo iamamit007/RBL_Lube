@@ -3,20 +3,14 @@ package com.velectico.rbm.complaint.views
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.location.LocationManager
 import android.net.Uri
 import android.os.Build
-import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.squareup.picasso.Picasso
 
@@ -25,23 +19,15 @@ import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.model.*
 import com.velectico.rbm.complaint.model.ComplainListDetails
-import com.velectico.rbm.databinding.FragmentCreateComplaintsBinding
 import com.velectico.rbm.databinding.FragmentCreateComplaintsUserWiseBinding
-import com.velectico.rbm.databinding.FragmentCreateOrderBinding
 import com.velectico.rbm.expense.model.ComplaintCreateRequest
-import com.velectico.rbm.expense.model.ComplaintCreateResponse
-import com.velectico.rbm.expense.viewmodel.ExpenseViewModel
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
-import com.velectico.rbm.network.apiconstants.*
 import com.velectico.rbm.network.callbacks.NetworkCallBack
 import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.manager.INetworkManager
-import com.velectico.rbm.network.request.NetworkRequest
 import com.velectico.rbm.network.response.NetworkResponse
-import com.velectico.rbm.order.adapters.OrderCartListAdapter
-import com.velectico.rbm.order.model.OrderCart
 import com.velectico.rbm.utils.*
 import retrofit2.Callback
 import java.io.File
@@ -233,7 +219,7 @@ class CreateComplaintsUserWise: BaseFragment() {
                 CR_Remarks = binding.inputRemarks.text.toString(),
                 prodName = prodName,
                 taskId = "0",
-                recPhoto = if (imageUrl != null) File(imageUrl) else null
+                recPhoto =  File(imageUrl)
             )
             menuViewModel.complaintCreateAPICall(expReq)
              //showToastMessage("55555555555" +expReq)

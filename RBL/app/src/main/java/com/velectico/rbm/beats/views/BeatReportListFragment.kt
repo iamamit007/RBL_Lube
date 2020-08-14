@@ -2,12 +2,8 @@ package com.velectico.rbm.beats.views
 
 import android.app.DatePickerDialog
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
@@ -18,21 +14,16 @@ import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.adapters.BeatReportListAdapter
 import com.velectico.rbm.beats.model.*
-import com.velectico.rbm.complaint.model.ComplaintListRequestParams
 import com.velectico.rbm.databinding.FragmentBeatReportListBinding
-import com.velectico.rbm.databinding.FragmentTeamPerformanceDetailsBinding
 import com.velectico.rbm.network.callbacks.NetworkCallBack
 import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
-import com.velectico.rbm.teamlist.adapter.TeamPerformanceDetailsAdapter
-import com.velectico.rbm.teamlist.model.TeamPerformanceModel
 import com.velectico.rbm.utils.DateUtility
 import com.velectico.rbm.utils.DateUtils
 import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SharedPreferenceUtils
-import kotlinx.android.synthetic.main.fragment_beat_report.view.*
 import retrofit2.Callback
 import java.text.SimpleDateFormat
 import java.util.*
