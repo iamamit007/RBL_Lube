@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import com.kaopiz.kprogresshud.KProgressHUD
 
 import com.velectico.rbm.R
+import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.databinding.FragmentExpenseListBinding
@@ -26,6 +27,7 @@ import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
+import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
 import java.util.ArrayList
@@ -136,8 +138,12 @@ class ExpenseListFragment : BaseFragment() {
         // DealerDetailsRequestParams(
         //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
         showHud()
-        val userId =
+        val userId = if (RBMLubricantsApplication.globalRole == "Team" ){
+            GloblalDataRepository.getInstance().teamUserId
+        }
+        else{
             SharedPreferenceUtils.getLoggedInUserId(context as Context)
+        }
 
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getChuttiList(

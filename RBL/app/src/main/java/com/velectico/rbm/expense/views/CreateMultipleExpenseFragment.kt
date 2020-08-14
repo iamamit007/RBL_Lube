@@ -164,9 +164,13 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
         // DealerDetailsRequestParams(
         //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
         showHud()
-        val userId =
-            SharedPreferenceUtils.getLoggedInUserId(context as Context)
 
+        val userId = if (RBMLubricantsApplication.globalRole == "Team" ){
+            GloblalDataRepository.getInstance().teamUserId
+        }
+        else{
+            SharedPreferenceUtils.getLoggedInUserId(context as Context)
+        }
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getBitList(
             AttendanceRequestParams(userId
