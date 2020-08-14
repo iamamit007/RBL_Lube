@@ -68,7 +68,7 @@ class CreateOrderFragment : BaseFragment(),productItemClickListener {
             moveToProdFilter()
         }
         if (RBMLubricantsApplication.fromProductList == "Product"){
-            showToastMessage("from Product")
+            //showToastMessage("from Product")
             orderCartList.toMutableList().clear()
             orderCartList = seletedItemsChecked.toMutableList()
             setUpRecyclerView()

@@ -171,5 +171,7 @@ const val Get_ReminderList = APP_API_NAME+"Get_ReminderList"
 
 const val Create_Reminder = APP_API_NAME+"Create_Reminder"
 
+const val Forgot_Password = APP_API_NAME+"Forgot_Password"
 
+const val Reset_Password = APP_API_NAME+"Reset_Password"
 

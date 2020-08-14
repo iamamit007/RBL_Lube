@@ -42,6 +42,10 @@ import com.velectico.rbm.leave.model.ApplyLeaveResponse;
 import com.velectico.rbm.leave.model.ApproveRejectLeaveListRequest;
 import com.velectico.rbm.leave.model.LeaveListRequest;
 import com.velectico.rbm.leave.model.LeaveListResponse;
+import com.velectico.rbm.loginreg.model.ResetPasswordRequestParams;
+import com.velectico.rbm.loginreg.model.ResetPasswordResponse;
+import com.velectico.rbm.loginreg.model.forgotPasswordRequestParams;
+import com.velectico.rbm.loginreg.model.forgotPasswordResponse;
 import com.velectico.rbm.menuitems.viewmodel.AttendancResponse;
 import com.velectico.rbm.menuitems.viewmodel.AttendanceRequestParams;
 import com.velectico.rbm.reminder.model.CreateReminderRequestParams;
@@ -71,6 +75,7 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.DoAttend;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.ENDPOINTBeat_Task_Details;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.ENDPOINT_GET_TASK_DETAILS_LIST_BY_BEAT_ID;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Edit_Leave;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Forgot_Password;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_AssignTo_By_TaskFor_And_Location;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Beat_By_Level;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Deal_Dist_Mech_List;
@@ -82,6 +87,7 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_ReminderL
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Task_For;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Leave_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Team_List;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Reset_Password;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Save_AssignTask;
 
 public interface ApiInterface {
@@ -178,6 +184,12 @@ public interface ApiInterface {
 
     @POST(Create_Reminder)
     Call<CreateReminderResponse> addReminder(@Body CreateReminderRequestParams model);
+
+    @POST(Forgot_Password)
+    Call<forgotPasswordResponse> forgotPassword(@Body forgotPasswordRequestParams model);
+
+    @POST(Reset_Password)
+    Call<ResetPasswordResponse> resetPassword(@Body ResetPasswordRequestParams model);
 
 
 

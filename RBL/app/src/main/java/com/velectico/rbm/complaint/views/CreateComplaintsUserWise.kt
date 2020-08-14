@@ -85,7 +85,7 @@ class CreateComplaintsUserWise: BaseFragment() {
         }
         imageUtils = ImageUtils(context as Context,baseActivity,this)
         complainDetail = arguments!!.get("complainDetail")  as ComplainListDetails
-        showToastMessage(complainDetail.toString())
+        //showToastMessage(complainDetail.toString())
         if (complainDetail.CR_ID != null){
 
             binding.inputBatchno.setText(complainDetail.CR_Batch_no.toString())
@@ -236,7 +236,7 @@ class CreateComplaintsUserWise: BaseFragment() {
                 recPhoto = if (imageUrl != null) File(imageUrl) else null
             )
             menuViewModel.complaintCreateAPICall(expReq)
-             showToastMessage("55555555555" +expReq)
+             //showToastMessage("55555555555" +expReq)
         }
 
     }

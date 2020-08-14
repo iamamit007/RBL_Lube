@@ -125,7 +125,7 @@ class ProductFilterFragment : BaseFragment()  {
     }
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentProductFilterBinding
-        showToastMessage(RBMLubricantsApplication.filterFrom)
+        //showToastMessage(RBMLubricantsApplication.filterFrom)
         initHud()
         binding.btnOrderHistory.setOnClickListener {
             if (RBMLubricantsApplication.filterFrom == "Product"){
