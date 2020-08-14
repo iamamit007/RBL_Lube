@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.velectico.rbm.expense.viewmodel.ExpenseViewModel
 import com.velectico.rbm.masterdata.viewmodel.MasterDataViewModel
+import com.velectico.rbm.network.manager.INetworkManager
 
 /**
  * Created by mymacbookpro on 2020-04-26
@@ -21,6 +22,7 @@ import com.velectico.rbm.masterdata.viewmodel.MasterDataViewModel
 
 abstract class BaseFragment : Fragment(), IBaseFragment {
 
+    //open lateinit var networkManager: INetworkManager
     lateinit var baseActivity: BaseActivity
 
     override fun onAttach(context: Context) {

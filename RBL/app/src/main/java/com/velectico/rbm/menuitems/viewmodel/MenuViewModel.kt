@@ -12,6 +12,8 @@ import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.model.UIError
 import com.velectico.rbm.beats.model.BeatDateListResponse
 import com.velectico.rbm.beats.model.ScheduleDates
+import com.velectico.rbm.expense.model.ComplaintCreateRequest
+import com.velectico.rbm.expense.model.ComplaintCreateResponse
 import com.velectico.rbm.leave.model.LeaveListRequest
 import com.velectico.rbm.loginreg.model.LoginResponse
 import com.velectico.rbm.menuitems.model.ResourceListResponse
@@ -23,6 +25,8 @@ import com.velectico.rbm.network.manager.ManagerFactory
 import com.velectico.rbm.network.manager.getNetworkManager
 import com.velectico.rbm.network.request.NetworkRequest
 import com.velectico.rbm.network.response.NetworkResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 /**
  * Created by mymacbookpro on 2020-05-01
@@ -35,6 +39,7 @@ class MenuViewModel(private val networkManager: INetworkManager) : BaseViewModel
     var allResourcesResponse = MutableLiveData<ResourceListResponse>()
     var allUsersResponse = MutableLiveData<ResourceListResponse>()
     var loginResponse = MutableLiveData<LoginResponse>()
+    var complainCreateResponse = MutableLiveData<ComplaintCreateResponse>()
 
     fun readAllResources(){
         loading.postValue(true)
@@ -164,6 +169,66 @@ class MenuViewModel(private val networkManager: INetworkManager) : BaseViewModel
         fun getInstance(activity: BaseActivity): MenuViewModel {
             return ViewModelProviders.of(activity, factory)[MenuViewModel::class.java]
         }
+    }
+    fun complaintCreateAPICall(complainCreateRequest: ComplaintCreateRequest){
+        loading.postValue(true)
+
+        val complainCreateRequest = NetworkRequest(
+            apiName = COMPLAINT_CREATE,
+            endPoint = ENDPOINT_COMPLAINT_CREATE,
+            request = complainCreateRequest,
+            requestBody= getComplaintCreateRequestBody(complainCreateRequest)
+        )
+        Log.e("MULtipart55555555","status="+complainCreateRequest)
+        networkManager.makeAsyncCall(request = complainCreateRequest, callBack = readComplaintCreateResponse)
+    }
+    private fun getComplaintCreateRequestBody(complainCreateRequest : ComplaintCreateRequest): RequestBody {
+        val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
+        builder.addFormDataPart(USER_ID, complainCreateRequest.userId)
+            .addFormDataPart(COMPLAINT_TYPE, complainCreateRequest.complaintype.toString())
+            .addFormDataPart(BATCHNO, complainCreateRequest.CR_Batch_no.toString())
+            .addFormDataPart(DEALERID, complainCreateRequest.CR_Dealer_ID.toString())
+            .addFormDataPart(DISTID, complainCreateRequest.CR_Distrib_ID.toString())
+            .addFormDataPart(MECHANICID, complainCreateRequest.CR_Mechanic_ID.toString())
+            .addFormDataPart(QTY, complainCreateRequest.CR_Qty.toString())
+            .addFormDataPart(REMARKS, complainCreateRequest.CR_Remarks.toString())
+            .addFormDataPart(PRODNAME, complainCreateRequest.prodName.toString())
+            .addFormDataPart(TASKID, complainCreateRequest.taskId.toString())
+        if(complainCreateRequest.recPhoto!=null){
+            if (complainCreateRequest.recPhoto.exists()) {
+                builder.addFormDataPart(
+                    FILE_TO_UPLOAD, complainCreateRequest.recPhoto.getName(), RequestBody.create(
+                        MultipartBody.FORM, complainCreateRequest.recPhoto));
+            }
+        }
+
+        return builder.build();
+    }
+
+    private val readComplaintCreateResponse = object : NetworkCallBack<ComplaintCreateResponse>(){
+        override fun onSuccessNetwork(data: Any?, response: NetworkResponse<ComplaintCreateResponse>) {
+            response.data?.status?.let { status ->
+                Log.e("test","status="+status)
+                if(status == 1){
+                    complainCreateResponse.value = response.data
+
+                } else{
+                    //showToastMessage("Cannot create")
+                    errorLiveData.postValue(
+                        UIError(status ?: 0, "Cannot create" ?: ""))
+                }
+            }
+            if(response.data?.status == null){
+                //showToastMessage("Error getting")
+            }
+            loading.postValue(false)
+        }
+
+        override fun onFailureNetwork(data: Any?, error: NetworkError) {
+            loading.postValue(false)
+            //showToastMessage("Error")
+        }
+
     }
 }
 

@@ -45,6 +45,10 @@ class LoginActivity : BaseActivity() {
 //            startActivity(intent)
 //        }
         observeViewModelData()
+        binding.linkForgotPwd.setOnClickListener {
+            val intent = Intent(this, ForgotPassword::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun observeViewModelData() {

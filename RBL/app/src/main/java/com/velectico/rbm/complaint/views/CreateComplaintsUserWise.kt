@@ -16,6 +16,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.squareup.picasso.Picasso
 
@@ -29,6 +30,7 @@ import com.velectico.rbm.databinding.FragmentCreateComplaintsUserWiseBinding
 import com.velectico.rbm.databinding.FragmentCreateOrderBinding
 import com.velectico.rbm.expense.model.ComplaintCreateRequest
 import com.velectico.rbm.expense.model.ComplaintCreateResponse
+import com.velectico.rbm.expense.viewmodel.ExpenseViewModel
 import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 import com.velectico.rbm.network.apiconstants.*
 import com.velectico.rbm.network.callbacks.NetworkCallBack
@@ -41,8 +43,6 @@ import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.order.adapters.OrderCartListAdapter
 import com.velectico.rbm.order.model.OrderCart
 import com.velectico.rbm.utils.*
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Callback
 import java.io.File
 import java.util.ArrayList
@@ -50,12 +50,12 @@ import java.util.ArrayList
 /**
  * A simple [Fragment] subclass.
  */
-class CreateComplaintsUserWise(private val networkManager: INetworkManager) : BaseFragment() {
+class CreateComplaintsUserWise: BaseFragment() {
     private lateinit var binding: FragmentCreateComplaintsUserWiseBinding
     private lateinit var menuViewModel: MenuViewModel
     var complainDetail = ComplainListDetails()
     val loading = MutableLiveData<Boolean>()
-    var complainCreateResponse = MutableLiveData<ComplaintCreateResponse>()
+    //var complainCreateResponse = MutableLiveData<ComplaintCreateResponse>()
 
     private var imageUtils : ImageUtils?=null
     private var imageUrl : String? = null
@@ -64,6 +64,8 @@ class CreateComplaintsUserWise(private val networkManager: INetworkManager) : Ba
     var complnType= ""
     var dealerId = "0"
     var distribId = "0"
+    lateinit var networkManager: INetworkManager
+
     override fun getLayout(): Int {
         return R.layout.fragment_create_complaints_user_wise
     }
@@ -72,6 +74,7 @@ class CreateComplaintsUserWise(private val networkManager: INetworkManager) : Ba
     override fun init(binding: ViewDataBinding) {
 
         this.binding = binding as FragmentCreateComplaintsUserWiseBinding
+
         menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
         if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == DISTRIBUTER_ROLE ||
             menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == MECHANIC_ROLE ||
@@ -229,72 +232,16 @@ class CreateComplaintsUserWise(private val networkManager: INetworkManager) : Ba
                 CR_Qty = binding.inputQuantity.text.toString(),
                 CR_Remarks = binding.inputRemarks.text.toString(),
                 prodName = prodName,
-                taskId = "",
+                taskId = "0",
                 recPhoto = if (imageUrl != null) File(imageUrl) else null
             )
-            complaintCreateAPICall(expReq)
-            // showToastMessage("55555555555" +expReq)
+            menuViewModel.complaintCreateAPICall(expReq)
+             showToastMessage("55555555555" +expReq)
         }
 
     }
 
-    fun complaintCreateAPICall(complainCreateRequest: ComplaintCreateRequest){
-        loading.postValue(true)
 
-        val complainCreateRequest = NetworkRequest(
-            apiName = COMPLAINT_CREATE,
-            endPoint = ENDPOINT_COMPLAINT_CREATE,
-            request = complainCreateRequest,
-            requestBody= getComplaintCreateRequestBody(complainCreateRequest)
-        )
-        networkManager.makeAsyncCall(request = complainCreateRequest, callBack = readComplaintCreateResponse)
-    }
-    private fun getComplaintCreateRequestBody(complainCreateRequest : ComplaintCreateRequest): RequestBody {
-        val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
-        builder.addFormDataPart(USER_ID, complainCreateRequest.userId)
-            .addFormDataPart(COMPLAINT_TYPE, complainCreateRequest.complaintype.toString())
-            .addFormDataPart(BATCHNO, complainCreateRequest.CR_Batch_no.toString())
-            .addFormDataPart(DEALERID, complainCreateRequest.CR_Dealer_ID.toString())
-            .addFormDataPart(DISTID, complainCreateRequest.CR_Distrib_ID.toString())
-            .addFormDataPart(MECHANICID, complainCreateRequest.CR_Mechanic_ID.toString())
-            .addFormDataPart(QTY, complainCreateRequest.CR_Qty.toString())
-            .addFormDataPart(REMARKS, complainCreateRequest.CR_Remarks.toString())
-            .addFormDataPart(PRODNAME, complainCreateRequest.prodName.toString())
-            .addFormDataPart(TASKID, complainCreateRequest.taskId.toString())
-        if(complainCreateRequest.recPhoto!=null){
-            if (complainCreateRequest.recPhoto.exists()) {
-                builder.addFormDataPart(
-                    FILE_TO_UPLOAD, complainCreateRequest.recPhoto.getName(), RequestBody.create(
-                        MultipartBody.FORM, complainCreateRequest.recPhoto));
-            }
-        }
-
-        return builder.build();
-    }
-
-    private val readComplaintCreateResponse = object : NetworkCallBack<ComplaintCreateResponse>(){
-        override fun onSuccessNetwork(data: Any?, response: NetworkResponse<ComplaintCreateResponse>) {
-            response.data?.status?.let { status ->
-                Log.e("test","status="+status)
-                if(status == 1){
-                    complainCreateResponse.value = response.data
-
-                } else{
-                    showToastMessage("Cannot create")
-                }
-            }
-            if(response.data?.status == null){
-                showToastMessage("Error getting")
-            }
-            loading.postValue(false)
-        }
-
-        override fun onFailureNetwork(data: Any?, error: NetworkError) {
-            loading.postValue(false)
-            showToastMessage("Error")
-        }
-
-    }
 
     fun callApi(type:String){
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
