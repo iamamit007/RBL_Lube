@@ -27,6 +27,9 @@ import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.utils.*
 import retrofit2.Callback
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by mymacbookpro on 2020-04-26
@@ -190,7 +193,37 @@ class DefaultFragment : BaseFragment(){
     fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_attandance){
             //callAttendance()
-            showToastMessage("attendance")
+            val sdf = SimpleDateFormat("dd/M/yyyy")
+            val currentDate = sdf.format(Date())
+            val prevDate = SharedPreferenceUtils.getData(context!!,"LAST_ATTENDANCE")
+            val format =  SimpleDateFormat("dd/M/yyyy");
+            val format2 =  SimpleDateFormat("dd/M/yyyy");
+            try {
+                if (prevDate == "0"){
+                    callAttendance()
+                }else{
+                    val date = format.parse(currentDate);
+                    val date2 = format2.parse(prevDate);
+                    val miliSeconds = date.getTime() -date2.getTime();
+                    val seconds = TimeUnit.MILLISECONDS.toSeconds(miliSeconds);
+                    val minute = seconds/60;
+//                if (minute >1440){
+//                    callAttendance()
+//                }
+
+                    if (minute >1440){
+                        callAttendance()
+                    }else{
+                        showToastMessage("You have given attendance already")
+                    }
+
+                }
+
+
+            } catch ( e:Exception) {
+                e.printStackTrace();
+            }
+          //  showToastMessage("attendance")
         }
         return true
     }
@@ -311,7 +344,9 @@ class DefaultFragment : BaseFragment(){
     private val AttendancResponse = object : NetworkCallBack<AttendancResponse>(){
         override fun onSuccessNetwork(data: Any?, response: NetworkResponse<AttendancResponse>) {
             response.data?.respMessage?.let { status ->
-
+                val sdf = SimpleDateFormat("dd/M/yyyy")
+                val currentDate = sdf.format(Date())
+                SharedPreferenceUtils.saveData(context!!,"LAST_ATTENDANCE","${currentDate}")
                 hide()
                 showToastMessage( response.data?.respMessage!!)
 

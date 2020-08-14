@@ -25,7 +25,18 @@ object SharedPreferenceUtils {
         return userId as String;
     }
 
+    fun saveData(context: Context,key: String, token: String) {
+        val mSharedPreferences: SharedPreferences = context.getSharedPreferences(SHARED_PREFERENCE_FILE,
+            Context.MODE_PRIVATE)
+        mSharedPreferences.edit().putString(key, token).apply()
+    }
 
+
+    fun getData(context: Context,key: String): String {
+        val mSharedPreferences: SharedPreferences = context.getSharedPreferences(SHARED_PREFERENCE_FILE,
+            Context.MODE_PRIVATE)
+        return  mSharedPreferences.getString(key, "0")!!
+    }
 
 
 
