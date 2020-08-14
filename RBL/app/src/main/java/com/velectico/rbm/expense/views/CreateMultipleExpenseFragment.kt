@@ -3,21 +3,22 @@ package com.velectico.rbm.expense.views
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
+import android.content.*
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProviders
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chivorn.smartmaterialspinner.SmartMaterialSpinner
@@ -53,16 +54,18 @@ import com.velectico.rbm.utils.ImageUtils
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.fragment_beat_report.view.*
+import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Callback
 import java.io.File
 import java.util.*
+import kotlin.collections.HashMap
 
 /**
  * A simple [Fragment] subclass.
  */
-class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetListener {
+class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetListener,FileUploadListener {
 
     private var binding: FragmentCreateMultipleExpenseBinding? = null
     private lateinit var mBeatSharedViewModel: BeatSharedViewModel
@@ -70,14 +73,22 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
     private lateinit var adapter: MultipleExpenseAdapter;
     private lateinit var mBeat: Beats
     private lateinit var mAssignments : BeatAssignments
+    private lateinit var fileUploadListener : FileUploadListener
+
 
     private var imageUtils : ImageUtils?=null
     private var imageUrl : String? = null
     private var cameraImgUri : Uri?= null
+    var colname=""
+
     override fun getLayout(): Int {
         return R.layout.fragment_create_multiple_expense
     }
+    var curFilepos = 0
 
+    companion object{
+
+    }
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentCreateMultipleExpenseBinding
@@ -89,8 +100,10 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
         initHud()
 //        getIntentData()
         setUp();
+        setupPermissions()
         getBeatList()
         callApi("Expense Head")
+
     }
 
     override
@@ -119,7 +132,12 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
             .setCancellable(true)
             .setAnimationSpeed(2)
             .setDimAmount(0.5f)
+
+        LocalBroadcastManager.getInstance(context!!).registerReceiver(mMessageReceiver,
+             IntentFilter("custom-event-name")
+        );
     }
+
     private fun showCustomDatePicker(minStartDate:String = ""){
         var now = DateUtility.dateStrToCalendar(minStartDate)
         val year = now[Calendar.YEAR]
@@ -165,32 +183,35 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
             response.data?.status?.let { status ->
                 hide()
 
-                detailsList  = response.data.expenseDetails
-                var itemList: MutableList<String> = ArrayList()
-                for (i in detailsList){
-                    itemList.add(i.taskName!!)
-                }
-                val adapter2 = context?.let {
-                    ArrayAdapter(
-                        it,
-                        android.R.layout.simple_spinner_item, itemList)
-                }
-                binding?.spinnerBeatList?.adapter = adapter2
-                binding?.spinnerBeatList?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
-                        if (detailsList[position].BSD_Dealer_ID == "0"){
-                            beatId = detailsList[position].BSD_Distrib_ID
-                        }else{
-                            beatId = detailsList[position].BSD_Dealer_ID
+                if (response.data.expenseDetails !=null){
+                    detailsList  = response.data.expenseDetails
+                    var itemList: MutableList<String> = ArrayList()
+                    for (i in detailsList){
+                        itemList.add(i.taskName!!)
+                    }
+                    val adapter2 = context?.let {
+                        ArrayAdapter(
+                            it,
+                            android.R.layout.simple_spinner_item, itemList)
+                    }
+                    binding?.spinnerBeatList?.adapter = adapter2
+                    binding?.spinnerBeatList?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
+                            if (detailsList[position].BSD_Dealer_ID == "0"){
+                                beatId = detailsList[position].BSD_Distrib_ID
+                            }else{
+                                beatId = detailsList[position].BSD_Dealer_ID
+
+                            }
+
+
 
                         }
 
-
-
+                        override fun onNothingSelected(adapterView: AdapterView<*>) {}
                     }
-
-                    override fun onNothingSelected(adapterView: AdapterView<*>) {}
                 }
+
 
             }
 
@@ -211,7 +232,15 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
 
                 hide()
                 showToastMessage(response.data.respMessage!!)
-                expId = response.data.expensId!!
+                if (expId == 0){
+                    binding?.imgcon?.visibility = View.VISIBLE
+                    expId = response.data.expensId!!
+                    binding?.ivImg1?.visibility = View.VISIBLE
+                    binding?.btnCancel?.visibility = View.GONE
+                    binding?.btnSave?.visibility = View.GONE
+                    binding?.btnFinish?.visibility = View.VISIBLE
+                }
+
 
 
 
@@ -338,6 +367,7 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
     var details:MutableList<ExpDetailsRequest> = mutableListOf()
 
     private fun setUp() {
+        fileUploadListener = this
         binding?.btnCancel?.setOnClickListener {
             Navigation.findNavController(binding?.btnCancel as Button).popBackStack()
 
@@ -371,6 +401,46 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
         binding?.ivAdd?.setOnClickListener {
             currentImage = currentImage+1
             addCalf(currentImage)
+        }
+        binding?.ivImg1!!.setOnClickListener {
+            colname = "recPhoto1"
+            open()
+        }
+
+        binding?.ivImg2!!.setOnClickListener {
+            imageUtils = null
+           imageUtils = ImageUtils(context as Context,baseActivity,this)
+            colname = "recPhoto2"
+            open()
+        }
+
+        binding?.ivImg3!!.setOnClickListener {
+            imageUtils = null
+            imageUtils = ImageUtils(context as Context,baseActivity,this)
+            colname = "recPhoto3"
+            open()
+        }
+
+        binding?.ivImg4!!.setOnClickListener {
+            imageUtils = null
+            imageUtils = ImageUtils(context as Context,baseActivity,this)
+            colname = "recPhoto4"
+            open()
+        }
+        binding?.ivImg5!!.setOnClickListener {
+            imageUtils = null
+            imageUtils = ImageUtils(context as Context,baseActivity,this)
+            colname = "recPhoto5"
+            open()
+        }
+        binding?.ivImg6!!.setOnClickListener {
+            imageUtils = null
+            imageUtils = ImageUtils(context as Context,baseActivity,this)
+            colname = "recPhoto6"
+            open()
+        }
+        binding?.btnFinish?.setOnClickListener {
+            activity!!.onBackPressed()
         }
 
     }
@@ -421,6 +491,66 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
 
     }
 
+    private fun setupPermissions() {
+        val permission = ContextCompat.checkSelfPermission(activity!!,
+            Manifest.permission.READ_EXTERNAL_STORAGE)
+        val campermission = ContextCompat.checkSelfPermission(activity!!,
+            Manifest.permission.CALL_PHONE)
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            makeRequest()
+        }
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity!!,
+                arrayOf(Manifest.permission.CAMERA),
+                2)
+        }
+    }
+
+    private fun makeRequest() {
+        ActivityCompat.requestPermissions(activity!!,
+            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+            1)
+        ActivityCompat.requestPermissions(activity!!,
+            arrayOf(Manifest.permission.CAMERA),
+            2)
+    }
+
+
+    // Our handler for received Intents. This will be called whenever an Intent
+// with an action named "custom-event-name" is broadcasted.
+    private var mMessageReceiver = object: BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+
+                       val message = intent?.getStringExtra("message")
+            Log.d("receiver $colname", "Got message: " + message)
+            hide()
+            when (colname) {
+                "recPhoto1" -> {
+                    binding?.ivImg2?.visibility = View.VISIBLE
+                }
+                "recPhoto2" -> {
+                    binding?.ivImg3?.visibility = View.VISIBLE
+                }
+                "recPhoto3" -> {
+                    binding?.ivImg4?.visibility = View.VISIBLE
+                }
+                "recPhoto4" -> {
+                    binding?.ivImg5?.visibility = View.VISIBLE
+                }
+                "recPhoto5" -> {
+                    binding?.ivImg6?.visibility = View.VISIBLE
+                }
+
+            }
+
+        }
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            // Get extra data included in the Intent
+
+//        }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -428,115 +558,85 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
             imageUtils?.FINAL_TAKE_PHOTO ->
                 if (resultCode == Activity.RESULT_OK) {
                     imageUrl = imageUtils?.imgFilePath
-                    if (currentImage == 1){
-                      //  imageUtils?.displayImage(imageUtils?.imgFilePath,binding?.imgOne)
+                    if (curFilepos == 0){
+                        when (colname) {
+                            "recPhoto1" -> {
+                                imageUtils?.displayImage(imageUtils?.imgFilePath,binding?.ivImg1)
+                            }
+                            "recPhoto2" -> {
+                                imageUtils?.displayImage(imageUtils?.imgFilePath,binding?.ivImg2)
+                            }
+                            "recPhoto3" -> {
+                                imageUtils?.displayImage(imageUtils?.imgFilePath,binding?.ivImg3)
+                            }
+                            "recPhoto4" -> {
+                                imageUtils?.displayImage(imageUtils?.imgFilePath,binding?.ivImg4)
+                            }
+                            "recPhoto5" -> {
+                                imageUtils?.displayImage(imageUtils?.imgFilePath,binding?.ivImg5)
+                            }
+                            "recPhoto6" -> {
+                                imageUtils?.displayImage(imageUtils?.imgFilePath,binding?.ivImg6)
+
+                            }
+                        }
+
+                        //imageUtils?.displayImage(imageUtils?.imgFilePath,binding?.ivImg1)
+                        var file =  File(imageUtils?.imgFilePath)
+                        showHud()
+                        someTask(file,expId.toString(),SharedPreferenceUtils.getLoggedInUserId(context as Context),colname,context!!).execute()
+
+
                     }
-                   // imageUtils?.displayImage(imageUtils?.imgFilePath,binding.ivExpBill)
+
                 }
             imageUtils?.FINAL_CHOOSE_PHOTO ->
                 if (resultCode == Activity.RESULT_OK) {
                     if (Build.VERSION.SDK_INT >= 19) {
                         imageUrl = imageUtils?.handleImageOnKitkat(data)
-                        if (currentImage == 1){
-                          //  imageUtils?.displayImage(imageUrl,binding?.imgOne)                        }
+                      //  if (currentImage == 1){
+                            imageUtils?.displayImage(imageUrl,binding?.ivImg1)
+
+                        when (colname) {
+                            "recPhoto1" -> {
+                                imageUtils?.displayImage(imageUrl,binding?.ivImg1)                            }
+                            "recPhoto2" -> {
+                                imageUtils?.displayImage(imageUrl,binding?.ivImg2)                            }
+                            "recPhoto3" -> {
+                                imageUtils?.displayImage(imageUrl,binding?.ivImg3)                            }
+                            "recPhoto4" -> {
+                                imageUtils?.displayImage(imageUrl,binding?.ivImg4)                            }
+                            "recPhoto5" -> {
+                                imageUtils?.displayImage(imageUrl,binding?.ivImg5)                            }
+                            "recPhoto6" -> {
+                                imageUtils?.displayImage(imageUrl,binding?.ivImg6)                            }
+                        }
+
+                            var file =  File(imageUrl)
+                      //  }
+
+
+                    val requestBody = RequestBody.create(MediaType.parse("image/*"), file);
+                            val fileupload =
+                            MultipartBody.Part.createFormData("fileName", file.getName(), requestBody)
+                            var userId = RequestBody.create(MediaType.parse("text/plain"), "7001507620");
+                            var expId = RequestBody.create(MediaType.parse("text/plain"), "97")
+
+                        showHud()
+                            mfile = file
+                            someTask(file,expId.toString(),SharedPreferenceUtils.getLoggedInUserId(context as Context),colname,context!!).execute()
+
+                           // responseCall.enqueue(createExpenseResponse as Callback<CreateExpenseResponse>)
+
+                        }
                         //imageUtils?.displayImage(imageUrl,binding.ivExpBill)
                     }
                 }
         }
-    }
 
-//    private fun saveComplaint(){
-//        if (binding.inputBatchno.text.toString()?.trim() == ""){
-//            showToastMessage("Please provide a batchno")
-//        }
-//        else if (binding.inputQuantity.text.toString()?.trim() == ""){
-//            showToastMessage("Please provide a quantity")
-//        }
-//        else if (binding.inputRemarks.text.toString()?.trim() == ""){
-//            showToastMessage("Please provide a remarks")
-//        }
-//        else {
-//            val userId = SharedPreferenceUtils.getLoggedInUserId(context as Context);
-//            val expReq = ComplaintCreateRequest(
-//                userId = userId,
-//                complaintype = complnType,
-//                CR_Batch_no = binding.inputBatchno.text.toString(),
-//                CR_Dealer_ID = taskDetail.dealerId.toString(),
-//                CR_Distrib_ID = taskDetail.distribId.toString(),
-//                CR_Mechanic_ID = "0",
-//                CR_Qty = binding.inputQuantity.text.toString(),
-//                CR_Remarks = binding.inputRemarks.text.toString(),
-//                prodName = prodName,
-//                taskId = taskDetail.taskId.toString(),
-//                recPhoto = if (imageUrl != null) File(imageUrl) else null
-//            )
-//            complaintCreateAPICall(expReq)
-//            // showToastMessage("55555555555" +expReq)
-//        }
-//
-//    }
-//
-//
-//
-//    fun complaintCreateAPICall(complainCreateRequest: ComplaintCreateRequest){
-//        loading.postValue(true)
-//
-//        val complainCreateRequest = NetworkRequest(
-//            apiName = EXPENSE_CREATE_EDIT,
-//            endPoint = ENDPOINT_EXPENSE_CREATE_EDIT,
-//            request = complainCreateRequest,
-//            requestBody= getComplaintCreateRequestBody(complainCreateRequest)
-//        )
-//        networkManager.makeAsyncCall(request = complainCreateRequest, callBack = readComplaintCreateResponse)
-//    }
-//    private fun getComplaintCreateRequestBody(complainCreateRequest : ComplaintCreateRequest): RequestBody {
-//        val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
-//        builder.addFormDataPart(USER_ID, complainCreateRequest.userId)
-//            .addFormDataPart(COMPLAINT_TYPE, complainCreateRequest.complaintype.toString())
-//            .addFormDataPart(BATCHNO, complainCreateRequest.CR_Batch_no.toString())
-//            .addFormDataPart(DEALERID, complainCreateRequest.CR_Dealer_ID.toString())
-//            .addFormDataPart(DISTID, complainCreateRequest.CR_Distrib_ID.toString())
-//            .addFormDataPart(MECHANICID, complainCreateRequest.CR_Mechanic_ID.toString())
-//            .addFormDataPart(QTY, complainCreateRequest.CR_Qty.toString())
-//            .addFormDataPart(REMARKS, complainCreateRequest.CR_Remarks.toString())
-//            .addFormDataPart(PRODNAME, complainCreateRequest.prodName.toString())
-//            .addFormDataPart(TASKID, complainCreateRequest.taskId.toString())
-//        if(complainCreateRequest.recPhoto!=null){
-//            if (complainCreateRequest.recPhoto.exists()) {
-//                builder.addFormDataPart(
-//                    FILE_TO_UPLOAD, complainCreateRequest.recPhoto.getName(), RequestBody.create(
-//                        MultipartBody.FORM, complainCreateRequest.recPhoto));
-//            }
-//        }
-//
-//        return builder.build();
-//    }
-//
-//    private val readComplaintCreateResponse = object : NetworkCallBack<ComplaintCreateResponse>(){
-//        override fun onSuccessNetwork(data: Any?, response: NetworkResponse<ComplaintCreateResponse>) {
-//            response.data?.status?.let { status ->
-//                Log.e("test","status="+status)
-//                if(status == 1){
-//                    complainCreateResponse.value = response.data
-//
-//                } else{
-//                    showToastMessage("Cannot create")
-//                }
-//            }
-//            if(response.data?.status == null){
-//                showToastMessage("Error getting")
-//            }
-//            loading.postValue(false)
-//        }
-//
-//        override fun onFailureNetwork(data: Any?, error: NetworkError) {
-//            loading.postValue(false)
-//            showToastMessage("Error")
-//        }
-//
-//    }
 
-}
+
+
 
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
         val tempDate: Date = DateUtility.getDateFromYearMonthDay(year, monthOfYear, dayOfMonth)
@@ -545,4 +645,63 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
             currInstance?.setText(subDateString)}
     }
 
+
+    var mfile:File? = null
+    class someTask(val file: File,var exp:String?,var userId:String?,val colnName:String?,val context: Context) : AsyncTask<Void, Void, String>() {
+        override fun doInBackground(vararg params: Void?): String? {
+            // ...G
+            GloblalDataRepository.getInstance().test(file,exp,userId,colnName,context)
+
+
+            return ""
+        }
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+
+            // ...
+        }
+
+        override fun onPostExecute(result: String?) {
+            super.onPostExecute(result)
+
+            // ...
+        }
+    }
+
+    class doAsync(val handler: () -> Unit) : AsyncTask<Void, Void, Void>() {
+        init {
+            execute()
+        }
+
+        override fun doInBackground(vararg params: Void?): Void? {
+            handler()
+            return null
+        }
+    }
+
+    override fun onPictureUpload(isSuccess: Boolean?, message: String?) {
+        Log.d("nnnnnn","kkkkkk")
+        when (colname) {
+            "recPhoto1" -> {
+                binding?.ivImg2?.visibility = View.VISIBLE
+            }
+            "recPhoto2" -> {
+                binding?.ivImg3?.visibility = View.VISIBLE
+            }
+            "recPhoto3" -> {
+                binding?.ivImg4?.visibility = View.VISIBLE
+            }
+            "recPhoto4" -> {
+                binding?.ivImg5?.visibility = View.VISIBLE
+            }
+            "recPhoto5" -> {
+                binding?.ivImg6?.visibility = View.VISIBLE
+            }
+        }
+    }
+
+}
+interface  FileUploadListener {
+   fun onPictureUpload( isSuccess:Boolean?,message:String?)
 }

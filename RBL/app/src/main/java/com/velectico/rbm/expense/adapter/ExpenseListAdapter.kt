@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.velectico.rbm.databinding.RowExpenseListBinding
 import com.velectico.rbm.expense.model.Expense
+import com.velectico.rbm.expense.model.ExpenseDetails
 
 class ExpenseListAdapter(var setCallback: IExpenseActionCallBack) : RecyclerView.Adapter<ExpenseListAdapter.ViewHolder>() {
      var callBack : IExpenseActionCallBack?=null
-     var expenseList = listOf<Expense>()
+     var expenseList = listOf<ExpenseDetails>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -32,7 +33,7 @@ class ExpenseListAdapter(var setCallback: IExpenseActionCallBack) : RecyclerView
             //})
         }
 
-        fun bind(expense: Expense?) {
+        fun bind(expense: ExpenseDetails?) {
             binding.expenseInfo = expense
             binding.executePendingBindings()
         }

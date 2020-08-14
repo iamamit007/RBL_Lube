@@ -1,29 +1,41 @@
 package com.velectico.rbm.expense.views
 
 import android.content.Context
+import android.content.IntentFilter
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
+import com.kaopiz.kprogresshud.KProgressHUD
 
 import com.velectico.rbm.R
 import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.databinding.FragmentExpenseListBinding
 import com.velectico.rbm.expense.adapter.ExpenseListAdapter
-import com.velectico.rbm.expense.model.Expense
-import com.velectico.rbm.expense.model.ExpenseDeleteRequest
+import com.velectico.rbm.expense.model.*
 import com.velectico.rbm.expense.viewmodel.ExpenseViewModel
+import com.velectico.rbm.menuitems.viewmodel.AttendanceRequestParams
+import com.velectico.rbm.network.callbacks.NetworkCallBack
+import com.velectico.rbm.network.callbacks.NetworkError
+import com.velectico.rbm.network.manager.ApiClient
+import com.velectico.rbm.network.manager.ApiInterface
+import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.utils.SharedPreferenceUtils
+import retrofit2.Callback
+import java.util.ArrayList
 
 /**
  * Expense List
  */
 class ExpenseListFragment : BaseFragment() {
     private lateinit var binding: FragmentExpenseListBinding
-    private lateinit var expenseList : List<Expense>
+    private lateinit var expenseList : List<ExpenseDetails>
     private lateinit var adapter: ExpenseListAdapter
     private lateinit var expenseViewModel: ExpenseViewModel
 
@@ -39,14 +51,15 @@ class ExpenseListFragment : BaseFragment() {
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentExpenseListBinding
-        expenseList = Expense().getEmptyBeatList()
-        setUpRecyclerView()
+
         binding.fab.setOnClickListener {
            moveToCreateExpense()
         }
         observeViewModelData();
 
-        getExpenseListFromServer()
+       // getExpenseListFromServer()
+        initHud()
+        getBeatList()
     }
 
 
@@ -76,11 +89,11 @@ class ExpenseListFragment : BaseFragment() {
 
     private fun observeViewModelData() {
         expenseViewModel = ExpenseViewModel.getInstance(baseActivity)
-        expenseViewModel.expenseListResponse.observe(viewLifecycleOwner, Observer { listResponse ->
-            listResponse?.let {
-                adapter?.expenseList = expenseViewModel.expenseListResponse.value?.expenseDetails as List<Expense>
-            }
-        })
+//        expenseViewModel.expenseListResponse.observe(viewLifecycleOwner, Observer { listResponse ->
+//            listResponse?.let {
+//                adapter?.expenseList = expenseViewModel.expenseListResponse.value?.expenseDetails as List<Expense>
+//            }
+//        })
 
         expenseViewModel.expenseDeleteResponse.observe(viewLifecycleOwner, Observer { deleteResponse ->
             deleteResponse?.let {
@@ -95,6 +108,68 @@ class ExpenseListFragment : BaseFragment() {
         expenseViewModel.errorLiveData.observe(viewLifecycleOwner, Observer {
             ((this as BaseFragment).activity as BaseActivity).showAlertDialog(it.errorMessage ?: getString(R.string.no_data_available))
         })
+    }
+
+
+    var hud: KProgressHUD? = null
+    fun  showHud(){
+        if (hud!=null){
+
+            hud!!.show()
+        }
+    }
+
+    fun hide(){
+        hud?.dismiss()
+
+    }
+    fun initHud(){
+        hud =  KProgressHUD.create(activity)
+            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+            .setLabel("Please wait")
+            .setCancellable(true)
+            .setAnimationSpeed(2)
+            .setDimAmount(0.5f)
+
+    }
+    fun getBeatList(){
+        // DealerDetailsRequestParams(
+        //            SharedPreferenceUtils.getLoggedInUserId(context as Context),"109","61","0")
+        showHud()
+        val userId =
+            SharedPreferenceUtils.getLoggedInUserId(context as Context)
+
+        val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
+        val responseCall = apiInterface.getChuttiList(
+            AttendanceRequestParams(userId
+            )
+        )
+        responseCall.enqueue(createResponse as Callback<ExpenseResponse>)
+
+    }
+
+
+    val createResponse = object : NetworkCallBack<ExpenseResponse>(){
+        override fun onSuccessNetwork(data: Any?, response: NetworkResponse<ExpenseResponse>) {
+            Log.d("cccc",response.data.toString())
+            response.data?.status?.let { status ->
+                hide()
+
+                expenseList = response.data?.expenseDetails!!
+                setUpRecyclerView()
+                }
+
+
+
+
+        }
+
+        override fun onFailureNetwork(data: Any?, error: NetworkError) {
+            hide()
+
+
+        }
+
     }
 
 }
