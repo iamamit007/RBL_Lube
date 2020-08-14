@@ -5,7 +5,7 @@
     <data>
         <variable
             name="expenseInfo"
-            type="com.velectico.rbm.expense.model.Expense" />
+            type="com.velectico.rbm.expense.model.ExpenseDetails" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -42,6 +42,7 @@
                     </LinearLayout>
                     <!-- -Expense Type -->
                     <LinearLayout
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -52,7 +53,7 @@
 
                         <TextView
                             android:id="@+id/tv_prodName"
-                            android:text="@{expenseInfo.expenseType}"
+                            android:text=""
                             style="@style/rv_caption" />
 
                     </LinearLayout>
@@ -68,7 +69,7 @@
 
                         <TextView
                             android:id="@+id/tv_prodNetPrice"
-                            android:text="@{expenseInfo.beatId}"
+                            android:text="@{expenseInfo.beatTaskId}"
                             style="@style/rv_caption" />
 
                     </LinearLayout>
@@ -102,7 +103,7 @@
 
                         <TextView
                             android:id="@+id/tv_unit"
-                            android:text="@{expenseInfo.misExpenseAmt}"
+                            android:text="@{expenseInfo.details[0].expAmt}"
                             style="@style/rv_caption" />
 
                     </LinearLayout>
@@ -170,7 +171,7 @@
 
                         <TextView
                             android:id="@+id/tv_Packaging"
-                            android:text="@{expenseInfo.status}"
+                            android:text="@{expenseInfo.expenseStatus}"
                             style="@style/rv_caption" />
 
                     </LinearLayout>
@@ -194,6 +195,7 @@
                 </LinearLayout>
             </LinearLayout>
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/iv_delete"
                 android:src="@drawable/ic_delete"
                 android:layout_margin="10dp"

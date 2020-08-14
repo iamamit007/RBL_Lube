@@ -1,65 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <Spinner
-            android:id="@+id/spinnerBeatList"
-            android:layout_margin="@dimen/dimen_20dp"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:drawSelectorOnTop="true"
-            android:background="@drawable/complaint_spinner"
-            android:entries="@array/array_beat"
-            />
-
-        <LinearLayout
-            android:id="@+id/ll_bottom_view"
-            android:layout_alignParentBottom="true"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_margin="@dimen/dimen_16dp"
+                android:id="@+id/cos_one"
+                style="@style/login_reg_input_label"
+                android:hint="Expense Name"
+                app:hintTextAppearance="@style/hintLabelColor">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_name"
+                    style="@style/login_reg_input_text"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:layout_below="@+id/cos_one"
+                android:id="@+id/spinnerBeatList"
+                android:layout_margin="@dimen/dimen_20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:drawSelectorOnTop="true"
+                android:background="@drawable/complaint_spinner"
+                android:entries="@array/array_beat"
+                />
+
+         <androidx.core.widget.NestedScrollView
+             android:layout_margin="@dimen/dimen_16dp"
+             android:fillViewport="true"
+             android:id="@+id/con_list"
+             android:layout_below="@+id/spinnerBeatList"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+             <LinearLayout
+                 android:orientation="vertical"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+
+                 <LinearLayout
+                     android:gravity="end"
+                     android:id="@+id/con1"
+                     android:orientation="horizontal"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content">
+                     <ImageView
+                         android:layout_marginRight="@dimen/dimen_16dp"
+                         android:id="@+id/iv_add"
+                         android:src="@drawable/ic_add"
+                         android:layout_alignParentRight="true"
+                         android:layout_width="30dp"
+                         android:layout_height="30dp"/>
+
+                 </LinearLayout>
+                 <LinearLayout
+                     android:id="@+id/con"
+                     android:orientation="vertical"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent">
+
+                 </LinearLayout>
+
+             </LinearLayout>
+
+
+         </androidx.core.widget.NestedScrollView>
 
 
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_save"
-                style="@style/styleAppCompactButton"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:text="@string/save" />
-            <View
-                android:layout_width="16dp"
-                android:layout_height="2dp"></View>
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_cancel"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                style="@style/styleAppCompactButton"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:text="@string/cancel" />
+            <LinearLayout
+                android:id="@+id/ll_bottom_view"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="4dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout
+                android:background="#EAEAEA"
+                android:visibility="gone"
+                android:id="@+id/imgcon"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:text="Please tap to add image then click finish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                   android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/iv_img1"
+                        android:layout_margin="@dimen/dimen_16dp"
+                        android:src="@drawable/ic_img"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"/>
+                    <ImageView
+                        android:id="@+id/iv_img2"
+                        android:visibility="gone"
+                        android:layout_margin="@dimen/dimen_16dp"
+                        android:src="@drawable/ic_img"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"/>
+                    <ImageView
+                        android:visibility="gone"
+
+                        android:id="@+id/iv_img3"
+                        android:layout_margin="@dimen/dimen_16dp"
+                        android:src="@drawable/ic_img"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:visibility="gone"
+
+                        android:id="@+id/iv_img4"
+                        android:layout_margin="@dimen/dimen_16dp"
+                        android:src="@drawable/ic_img"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"/>
+                    <ImageView
+                        android:visibility="gone"
+
+                        android:id="@+id/iv_img5"
+                        android:layout_margin="@dimen/dimen_16dp"
+                        android:src="@drawable/ic_img"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"/>
+                    <ImageView
+                        android:visibility="gone"
+
+                        android:id="@+id/iv_img6"
+                        android:layout_margin="@dimen/dimen_16dp"
+                        android:src="@drawable/ic_img"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"/>
+                </LinearLayout>
 
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_assignmentList"
-            android:layout_marginTop="16dp"
-            android:layout_below="@+id/spinnerBeatList"
-            android:layout_above="@id/ll_bottom_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            />
+                <LinearLayout
+                    android:background="#EAEAEA"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_save"
+                        style="@style/styleAppCompactButton"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:text="@string/save" />
+                    <View
+                        android:layout_width="16dp"
+                        android:layout_height="2dp"></View>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_cancel"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        style="@style/styleAppCompactButton"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:text="@string/cancel" />
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:visibility="gone"
+                        android:id="@+id/btn_finish"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        style="@style/styleAppCompactButton"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:text="Finish" />
+
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
     </RelativeLayout>
 </layout>

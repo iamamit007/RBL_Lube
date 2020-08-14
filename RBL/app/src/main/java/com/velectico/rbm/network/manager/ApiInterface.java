@@ -37,6 +37,10 @@ import com.velectico.rbm.beats.model.TaskForListRequestParams;
 import com.velectico.rbm.beats.model.TaskForListResponse;
 import com.velectico.rbm.complaint.model.ComplaintListRequestParams;
 import com.velectico.rbm.complaint.model.ComplaintListResponse;
+import com.velectico.rbm.expense.model.BidListResponse;
+import com.velectico.rbm.expense.model.CreateExpenseResponse;
+import com.velectico.rbm.expense.model.ExpenseCreateRequest;
+import com.velectico.rbm.expense.model.ExpenseResponse;
 import com.velectico.rbm.leave.model.ApplyLeaveRequest;
 import com.velectico.rbm.leave.model.ApplyLeaveResponse;
 import com.velectico.rbm.leave.model.ApproveRejectLeaveListRequest;
@@ -55,17 +59,28 @@ import com.velectico.rbm.reminder.model.ReminderListResponse;
 import com.velectico.rbm.teamlist.model.TeamListRequestParams;
 import com.velectico.rbm.teamlist.model.TeamListResponse;
 
+import java.util.Map;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Add_ExpensImage;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Apply_Leave;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Approved_Reject_Leave;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Beat_Report_By_Date;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Complaint_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Report;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Beat_Schedule;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Expense;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Order;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Create_Reminder;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Dealer_Distrib_Task_Worksheet;
@@ -76,6 +91,7 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.ENDPOINTBeat_
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.ENDPOINT_GET_TASK_DETAILS_LIST_BY_BEAT_ID;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Edit_Leave;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Forgot_Password;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Expense_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_AssignTo_By_TaskFor_And_Location;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Beat_By_Level;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Deal_Dist_Mech_List;
@@ -85,6 +101,7 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Order_His
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Product_List_By_Cat_Seg;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_ReminderList;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Task_For;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Task_dropdown_in_expens;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Leave_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Team_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Reset_Password;
@@ -173,6 +190,19 @@ public interface ApiInterface {
     @POST(DoAttend)
     Call<AttendancResponse> doAttendance(@Body AttendanceRequestParams model);
 
+    @POST(Get_Task_dropdown_in_expens)
+    Call<BidListResponse> getBitList(@Body AttendanceRequestParams model);
+
+    @POST(Create_Expense)
+    Call<CreateExpenseResponse> createExpense(@Body ExpenseCreateRequest model);
+
+    @Multipart
+    @POST(Add_ExpensImage)
+    Call<CreateExpenseResponse> uploadpic(
+                        @Part("recPhoto1\"; filename=\"pp.png\" ") RequestBody file,
+                        @Part("expensId") RequestBody expensId,
+                        @Part("userId") RequestBody userId);
+
     @POST(Distrib_Dropdown)
     Call<DistListResponse> distDropDownList(@Body DistListRequestParams model);
 
@@ -191,8 +221,22 @@ public interface ApiInterface {
     @POST(Reset_Password)
     Call<ResetPasswordResponse> resetPassword(@Body ResetPasswordRequestParams model);
 
+    @Multipart
+    @POST(Add_ExpensImage)
+    Call<CreateExpenseResponse> uploadpic(
+            @Part MultipartBody.Part filePart,@Part MultipartBody.Part filePart1,@Part MultipartBody.Part filePar2,@Part MultipartBody.Part filePar3);
+
+    @Headers({"Content-Type:text/html; charset=UTF-8","Connection:keep-alive"})
+    @Multipart
+    @POST(Add_ExpensImage)
+    Call<CreateExpenseResponse> uploadpic(
+
+            @PartMap Map<String, RequestBody> map);
 
 
+    @POST(Expense_List)
+    Call<ExpenseResponse> getLeaveList(AttendanceRequestParams model);
 
-
+    @POST(Expense_List)
+    Call<ExpenseResponse> getChuttiList(@Body AttendanceRequestParams model);
 }

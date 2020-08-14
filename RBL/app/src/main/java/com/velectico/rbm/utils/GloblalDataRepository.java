@@ -1,6 +1,25 @@
 package com.velectico.rbm.utils;
 
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import com.velectico.rbm.expense.views.FileUploadListener;
 import com.velectico.rbm.leave.model.LeaveListModel;
+
+import java.io.File;
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class GloblalDataRepository {
     private static GloblalDataRepository globalDataService = null;
@@ -85,4 +104,48 @@ public class GloblalDataRepository {
     public void setLeaveListModel(LeaveListModel leaveListModel) {
         this.leaveListModel = leaveListModel;
     }
+
+public void test(File file, String expId, String userId, String colnName, Context context){
+    try {
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                .addFormDataPart("fileName",""+System.currentTimeMillis(),
+                        RequestBody.create(MediaType.parse("application/octet-stream"),
+                                file))
+                .addFormDataPart("expensId", expId)
+                .addFormDataPart("userId", userId)
+                .addFormDataPart("colName", colnName)
+                .build();
+        Request request = new Request.Builder()
+                .url("https://velectico.top/RBM-Lubricants/API/Add_ExpensImage")
+                .method("POST", body)
+
+                .build();
+     //   Response response = client.newCall(request).execute();
+
+        //Log.d("TAG",response.body().string());
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                call.cancel();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+
+                Log.d("sender", "Broadcasting message");
+                Intent intent = new Intent("custom-event-name");
+                intent.putExtra("message", response.body().string());
+                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+
+            }
+        });
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 }
