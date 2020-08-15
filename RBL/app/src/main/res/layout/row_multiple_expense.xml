@@ -116,13 +116,13 @@
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/login_reg_input_label"
                         android:hint="Enter Distance in km"
-                        android:visibility="visible"
+                        android:id="@+id/txtkm"
+                        android:visibility="gone"
                         app:hintTextAppearance="@style/hintLabelColor">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/et_km"
                             style="@style/login_reg_input_text"
-                            android:visibility="gone"
                             android:gravity="top|left"
                             android:inputType="textMultiLine"
                             android:text=""

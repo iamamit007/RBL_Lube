@@ -23,6 +23,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chivorn.smartmaterialspinner.SmartMaterialSpinner
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.kaopiz.kprogresshud.KProgressHUD
 
 import com.velectico.rbm.R
@@ -383,12 +384,13 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
                if (view !=null){
                    if ((view?.findViewById(R.id.et_date) as TextInputEditText) != null){
                            val et_date_val = (view?.findViewById(R.id.et_date) as TextInputEditText).text.toString()
+                       val kmrun = (view?.findViewById(R.id.et_km) as TextInputEditText).text.toString()
                            val et_expense_type = (view?.findViewById(R.id.et_expense_type) as TextInputEditText).text.toString()
                            //val sp_dealerName = view.findViewById(R.id.sp_dealerName) as SmartMaterialSpinner<*>
                            val et_task = (view?.findViewById(R.id.et_task) as TextInputEditText).text?.toString()
                            val id = dataList.find { it.Exp_Head_Name == et_expense_type }
                            if (id !=null){
-                               details.add(ExpDetailsRequest(id.Exp_Head_Id,et_task,"0",et_date_val))
+                               details.add(ExpDetailsRequest(id.Exp_Head_Id,et_task,kmrun,et_date_val))
                             }
 
                    }
@@ -458,6 +460,8 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
                     .inflate(R.layout.row_multiple_expense, null)
             val et_date = view.findViewById(R.id.et_date) as TextInputEditText
             val et_expense_type = view.findViewById(R.id.et_expense_type) as TextInputEditText
+            val kmHint = view.findViewById(R.id.txtkm) as TextInputLayout
+            val kmText = view.findViewById(R.id.et_km) as TextInputEditText
             val et_task = view.findViewById(R.id.et_task) as TextInputEditText
             val iv_delete = view.findViewById(R.id.iv_delete) as ImageView
             val resonList = view.findViewById(R.id.resonList) as Spinner
@@ -473,6 +477,13 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
                  resonList.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
                     et_expense_type.setText(statList[position])
+                    if (et_expense_type.text.toString() == "Petrol expense"){
+                        //showToastMessage("1222222222")
+                        kmHint.visibility = View.VISIBLE
+                    }
+                    else{
+                        kmHint.visibility = View.GONE
+                    }
                 }
 
                 override fun onNothingSelected(adapterView: AdapterView<*>) {}

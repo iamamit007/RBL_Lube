@@ -23,16 +23,16 @@
             <Spinner
                 android:layout_below="@+id/cos_one"
                 android:id="@+id/spinnerBeatList"
-                android:layout_margin="@dimen/dimen_20dp"
+                android:layout_marginLeft="@dimen/dimen_20dp"
+                android:layout_marginRight="@dimen/dimen_20dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:drawSelectorOnTop="true"
                 android:background="@drawable/complaint_spinner"
-                android:entries="@array/array_beat"
                 />
 
          <androidx.core.widget.NestedScrollView
-             android:layout_margin="@dimen/dimen_16dp"
+             android:layout_margin="10dp"
              android:fillViewport="true"
              android:id="@+id/con_list"
              android:layout_below="@+id/spinnerBeatList"

@@ -111,7 +111,7 @@ public void test(File file, String expId, String userId, String colnName, Contex
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("fileName",""+System.currentTimeMillis(),
+                .addFormDataPart("fileName",file+""+System.currentTimeMillis(),
                         RequestBody.create(MediaType.parse("application/octet-stream"),
                                 file))
                 .addFormDataPart("expensId", expId)
@@ -168,7 +168,7 @@ public void complainTest(File file,
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("recPhoto",""+System.currentTimeMillis(),
+                .addFormDataPart("recPhoto", ""+file,
                         RequestBody.create(MediaType.parse("application/octet-stream"),
                                 file))
                 .addFormDataPart("complaintype", complaintype)
