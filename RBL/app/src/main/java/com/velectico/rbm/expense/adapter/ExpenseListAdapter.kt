@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.velectico.rbm.databinding.RowExpenseListBinding
 import com.velectico.rbm.expense.model.Expense
 import com.velectico.rbm.expense.model.ExpenseDetails
+import com.velectico.rbm.utils.DateUtils
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ExpenseListAdapter(var setCallback: IExpenseActionCallBack) : RecyclerView.Adapter<ExpenseListAdapter.ViewHolder>() {
      var callBack : IExpenseActionCallBack?=null
@@ -51,6 +54,16 @@ class ExpenseListAdapter(var setCallback: IExpenseActionCallBack) : RecyclerView
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(expenseList[position])
+        val inpFormat =  SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        val  outputformat =  SimpleDateFormat("dd-MMM-yy", Locale.US);
+        val stdate =  DateUtils.parseDate(expenseList[position].appliedOnDate,inpFormat,outputformat)
+        holder.binding.tvProdSchemeName.text = stdate
+        if (expenseList[position].expenseStatus == "O"){
+            holder.binding.tvPackaging.text = "Pending"
+        }
+        else{
+            holder.binding.tvPackaging.text = "Approved"
+        }
     }
 
     interface IExpenseActionCallBack{

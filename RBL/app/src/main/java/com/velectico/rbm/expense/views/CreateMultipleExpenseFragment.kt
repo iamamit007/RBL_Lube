@@ -96,7 +96,7 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
       //  mBeatSharedViewModel =
        //     ViewModelProviders.of(requireActivity()).get(BeatSharedViewModel::class.java)
          beatAssignmentList = BeatAssignments().getBlankList() //mBeatSharedViewModel?.assignmentList?.value!!;
-        setHasOptionsMenu(true);
+        //setHasOptionsMenu(true);
         initHud()
 //        getIntentData()
         setUp();

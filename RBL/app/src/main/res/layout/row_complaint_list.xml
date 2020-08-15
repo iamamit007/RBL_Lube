@@ -86,7 +86,7 @@
 
                         <TextView
                             android:id="@+id/tv_unit"
-                            android:text="@{complaintInfo.CR_Date}"
+                            android:text=""
                             style="@style/rv_caption" />
 
                     </LinearLayout>

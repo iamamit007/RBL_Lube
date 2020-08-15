@@ -362,6 +362,9 @@
         <argument
             android:name="complainDetail"
             app:argType="com.velectico.rbm.complaint.model.ComplainListDetails" />
+        <action
+            android:id="@+id/action_createComplaints_to_beatSpecificComplaintList"
+            app:destination="@id/beatSpecificComplaintList" />
     </fragment>
     <fragment
         android:id="@+id/beatPerformanceHistory"
@@ -385,6 +388,9 @@
         <argument
             android:name="complainDetail"
             app:argType="com.velectico.rbm.complaint.model.ComplainListDetails" />
+        <action
+            android:id="@+id/action_createComplaintsUserWise_to_complaintList"
+            app:destination="@id/complaintList" />
     </fragment>
     <fragment
         android:id="@+id/reminderListFragment"

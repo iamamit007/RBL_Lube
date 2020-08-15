@@ -154,7 +154,7 @@
 
                         <TextView
                             android:id="@+id/tv_prodSchemeName"
-                            android:text="@{expenseInfo.appliedOnDate}"
+                            android:text=""
                             style="@style/rv_caption" />
 
                     </LinearLayout>
@@ -171,7 +171,7 @@
 
                         <TextView
                             android:id="@+id/tv_Packaging"
-                            android:text="@{expenseInfo.expenseStatus}"
+                            android:text=""
                             style="@style/rv_caption" />
 
                     </LinearLayout>
@@ -188,7 +188,7 @@
 
                         <TextView
                             android:id="@+id/tv_prodSegment"
-                            android:text="@{expenseInfo.approvedBy}"
+                            android:text="@{expenseInfo.approvedByName}"
                             style="@style/rv_caption" />
 
                     </LinearLayout>

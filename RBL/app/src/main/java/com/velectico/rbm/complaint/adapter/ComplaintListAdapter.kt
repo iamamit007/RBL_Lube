@@ -11,6 +11,9 @@ import com.velectico.rbm.complaint.model.ComplainListDetails
 import com.velectico.rbm.complaint.model.ComplaintModel
 import com.velectico.rbm.databinding.RowBeatListBinding
 import com.velectico.rbm.databinding.RowComplaintListBinding
+import com.velectico.rbm.utils.DateUtils
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ComplaintListAdapter (var setCallback: ComplaintListAdapter.IComplaintListActionCallBack) : RecyclerView.Adapter<ComplaintListAdapter.ViewHolder>() {
 
@@ -50,6 +53,10 @@ class ComplaintListAdapter (var setCallback: ComplaintListAdapter.IComplaintList
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(complaintList[position])
+        val inpFormat =  SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        val  outputformat =  SimpleDateFormat("dd-MMM-yy", Locale.US);
+        val stdate =  DateUtils.parseDate(complaintList[position].CR_Date,inpFormat,outputformat)
+        holder.binding.tvUnit.text = stdate
         Picasso.get().load(complaintList[position].imagePath).fit().into(holder.binding.ivComplaintImageUrl)
     }
     interface IComplaintListActionCallBack{

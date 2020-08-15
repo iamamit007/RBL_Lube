@@ -1,9 +1,12 @@
 package com.velectico.rbm.complaint.views
 
 import android.app.Activity
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.net.Uri
+import android.os.AsyncTask
 import android.os.Build
 import android.view.View
 import android.widget.AdapterView
@@ -11,6 +14,8 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.MutableLiveData
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.navigation.Navigation
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.squareup.picasso.Picasso
 
@@ -27,6 +32,7 @@ import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
+import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.ImageUtils
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
@@ -59,6 +65,7 @@ abstract class CreateComplaints : BaseFragment() {
     override fun init(binding: ViewDataBinding) {
 
         this.binding = binding as FragmentCreateComplaintsBinding
+        initHud()
         imageUtils = ImageUtils(context as Context,baseActivity,this)
         menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
         complainDetail = arguments!!.get("complainDetail")  as ComplainListDetails
@@ -161,26 +168,77 @@ abstract class CreateComplaints : BaseFragment() {
            showToastMessage("Please provide a remarks")
        }
         else {
+           showHud()
            val userId = SharedPreferenceUtils.getLoggedInUserId(context as Context);
-           val expReq = ComplaintCreateRequest(
-               userId = userId,
-               complaintype = complnType,
-               CR_Batch_no = binding.inputBatchno.text.toString(),
-               CR_Dealer_ID = taskDetail.dealerId.toString(),
-               CR_Distrib_ID = taskDetail.distribId.toString(),
-               CR_Mechanic_ID = "0",
-               CR_Qty = binding.inputQuantity.text.toString(),
-               CR_Remarks = binding.inputRemarks.text.toString(),
-               prodName = prodName,
-               taskId = taskDetail.taskId.toString(),
-               recPhoto = if (imageUrl != null) File(imageUrl) else null
-           )
-           menuViewModel.complaintCreateAPICall(expReq)
-          // showToastMessage("55555555555" +expReq)
+           CreateComplaintsUserWise.someTaskComplain(
+               File(imageUrl),
+               complnType,
+               userId,
+               binding.inputBatchno.text.toString(),
+               taskDetail.dealerId.toString(),
+               taskDetail.distribId.toString(),
+               "0",
+               binding.inputQuantity.text.toString(),
+               binding.inputRemarks.text.toString(),
+               prodName,
+               taskDetail.taskId.toString(),
+               context!!
+           ).execute()
        }
 
     }
+    class someTaskComplain(val file: File,
+                           var complaintype:String?,
+                           var userId:String?,
+                           val CR_Batch_no:String?,
+                           val CR_Dealer_ID:String?,
+                           val CR_Distrib_ID:String?,
+                           val CR_Mechanic_ID:String?,
+                           val CR_Remarks:String?,
+                           val CR_Qty:String?,
+                           val prodNam:String?,
+                           val tskId:String?,
 
+                           val context: Context) : AsyncTask<Void, Void, String>() {
+        override fun doInBackground(vararg params: Void?): String? {
+            // ...G
+            GloblalDataRepository.getInstance().complainTest(file,complaintype,userId,CR_Batch_no,
+                CR_Dealer_ID,
+                CR_Distrib_ID,
+                CR_Mechanic_ID,
+                CR_Remarks,
+                CR_Qty,
+                prodNam,
+                tskId,
+                context)
+
+
+            return ""
+        }
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+
+            // ...
+        }
+
+        override fun onPostExecute(result: String?) {
+            super.onPostExecute(result)
+
+            // ...
+        }
+    }
+
+    class doAsync(val handler: () -> Unit) : AsyncTask<Void, Void, Void>() {
+        init {
+            execute()
+        }
+
+        override fun doInBackground(vararg params: Void?): Void? {
+            handler()
+            return null
+        }
+    }
 
 
     fun callApi(type:String){
@@ -268,6 +326,31 @@ abstract class CreateComplaints : BaseFragment() {
 
     fun hide(){
         hud?.dismiss()
+
+    }
+    fun initHud(){
+        hud =  KProgressHUD.create(activity)
+            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+            .setLabel("Please wait")
+            .setCancellable(true)
+            .setAnimationSpeed(2)
+            .setDimAmount(0.5f)
+
+        LocalBroadcastManager.getInstance(context!!).registerReceiver(mMessageReceiver,
+            IntentFilter("custom-event-name")
+        );
+    }
+    private var mMessageReceiver = object: BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+
+            val message = intent?.getStringExtra("message")
+            //Log.d("receiver $colname", "Got message: " + message)
+            hide()
+            showToastMessage("Complain generated")
+            val navDirection = CreateComplaintsDirections.actionCreateComplaintsToBeatSpecificComplaintList(taskDetail,dlrDtl)
+            Navigation.findNavController(binding.btnSaveComplain).navigate(navDirection)
+
+        }
 
     }
 }
