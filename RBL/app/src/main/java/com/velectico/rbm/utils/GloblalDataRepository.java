@@ -111,7 +111,7 @@ public void test(File file, String expId, String userId, String colnName, Contex
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("fileName",file+""+System.currentTimeMillis(),
+                .addFormDataPart("fileName",file.getName(),
                         RequestBody.create(MediaType.parse("application/octet-stream"),
                                 file))
                 .addFormDataPart("expensId", expId)
@@ -166,9 +166,10 @@ public void complainTest(File file,
     try {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
+
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("recPhoto", ""+file,
+                .addFormDataPart("recPhoto", file.getName(),
                         RequestBody.create(MediaType.parse("application/octet-stream"),
                                 file))
                 .addFormDataPart("complaintype", complaintype)

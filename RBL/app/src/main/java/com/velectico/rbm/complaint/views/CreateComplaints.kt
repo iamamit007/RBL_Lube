@@ -346,7 +346,7 @@ abstract class CreateComplaints : BaseFragment() {
             val message = intent?.getStringExtra("message")
             //Log.d("receiver $colname", "Got message: " + message)
             hide()
-            showToastMessage("Complain generated")
+            showToastMessage("Image and data ara inserted successfully")
             val navDirection = CreateComplaintsDirections.actionCreateComplaintsToBeatSpecificComplaintList(taskDetail,dlrDtl)
             Navigation.findNavController(binding.btnSaveComplain).navigate(navDirection)
 

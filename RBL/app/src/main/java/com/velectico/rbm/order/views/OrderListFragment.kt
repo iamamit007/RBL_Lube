@@ -10,16 +10,20 @@ import androidx.navigation.Navigation
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.velectico.rbm.R
 import com.velectico.rbm.RBMLubricantsApplication
+import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.model.*
 import com.velectico.rbm.databinding.FragmentOrderListBinding
 import com.velectico.rbm.databinding.RowOrderHeadListBinding
+import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 import com.velectico.rbm.network.callbacks.NetworkCallBack
 import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.order.adapters.OrderHeadListAdapter
+import com.velectico.rbm.utils.DEALER_ROLE
+import com.velectico.rbm.utils.DISTRIBUTER_ROLE
 import com.velectico.rbm.utils.GloblalDataRepository
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
@@ -35,6 +39,7 @@ class OrderListFragment : BaseFragment()  {
     var userId = ""
     var dealerId = "0"
     var distribId = "0"
+    private lateinit var menuViewModel: MenuViewModel
     override fun getLayout(): Int {
         return R.layout.fragment_order_list
     }
@@ -43,6 +48,7 @@ class OrderListFragment : BaseFragment()  {
 
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentOrderListBinding
+        menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
         binding.spinnerDeal.visibility = View.GONE
         val languages = resources.getStringArray(R.array.array_dealDist)
 
@@ -115,9 +121,6 @@ class OrderListFragment : BaseFragment()  {
         binding.fabFilter.setOnClickListener {
             moveToFilterOrder()
         }
-        setUpRecyclerView()
-        callApiOrderList()
-
         binding.allButton.setOnClickListener{
             orderStatus = ""
             //setUpRecyclerView()
@@ -133,6 +136,26 @@ class OrderListFragment : BaseFragment()  {
             //setUpRecyclerView()
             callApiOrderList()
         }
+        if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == DEALER_ROLE){
+            binding.spinnerDealDis.visibility = View.GONE
+            binding.spinnerType.visibility = View.GONE
+            dealerId = menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMID.toString()
+            callApiOrderList()
+            return
+        }
+        if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == DISTRIBUTER_ROLE){
+            binding.spinnerDealDis.visibility = View.GONE
+            binding.spinnerType.visibility = View.GONE
+            distribId = menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMID.toString()
+            callApiOrderList()
+            return
+        }
+
+        setUpRecyclerView()
+        callApiOrderList()
+
+
+
 
 
 
@@ -160,18 +183,6 @@ class OrderListFragment : BaseFragment()  {
 
             override fun onNothingSelected(adapterView: AdapterView<*>) {}
         }
-//        binding.spinnerDeal.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
-//                if (dealNameList.size > 0 ){
-//                    val x = dealNameList[position]
-//                    dealerId = x.UM_ID!!
-//                    callApiOrderList()
-//
-//                }
-//            }
-//
-//            override fun onNothingSelected(adapterView: AdapterView<*>) {}
-//        }
 
     }
     var hud: KProgressHUD? = null

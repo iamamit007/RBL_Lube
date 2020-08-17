@@ -153,7 +153,7 @@ class DefaultFragment : BaseFragment(){
             Navigation.findNavController(binding.redeemButton).navigate(navDirection)
         }
         binding.productButton.setOnClickListener {
-
+            RBMLubricantsApplication.filterFrom = "Product"
             val navDirection =  DefaultFragmentDirections.actionHomeFragmentToProductFilterFragment()
             Navigation.findNavController(binding.productButton).navigate(navDirection)
         }

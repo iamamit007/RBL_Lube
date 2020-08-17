@@ -10,9 +10,11 @@ import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.velectico.rbm.R
+import com.velectico.rbm.base.views.BaseActivity
 import com.velectico.rbm.base.views.BaseFragment
 import com.velectico.rbm.beats.model.*
 import com.velectico.rbm.databinding.CreateReminderFragmentBinding
+import com.velectico.rbm.menuitems.viewmodel.MenuViewModel
 import com.velectico.rbm.network.callbacks.NetworkCallBack
 import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
@@ -20,9 +22,7 @@ import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.reminder.model.CreateReminderRequestParams
 import com.velectico.rbm.reminder.model.CreateReminderResponse
-import com.velectico.rbm.utils.DateUtility
-import com.velectico.rbm.utils.DateUtils
-import com.velectico.rbm.utils.SharedPreferenceUtils
+import com.velectico.rbm.utils.*
 import retrofit2.Callback
 import java.text.SimpleDateFormat
 import java.util.*
@@ -31,6 +31,7 @@ class CreateReminder :  BaseFragment() , DatePickerDialog.OnDateSetListener {
     private lateinit var binding: CreateReminderFragmentBinding
     var dealerId = "0"
     var distribId = "0"
+    private lateinit var menuViewModel: MenuViewModel
 
     override fun getLayout(): Int {
         return R.layout.create_reminder_fragment
@@ -38,6 +39,21 @@ class CreateReminder :  BaseFragment() , DatePickerDialog.OnDateSetListener {
     override fun init(binding: ViewDataBinding) {
 
         this.binding = binding as CreateReminderFragmentBinding
+        menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
+        if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == DEALER_ROLE){
+            binding.spinner111.visibility = View.GONE
+            binding.dealerList11.visibility = View.GONE
+            dealerId = menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMID.toString()
+
+
+        }
+        if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == DISTRIBUTER_ROLE){
+            binding.spinner111.visibility = View.GONE
+            binding.dealerList11.visibility = View.GONE
+            distribId = menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMID.toString()
+
+
+        }
         binding.etEndDate?.setOnClickListener {
             showDatePickerDialog()
         }

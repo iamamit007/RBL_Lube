@@ -26,6 +26,9 @@ import com.velectico.rbm.network.callbacks.NetworkError
 import com.velectico.rbm.network.manager.ApiClient
 import com.velectico.rbm.network.manager.ApiInterface
 import com.velectico.rbm.network.response.NetworkResponse
+import com.velectico.rbm.utils.DEALER_ROLE
+import com.velectico.rbm.utils.DISTRIBUTER_ROLE
+import com.velectico.rbm.utils.MECHANIC_ROLE
 import com.velectico.rbm.utils.SharedPreferenceUtils
 import retrofit2.Callback
 import java.util.ArrayList
@@ -42,6 +45,7 @@ class ComplaintList : BaseFragment() {
     private lateinit var adapter: ComplaintListAdapter
     var dealerId = "0"
     var distribId = "0"
+    var mechId = "0"
     var orderStatus = "O"
     override fun getLayout(): Int {
         return R.layout.fragment_complaint_list
@@ -50,6 +54,40 @@ class ComplaintList : BaseFragment() {
     override fun init(binding: ViewDataBinding) {
         this.binding = binding as FragmentComplaintListBinding
         menuViewModel = MenuViewModel.getInstance(activity as BaseActivity)
+        binding.fab.setOnClickListener {
+            moveToCreateComplaint()
+        }
+        binding.expenseButton.setOnClickListener{
+            orderStatus = "C"
+            callApiList()
+            //setUpRecyclerView()
+        }
+        binding.beatButton.setOnClickListener{
+            orderStatus = "O"
+            callApiList()
+            //setUpRecyclerView()
+        }
+        if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == DEALER_ROLE){
+            binding.spinnerDealDist.visibility = View.GONE
+            binding.spinnerTp.visibility = View.GONE
+            dealerId = menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMID.toString()
+            callApiList()
+            return
+        }
+        if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == DISTRIBUTER_ROLE){
+            binding.spinnerDealDist.visibility = View.GONE
+            binding.spinnerTp.visibility = View.GONE
+            distribId = menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMID.toString()
+            callApiList()
+            return
+        }
+        if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == MECHANIC_ROLE){
+            binding.spinnerDealDist.visibility = View.GONE
+            binding.spinnerTp.visibility = View.GONE
+            mechId = menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMID.toString()
+            callApiList()
+            return
+        }
         val languages = resources.getStringArray(R.array.array_dealDist)
 
         // access the spinner
@@ -112,20 +150,9 @@ class ComplaintList : BaseFragment() {
 
         setUpRecyclerView()
 
-        binding.expenseButton.setOnClickListener{
-            orderStatus = "C"
-            callApiList()
-            //setUpRecyclerView()
-        }
-        binding.beatButton.setOnClickListener{
-            orderStatus = "O"
-            callApiList()
-            //setUpRecyclerView()
-        }
 
-//        if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == MECHANIC_ROLE){
-//            binding.fab.hide()
-//        }
+
+
 
 
         binding.fab.setOnClickListener {
@@ -208,21 +235,23 @@ class ComplaintList : BaseFragment() {
             response.data?.status?.let { status ->
                 //showToastMessage(response.data.DealList.toString())
                 hide()
-                dealNameList  = response.data.DealList
+
+                dealNameList = response.data.DealList
                 var statList: MutableList<String> = ArrayList()
-                for (i in dealNameList){
+                for (i in dealNameList) {
                     statList.add(i.UM_Name!!)
                     dealerId = i.UM_ID!!
                 }
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_item, statList
+                    )
                 }
                 binding.spinnerDealDist.adapter = adapter2
-
-
             }
+
+
 
         }
 
@@ -261,7 +290,7 @@ class ComplaintList : BaseFragment() {
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
         val responseCall = apiInterface.getComplaintList(
 
-            ComplaintListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),"0",dealerId,distribId,"",orderStatus)
+            ComplaintListRequestParams(SharedPreferenceUtils.getLoggedInUserId(context as Context),"0",dealerId,distribId,mechId,orderStatus)
         )
         responseCall.enqueue(ComplaintListResponse as Callback<ComplaintListResponse>)
     }

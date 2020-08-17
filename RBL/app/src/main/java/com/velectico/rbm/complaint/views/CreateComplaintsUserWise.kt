@@ -56,6 +56,7 @@ class CreateComplaintsUserWise: BaseFragment() {
     var complnType= ""
     var dealerId = "0"
     var distribId = "0"
+    var mechId = "0"
     lateinit var networkManager: INetworkManager
 
     override fun getLayout(): Int {
@@ -75,6 +76,15 @@ class CreateComplaintsUserWise: BaseFragment() {
             binding.spinner11.visibility = View.GONE
             binding.dealerList.visibility = View.GONE
         }
+        if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == DISTRIBUTER_ROLE){
+            distribId = menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMID.toString()
+        }
+        if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == DEALER_ROLE){
+            dealerId = menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMID.toString()
+        }
+        if(menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMRole.toString() == MECHANIC_ROLE){
+            mechId = menuViewModel.loginResponse.value?.userDetails?.get(0)?.uMID.toString()
+        }
         imageUtils = ImageUtils(context as Context,baseActivity,this)
         complainDetail = arguments!!.get("complainDetail")  as ComplainListDetails
         //showToastMessage(complainDetail.toString())
@@ -89,6 +99,7 @@ class CreateComplaintsUserWise: BaseFragment() {
             Picasso.get().load(complainDetail.imagePath).fit().into(binding.ivExpBill)
         }
         binding.btnCaptureImg.setOnClickListener {
+
             cameraImgUri = imageUtils?.getImageUri()
             imageUtils?.captureImageIntent(cameraImgUri)
         }
@@ -216,7 +227,7 @@ class CreateComplaintsUserWise: BaseFragment() {
             showHud()
             val userId = SharedPreferenceUtils.getLoggedInUserId(context as Context);
             someTaskComplain(File(imageUrl),complnType,userId,binding.inputBatchno.text.toString(),dealerId,distribId,
-                "0",binding.inputQuantity.text.toString(),binding.inputRemarks.text.toString(),
+                mechId,binding.inputQuantity.text.toString(),binding.inputRemarks.text.toString(),
                 prodName,"0",context!!).execute()
         }
 
@@ -466,7 +477,7 @@ class CreateComplaintsUserWise: BaseFragment() {
             val message = intent?.getStringExtra("message")
             //Log.d("receiver $colname", "Got message: " + message)
             hide()
-            showToastMessage("Complain generated")
+            showToastMessage("Image and data ara inserted successfully")
             val navDirection = CreateComplaintsUserWiseDirections.actionCreateComplaintsUserWiseToComplaintList()
             Navigation.findNavController(binding.btnLogin).navigate(navDirection)
 
