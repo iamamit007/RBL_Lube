@@ -52,6 +52,13 @@ import com.velectico.rbm.loginreg.model.forgotPasswordRequestParams;
 import com.velectico.rbm.loginreg.model.forgotPasswordResponse;
 import com.velectico.rbm.menuitems.viewmodel.AttendancResponse;
 import com.velectico.rbm.menuitems.viewmodel.AttendanceRequestParams;
+import com.velectico.rbm.redeem.model.GetRedeemDetailsRequestParams;
+import com.velectico.rbm.redeem.model.GetRedeemDetailsResponse;
+import com.velectico.rbm.redeem.model.ReedemRequestParams;
+import com.velectico.rbm.redeem.model.ReedemResponse;
+import com.velectico.rbm.redeem.model.SendQrRequestParams;
+import com.velectico.rbm.redeem.model.SendQrResponse;
+import com.velectico.rbm.redeem.view.Redeem;
 import com.velectico.rbm.reminder.model.CreateReminderRequestParams;
 import com.velectico.rbm.reminder.model.CreateReminderResponse;
 import com.velectico.rbm.reminder.model.ReminderListRequestParams;
@@ -99,13 +106,16 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Dropdown_
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Location_By_Level;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Order_History;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Product_List_By_Cat_Seg;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Reedem_Details;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_ReminderList;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Task_For;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Task_dropdown_in_expens;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Leave_List;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Team_List;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Reedem;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Reset_Password;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Save_AssignTask;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Send_QR_Details;
 
 public interface ApiInterface {
 
@@ -239,4 +249,13 @@ public interface ApiInterface {
 
     @POST(Expense_List)
     Call<ExpenseResponse> getChuttiList(@Body AttendanceRequestParams model);
+
+    @POST(Send_QR_Details)
+    Call<SendQrResponse> sendQrDetails(@Body SendQrRequestParams model);
+
+    @POST(Reedem)
+    Call<ReedemResponse> redeemPoints(@Body ReedemRequestParams model);
+
+    @POST(Get_Reedem_Details)
+    Call<GetRedeemDetailsResponse> getRedeemList(@Body GetRedeemDetailsRequestParams model);
 }

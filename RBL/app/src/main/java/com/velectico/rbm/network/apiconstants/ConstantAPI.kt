@@ -181,3 +181,6 @@ const val Forgot_Password = APP_API_NAME+"Forgot_Password"
 
 const val Reset_Password = APP_API_NAME+"Reset_Password"
 
+const val Send_QR_Details = APP_API_NAME+"Send_QR_Details"
+const val Reedem = APP_API_NAME+"Reedem"
+const val Get_Reedem_Details = APP_API_NAME+"Get_Reedem_Details"

@@ -82,4 +82,10 @@ dependencies {
     implementation 'com.kaopiz:kprogresshud:1.2.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.anastr:speedviewlib:1.5.3'
+    // For developers using AndroidX in their applications
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
+// For developers using the Android Support Library
+    implementation 'pub.devrel:easypermissions:2.0.1'
+    implementation 'com.journeyapps:zxing-android-embedded:3.5.0'
 }

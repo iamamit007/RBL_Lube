@@ -5,11 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.velectico.rbm.databinding.RowRedeemListBinding
 import com.velectico.rbm.redeem.model.RedeemInfo
+import com.velectico.rbm.redeem.model.RedeemListDetails
+import com.velectico.rbm.utils.DateUtils
+import java.text.SimpleDateFormat
+import java.util.*
 
 class RedeemListAdapter (var setCallback: RedeemListAdapter.IBeatListActionCallBack) : RecyclerView.Adapter<RedeemListAdapter.ViewHolder>() {
 
     var callBack: RedeemListAdapter.IBeatListActionCallBack? = null
-    var beatList = listOf<RedeemInfo>()
+    var beatList = listOf<RedeemListDetails>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -27,7 +31,7 @@ class RedeemListAdapter (var setCallback: RedeemListAdapter.IBeatListActionCallB
 //            }
         }
 
-        fun bind(beats: RedeemInfo?) {
+        fun bind(beats: RedeemListDetails?) {
             binding.redeemlist = beats
             binding.executePendingBindings()
         }
@@ -45,6 +49,25 @@ class RedeemListAdapter (var setCallback: RedeemListAdapter.IBeatListActionCallB
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(beatList[position])
+        if (beatList[position].QRD_Status == "P"){
+            holder.binding.tvPaymentAmount.text = "Pending"
+        }
+        else{
+            holder.binding.tvPaymentAmount.text = "Approved"
+        }
+        val inpFormat =  SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        val  outputformat =  SimpleDateFormat("dd-MMM-yy", Locale.US);
+        if (beatList[position].QRD_Payment_Date != null){
+            val pmtDt =  DateUtils.parseDate(beatList[position].QRD_Payment_Date,inpFormat,outputformat)
+            holder.binding.tvDueAmount.text = pmtDt
+        }
+        else{
+            holder.binding.tvDueAmount.text = "--"
+        }
+
+        val redmDt =  DateUtils.parseDate(beatList[position].QRD_Req_Date,inpFormat,outputformat)
+
+        holder.binding.tvInvoice.text = redmDt
     }
 
 

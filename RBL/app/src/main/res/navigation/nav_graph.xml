@@ -63,6 +63,9 @@
         <action
             android:id="@+id/action_homeFragment_to_productFilterFragment"
             app:destination="@id/productFilterFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_redeemPoints"
+            app:destination="@id/redeemPoints" />
 
     </fragment>
     <fragment
@@ -499,6 +502,9 @@
         android:name="com.velectico.rbm.qrcodescan.view.QrcodeScanner"
         android:label="QR Code Scanner" >
 
+        <action
+            android:id="@+id/action_qrcodeScanner_to_redeemPoints"
+            app:destination="@id/redeemPoints" />
     </fragment>
     <fragment
         android:id="@+id/redeem"
@@ -540,5 +546,13 @@
         android:id="@+id/createReminder"
         android:name="com.velectico.rbm.reminder.view.CreateReminder"
         android:label="Add Reminder" />
+    <fragment
+        android:id="@+id/redeemPoints"
+        android:name="com.velectico.rbm.redeem.view.RedeemPoints"
+        android:label="RedeemPoints" >
+        <action
+            android:id="@+id/action_redeemPoints_to_redeem"
+            app:destination="@id/redeem" />
+    </fragment>
 
 </navigation>

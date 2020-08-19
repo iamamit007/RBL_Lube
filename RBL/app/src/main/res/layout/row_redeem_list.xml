@@ -5,76 +5,41 @@
     <data>
         <variable
             name="redeemlist"
-            type="com.velectico.rbm.redeem.model.RedeemInfo" />
+            type="com.velectico.rbm.redeem.model.RedeemListDetails" />
     </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card"
-        style="@style/cv_style">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/dimen_20dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+        <TextView
+            style="@style/rv_caption"
+            android:id="@+id/tv_invoice"
+            android:textAlignment="center"
+            android:text="INV1234" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_payment_date"
+            android:text="@{redeemlist.QRD_Point_Amt}"
+            android:textAlignment="center"
+            style="@style/rv_caption" />
+        <TextView
+            android:id="@+id/tv_payment_amount"
+            android:text=""
+            android:textAlignment="center"
+            style="@style/rv_caption" />
+        <TextView
+            android:id="@+id/tv_due_amount"
+            android:text="₹ 5,000"
+            android:textAlignment="center"
+            style="@style/rv_caption" />
 
-                    <TextView
-                        style="@style/rv_caption"
-                        android:text="Earned Points" />
+    </LinearLayout>
+    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/r_tpoints"
-                        style="@style/rv_caption"
-                        android:text="1000" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/rv_caption"
-                        android:text="Redeem Points" />
-
-                    <TextView
-                        android:id="@+id/r_point"
-                        style="@style/rv_caption"
-                        android:text="200" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/rv_caption"
-                        android:text="Redeem Date" />
-
-                    <TextView
-                        android:id="@+id/r_date"
-                        style="@style/rv_caption"
-                        android:text="14-07-2020" />
-
-                </LinearLayout>
-
-
-
-                </LinearLayout>
-
-
-
-        </RelativeLayout>
-
-
-
-    </com.google.android.material.card.MaterialCardView>
 </layout>

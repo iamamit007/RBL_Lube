@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/header">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:padding="@dimen/dimen_20dp"
+            android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/totalPoints"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current Balance : 1000"
+            android:layout_marginBottom="@dimen/dimen_20dp"
+            android:textColor="@color/black"
+            android:textSize="28dip"
+            android:typeface="sans"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:gravity="center"
+            />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
+            android:layout_below="@+id/totalPoints"
+            android:alpha="0.75"
+            android:backgroundTint="@color/mdtp_white"
+            style="@style/cv_style">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/dimen_16dp"
+                style="@style/cv_style">
+
+                <LinearLayout
+                    android:id="@+id/totalAmt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_prodImageUrl"
+                    android:layout_below="@+id/descDetail"
+                    android:orientation="horizontal"/>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/balncamt"
+                    android:layout_toRightOf="@+id/symbol"
+                    style="@style/login_reg_input_label"
+                    android:hint="Enter point">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_blncAmt"
+                        style="@style/login_reg_input_text"
+                        android:inputType="text"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorGreen"
+                    android:text="Redeem"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/balncamt"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+            <Button
+                android:id="@+id/buttonRedeemHistory"
+                android:layout_below="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:background="@drawable/customtab_bg"
+                android:text="Redeem History" />
+        </RelativeLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

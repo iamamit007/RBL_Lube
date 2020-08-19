@@ -143,13 +143,13 @@ class DefaultFragment : BaseFragment(){
             Navigation.findNavController(binding.complainMechButton).navigate(navDirection)
         }
         binding.scanQRLong.setOnClickListener {
-            showToastMessage("scan")
+            //showToastMessage("scan")
             val navDirection =  DefaultFragmentDirections.actionHomeFragmentToQrcodescanner()
             Navigation.findNavController(binding.scanQRLong).navigate(navDirection)
         }
         binding.redeemButton.setOnClickListener {
-            showToastMessage("redeem")
-            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToRedeem()
+            //showToastMessage("redeem")
+            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToRedeemPoints()
             Navigation.findNavController(binding.redeemButton).navigate(navDirection)
         }
         binding.productButton.setOnClickListener {

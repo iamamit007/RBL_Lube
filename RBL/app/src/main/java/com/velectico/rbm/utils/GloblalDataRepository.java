@@ -169,9 +169,13 @@ public void complainTest(File file,
 
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("recPhoto", file.getName(),
+                .addFormDataPart("recPhoto",file.getName(),
                         RequestBody.create(MediaType.parse("application/octet-stream"),
-                                file))
+                                new File(file.getAbsolutePath())))
+//        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+//                .addFormDataPart("recPhoto", file.getName(),
+//                        RequestBody.create(MediaType.parse("application/octet-stream"),
+//                                file))
                 .addFormDataPart("complaintype", complaintype)
                 .addFormDataPart("userId", userId)
                 .addFormDataPart("CR_Batch_no", CR_Batch_no)

@@ -271,6 +271,6 @@
     <item>Dealer</item>
     <item>Distributor</item>
 </string-array>
-
+    <string name="rationale_camera">This app needs access to your camera so you can scan code.</string>
 
 </resources>
