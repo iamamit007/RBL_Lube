@@ -104,6 +104,8 @@ class CreateOrderFragment : BaseFragment(),productItemClickListener {
     }
 
     private fun moveToOrderPreview(){
+        OrderPreviewFragment.seletedItems = seletedItems
+        OrderPreviewFragment.orderItems = orderItems
         val navDirection =  CreateOrderFragmentDirections.actionCreateOrderFragmentToOrderPreviewFragment()
         Navigation.findNavController(binding.btnCheckOut).navigate(navDirection)
     }
