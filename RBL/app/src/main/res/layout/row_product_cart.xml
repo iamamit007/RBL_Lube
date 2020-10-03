@@ -99,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
-                android:text="@{orderCartInfo.PM_UOM_Detail}"
+                android:text="@{orderCartInfo.PM_Quantity_Val+`ltr`}"
                 android:textColor="#343434"
                 android:textSize="12dip" />
 
@@ -184,6 +184,15 @@
             android:spinnerMode="dropdown"
             app:smsp_hint="Select Beat"
             style="@style/custom_spinner" />
+            <Spinner
+                android:id="@+id/sp_qtyType"
+                android:layout_marginTop="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:drawSelectorOnTop="true"
+                android:drawableRight="@drawable/ic_expand"
+                android:entries="@array/quantityType"
+                />
         <View
             android:layout_width="wrap_content"
             android:layout_height="20dp"></View>

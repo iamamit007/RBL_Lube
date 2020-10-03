@@ -16,6 +16,7 @@ import com.velectico.rbm.databinding.RowProductCartBinding
 import com.velectico.rbm.order.model.OrderCart
 import com.velectico.rbm.order.model.OrderHead
 import com.velectico.rbm.order.views.CreateOrderFragment.Companion.orderItems
+import com.velectico.rbm.order.views.CreateOrderFragment.Companion.qtyType
 import com.velectico.rbm.order.views.CreateOrderFragment.Companion.schemeItems
 import com.velectico.rbm.order.views.CreateOrderFragment.Companion.seletedItems
 import com.velectico.rbm.utils.productItemClickListener
@@ -56,6 +57,57 @@ class OrderCartListAdapter(val context: Context,var listener: productItemClickLi
     override fun onBindViewHolder(holder: OrderCartListAdapter.ViewHolder, position: Int) {
         holder.bind(orderCart[position])
 
+        var languages: MutableList<String> = ArrayList()
+        if (orderCart[position].PM_Unit_For_Carton != null && orderCart[position].PM_Pcs_OR_Bucket == "pcs") {
+            languages.add("Select quantity type")
+            // languages.add("Bucket")
+            //languages.add("Pieces")
+            languages.add("Carton")
+        }
+        else if (orderCart[position].PM_Unit_For_Carton == null && orderCart[position].PM_Pcs_OR_Bucket == "pcs") {
+            languages.add("Select quantity type")
+            // languages.add("Bucket")
+            languages.add("Pieces")
+            //languages.add("Carton")
+        }
+        else{
+            languages.add("Select quantity type")
+            languages.add("Bucket")
+        }
+
+        // access the spinner
+
+        if (holder.binding.spQtyType != null) {
+            val adapter = context?.let {
+                ArrayAdapter(
+                    it,
+                    android.R.layout.simple_spinner_dropdown_item, languages)
+            }
+            holder.binding.spQtyType.adapter = adapter
+
+            holder.binding.spQtyType.onItemSelectedListener = object :
+                AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>,
+                                            view: View, position: Int, id: Long) {
+                    //Toast.makeText(applicationContext, ""+position, Toast.LENGTH_SHORT).show()
+
+                    if (languages[position] == "Bucket"){
+                        qtyType = "bucket"
+                    }
+                    else if (languages[position] == "Pieces"){
+                        qtyType = "pcs"
+                    }
+                    else{
+                        qtyType = "carton"
+                    }
+
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // write code to perform some action
+                }
+            }
+
         var statList: MutableList<String> = ArrayList()
         statList.add("Select scheme")
         for (i in orderCart[position].PSM_Scheme_Details!!){
@@ -63,7 +115,7 @@ class OrderCartListAdapter(val context: Context,var listener: productItemClickLi
         }
 
 
-        var x  = ArrayAdapter<String>(context, R.layout.simple_spinner_item, statList);
+        var x  = ArrayAdapter<String>(context, R.layout.simple_spinner_dropdown_item, statList);
 
         holder.binding.spBeatName.adapter = x
 
@@ -95,7 +147,7 @@ class OrderCartListAdapter(val context: Context,var listener: productItemClickLi
         holder.binding.spBeatName.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 val x = orderCart[position].PSM_Scheme_Details
-                if (pos!=0 && statList.size > pos){
+                if (pos!=0 && statList.size > pos+1){
                     val y = x!![pos].schemeId
                     schemeItems[orderCart[position].PM_ID!!] = y
                 }
@@ -106,6 +158,8 @@ class OrderCartListAdapter(val context: Context,var listener: productItemClickLi
             override fun onNothingSelected(adapterView: AdapterView<*>) {}
         }
         x.notifyDataSetChanged()
+
+        }
     }
 
 

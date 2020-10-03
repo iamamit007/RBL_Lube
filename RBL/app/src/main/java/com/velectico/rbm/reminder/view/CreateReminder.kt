@@ -68,7 +68,7 @@ class CreateReminder :  BaseFragment() , DatePickerDialog.OnDateSetListener {
             val adapter = context?.let {
                 ArrayAdapter(
                     it,
-                    android.R.layout.simple_spinner_item, languages)
+                    android.R.layout.simple_spinner_dropdown_item, languages)
             }
             binding.spinner111.adapter = adapter
 
@@ -135,7 +135,7 @@ class CreateReminder :  BaseFragment() , DatePickerDialog.OnDateSetListener {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
 
                 if (binding.spinner111.selectedItem == "Distributor"){
@@ -177,7 +177,7 @@ class CreateReminder :  BaseFragment() , DatePickerDialog.OnDateSetListener {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 if (binding.spinner111.selectedItem == "Dealer"){
                     binding.dealerList11.adapter = adapter2

@@ -143,7 +143,7 @@ class CreateComplaintsUserWise: BaseFragment() {
             val adapter = context?.let {
                 ArrayAdapter(
                     it,
-                    android.R.layout.simple_spinner_item, languages)
+                    android.R.layout.simple_spinner_dropdown_item, languages)
             }
             binding.spinner11.adapter = adapter
 
@@ -330,7 +330,7 @@ class CreateComplaintsUserWise: BaseFragment() {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 binding.spinner33.adapter = adapter2
 
@@ -358,7 +358,7 @@ class CreateComplaintsUserWise: BaseFragment() {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 binding.spinner22.adapter = adapter2
 
@@ -388,7 +388,7 @@ class CreateComplaintsUserWise: BaseFragment() {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
 
                 if (binding.spinner11.selectedItem == "Distributor"){
@@ -430,7 +430,7 @@ class CreateComplaintsUserWise: BaseFragment() {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 if (binding.spinner11.selectedItem == "Dealer"){
                     binding.dealerList.adapter = adapter2

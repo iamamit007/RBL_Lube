@@ -113,7 +113,7 @@ public void test(File file, String expId, String userId, String colnName, Contex
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addFormDataPart("fileName",file.getName(),
                         RequestBody.create(MediaType.parse("application/octet-stream"),
-                                file))
+                                new File(file.getAbsolutePath())))
                 .addFormDataPart("expensId", expId)
                 .addFormDataPart("userId", userId)
                 .addFormDataPart("colName", colnName)

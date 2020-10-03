@@ -58,7 +58,7 @@ class OrderListFragment : BaseFragment()  {
             val adapter = context?.let {
                 ArrayAdapter(
                     it,
-                    android.R.layout.simple_spinner_item, languages)
+                    android.R.layout.simple_spinner_dropdown_item, languages)
             }
             binding.spinnerType.adapter = adapter
 
@@ -294,7 +294,7 @@ private fun setUpRecyclerView() {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
 
             if (binding.spinnerType.selectedItem == "Distributor"){
@@ -335,7 +335,7 @@ private fun setUpRecyclerView() {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 if (binding.spinnerType.selectedItem == "Dealer"){
                     binding.spinnerDealDis.adapter = adapter2

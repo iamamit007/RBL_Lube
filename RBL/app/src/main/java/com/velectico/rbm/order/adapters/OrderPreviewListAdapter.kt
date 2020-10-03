@@ -9,6 +9,7 @@ import com.velectico.rbm.databinding.RowOrderPreviewBinding
 import com.velectico.rbm.databinding.RowProductCartBinding
 import com.velectico.rbm.order.model.OrderCart
 import com.velectico.rbm.order.views.CreateOrderFragment
+import com.velectico.rbm.order.views.OrderPreviewFragment.Companion.sceheId
 import kotlinx.android.synthetic.main.row_order_preview.view.*
 
 class OrderPreviewListAdapter(var orderItemsSelected:HashMap<String,String>) : RecyclerView.Adapter<OrderPreviewListAdapter.ViewHolder>() {
@@ -50,7 +51,7 @@ class OrderPreviewListAdapter(var orderItemsSelected:HashMap<String,String>) : R
             val y = orderCart[position].PM_Net_Price!!.toDouble()
             holder.binding.cartProductQuantityTv.setText("₹ ${x*y}")
             Picasso.get().load(orderCart[position].PM_Image_Path).fit().into(holder.binding.listImage)
-            val sceheId = CreateOrderFragment.schemeItems[orderCart[position].PM_ID]!!
+            sceheId = CreateOrderFragment.schemeItems[orderCart[position].PM_ID]!!
             if (sceheId !=null){
                 val cc = orderCart[position].PSM_Scheme_Details!!.find { it.schemeId==sceheId }
                 holder.binding.etBeatName.setText("${cc?.schemeName}")

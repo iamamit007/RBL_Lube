@@ -1,11 +1,9 @@
 package com.velectico.rbm.navdrawer.views
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -22,7 +20,18 @@ import com.velectico.rbm.R
 import com.velectico.rbm.RBMLubricantsApplication
 import com.velectico.rbm.databinding.ActivityDashboardBinding
 import com.velectico.rbm.loginreg.model.LoginResponse
+import com.velectico.rbm.menuitems.viewmodel.AttendancResponse
+import com.velectico.rbm.menuitems.viewmodel.AttendanceRequestParams
+import com.velectico.rbm.network.callbacks.NetworkCallBack
+import com.velectico.rbm.network.callbacks.NetworkError
+import com.velectico.rbm.network.manager.ApiClient
+import com.velectico.rbm.network.manager.ApiInterface
+import com.velectico.rbm.network.response.NetworkResponse
 import com.velectico.rbm.utils.*
+import retrofit2.Callback
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by mymacbookpro on 2020-04-26
@@ -134,7 +143,7 @@ class DashboardActivity : BaseActivity(), NavigationView.OnNavigationItemSelecte
         Toast.makeText(applicationContext,"Work in-progress.Feature Will be available shortly!",Toast.LENGTH_SHORT).show()
     }
 
-    public fun gotoorderFilter(){
+     fun gotoorderFilter(){
         RBMLubricantsApplication.filterFrom = "Product"
         navController.navigate(R.id.productFilterFragment)
     }
@@ -156,17 +165,79 @@ class DashboardActivity : BaseActivity(), NavigationView.OnNavigationItemSelecte
     }*/
 
 
-    /*override
+    override
     fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_attandance -> {
-                //add task
-                super.onOptionsItemSelected(item)
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }*/
+//        if(item.itemId == android.R.id.home){ // use android.R.id
+//            drawerLayout.openDrawer(Gravity.LEFT);
+//        }
+        if (item.itemId == R.id.action_attandance){
+            //callAttendance()
+            val sdf = SimpleDateFormat("dd/M/yyyy")
+            val currentDate = sdf.format(Date())
+            val prevDate = SharedPreferenceUtils.getData(applicationContext!!,"LAST_ATTENDANCE")
+            val format =  SimpleDateFormat("dd/M/yyyy");
+            val format2 =  SimpleDateFormat("dd/M/yyyy");
+            try {
+                if (prevDate == "0"){
+                    callAttendance()
+                }else{
+                    val date = format.parse(currentDate);
+                    val date2 = format2.parse(prevDate);
+                    val miliSeconds = date.getTime() -date2.getTime();
+                    val seconds = TimeUnit.MILLISECONDS.toSeconds(miliSeconds);
+                    val minute = seconds/60;
+//                if (minute >1440){
+//                    callAttendance()
+//                }
 
+                    if (minute >1440){
+                        callAttendance()
+                    }else{
+                        showToastMessage("You have given attendance already")
+                    }
+
+                }
+
+
+            } catch ( e:Exception) {
+                e.printStackTrace();
+            }
+            //  showToastMessage("attendance")
+        }
+        //return true
+        return super.onOptionsItemSelected(item)
+    }
+
+    fun callAttendance(){
+        //showHud()
+        val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)
+        val responseCall = apiInterface.doAttendance(
+            AttendanceRequestParams(SharedPreferenceUtils.getLoggedInUserId(applicationContext))
+        )
+
+
+        responseCall.enqueue(AttendancResponse as Callback<AttendancResponse>)
+
+    }
+    private val AttendancResponse = object : NetworkCallBack<AttendancResponse>(){
+        override fun onSuccessNetwork(data: Any?, response: NetworkResponse<AttendancResponse>) {
+            response.data?.respMessage?.let { status ->
+                val sdf = SimpleDateFormat("dd/M/yyyy")
+                val currentDate = sdf.format(Date())
+                SharedPreferenceUtils.saveData(applicationContext!!,"LAST_ATTENDANCE","${currentDate}")
+                //hide()
+                showToastMessage( response.data?.respMessage!!)
+
+
+            }
+
+        }
+
+        override fun onFailureNetwork(data: Any?, error: NetworkError) {
+           // hide()
+        }
+
+    }
 
 
     fun manageNavDrawerPrivilege(uRole:String){

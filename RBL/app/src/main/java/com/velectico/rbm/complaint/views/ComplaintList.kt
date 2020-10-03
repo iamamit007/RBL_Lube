@@ -96,7 +96,7 @@ class ComplaintList : BaseFragment() {
             val adapter = context?.let {
                 ArrayAdapter(
                     it,
-                    android.R.layout.simple_spinner_item, languages)
+                    android.R.layout.simple_spinner_dropdown_item, languages)
             }
             binding.spinnerTp.adapter = adapter
 
@@ -204,7 +204,7 @@ class ComplaintList : BaseFragment() {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 binding.spinnerDealDist.adapter = adapter2
 
@@ -245,7 +245,7 @@ class ComplaintList : BaseFragment() {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList
+                        android.R.layout.simple_spinner_dropdown_item, statList
                     )
                 }
                 binding.spinnerDealDist.adapter = adapter2

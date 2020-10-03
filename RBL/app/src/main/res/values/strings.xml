@@ -272,5 +272,10 @@
     <item>Distributor</item>
 </string-array>
     <string name="rationale_camera">This app needs access to your camera so you can scan code.</string>
-
+    <string-array name="quantityType">
+        <item>-- Select Quantity type --</item>
+        <item>Bucket</item>
+        <item>Pieces</item>
+        <item>Carton</item>
+    </string-array>
 </resources>

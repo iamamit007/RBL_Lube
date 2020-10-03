@@ -35,6 +35,12 @@ class OrderPreviewFragment : BaseFragment() {
     private lateinit var orderCartList : List<OrderCart>
     private lateinit var adapter: OrderPreviewListAdapter
     var taskDetails = BeatTaskDetails()
+    companion object{
+        var orderItems:HashMap<String,String> = HashMap()
+        var schemeItems:HashMap<String,String?> = HashMap()
+        var seletedItems = HashSet<CreateOrderListDetails>()
+        var sceheId = ""
+    }
     override fun getLayout(): Int {
         return R.layout.fragment_order_preview
     }
@@ -104,10 +110,26 @@ class OrderPreviewFragment : BaseFragment() {
 
         showHud()
         var list = mutableListOf<OrderDetailsParams>()
+        var total = 0.0
+        var totalltr = 0.0
         for (i in seletedItems ){
-            val total  = (i.PM_Disc_Price!!.toDouble())*(orderItems[i.PM_ID!!]!!.toDouble())
+            var total  = (i.PM_Disc_Price!!.toDouble())*(orderItems[i.PM_ID!!]!!.toDouble())
+            if (CreateOrderFragment.qtyType == "Bucket" && i.PM_Pcs_OR_Bucket == "bucket"){
+                total = (i.PM_Net_Price!!.toDouble())*(CreateOrderFragment.orderItems[i.PM_ID!!]!!.toDouble())
+                totalltr = (i.PM_UOM_Detail!!.toDouble())* (CreateOrderFragment.orderItems[i.PM_ID!!]!!.toDouble())
+            }
+            else if (CreateOrderFragment.qtyType == "Pieces" && i.PM_Pcs_OR_Bucket == "pcs"){
+                total = ((i.PM_MRP!!.toDouble())/(i.PM_Quantity_Val!!.toDouble())*(orderItems[i.PM_ID!!]!!.toDouble()))
+                totalltr = ((i.PM_Quantity_Val!!.toDouble())*(CreateOrderFragment.orderItems[i.PM_ID!!]!!.toDouble()))
+            }
+            else if (CreateOrderFragment.qtyType == "Carton"){
+                total = (i.PM_Carton_Price!!.toDouble())*(CreateOrderFragment.orderItems[i.PM_ID!!]!!.toDouble())
+                totalltr = (i.PM_UOM_Detail!!.toDouble())* (CreateOrderFragment.orderItems[i.PM_ID!!]!!.toDouble()*(i.PM_Unit_For_Carton!!.toDouble()))
+            }
             grossAmt += total
-            list.add(OrderDetailsParams(i.PM_ID!!,"1",orderItems[i.PM_ID!!]!!,i.PM_MRP!!,i.PM_Disc_Price!!,i.PM_Net_Price!!,i.PM_GST_Perc!!,total.toString()))
+            list.add(OrderDetailsParams(i.PM_ID!!,
+                sceheId,orderItems[i.PM_ID!!]!!,i.PM_MRP!!,i.PM_Disc_Price!!,i.PM_Net_Price!!,i.PM_GST_Perc!!,
+                total.toString(),i.PM_Pcs_OR_Bucket.toString(),totalltr.toString()))
 
         }
         val apiInterface = ApiClient.getInstance().client.create(ApiInterface::class.java)

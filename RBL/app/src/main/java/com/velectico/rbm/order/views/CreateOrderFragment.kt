@@ -42,6 +42,7 @@ class CreateOrderFragment : BaseFragment(),productItemClickListener {
         var orderItems:HashMap<String,String> = HashMap()
         var schemeItems:HashMap<String,String?> = HashMap()
         var seletedItems = HashSet<CreateOrderListDetails>()
+        var qtyType = ""
     }
 
 
@@ -104,7 +105,7 @@ class CreateOrderFragment : BaseFragment(),productItemClickListener {
 
     private fun moveToOrderPreview(){
         val navDirection =  CreateOrderFragmentDirections.actionCreateOrderFragmentToOrderPreviewFragment()
-        Navigation.findNavController(binding.fab).navigate(navDirection)
+        Navigation.findNavController(binding.btnCheckOut).navigate(navDirection)
     }
 
     private fun moveToProdFilter(){
@@ -173,9 +174,23 @@ class CreateOrderFragment : BaseFragment(),productItemClickListener {
 
     fun caculateGross(){
         var grossAmt = 0.0
+        var total = 0.0
+        var totalLitre = 0.0
         if (seletedItems.size !=0){
             for (i in seletedItems ){
-                val total  = (i.PM_Net_Price!!.toDouble())*(orderItems[i.PM_ID!!]!!.toDouble())
+                if (qtyType == "bucket" && i.PM_Pcs_OR_Bucket == "bucket"){
+                    total = ((i.PM_MRP!!.toDouble())/(i.PM_Quantity_Val!!.toDouble())*(orderItems[i.PM_ID!!]!!.toDouble())*(i.PM_Quantity_Val!!.toDouble()))
+                    totalLitre = (i.PM_Quantity_Val!!.toDouble())*(orderItems[i.PM_ID!!]!!.toDouble())
+                }
+                else if (qtyType == "pcs" && i.PM_Pcs_OR_Bucket == "pcs"){
+                    total = ((i.PM_MRP!!.toDouble())/(i.PM_Quantity_Val!!.toDouble())*(orderItems[i.PM_ID!!]!!.toDouble())*(i.PM_Quantity_Val!!.toDouble()))
+                    totalLitre = (i.PM_Quantity_Val!!.toDouble())*(orderItems[i.PM_ID!!]!!.toDouble())
+                }
+                else if (qtyType == "carton" && i.PM_Unit_For_Carton != null ){
+                    total = (i.PM_Carton_Price!!.toDouble())*(orderItems[i.PM_ID!!]!!.toDouble())
+                    totalLitre = (i.PM_Unit_For_Carton!!.toDouble())*(orderItems[i.PM_ID!!]!!.toDouble())*(i.PM_Quantity_Val!!.toDouble())
+                }
+
                 grossAmt += total
 
             }
@@ -184,7 +199,7 @@ class CreateOrderFragment : BaseFragment(),productItemClickListener {
 
         }
 
-        binding.tvProdId.setText("$grossAmt")
+        binding.tvProdId.setText("$grossAmt"+"=="+totalLitre)
     }
 
 }

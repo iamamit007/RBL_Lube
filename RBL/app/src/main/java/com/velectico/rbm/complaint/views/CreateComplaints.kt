@@ -271,7 +271,7 @@ abstract class CreateComplaints : BaseFragment() {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 binding.spinner2.adapter = adapter2
 
@@ -299,7 +299,7 @@ abstract class CreateComplaints : BaseFragment() {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 binding.spinner.adapter = adapter2
 

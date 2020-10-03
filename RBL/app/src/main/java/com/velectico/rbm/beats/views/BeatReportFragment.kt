@@ -102,7 +102,7 @@ class BeatReportFragment : Fragment(), DatePickerDialog.OnDateSetListener {
        val adapter = context?.let {
            ArrayAdapter(
                it,
-               android.R.layout.simple_spinner_item, provinceList)
+               android.R.layout.simple_spinner_dropdown_item, provinceList)
        }
        rootView.spinnerOrderNotReceived.adapter = adapter
        rootView.spinnerOrderNotReceived.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -135,7 +135,7 @@ class BeatReportFragment : Fragment(), DatePickerDialog.OnDateSetListener {
        val adapter2 = context?.let {
            ArrayAdapter(
                it,
-               android.R.layout.simple_spinner_item, statList)
+               android.R.layout.simple_spinner_dropdown_item, statList)
        }
        rootView.paymentspinner.adapter = adapter2
         rootView.paymentspinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -278,7 +278,7 @@ class BeatReportFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 rootView.spinner2.adapter = adapter2
 
@@ -309,7 +309,7 @@ class BeatReportFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 rootView.pkgProbReason.adapter = adapter2
 
@@ -339,7 +339,7 @@ class BeatReportFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 rootView.prefProbReason.adapter = adapter2
 
@@ -368,7 +368,7 @@ class BeatReportFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 rootView.spinnerTurnOverRange.adapter = adapter2
 
@@ -398,7 +398,7 @@ class BeatReportFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 rootView.priceProbReason.adapter = adapter2
 

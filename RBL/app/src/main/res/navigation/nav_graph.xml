@@ -66,6 +66,9 @@
         <action
             android:id="@+id/action_homeFragment_to_redeemPoints"
             app:destination="@id/redeemPoints" />
+        <action
+            android:id="@+id/action_homeFragment_to_QRScanner"
+            app:destination="@id/QRScanner" />
 
     </fragment>
     <fragment
@@ -474,7 +477,17 @@
     <fragment
         android:id="@+id/fragmentAddPaymentInfo"
         android:name="com.velectico.rbm.payment.view.FragmentAddPaymentInfo"
-        android:label="Confirm Payment" />
+        android:label="Confirm Payment" >
+        <argument
+            android:name="dealid"
+            app:argType="string" />
+        <argument
+            android:name="distribid"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentAddPaymentInfo_to_fragmentPaymentList"
+            app:destination="@id/fragmentPaymentList" />
+    </fragment>
     <fragment
         android:id="@+id/beatPaymentListFragment"
         android:name="com.velectico.rbm.payment.view.BeatPaymentListFragment"
@@ -513,7 +526,14 @@
     <fragment
         android:id="@+id/paymentHistoryList"
         android:name="com.velectico.rbm.payment.view.PaymentHistoryList"
-        android:label="Payment History" />
+        android:label="Payment History" >
+        <argument
+            android:name="dealerid"
+            app:argType="string" />
+        <argument
+            android:name="distribid"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/productFilterFragment"
         android:name="com.velectico.rbm.products.view.ProductFilterFragment"
@@ -554,5 +574,9 @@
             android:id="@+id/action_redeemPoints_to_redeem"
             app:destination="@id/redeem" />
     </fragment>
+    <fragment
+        android:id="@+id/QRScanner"
+        android:name="com.velectico.rbm.qrcodescan.view.QRScanner"
+        android:label="QRScanner" />
 
 </navigation>

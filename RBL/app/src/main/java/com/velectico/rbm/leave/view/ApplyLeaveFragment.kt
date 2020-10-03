@@ -129,7 +129,7 @@ class ApplyLeaveFragment : BaseFragment(), View.OnClickListener, DatePickerDialo
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 binding.spLeaveReason.adapter = adapter2
                 binding.spLeaveReason.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

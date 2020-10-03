@@ -27,6 +27,8 @@ import com.velectico.rbm.beats.model.DealerDetailsResponse;
 import com.velectico.rbm.beats.model.DistListRequestParams;
 import com.velectico.rbm.beats.model.DistListResponse;
 import com.velectico.rbm.beats.model.GetBeatDeatilsRequestParams;
+import com.velectico.rbm.beats.model.InvoicePaidRequestParams;
+import com.velectico.rbm.beats.model.InvoicePaidResponse;
 import com.velectico.rbm.beats.model.LocationByLevelListRequestParams;
 import com.velectico.rbm.beats.model.LocationByLevelListResponse;
 import com.velectico.rbm.beats.model.OrderDetailsParams;
@@ -35,6 +37,10 @@ import com.velectico.rbm.beats.model.OrderVSQualityRequestParams;
 import com.velectico.rbm.beats.model.OrderVSQualityResponse;
 import com.velectico.rbm.beats.model.TaskForListRequestParams;
 import com.velectico.rbm.beats.model.TaskForListResponse;
+import com.velectico.rbm.beats.model.outstandingInvoiceListResponse;
+import com.velectico.rbm.beats.model.outstandingInvoiceRequestParams;
+import com.velectico.rbm.beats.model.paymentHistoryListResponse;
+import com.velectico.rbm.beats.model.paymentHistoryRequestParams;
 import com.velectico.rbm.complaint.model.ComplaintListRequestParams;
 import com.velectico.rbm.complaint.model.ComplaintListResponse;
 import com.velectico.rbm.expense.model.BidListResponse;
@@ -105,6 +111,8 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Deal_Dist
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Dropdown_Details_byName;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Location_By_Level;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Order_History;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_OutStanding_Invoice;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Payment_History;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Product_List_By_Cat_Seg;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_Reedem_Details;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Get_ReminderList;
@@ -116,6 +124,7 @@ import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Reedem;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Reset_Password;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Save_AssignTask;
 import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.Send_QR_Details;
+import static com.velectico.rbm.network.apiconstants.ConstantAPIKt.get_Invoice_Paid;
 
 public interface ApiInterface {
 
@@ -258,4 +267,13 @@ public interface ApiInterface {
 
     @POST(Get_Reedem_Details)
     Call<GetRedeemDetailsResponse> getRedeemList(@Body GetRedeemDetailsRequestParams model);
+
+    @POST(get_Invoice_Paid)
+    Call<InvoicePaidResponse> getInvoicePaid(@Body InvoicePaidRequestParams model);
+
+    @POST(Get_OutStanding_Invoice)
+    Call<outstandingInvoiceListResponse> getOutstandingInvoice(@Body outstandingInvoiceRequestParams model);
+
+    @POST(Get_Payment_History)
+    Call<paymentHistoryListResponse> getPaymentHistory(@Body paymentHistoryRequestParams model);
 }

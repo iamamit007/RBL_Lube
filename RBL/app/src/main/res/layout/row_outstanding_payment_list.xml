@@ -5,7 +5,7 @@
     <data>
         <variable
             name="paymentInfo"
-            type="com.velectico.rbm.beats.model.PaymentHistoryDetails" />
+            type="com.velectico.rbm.beats.model.PaymentDetails" />
     </data>
 
 
@@ -59,7 +59,7 @@
                             style="@style/rv_caption"
                             android:text="₹ 5,000"
                             android:textAlignment="center"
-                            android:visibility="gone" />
+                            android:visibility="visible" />
 
                     </LinearLayout>
 

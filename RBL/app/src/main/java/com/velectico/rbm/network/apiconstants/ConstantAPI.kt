@@ -184,3 +184,9 @@ const val Reset_Password = APP_API_NAME+"Reset_Password"
 const val Send_QR_Details = APP_API_NAME+"Send_QR_Details"
 const val Reedem = APP_API_NAME+"Reedem"
 const val Get_Reedem_Details = APP_API_NAME+"Get_Reedem_Details"
+const val get_Invoice_Paid = APP_API_NAME+"Invoice_Paid"
+const val Get_OutStanding_Invoice = APP_API_NAME+"Get_OutStanding_Invoice"
+const val Get_Payment_History = APP_API_NAME+"Get_Payment_History"
+
+
+

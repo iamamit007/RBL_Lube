@@ -65,7 +65,7 @@ class ProductFilterFragment : BaseFragment()  {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 binding.spinnerCategory.adapter = adapter2
 
@@ -97,7 +97,7 @@ class ProductFilterFragment : BaseFragment()  {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 binding.spinnerSegment.adapter = adapter2
 

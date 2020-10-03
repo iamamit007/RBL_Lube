@@ -228,7 +228,13 @@ data class CreateOrderListDetails(
     var PM_Seg_Name: String? = null,
     var PM_Brand_name: String? = null,
     var PM_Scheme_name: String? = null,
-    var PSM_Scheme_Details: List<PSM_Scheme_DetailsResponse>? = null
+    var PSM_Scheme_Details: List<PSM_Scheme_DetailsResponse>? = null,
+    var PM_Unit_For_Carton: String? = null,
+    var PM_Carton_Price: String? = null,
+    var PM_Pcs_OR_Bucket: String? = null,
+    var PM_Quantity: String? = null,
+    var PM_Quantity_Val: String? = null
+
 ):Serializable
 
 data class PSM_Scheme_DetailsResponse(
@@ -487,7 +493,11 @@ data class  OrderDetailsParams(
     @SerializedName("discountPrice") var discountPrice: String,
     @SerializedName("netPricing") var netPricing: String,
     @SerializedName("prodGst") var prodGst: String,
-    @SerializedName("totalPrice") var totalPrice: String
+    @SerializedName("totalPrice") var totalPrice: String,
+    @SerializedName("prodQuantityType") var prodQuantityType: String,
+    @SerializedName("Total_Ltr") var Total_Ltr: String
+
+
     ): BaseModel()
 data class CreateOrderResponse(
     val count: Int,
@@ -537,3 +547,80 @@ data class DealDropdownDetails(
     val UM_Name: String?
 
 ):Serializable
+
+///////Payments////////
+
+data class  InvoicePaidRequestParams(
+    @SerializedName("userId") var userId: String?,
+    @SerializedName("dealerId") var dealerId: String?,
+    @SerializedName("distribId") var distribId: String?,
+    @SerializedName("paidAmt") var paidAmt: String?,
+    @SerializedName("Pay_Mode") var Pay_Mode: String?
+
+): BaseModel()
+
+data class InvoicePaidResponse(
+    @SerializedName("status")
+    val status: Int? = null,
+    @SerializedName("respMessage")
+    val respMessage: String? = null,
+    @SerializedName("Tran_ID")
+    val Tran_ID: String? = null
+
+)
+data class  outstandingInvoiceRequestParams(
+    @SerializedName("userId") var userId: String?,
+    @SerializedName("dealerId") var dealerId: String?,
+    @SerializedName("distribId") var distribId: String?
+
+): BaseModel()
+
+data class outstandingInvoiceListResponse(
+    val count: Int,
+    @SerializedName("Details")
+    val paymentList: List<PaymentDetails>,
+    @SerializedName("status")
+    val status: Int? = null,
+    @SerializedName("totalOutStanding")
+    val totalOutStanding: String? = null
+
+)
+data class PaymentDetails(
+    val SIH_ID: String?,
+    val SIH_Invoice_No: String?,
+    val SIH_Order_No: String?,
+    val SIH_Invoice_Amt: String?,
+    val SIH_Disc_Amt: String?,
+    val SIH_Sale_Type: String?,
+    val SIH_Pay_Mode: String?,
+    val SIH_Due_Date: String?,
+    val invoiceDate: String?,
+    val Paid_Amount: String?,
+    val Due_Amount: String?
+
+):Serializable
+
+
+data class  paymentHistoryRequestParams(
+    @SerializedName("userId") var userId: String?,
+    @SerializedName("dealerId") var dealerId: String?,
+    @SerializedName("distribId") var distribId: String?
+
+): BaseModel()
+
+data class paymentHistoryListResponse(
+    val count: Int,
+    @SerializedName("Details")
+    val paymentHistoryDetails: List<PaymentHistoryDetails>,
+    @SerializedName("status")
+    val status: Int? = null
+
+)
+data class PaymentHistoryDetails(
+    val PH_Tran_ID: String?,
+    val tran_amount: String?,
+    val PH_Invoice_No: String?,
+    val payDate: String?
+
+):Serializable
+

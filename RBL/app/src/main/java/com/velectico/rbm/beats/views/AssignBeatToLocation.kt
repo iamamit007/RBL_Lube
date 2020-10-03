@@ -129,7 +129,7 @@ class AssignBeatToLocation : BaseFragment() {
                     val adapter2 = context?.let {
                         ArrayAdapter(
                             it,
-                            android.R.layout.simple_spinner_item, statList
+                            android.R.layout.simple_spinner_dropdown_item, statList
                         )
                     }
                     binding.spinner.adapter = null
@@ -200,7 +200,7 @@ class AssignBeatToLocation : BaseFragment() {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 binding.spinner2.adapter = null
                 binding.spinner2.adapter = adapter2
@@ -254,7 +254,7 @@ class AssignBeatToLocation : BaseFragment() {
                 val adapter2 = context?.let {
                     ArrayAdapter(
                         it,
-                        android.R.layout.simple_spinner_item, statList)
+                        android.R.layout.simple_spinner_dropdown_item, statList)
                 }
                 binding.spinner3.adapter = null
                 binding.spinner3.adapter = adapter2

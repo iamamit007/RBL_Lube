@@ -197,7 +197,7 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
                     val adapter2 = context?.let {
                         ArrayAdapter(
                             it,
-                            android.R.layout.simple_spinner_item, itemList)
+                            android.R.layout.simple_spinner_dropdown_item, itemList)
                     }
                     binding?.spinnerBeatList?.adapter = adapter2
                     binding?.spinnerBeatList?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -469,7 +469,7 @@ class CreateMultipleExpenseFragment : BaseFragment(),DatePickerDialog.OnDateSetL
             val adapter2 = context?.let {
                 ArrayAdapter(
                     it,
-                    android.R.layout.simple_spinner_item,
+                    android.R.layout.simple_spinner_dropdown_item,
                     statList
                 )
             }

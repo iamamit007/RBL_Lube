@@ -49,6 +49,19 @@
                 android:background="@drawable/complaint_spinner"
                 android:entries="@array/dealer_List"
                 />
+            <Spinner
+                android:id="@+id/dealerListspinner2"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:alpha="0.75"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:drawSelectorOnTop="true"
+                android:layout_below="@+id/dealerListspinner"
+                android:background="@drawable/complaint_spinner"
+                android:entries="@array/dealer_List"
+                />
 
 
 
@@ -59,11 +72,12 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card"
                 android:alpha="0.75"
-                android:layout_below="@+id/dealerListspinner"
+                android:layout_below="@+id/dealerListspinner2"
                 style="@style/cv_style">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dimen_20dp"
                     android:layout_height="wrap_content">
 
                     <LinearLayout
@@ -149,6 +163,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/totalamt"
+                        android:layout_marginTop="@dimen/dimen_20dp"
                         android:layout_centerHorizontal="true"
                         android:backgroundTint="#4AA02C"
                         android:layout_marginBottom="@dimen/dimen_20dp"

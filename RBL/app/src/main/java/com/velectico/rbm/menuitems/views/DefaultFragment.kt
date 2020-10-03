@@ -144,7 +144,7 @@ class DefaultFragment : BaseFragment(){
         }
         binding.scanQRLong.setOnClickListener {
             //showToastMessage("scan")
-            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToQrcodescanner()
+            val navDirection =  DefaultFragmentDirections.actionHomeFragmentToQRScanner()
             Navigation.findNavController(binding.scanQRLong).navigate(navDirection)
         }
         binding.redeemButton.setOnClickListener {
@@ -189,44 +189,44 @@ class DefaultFragment : BaseFragment(){
     }
 
 
-    override
-    fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_attandance){
-            //callAttendance()
-            val sdf = SimpleDateFormat("dd/M/yyyy")
-            val currentDate = sdf.format(Date())
-            val prevDate = SharedPreferenceUtils.getData(context!!,"LAST_ATTENDANCE")
-            val format =  SimpleDateFormat("dd/M/yyyy");
-            val format2 =  SimpleDateFormat("dd/M/yyyy");
-            try {
-                if (prevDate == "0"){
-                    callAttendance()
-                }else{
-                    val date = format.parse(currentDate);
-                    val date2 = format2.parse(prevDate);
-                    val miliSeconds = date.getTime() -date2.getTime();
-                    val seconds = TimeUnit.MILLISECONDS.toSeconds(miliSeconds);
-                    val minute = seconds/60;
-//                if (minute >1440){
+//    override
+//    fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        if (item.itemId == R.id.action_attandance){
+//            //callAttendance()
+//            val sdf = SimpleDateFormat("dd/M/yyyy")
+//            val currentDate = sdf.format(Date())
+//            val prevDate = SharedPreferenceUtils.getData(context!!,"LAST_ATTENDANCE")
+//            val format =  SimpleDateFormat("dd/M/yyyy");
+//            val format2 =  SimpleDateFormat("dd/M/yyyy");
+//            try {
+//                if (prevDate == "0"){
 //                    callAttendance()
+//                }else{
+//                    val date = format.parse(currentDate);
+//                    val date2 = format2.parse(prevDate);
+//                    val miliSeconds = date.getTime() -date2.getTime();
+//                    val seconds = TimeUnit.MILLISECONDS.toSeconds(miliSeconds);
+//                    val minute = seconds/60;
+////                if (minute >1440){
+////                    callAttendance()
+////                }
+//
+//                    if (minute >1440){
+//                        callAttendance()
+//                    }else{
+//                        showToastMessage("You have given attendance already")
+//                    }
+//
 //                }
-
-                    if (minute >1440){
-                        callAttendance()
-                    }else{
-                        showToastMessage("You have given attendance already")
-                    }
-
-                }
-
-
-            } catch ( e:Exception) {
-                e.printStackTrace();
-            }
-          //  showToastMessage("attendance")
-        }
-        return true
-    }
+//
+//
+//            } catch ( e:Exception) {
+//                e.printStackTrace();
+//            }
+//          //  showToastMessage("attendance")
+//        }
+//        return true
+//    }
 
 
 
